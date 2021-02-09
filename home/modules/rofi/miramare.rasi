@@ -1,0 +1,20 @@
+* {
+  background-color: #2a2426;
+  text-color: #e6d397;
+  spacing: 0;
+  padding: 2 1;
+}
+
+mainbox {
+
+}
+
+element-icon {
+  size: 2ch;
+}
+
+element selected {
+  background-color: #444444;
+}
+
+/* vim: set ft=css: */
