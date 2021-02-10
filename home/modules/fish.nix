@@ -69,9 +69,9 @@
       de = "direnv edit .";
       g = "git";
 
-      nc = "cd /etc/nixos; $EDITOR /etc/nixos/system/configuration.nix; cd -";
+      nc = "$EDITOR /etc/nixos/system/configuration.nix";
       ns = "sudo nixos-rebuild switch";
-      hc = "cd /etc/nixos; $EDITOR /etc/nixos/home/home.nix; cd -";
+      hc = "$EDITOR /etc/nixos/home/home.nix";
       # hs = "";
       ng = "nix-collect-garbage";
 
