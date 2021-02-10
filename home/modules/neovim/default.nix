@@ -15,7 +15,9 @@
       indentLine # Use indent-blankline
       # Integration
         # Git
-        git-messenger-vim vim-gitgutter vim-fugitive
+        git-messenger-vim
+        vim-fugitive
+        vim-gitgutter
       # Efficiency
         # Movement
         vim-lastplace
