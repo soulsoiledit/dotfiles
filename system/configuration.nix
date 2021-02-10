@@ -181,4 +181,5 @@
   #   qemuPackage = pkgs.qemu_kvm;
   # };
   # # }}}
+  programs.command-not-found.enable = false;
 }
