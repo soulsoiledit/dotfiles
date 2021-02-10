@@ -64,7 +64,7 @@
       ht = "htop -u ${config.home.username}";
       btc = "bluetoothctl";
       ru = "${pkgs.udiskie}/bin/udiskie-umount --detach ";
-      rsd = "cp ~/.config/nixpkgs/other/settings.json ~/.config/discord/settings.json";
+      rsd = "cp /etc/nixos/home/other/settings.json ~/.config/discord/settings.json";
       ff = "fzf";
       de = "direnv edit .";
       g = "git";
