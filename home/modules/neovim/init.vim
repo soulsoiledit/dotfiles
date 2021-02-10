@@ -37,6 +37,7 @@ set history=256
 set undofile
 
 let mapleader="\<Space>"
+
 "{{{ Filetypes
 filetype indent plugin on
 " }}}
@@ -96,9 +97,9 @@ nnoremap <silent> <Leader>u :UndotreeToggle<CR>
 " }}}
 " {{{ fzf
 let g:fzf_layout = { 'down': '~25%' }
-nnoremap <silent> <Leader>tf :Files<CR>
+nnoremap <silent> <Leader>tf :Files %:p:h<CR>
 nnoremap <silent> <Leader>tF :Files ~<CR>
-nnoremap <silent> <Leader>tg :GFiles<CR>
+nnoremap <silent> <Leader>tg :cd %:p:h <bar> GFiles<CR>
 nnoremap <silent> <Leader>tb :Buffers<CR>
 nnoremap <silent> <Leader>ti :BLines<CR>
 nnoremap <silent> <Leader>tI :Lines<CR>
