@@ -6,25 +6,22 @@
     ./cachix.nix
   ];
 
-  system = {
-    stateVersion = "20.03";
-  };
+  system.stateVersion = "20.03";
+
   # Boot {{{
   boot = {
-    tmpOnTmpfs = true;
     loader = {
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
       timeout = 0;
     };
     plymouth.enable = true;
-    blacklistedKernelModules = [ "pcspkr" ];
   };
   # }}}
   # Swap {{{
   swapDevices = [{
     device = "/var/swap";
-    size = 8192;
+    size = 2048;
   }];
   # }}}
   # Locale {{{
@@ -32,7 +29,6 @@
   # }}}
   # Nix {{{
   nixpkgs.config.allowUnfree = true;
-
   nix = {
     package = pkgs.nixUnstable;
 
@@ -81,19 +77,13 @@
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    # extraGroups = ["wheel" "video" "libvirtd"];
-    extraGroups = ["wheel" "video"];
+    extraGroups = ["wheel" "video"]; # libvirtd
   };
-  # programs.zsh.enable = true;
   programs.fish.enable = true;
   # }}}
   # Input {{{
   services.xserver.xkbOptions = "compose:ralt";
-
-  services.xserver.libinput = {
-    enable = true;
-    # scrollMethod = "edge";
-  };
+  services.xserver.libinput.enable = true;
   # }}}
   # Audio {{{
   sound.enable = true;
@@ -105,10 +95,7 @@
       '';
     };
 
-    bluetooth = {
-      enable = true;
-      powerOnBoot = true;
-    };
+    bluetooth.enable = true;
   };
   # }}}
   # X11 {{{
