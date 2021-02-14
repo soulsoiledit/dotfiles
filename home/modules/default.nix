@@ -32,7 +32,8 @@
     # xmonad-with-packages xmobar
     awesome
     unzip ncdu bc trash-cli nix-tree patchelf
-    discord multimc
+    discord
+    (pkgs.multimc.override { jdk8 = jdk; })
   ];
 
   programs.obs-studio.enable = true;
