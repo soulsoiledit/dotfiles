@@ -33,7 +33,7 @@
     awesome
     unzip ncdu bc trash-cli nix-tree patchelf
     discord
-    (pkgs.multimc.override { jdk8 = jdk; })
+    (pkgs.multimc.override { jdk8 = pkgs.jdk11; })
   ];
 
   programs.obs-studio.enable = true;
