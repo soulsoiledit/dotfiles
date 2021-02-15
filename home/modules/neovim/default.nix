@@ -10,14 +10,16 @@
     plugins = with pkgs.vimPlugins; [
       # User Intereface
       vim-airline
-      vim-devicons
+      nvim-web-devicons
       rainbow
       indentLine # Use indent-blankline
+      vim-startify
+
       # Integration
         # Git
         git-messenger-vim
         vim-fugitive
-        vim-gitgutter
+        vim-signify # vim-gitgutter
       # Efficiency
         # Movement
         vim-lastplace
@@ -36,13 +38,22 @@
         vim-abolish
         targets-vim
       # Development
-      coc-nvim
+      # coc-nvim
       # nvim-lspconfig
+      nvim-treesitter
+        vim-hexokinase # nvim-colorizer.lua
+      completion-nvim
+        completion-buffers
+        completion-tabnine
+        completion-treesitter
+
+      # telescope-nvim
+        # plenary-nvim
+        # popup-nvim
 
       polyglot
-      vim-dispatch
       syntastic
-
+      vim-dispatch
 
       # gruvbox-material?
       (pkgs.vimUtils.buildVimPlugin {
