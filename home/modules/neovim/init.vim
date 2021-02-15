@@ -51,11 +51,12 @@ endif
 
 let g:gruvbox_material_background = 'hard'
 
-let g:gruvbox_material_palette = 'original'
+let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
 
 let g:miramare_enable_italic = 1
+
 colorscheme miramare
 " }}}
 " {{{ buffers
@@ -97,9 +98,9 @@ nnoremap <silent> <Leader>u :UndotreeToggle<CR>
 " }}}
 " {{{ fzf
 let g:fzf_layout = { 'down': '~25%' }
-nnoremap <silent> <Leader>tf :Files %:p:h<CR>
+nnoremap <silent> <Leader>tf :Files<CR>
 nnoremap <silent> <Leader>tF :Files ~<CR>
-nnoremap <silent> <Leader>tg :cd %:p:h <bar> GFiles<CR>
+nnoremap <silent> <Leader>tg :GFiles<CR>
 nnoremap <silent> <Leader>tb :Buffers<CR>
 nnoremap <silent> <Leader>ti :BLines<CR>
 nnoremap <silent> <Leader>tI :Lines<CR>
@@ -123,51 +124,51 @@ let g:show_spaces_that_precede_tabs=1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 " }}}
-" {{{ coc
-nmap <silent> [d <Plug>(coc-diagnostic-prev)
-nmap <silent> ]d <Plug>(coc-diagnostic-next)
+" " {{{ coc
+" nmap <silent> [d <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]d <Plug>(coc-diagnostic-next)
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-nmap <silent> <Leader>rn <Plug>(coc-rename)
-xmap <silent> <Leader>rn <Plug>(coc-rename)
+" nmap <silent> <Leader>rn <Plug>(coc-rename)
+" xmap <silent> <Leader>rn <Plug>(coc-rename)
 
-nmap <silent> <Leader>cf <Plug>(coc-format-selected)
-xmap <silent> <Leader>cf <Plug>(coc-format-selected)
+" nmap <silent> <Leader>cf <Plug>(coc-format-selected)
+" xmap <silent> <Leader>cf <Plug>(coc-format-selected)
 
-nmap <silent> <Leader>ca <Plug>(coc-codeaction-selected)
-xmap <silent> <Leader>ca <Plug>(coc-codeaction-selected)
+" nmap <silent> <Leader>ca <Plug>(coc-codeaction-selected)
+" xmap <silent> <Leader>ca <Plug>(coc-codeaction-selected)
 
-nmap <silent> <Leader>cac <Plug>(coc-fix-current)
-nmap <silent> <Leader>cqf <Plug>(coc-fix-current)
+" nmap <silent> <Leader>cac <Plug>(coc-fix-current)
+" nmap <silent> <Leader>cqf <Plug>(coc-fix-current)
 
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
+" xmap if <Plug>(coc-funcobj-i)
+" omap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap af <Plug>(coc-funcobj-a)
+" xmap ic <Plug>(coc-classobj-i)
+" omap ic <Plug>(coc-classobj-i)
+" xmap ac <Plug>(coc-classobj-a)
+" omap ac <Plug>(coc-classobj-a)
 
-nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+" nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+" nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+" inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
 
-nmap <silent> <Leader>c<Space> :CocList<CR>
-nnoremap <silent><nowait> <space>J  :<C-u>CocNext<CR>
-nnoremap <silent><nowait> <space>K  :<C-u>CocPrev<CR>
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-" }}}
+" nmap <silent> <Leader>c<Space> :CocList<CR>
+" nnoremap <silent><nowait> <space>J  :<C-u>CocNext<CR>
+" nnoremap <silent><nowait> <space>K  :<C-u>CocPrev<CR>
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" " }}}
 " {{{ git
 nmap <silent> <Leader>gg <Plug>(git-messenger)
 nmap <silent> <Leader>ga :Gwrite<CR>
@@ -199,8 +200,53 @@ vnoremap > >gv
 vnoremap < <gv
 
 nnoremap <silent> <Leader>q :q<CR>
+nnoremap <silent> <Leader>Q :q!<CR>
 nnoremap <silent> <Leader>x :x<CR>
 nnoremap <silent> <Leader>s :w<CR>
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 " }}}
+" {{{ comletion-nvim
+autocmd BufEnter * lua require'completion'.on_attach()
+
+let g:completion_chain_complete_list = [
+  \{'complete_items': ['tabnine', 'path', 'buffers', 'ts']},
+  \{'mode': '<c-p>'},
+  \{'mode': '<c-n>'}
+\]
+
+let g:completion_auto_change_source = 1
+
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing message extra message when using completion
+" set shortmess+=c
+"}}}
+" {{{ treesitter
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+  indent = {
+    enable = true
+  },
+}
+EOF
+" }}}
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
