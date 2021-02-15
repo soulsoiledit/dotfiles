@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 # TODO
-
-
 # minimize bar info
 # window name?
 
@@ -39,4 +37,3 @@
 
   programs.vscode.enable = true;
 }
-
