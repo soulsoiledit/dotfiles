@@ -50,12 +50,6 @@
           end
         end
       '';
-
-      hs = ''
-        nix build /etc/nixos/#homeConfigurations.soil.activationPackage
-        ./result/activate
-        rm ./result -r
-      '';
     };
 
     shellAliases = {
@@ -69,10 +63,10 @@
       de = "direnv edit .";
       g = "git";
 
-      nc = "$EDITOR /etc/nixos/system/configuration.nix";
+      nc = "$EDITOR /etc/nixos/system/configuration.nix -c 'cd /etc/nixos'";
       ns = "sudo nixos-rebuild switch";
-      hc = "$EDITOR /etc/nixos/home/home.nix";
-      # hs = "";
+      hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
+      hs = "nix build /etc/nixos/#homeConfigurations.soil.activationPackage && ./result/activate && rm ./result -r";
       ng = "nix-collect-garbage";
 
       ls = "ls -h --color";
