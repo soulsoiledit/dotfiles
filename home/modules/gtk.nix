@@ -5,13 +5,13 @@
     enable = true;
 
     theme = {
-      name = "Adapta-Nokto";
-      package = pkgs.adapta-gtk-theme;
+      name = "Matcha-dark-sea";
+      package = pkgs.matcha-gtk-theme;
     };
 
     iconTheme = {
-      name = "Paper";
-      package = pkgs.paper-icon-theme;
+      name = "Papirus-Dark-Maia";
+    package = pkgs.papirus-maia-icon-theme;
     };
   };
 }
