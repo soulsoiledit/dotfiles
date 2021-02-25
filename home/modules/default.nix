@@ -16,6 +16,7 @@
     ./imv
     ./lf
     ./neovim
+    ./overlays.nix
     ./picom.nix
     ./redshift.nix
     ./rofi
@@ -29,12 +30,17 @@
   ];
 
   home.packages = with pkgs; [
-    # xmonad-with-packages xmobar
     awesome
+    qtile
+    dwm
+    # xmonad-with-packages xmobar
+    # stumpwm
+
     unzip ncdu bc trash-cli nix-tree patchelf
     discord
     (pkgs.multimc.override { jdk8 = pkgs.jdk11; })
   ];
 
   programs.obs-studio.enable = true;
+  programs.vscode.enable = true;
 }
