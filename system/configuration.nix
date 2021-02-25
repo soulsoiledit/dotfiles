@@ -128,7 +128,7 @@
             password-border-width = 0px
             background-color = "#2a2426"
             window-color = "#2a2426"
-            password-background-color = "#444444"
+            password-background-color = "#333333"
             password-color = "#e6d6ac"
             error-color = "#e6d6ac"
           '';
