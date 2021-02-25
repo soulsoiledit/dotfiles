@@ -40,7 +40,9 @@
             ];
             nixpkgs = {
               overlays = [ inputs.neovim-nightly-overlay.overlay ];
-              config = { allowUnfree = true; };
+              config = {
+                allowUnfree = true;
+              };
             };
           };
       };
