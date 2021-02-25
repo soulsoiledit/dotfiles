@@ -54,7 +54,7 @@
       urgency_critical = {
         msg_urgency = "critical";
         background = "#bf616a";
-        foreground = "#e68183";
+        foreground = "#2a2426";
       };
     };
   };
