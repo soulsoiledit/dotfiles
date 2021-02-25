@@ -50,12 +50,15 @@ if has('termguicolors')
 endif
 
 let g:gruvbox_material_background = 'hard'
-
 let g:gruvbox_material_palette = 'material'
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_diagnostic_text_highlight = 1
+let g:gruvbox_material_better_performance = 1
 
 let g:miramare_enable_italic = 1
+let g:miramare_enable_italic_string = 1
+let g:miramare_palette = {'green':['#a7c080', '142', 'Green']}
 
 colorscheme miramare
 " }}}
@@ -210,7 +213,7 @@ xmap ga <Plug>(EasyAlign)
 autocmd BufEnter * lua require'completion'.on_attach()
 
 let g:completion_chain_complete_list = [
-  \{'complete_items': ['tabnine', 'path', 'buffers', 'ts']},
+  \{'complete_items': [ 'path', 'buffers' ]},
   \{'mode': '<c-p>'},
   \{'mode': '<c-n>'}
 \]
@@ -222,30 +225,30 @@ set completeopt=menuone,noinsert,noselect
 " Avoid showing message extra message when using completion
 " set shortmess+=c
 "}}}
-" {{{ treesitter
-" set foldmethod=expr
-" set foldexpr=nvim_treesitter#foldexpr()
+" " {{{ treesitter
+" " set foldmethod=expr
+" " set foldexpr=nvim_treesitter#foldexpr()
 
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
-  },
-  indent = {
-    enable = true
-  },
-}
-EOF
-" }}}
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   highlight = {
+"     enable = true,
+"   },
+"   incremental_selection = {
+"     enable = true,
+"     keymaps = {
+"       init_selection = "gnn",
+"       node_incremental = "grn",
+"       scope_incremental = "grc",
+"       node_decremental = "grm",
+"     },
+"   },
+"   indent = {
+"     enable = true
+"   },
+" }
+" EOF
+" " }}}
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
