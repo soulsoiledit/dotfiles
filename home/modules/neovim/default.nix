@@ -40,12 +40,11 @@
       # Development
       # coc-nvim
       # nvim-lspconfig
-      nvim-treesitter
+      # nvim-treesitter
         vim-hexokinase # nvim-colorizer.lua
       completion-nvim
         completion-buffers
-        completion-tabnine
-        completion-treesitter
+        # completion-treesitter
 
       # telescope-nvim
         # plenary-nvim
@@ -67,6 +66,4 @@
       })
     ];
   };
-
-  xdg.configFile."nvim/coc-settings.json".source = ./coc-settings.json;
 }
