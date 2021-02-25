@@ -67,7 +67,7 @@
       ns = "sudo nixos-rebuild switch";
       hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
       hs = "nix build /etc/nixos/#homeConfigurations.soil.activationPackage && ./result/activate && rm ./result -r";
-      ng = "nix-collect-garbage";
+      ng = "sudo nix-collect-garbage -d";
 
       ls = "ls -h --color";
       lsa = "ls -Ah --color";
