@@ -34,6 +34,4 @@
   imports = [
     ./modules
   ];
-
-  programs.vscode.enable = true;
 }
