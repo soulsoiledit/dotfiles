@@ -2,12 +2,13 @@
 
 {
   home.packages = with pkgs; [
-    spectrwm
     brightnessctl
     scrot
     xclip
+    wmctrl
   ];
 
+  # xsession.windowManager.awesome.enable = true;
   xsession.windowManager.command = "spectrwm";
 
   xdg.configFile."spectrwm/spectrwm.conf".source = ./spectrwm.conf;
