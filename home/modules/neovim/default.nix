@@ -38,8 +38,7 @@
         vim-abolish
         targets-vim
       # Development
-      # coc-nvim
-      # nvim-lspconfig
+      # coc-nvim nvim-lspconfig
       # nvim-treesitter
         vim-hexokinase # nvim-colorizer.lua
       completion-nvim
