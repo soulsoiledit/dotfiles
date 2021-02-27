@@ -2,23 +2,20 @@
 
 # TODO
 # minimize bar info
-# window name?
-
-# better layout for workspaces
-# ○ empty workspace
-# ● current workspace
-# ⦿ active workspace
+# center block?
+#   window name?
+#   song name
+# brightness module?
 
 # add alternating bar background colors?
-# center block?
-# separate bar sections with rounded off corners?
-
 # window border?
 # window transparency?
 
-# awesome window manager
+# qtile?
 # xmonad?
+# awesome?
 # penrose?
+# stumpwm?
 
 # emacs
 
