@@ -26,9 +26,9 @@ temp() {
   if (( $temp < 90 ))
     then echo "﨎 $temp°C"
   else if (( $temp < 95 ))
-    then echo "+@fg=2;﨎 $temp°C+@fg=0;"
+    then echo "+@fg=2; $temp°C+@fg=0;"
   else
-    echo "+@fg=1;﨎 $temp°C+@fg=0;"
+    echo "+@fg=1;﨎 $temp°C+@fg=0;"
   fi
   fi
 }
@@ -51,6 +51,10 @@ net() {
   fi
 }
 
+bri() {
+  echo " $(brightnessctl -m | cut -d, -f4)"
+}
+
 vol() {
   muted=$(pactl list sinks | grep -A 10 "Name: bluez" | awk /'Mute'/'{print $2}')
   if [[ $muted != "no" ]]
@@ -65,6 +69,6 @@ cal() {
 }
 
 while true; do
-  echo "$(bat) $(temp) $(mem) $(net) $(vol) $(cal)"
+  echo "$(bat) $(temp) $(mem) $(net) $(bri) $(vol) $(cal)"
   sleep 1
 done
