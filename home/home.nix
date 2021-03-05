@@ -18,6 +18,7 @@
 # stumpwm?
 
 # emacs
+# kakoune
 
 {
   programs.home-manager.enable = true;
