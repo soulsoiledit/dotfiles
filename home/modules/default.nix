@@ -42,5 +42,5 @@
   ];
 
   programs.obs-studio.enable = true;
-  programs.vscode.enable = true;
+  programs.kakoune.enable = true;
 }
