@@ -150,7 +150,7 @@ nnoremap <silent> <Leader>ts :Colors<CR>
 " }}}
 " {{{ indentline
 let g:indentLine_char='|'
-let g:indentLine_color_gui='#444444'
+let g:indentLine_color_gui='#404040'
 " }}}
 " {{{ better whitespace
 let g:better_whitespace_guicolor='#444444'
