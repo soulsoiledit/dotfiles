@@ -28,7 +28,7 @@ temp() {
   else if (( $temp < 95 ))
     then echo "+@fg=2; $temp°C+@fg=0;"
   else
-    echo "+@fg=1;﨎 $temp°C+@fg=0;"
+    echo "+@fg=1; $temp°C+@fg=0;"
   fi
   fi
 }
