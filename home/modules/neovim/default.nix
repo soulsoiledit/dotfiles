@@ -52,17 +52,6 @@
       polyglot
       syntastic
       vim-dispatch
-
-      # gruvbox-material?
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "miramare";
-        src = pkgs.fetchFromGitHub {
-          owner = "franbach";
-          repo = "miramare";
-          rev = "master";
-          sha256 = "Sxb36AYsFH2QXT5wXufAQqTSsTxPc09CPfIBDeVvDMo=";
-        };
-      })
     ];
   };
 }
