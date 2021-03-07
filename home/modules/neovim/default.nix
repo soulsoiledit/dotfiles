@@ -45,9 +45,9 @@
         completion-buffers
         # completion-treesitter
 
-      # telescope-nvim
-        # plenary-nvim
-        # popup-nvim
+      telescope-nvim
+        plenary-nvim
+        popup-nvim
 
       polyglot
       syntastic
