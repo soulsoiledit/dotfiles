@@ -216,7 +216,7 @@ nmap <silent> <Leader>gb :Gblame<CR>
 nmap <silent> <Leader>gc :Git commit<CR>
 nmap <silent> <Leader>gd :Gvdiffsplit<CR>
 nmap <silent> <Leader>gf :Gfetch<CR>
-nmap <silent> <Leader>gh :Gpush<CR>
+nmap <silent> <Leader>gm :Git push<CR>
 nmap <silent> <Leader>gp :Git pull --ff-only<CR>
 nmap <silent> <Leader>gs :Git<CR>
 nmap <silent> <Leader>gu :Gread<CR>
