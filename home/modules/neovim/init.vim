@@ -148,7 +148,8 @@ nnoremap <silent> <Leader>tc :Commands<CR>
 nnoremap <silent> <Leader>tt :Helptags<CR>
 nnoremap <silent> <Leader>ts :Colors<CR>
 " }}}
-nnoremap <silent> <Leader>to :Telescope<CR>
+" {{{ telescope
+nnoremap <silent> <Leader>to :Telescope builtin<CR>
 " }}}
 " {{{ indentline
 let g:indentLine_char='|'
