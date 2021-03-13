@@ -35,7 +35,7 @@
         username = "soil";
           configuration = { pkgs, ... }: {
             imports = [
-              inputs.nix-doom-emacs.hmModule
+              # inputs.nix-doom-emacs.hmModule
               ./home/home.nix
             ];
             nixpkgs = {
