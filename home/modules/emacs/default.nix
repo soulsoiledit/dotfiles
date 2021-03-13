@@ -1,14 +1,14 @@
 { pkgs, ... }:
 
 {
-  programs.doom-emacs = {
-    enable = true;
-    doomPrivateDir = ./doom;
+  # programs.doom-emacs = {
+  #   enable = true;
+  #   doomPrivateDir = ./doom;
 
-    extraPackages = with pkgs; [
-      ripgrep fd
-    ];
-  };
+  #   extraPackages = with pkgs; [
+  #     ripgrep fd
+  #   ];
+  # };
 
   services.emacs = {
     enable = true;
