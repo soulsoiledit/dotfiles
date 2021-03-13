@@ -11,7 +11,7 @@
 
     iconTheme = {
       name = "Papirus-Dark-Maia";
-    package = pkgs.papirus-maia-icon-theme;
+      package = pkgs.papirus-maia-icon-theme;
     };
   };
 }
