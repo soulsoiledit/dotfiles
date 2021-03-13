@@ -83,7 +83,6 @@
   programs.fish.enable = true;
   # }}}
   # Input {{{
-  services.xserver.xkbOptions = "compose:ralt";
   services.xserver.libinput.enable = true;
   # }}}
   # Audio {{{
