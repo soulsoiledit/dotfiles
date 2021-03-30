@@ -55,10 +55,10 @@
     shellAliases = {
       v = "$EDITOR";
       s = "sudo";
-      ht = "htop -u ${config.home.username}";
+      ht = "htop -u $USER";
       btc = "bluetoothctl";
       ru = "${pkgs.udiskie}/bin/udiskie-umount --detach ";
-      rsd = "cp /etc/nixos/home/other/settings.json ~/.config/discord/settings.json";
+      rsd = ''sed -i 's/x.*/x":192,/;s/y.*/y":108,/;s/width.*/width":1536,/;s/height.*/height":864/' ~/.config/discord/settings.json'';
       ff = "fzf";
       de = "direnv edit .";
       g = "git";
