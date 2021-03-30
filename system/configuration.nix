@@ -9,10 +9,12 @@
   system.stateVersion = "20.03";
 
   # Boot {{{
+
   boot = {
     loader = {
       systemd-boot.enable = true;
       systemd-boot.configurationLimit = 2;
+      systemd-boot.editor = false;
       efi.canTouchEfiVariables = true;
       timeout = 0;
     };
@@ -78,7 +80,7 @@
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = ["wheel" "video"]; # libvirtd
+    extraGroups = ["wheel" "video" "libvirtd" "dialout" ]; # libvirtd
   };
   programs.fish.enable = true;
   # }}}
@@ -86,10 +88,10 @@
   services.xserver.libinput.enable = true;
   # }}}
   # Audio {{{
-  sound.enable = true;
   hardware = {
     pulseaudio = {
       enable = true;
+      package = pkgs.pulseaudioFull;
       extraConfig = ''
         load-module module-switch-on-connect
       '';
@@ -125,11 +127,11 @@
             font-weight = normal
             border-width = 0px
             password-border-width = 0px
-            background-color = "#2a2426"
-            window-color = "#2a2426"
-            password-background-color = "#333333"
-            password-color = "#e6d6ac"
-            error-color = "#e6d6ac"
+            background-color = "#1d2021"
+            window-color = "#1d2021"
+            password-background-color = "#3c3836"
+            password-color = "#d4be98"
+            error-color = "#d4be98"
           '';
         };
       };
@@ -137,36 +139,30 @@
   };
   # }}}
   # Nvidia {{{
-    services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-    hardware.nvidia.prime = {
-      offload.enable = true;
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
+  hardware.nvidia.prime = {
+    offload.enable = true;
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
-    environment.systemPackages = with pkgs; [
-      (pkgs.writeShellScriptBin "nvidia-offload" ''
-        export __NV_PRIME_RENDER_OFFLOAD=1
-        export __GLX_VENDOR_LIBRARY_NAME=nvidia
-        export __VK_LAYER_NV_optimus=NVIDIA_only
-        exec -a "$0" "$@"
-      '')
-    ];
+  environment.systemPackages = with pkgs; [
+    (pkgs.writeShellScriptBin "nvidia-offload" ''
+      __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only $@
+    '')
+  ];
   # }}}
   # Laptop Power Management {{{
-    powerManagement = {
-      enable = true;
-      powertop.enable = true;
-    };
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
 
-    services.tlp.enable = true;
+  services.tlp.enable = true;
   # }}}
-  # # Virtualisation {{{
-  # virtualisation.libvirtd = {
-  #   enable = true;
-  #   qemuPackage = pkgs.qemu_kvm;
-  # };
-  # # }}}
+  # Virtualisation {{{
+  virtualisation.libvirtd.enable = true;
+  # }}}
   programs.command-not-found.enable = false; # temporary
 }
