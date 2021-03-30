@@ -11,4 +11,4 @@ in {
   inherit imports;
   nix.binaryCaches = ["https://cache.nixos.org/"];
 }
-    
+
