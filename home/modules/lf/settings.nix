@@ -3,7 +3,7 @@
     number         = true;
     relativenumber = true;
     icons          = true;
-    timefmt        = "Mon 2006-01-02 15:04:05";
+    timefmt        = "Mon 2006-01-02 15:04";
     period         = 1;
     ifs            = "\\n";
   };

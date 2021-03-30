@@ -11,7 +11,7 @@
       xinput disable "Chicony USB 2.0 Camera: Chicony" &
       xset s 1800 dpms 0 1800 2100 &
       ${pkgs.feh}/bin/feh --no-fehbg --bg-fill /etc/nixos/home/other/bg.png &
-      rm -rf .compose-cache .xsession-errors .Xauthority-* .esd_auth
+      rm -rf .compose-cache .xsession-errors
     '';
 
     pointerCursor = {

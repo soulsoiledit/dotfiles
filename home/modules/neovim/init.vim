@@ -36,7 +36,7 @@ set lazyredraw
 set history=256
 set undofile
 
-let mapleader="\<Space>"
+let mapleader = "\<Space>"
 
 "{{{ Filetypes
 filetype indent plugin on
@@ -45,57 +45,18 @@ filetype indent plugin on
 let g:rainbow_active = 1
 " }}}
 " {{{ colorscheme
-if has('termguicolors')
+if has("termguicolors")
   set termguicolors
 endif
 
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_palette = 'material'
+let g:gruvbox_material_background = "hard"
+let g:gruvbox_material_palette = "material"
 let g:gruvbox_material_enable_bold = 1
 let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_diagnostic_text_highlight = 1
 let g:gruvbox_material_better_performance = 1
-" let g:gruvbox_material_palette = {
-"       \ 'bg0':              ['#1d2021',   '234'],
-"       \ 'bg1':              ['#282828',   '235'],
-"       \ 'bg2':              ['#282828',   '235'],
-"       \ 'bg3':              ['#3c3836',   '237'],
-"       \ 'bg4':              ['#3c3836',   '237'],
-"       \ 'bg5':              ['#504945',   '239'],
-"       \ 'bg_statusline1':   ['#282828',   '235'],
-"       \ 'bg_statusline2':   ['#32302f',   '235'],
-"       \ 'bg_statusline3':   ['#504945',   '239'],
-"       \ 'bg_diff_green':    ['#32361a',   '22'],
-"       \ 'bg_visual_green':  ['#333e34',   '22'],
-"       \ 'bg_diff_red':      ['#3c1f1e',   '52'],
-"       \ 'bg_visual_red':    ['#442e2d',   '52'],
-"       \ 'bg_diff_blue':     ['#0d3138',   '17'],
-"       \ 'bg_visual_blue':   ['#2e3b3b',   '17'],
-"       \ 'bg_visual_yellow': ['#473c29',   '94'],
-"       \ 'bg_current_word':  ['#32302f',   '236'],
-"       \ 'fg0':              ['#d8caac',   '223'],
-"       \ 'fg1':              ['#e0d2b3',   '223'],
-"       \ 'red':              ['#e68183',   '167'],
-"       \ 'orange':           ['#e39b7b',   '208'],
-"       \ 'yellow':           ['#d9bb80',   '214'],
-"       \ 'green':            ['#a7c080',   '142'],
-"       \ 'aqua':             ['#87c095',   '108'],
-"       \ 'blue':             ['#83b6af',   '109'],
-"       \ 'purple':           ['#d39bb6',   '175'],
-"       \ 'bg_red':           ['#ea6962',   '167'],
-"       \ 'bg_green':         ['#a9b665',   '142'],
-"       \ 'bg_yellow':        ['#d8a657',   '214'],
-"       \ 'grey0':            ['#7c6f64',   '243'],
-"       \ 'grey1':            ['#928374',   '245'],
-"       \ 'grey2':            ['#a89984',   '246'],
-"       \ 'none':             ['NONE',      'NONE']
-"       \ }
 
-let g:miramare_enable_italic = 1
-let g:miramare_enable_italic_string = 1
-let g:miramare_palette = {'green':['#a7c080', '142', 'Green']}
-
-colorscheme miramare
+colorscheme gruvbox-material
 " }}}
 " {{{ buffers
 nnoremap <silent> <Tab> :b#<CR>
@@ -115,23 +76,22 @@ nnoremap <Leader>w< :vertical resize<Space>
 nnoremap <Leader>w> :resize<Space>
 " }}}
 " {{{ netrw
-let g:netrw_browse_split=0
-let g:netrw_winsize=20
-let g:netrw_liststyle=3
-let g:netrw_banner=0
+let g:netrw_browse_split = 0
+let g:netrw_winsize = 20
+let g:netrw_liststyle = 3
+let g:netrw_banner = 0
 nmap <silent> <Leader>f :Lexplore!<CR>
 autocmd FileType netrw setl bufhidden=wipe
 " }}}
 " {{{ sneak
 let g:sneak#label=1
 let g:sneak#target_labels="ntesir"
-highlight! SneakLabelMask guifg=#e6d6ac guibg=#e6d6ac
 " }}}
 " {{{ undotree
-let g:undotree_SetFocusWhenToggle=1
-let g:undotree_HelpLine=0
-let g:undotree_WindowLayout=3
-let g:undotree_ShortIndicators=1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_HelpLine = 0
+let g:undotree_WindowLayout = 3
+let g:undotree_ShortIndicators = 1
 nnoremap <silent> <Leader>u :UndotreeToggle<CR>
 " }}}
 " {{{ fzf
@@ -152,18 +112,17 @@ nnoremap <silent> <Leader>ts :Colors<CR>
 nnoremap <silent> <Leader>to :Telescope builtin<CR>
 " }}}
 " {{{ indentline
-let g:indentLine_char='|'
-let g:indentLine_color_gui='#404040'
+let g:indentLine_char = "|"
 " }}}
 " {{{ better whitespace
-let g:better_whitespace_guicolor='#444444'
-let g:strip_whitespace_on_save=1
-let g:strip_max_file_size=0
-let g:show_spaces_that_precede_tabs=1
+let g:better_whitespace_guicolor = "#504945"
+let g:strip_whitespace_on_save = 1
+let g:strip_max_file_size = 0
+let g:show_spaces_that_precede_tabs = 1
 " }}}
 " {{{ airline
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 " }}}
 " " {{{ coc
 " nmap <silent> [d <Plug>(coc-diagnostic-prev)
@@ -247,7 +206,7 @@ nnoremap <silent> <Leader>s :w<CR>
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
 " }}}
-" {{{ comletion-nvim
+" {{{ completion-nvim
 autocmd BufEnter * lua require'completion'.on_attach()
 
 let g:completion_chain_complete_list = [
@@ -287,7 +246,8 @@ set completeopt=menuone,noinsert,noselect
 " }
 " EOF
 " " }}}
-
+" {{{ syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
+" }}}
