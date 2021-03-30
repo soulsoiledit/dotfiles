@@ -51,10 +51,6 @@ net() {
   fi
 }
 
-bri() {
-  echo " $(brightnessctl -m | cut -d, -f4)"
-}
-
 vol() {
   muted=$(pactl list sinks | grep -A 10 "Name: bluez" | awk /'Mute'/'{print $2}')
   if [[ $muted != "no" ]]
@@ -69,6 +65,6 @@ cal() {
 }
 
 while true; do
-  echo "$(bat) $(temp) $(mem) $(net) $(bri) $(vol) $(cal)"
+  echo "$(bat) $(temp) $(mem) $(net) $(vol) $(cal)"
   sleep 1
 done
