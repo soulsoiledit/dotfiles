@@ -1,6 +1,6 @@
 * {
-  background-color: #2a2426;
-  text-color: #e6d397;
+  background-color: #1d2021;
+  text-color: #d4be98;
   spacing: 0;
   padding: 2 1;
 }
@@ -14,7 +14,7 @@ element-icon {
 }
 
 element selected {
-  background-color: #444444;
+  background-color: #3c3836;
 }
 
 /* vim: set ft=css: */

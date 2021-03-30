@@ -17,5 +17,5 @@
     };
   };
 
-  xdg.dataFile."rofi/themes/miramare.rasi".source = ./miramare.rasi;
+  xdg.dataFile."rofi/themes/colors.rasi".source = ./colors.rasi;
 }
