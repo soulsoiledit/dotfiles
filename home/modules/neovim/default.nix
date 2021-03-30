@@ -38,16 +38,16 @@
         vim-abolish
         targets-vim
       # Development
-      # coc-nvim nvim-lspconfig
+      # nvim-lspconfig nvim-lspsaga
       # nvim-treesitter
         vim-hexokinase # nvim-colorizer.lua
       completion-nvim
         completion-buffers
         # completion-treesitter
 
-      telescope-nvim
-        plenary-nvim
-        popup-nvim
+      # telescope-nvim
+      #   plenary-nvim
+      #   popup-nvim
 
       polyglot
       syntastic

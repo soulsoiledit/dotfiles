@@ -11,7 +11,6 @@
 # window border?
 # window transparency?
 
-# qtile?
 # xmonad?
 # awesome?
 # penrose?
