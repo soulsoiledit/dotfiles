@@ -41,20 +41,20 @@
 
       urgency_low = {
         msg_urgency = "low";
-        background = "#1d2021";
-        foreground = "#d4be98";
+        background = "#2a2426";
+        foreground = "#e6d6ac";
       };
 
       urgency_normal = {
         msg_urgency = "normal";
-        background = "#1d2021";
-        foreground = "#d4be98";
+        background = "#2a2426";
+        foreground = "#e6d6ac";
       };
 
       urgency_critical = {
         msg_urgency = "critical";
-        background = "#ea6962";
-        foreground = "#1d2021";
+        background = "#bf616a";
+        foreground = "#2a2426";
       };
     };
   };
