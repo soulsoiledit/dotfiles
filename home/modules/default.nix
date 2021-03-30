@@ -13,10 +13,9 @@
     ./git.nix
     ./gtk.nix
     ./htop.nix
-    ./imv
+    ./imv.nix
     ./lf
     ./neovim
-    ./overlays.nix
     ./picom.nix
     ./redshift.nix
     ./rofi
@@ -30,15 +29,21 @@
   ];
 
   home.packages = with pkgs; [
+    virt-manager
     awesome
-    qtile
-    dwm
     # xmonad-with-packages xmobar
     # stumpwm
 
     unzip ncdu bc trash-cli nix-tree patchelf
-    discord
-    (pkgs.multimc.override { jdk8 = pkgs.jdk11; })
+
+    (discord.overrideAttrs (_: rec {
+      version = "0.0.14";
+      src = builtins.fetchTarball {
+        url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
+        sha256 = "0hcryk53mv9ci94y5y8h7hvc4qr7k5mxj9wjxbbpl7j6spz2rkki";
+      };
+    }))
+    multimc
   ];
 
   programs.obs-studio.enable = true;
