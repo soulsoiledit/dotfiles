@@ -7,7 +7,7 @@
     font = "UbuntuMono Nerd Font 14";
     lines = 10;
     terminal = "${pkgs.alacritty}/bin/alacritty";
-    theme = "miramare";
+    theme = "theme";
 
     extraConfig = {
       display-combi = "> ";
@@ -17,5 +17,5 @@
     };
   };
 
-  xdg.dataFile."rofi/themes/colors.rasi".source = ./colors.rasi;
+  xdg.dataFile."rofi/themes/theme.rasi".source = ./theme.rasi;
 }
