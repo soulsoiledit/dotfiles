@@ -8,7 +8,6 @@
   system.stateVersion = "20.03";
 
   # Boot {{{
-
   boot = {
     loader = {
       systemd-boot.enable = true;
