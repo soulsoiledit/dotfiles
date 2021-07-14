@@ -13,61 +13,64 @@
         size = 10;
         normal.family = "UbuntuMono Nerd Font";
       };
-      # gruvbox-material {{{
-      colors = {
+
+      #     black = "#504945";
+      colors = 
+        let theme = (import ../../other/colors.nix).theme;
+      in {
         primary = {
-          background = "#1d2021";
-          foreground = "#d4be98";
+          background = theme.background;
+          foreground = theme.foreground;
         };
 
         cursor = {
-          text = "#1d2021";
-          cursor = "#e6d6ac";
-        };
-
-        vi_mode_cursor = {
-          cursor = "#e6d6ac";
-        };
-
-        selection = {
-          background = "#3c3836";
-          text = "CellForeground";
+          text = theme.background;
+          cursor = theme.foreground;
         };
 
         search = {
           matches = {
-            background = "#a9b665";
-            foreground = "#1d2021";
+            background = theme.ansi.bright.yellow;
+            foreground = theme.background;
           };
           focused_match = {
-            background = "#ea6962";
-            foreground = "#1d2021";
+            background = theme.highlight;
+            foreground = theme.background;
           };
+        };
+
+        vi_mode_cursor = {
+          cursor = theme.foreground;
+        };
+
+        selection = {
+          foreground = "CellForeground";
+          background = theme.selection;
         };
 
         normal = {
-          black = "#504945";
-          red = "#ea6962";
-          green = "#a9b665";
-          yellow = "#d8a657";
-          blue = "#7daea3";
-          magenta = "#d3869b";
-          cyan = "#89b482";
-          white = "#d4be98";
+          black = theme.ansi.normal.black;
+          red = theme.ansi.normal.red;
+          green = theme.ansi.normal.green;
+          yellow = theme.ansi.normal.yellow;
+          blue = theme.ansi.normal.blue;
+          magenta = theme.ansi.normal.magenta;
+          cyan = theme.ansi.normal.cyan;
+          white = theme.ansi.normal.white;
         };
 
         bright = {
-          black = "#504945";
-          red = "#ea6962";
-          green = "#a9b665";
-          yellow = "#d8a657";
-          blue = "#7daea3";
-          magenta = "#d3869b";
-          cyan = "#89b482";
-          white = "#d4be98";
+          black = theme.ansi.bright.black;
+          red = theme.ansi.bright.red;
+          green = theme.ansi.bright.green;
+          yellow = theme.ansi.bright.yellow;
+          blue = theme.ansi.bright.blue;
+          magenta = theme.ansi.bright.magenta;
+          cyan = theme.ansi.bright.cyan;
+          white = theme.ansi.bright.white;
         };
       };
-      # }}}
+
       key_bindings = [
         { key="M"; mode="Vi|~Search"; action="Left";                           }
         { key="M"; mode="Vi|~Search"; action="High";           mods="Shift";   }
