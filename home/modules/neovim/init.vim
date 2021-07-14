@@ -246,6 +246,30 @@ set completeopt=menuone,noinsert,noselect
 " }
 " EOF
 " " }}}
+" {{{ treesitter
+" set foldmethod=expr
+" set foldexpr=nvim_treesitter#foldexpr()
+
+lua <<EOF
+-- require'nvim-treesitter.configs'.setup {
+--   highlight = {
+--     enable = true,
+--   },
+--   incremental_selection = {
+--     enable = true,
+--     keymaps = {
+--       init_selection = "gnn",
+--       node_incremental = "grn",
+--       scope_incremental = "grc",
+--       node_decremental = "grm",
+--     },
+--   },
+--   indent = {
+--     enable = true
+--   },
+-- }
+EOF
+" }}}
 " {{{ syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
