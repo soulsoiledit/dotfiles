@@ -114,7 +114,10 @@
         greeters.mini = {
           enable = true;
           user = "soil";
-          extraConfig = ''
+          extraConfig =
+            let
+              theme = (import ../other/colors.nix).theme;
+          in ''
             [greeter]
             show-password-label = false
             password-alignment = left
@@ -128,11 +131,11 @@
             font-weight = normal
             border-width = 0px
             password-border-width = 0px
-            background-color = "#1d2021"
-            window-color = "#1d2021"
-            password-background-color = "#3c3836"
-            password-color = "#d4be98"
-            error-color = "#d4be98"
+            background-color = "${theme.background}"
+            window-color = "${theme.background}"
+            password-background-color = "${theme.selection}"
+            password-color = "${theme.foreground}"
+            error-color = "${theme.foreground}"
           '';
         };
       };
