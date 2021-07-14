@@ -1,15 +1,9 @@
 {
   programs.direnv = {
     enable = true;
-    enableFishIntegration = true;
-
-    stdlib = ''
-      use_flake() {
-        watch_file flake.nix
-        watch_file flake.lock
-        watch_file shell.nix
-        eval "$(nix print-dev-env --profile "$(direnv_layout_dir)/flake-profile")"
-      }
-    '';
+    nix-direnv ={
+      enable = true;
+      enableFlakes = true;
+    };
   };
 }
