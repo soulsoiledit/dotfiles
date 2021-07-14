@@ -3,7 +3,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./cachix.nix
   ];
 
   system.stateVersion = "20.03";
