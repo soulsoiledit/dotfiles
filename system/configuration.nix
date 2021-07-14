@@ -156,6 +156,21 @@
       __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only $@
     '')
   ];
+
+  nixpkgs.overlays = [
+    (self: super: {
+      spectrwm = super.spectrwm.overrideAttrs (_: {
+        pname = "spectrwm";
+        version = "3.4.2";
+        src = pkgs.fetchFromGitHub {
+          owner = "conformal";
+          repo = "spectrwm";
+          rev = "92589afb194a931b7bcaff6e6258a74a2e6265aa";
+          sha256 = "JaemmrUiFyj8/6mZDyKefpH/+iRDyYJJdpCuqy4tsBI=";
+        };
+      });
+    })
+  ];
   # }}}
   # Laptop Power Management {{{
   powerManagement = {
