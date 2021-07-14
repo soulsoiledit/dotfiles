@@ -3,9 +3,8 @@
 {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
     withNodeJs = true;
-    extraConfig = lib.readFile ./init.vim;
+    /* extraConfig = lib.readFile ./init.vim; */
     extraPackages = with pkgs; [
       gcc ctags
       code-minimap
