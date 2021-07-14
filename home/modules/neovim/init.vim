@@ -136,10 +136,10 @@ nnoremap <silent> <Leader>tf :Files<CR>
 nnoremap <silent> <Leader>tF :Files ~<CR>
 nnoremap <silent> <Leader>tg :GFiles<CR>
 nnoremap <silent> <Leader>tb :Buffers<CR>
-nnoremap <silent> <Leader>ti :BLines<CR>
-nnoremap <silent> <Leader>tI :Lines<CR>
-nnoremap <silent> <Leader>tm :History:<CR>
-nnoremap <silent> <Leader>tM :History<CR>
+nnoremap <silent> <Leader>tl :BLines<CR>
+nnoremap <silent> <Leader>tL :Lines<CR>
+nnoremap <silent> <Leader>th :History:<CR>
+nnoremap <silent> <Leader>tH :History<CR>
 nnoremap <silent> <Leader>tc :Commands<CR>
 nnoremap <silent> <Leader>tt :Helptags<CR>
 nnoremap <silent> <Leader>ts :Colors<CR>
