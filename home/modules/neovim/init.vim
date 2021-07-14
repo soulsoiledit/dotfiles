@@ -46,19 +46,39 @@ noremap j n
 noremap k e
 noremap l i
 
-let g:gruvbox_material_background = "hard"
-let g:gruvbox_material_palette = "material"
-let g:gruvbox_material_enable_bold = 1
-let g:gruvbox_material_enable_italic = 1
-let g:gruvbox_material_diagnostic_text_highlight = 1
-let g:gruvbox_material_better_performance = 1
+noremap M ^
+noremap N J
+noremap E K
+noremap I $
+noremap H M
+noremap J N
+noremap K E
+noremap L I
 
-colorscheme gruvbox-material
+nnoremap i l
+vnoremap i l
 " }}}
+noremap <Space> <Nop>
+noremap , za
+nnoremap U <C-r>
+vnoremap v <Esc>
+nnoremap Y y$
+nnoremap <silent> <Leader>/ :nohlsearch<CR>
+vnoremap > >gv
+vnoremap < <gv
+
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :q!<CR>
+nnoremap <Leader>x :x<CR>
+nnoremap <Leader>s :w<CR>
+
+nmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
+vnoremap . :normal .<CR>
 " {{{ buffers
 nnoremap <silent> <Tab> :b#<CR>
-nnoremap <silent> <Leader>j :bnext<CR>
-nnoremap <silent> <Leader>k :bprevious<CR>
+nnoremap <silent> <Leader>n :bnext<CR>
+nnoremap <silent> <Leader>e :bprevious<CR>
 nnoremap <silent> <Leader>d :bdelete<CR>
 nnoremap <silent> <Leader>D :bdelete!<CR>
 " }}}
