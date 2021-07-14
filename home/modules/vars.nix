@@ -11,5 +11,6 @@
   home.sessionPath = [
     "/home/soil/.config/emacs/bin"
     "/home/soil/.local/bin/"
+    "/home/soil/.local/share/npm/bin/"
   ];
 }
