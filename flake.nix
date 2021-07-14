@@ -8,11 +8,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-doom-emacs = {
       url = "github:vlaci/nix-doom-emacs";
       inputs.nixpkgs.follows = "nixpkgs";
