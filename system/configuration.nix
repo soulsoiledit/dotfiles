@@ -52,6 +52,7 @@
     dbus.packages = with pkgs; [ gnome3.dconf ];
     journald.extraConfig = "SystemMaxUse=100M";
   };
+  systemd.packages = [ pkgs.dconf ];
   # }}}
   # Fonts {{{
   fonts = {
