@@ -24,7 +24,7 @@
     nixosConfigurations.soilnix = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        system/configuration.nix
+        ./system/configuration.nix
         { nix.registry.nixpkgs.flake = nixpkgs; }
       ];
     };
@@ -39,12 +39,8 @@
             inputs.nix-doom-emacs.hmModule
             ./home/home.nix
           ];
-          nixpkgs = {
-            overlays = [ inputs.neovim-nightly-overlay.overlay ];
-            config = {
-              allowUnfree = true;
-            };
-          };
+
+          nixpkgs.config.allowUnfree = true;
         };
       };
     };

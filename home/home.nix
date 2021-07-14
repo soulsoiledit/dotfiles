@@ -5,7 +5,6 @@
 # center block?
 #   window name?
 #   song name
-# brightness module?
 
 # add alternating bar background colors?
 # window border?
@@ -13,6 +12,7 @@
 
 # xmonad?
 # awesome?
+# bspwm
 # penrose?
 # stumpwm?
 
