@@ -9,7 +9,10 @@
       package = pkgs.gnome3.adwaita-icon-theme;
     };
 
-    settings = {
+    settings =
+      let
+        theme = (import ../../other/colors.nix).theme;
+    in {
       global = {
         geometry = "300x0-10+30";
         separator_height = 0;
@@ -41,20 +44,20 @@
 
       urgency_low = {
         msg_urgency = "low";
-        background = "#1d2021";
-        foreground = "#d4be98";
+        background = theme.background;
+        foreground = theme.foreground;
       };
 
       urgency_normal = {
         msg_urgency = "normal";
-        background = "#1d2021";
-        foreground = "#d4be98";
+        background = theme.background;
+        foreground = theme.foreground;
       };
 
       urgency_critical = {
         msg_urgency = "critical";
-        background = "#ea6962";
-        foreground = "#1d2021";
+        background = theme.highlight;
+        foreground = theme.background;
       };
     };
   };
