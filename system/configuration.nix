@@ -81,7 +81,7 @@
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = ["wheel" "video" "libvirtd" "dialout" ]; # libvirtd
+    extraGroups = ["wheel" "video" ];
   };
   programs.fish.enable = true;
   # }}}
