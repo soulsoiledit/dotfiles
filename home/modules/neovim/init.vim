@@ -92,6 +92,42 @@ nmap <silent> <Leader>wp :vsplit #<CR>
 nnoremap <Leader>w< :vertical resize<Space>
 nnoremap <Leader>w> :resize<Space>
 " }}}
+" }}}
+
+lua require('plugins')
+autocmd BufWritePost plugins.lua PackerCompile
+
+" {{{ colorscheme
+if has("termguicolors")
+  set termguicolors
+endif
+
+let g:gruvbox_material_background = "hard"
+let g:gruvbox_material_palette = "material"
+let g:gruvbox_material_enable_bold = 1
+let g:gruvbox_material_enable_italic = 1
+let g:gruvbox_material_diagnostic_text_highlight = 1
+let g:gruvbox_material_better_performance = 1
+
+let g:gruvbox_contrast_dark = "hard"
+let g:gruvbox_invert_selection = 0
+let g:gruvbox_italicize_strings = 1
+
+colorscheme iceberg
+" }}}
+" {{{ rainbow
+let g:rainbow_active = 1
+" }}}
+" {{{ indentline
+let g:indentLine_char = "|"
+" }}}
+" {{{ better whitespace
+let g:better_whitespace_guicolor = "#504945"
+let g:strip_whitespace_on_save = 1
+let g:strip_max_file_size = 0
+let g:show_spaces_that_precede_tabs = 1
+" }}}
+
 " {{{ netrw
 let g:netrw_browse_split = 0
 let g:netrw_winsize = 20
@@ -146,15 +182,6 @@ nnoremap <silent> <Leader>ts :Colors<CR>
 " }}}
 " {{{ telescope
 nnoremap <silent> <Leader>to :Telescope builtin<CR>
-" }}}
-" {{{ indentline
-let g:indentLine_char = "|"
-" }}}
-" {{{ better whitespace
-let g:better_whitespace_guicolor = "#504945"
-let g:strip_whitespace_on_save = 1
-let g:strip_max_file_size = 0
-let g:show_spaces_that_precede_tabs = 1
 " }}}
 " {{{ airline
 let g:airline_powerline_fonts = 1
@@ -217,36 +244,11 @@ nmap <silent> <Leader>gp :Git pull --ff-only<CR>
 nmap <silent> <Leader>gs :Git<CR>
 nmap <silent> <Leader>gu :Gread<CR>
 " }}}
-" {{{ keybindings
-noremap <Space> <Nop>
-map <silent> Q <Nop>
-nnoremap <CR> <Nop>
-nmap j gj
-nmap k gk
-vmap j gj
-vmap k gk
-noremap , za
-nnoremap H ^
-nnoremap L $
-nnoremap U <C-r>
-vnoremap v <Esc>
-nnoremap <silent> Y y$
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
-vnoremap > >gv
-vnoremap < <gv
-
-nnoremap <silent> <Leader>q :q<CR>
-nnoremap <silent> <Leader>Q :q!<CR>
-nnoremap <silent> <Leader>x :x<CR>
-nnoremap <silent> <Leader>s :w<CR>
-nmap ga <Plug>(EasyAlign)
-xmap ga <Plug>(EasyAlign)
-" }}}
 " {{{ completion-nvim
 autocmd BufEnter * lua require'completion'.on_attach()
 
 let g:completion_chain_complete_list = [
-  \{'complete_items': [ 'path', 'buffers' ]},
+  \{'complete_items': [ 'lsp', 'path', 'buffers' ]},
   \{'mode': '<c-p>'},
   \{'mode': '<c-n>'}
 \]
@@ -255,33 +257,11 @@ let g:completion_auto_change_source = 1
 
 set completeopt=menuone,noinsert,noselect
 
+lua require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
+
 " Avoid showing message extra message when using completion
 " set shortmess+=c
 "}}}
-" " {{{ treesitter
-" " set foldmethod=expr
-" " set foldexpr=nvim_treesitter#foldexpr()
-
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   highlight = {
-"     enable = true,
-"   },
-"   incremental_selection = {
-"     enable = true,
-"     keymaps = {
-"       init_selection = "gnn",
-"       node_incremental = "grn",
-"       scope_incremental = "grc",
-"       node_decremental = "grm",
-"     },
-"   },
-"   indent = {
-"     enable = true
-"   },
-" }
-" EOF
-" " }}}
 " {{{ treesitter
 " set foldmethod=expr
 " set foldexpr=nvim_treesitter#foldexpr()
