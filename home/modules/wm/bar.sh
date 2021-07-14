@@ -54,7 +54,7 @@ net() {
 vol() {
   muted=$(pactl list sinks | grep -A 10 "Name: bluez" | awk /'Mute'/'{print $2}')
   if [[ $muted == "no" ]]
-  then echo "墳 $(pactl list sinks | grep -A 10 "Name: bluez" | awk /'Volume: f'/'{print $5}')"
+    then echo "墳 $(pactl list sinks | grep -A 10 "Name: bluez" | awk /'Volume: f'/'{print $5}')"
   else if [[ $muted == "yes" ]]
     then echo "ﱝ "
   else
