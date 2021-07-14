@@ -16,28 +16,11 @@
     theme =
       let
         inherit (config.lib.formats.rasi) mkLiteral;
-        # # gruvbox-material {{{
-        # background = "#1d2021";
-        # foreground = "#d4be98";
-        # selection = "#3c3836";
-        # bar = "#a9b665";
-        # # }}}
-        # iceberg {{{
-        background = "#191724";
-        foreground = "#c6c8d1";
-        selection = "#272c42";
-        bar = "#84a0c6";
-        # }}}
-        # # amora {{{
-        # background = "#2a2331";
-        # foreground = "#dedbeb";
-        # selection = "#634e75";
-        # bar = "#edabd2";
-        # # }}}
+        theme = (import ../../other/colors.nix).theme;
     in {
       "*" = {
-        background-color =    mkLiteral background;
-        text-color =          mkLiteral foreground;
+        background-color =    mkLiteral theme.background;
+        text-color =          mkLiteral theme.foreground;
         spacing =             0;
       };
 
@@ -54,23 +37,23 @@
       };
 
       "element selected" = {
-        background-color =    mkLiteral selection;
+        background-color =    mkLiteral theme.selection;
       };
 
       "inputbar" = {
           children =          map mkLiteral [ "prompt" "entry" ];
-          background-color =  mkLiteral bar;
+          background-color =  mkLiteral theme.highlight;
           padding =           mkLiteral "0.5% 0";
       };
 
       "entry" = {
           background-color =  mkLiteral "#0000";
-          text-color =        mkLiteral background;
+          text-color =        mkLiteral theme.background;
       };
 
       "prompt" = {
           background-color =  mkLiteral "#0000";
-          text-color =        mkLiteral background;
+          text-color =        mkLiteral theme.background;
           padding =           mkLiteral "0 0.5%";
       };
     };
