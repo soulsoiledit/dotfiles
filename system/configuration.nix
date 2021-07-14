@@ -180,8 +180,5 @@
 
   services.tlp.enable = true;
   # }}}
-  # Virtualisation {{{
-  virtualisation.libvirtd.enable = true;
-  # }}}
   programs.command-not-found.enable = false; # temporary
 }
