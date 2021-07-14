@@ -1,5 +1,3 @@
-set langmap=hjklmneiHJKLMNEI;mneihjklMNEIHJKL
-
 set scrolloff=15
 set sidescrolloff=40
 
@@ -38,16 +36,15 @@ set undofile
 
 let mapleader = "\<Space>"
 
-"{{{ Filetypes
-filetype indent plugin on
-" }}}
-" {{{ rainbow
-let g:rainbow_active = 1
-" }}}
-" {{{ colorscheme
-if has("termguicolors")
-  set termguicolors
-endif
+" {{{ keybindings
+" {{{ colemak mod dh
+noremap m h
+noremap n gj
+noremap e gk
+noremap h m
+noremap j n
+noremap k e
+noremap l i
 
 let g:gruvbox_material_background = "hard"
 let g:gruvbox_material_palette = "material"
