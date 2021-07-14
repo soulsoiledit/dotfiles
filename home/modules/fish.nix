@@ -57,7 +57,7 @@
       s = "sudo";
       ht = "htop -u $USER";
       btc = "bluetoothctl";
-      ru = "${pkgs.udiskie}/bin/udiskie-umount --detach ";
+      ru = "${pkgs.udiskie}/bin/udiskie-umount -d";
       rsd = ''sed -i 's/x.*/x":192,/;s/y.*/y":108,/;s/width.*/width":1536,/;s/height.*/height":864/' ~/.config/discord/settings.json'';
       ff = "fzf";
       de = "direnv edit .";
@@ -66,7 +66,7 @@
       nc = "$EDITOR /etc/nixos/system/configuration.nix -c 'cd /etc/nixos'";
       ns = "sudo nixos-rebuild switch";
       hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
-      hs = "nix build /etc/nixos/#homeConfigurations.soil.activationPackage && ./result/activate && rm ./result -r";
+      hs = "home-manager switch --flake /etc/nixos";
       ng = "sudo nix-collect-garbage -d";
 
       ls = "ls -h --color";
