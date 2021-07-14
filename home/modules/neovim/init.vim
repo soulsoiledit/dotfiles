@@ -104,6 +104,25 @@ autocmd FileType netrw setl bufhidden=wipe
 let g:sneak#label=1
 let g:sneak#target_labels="ntesir"
 " }}}
+" {{{ hop
+lua require('hop').setup { keys = 'tnseriao' }
+
+noremap <space>ho :HopChar1<CR>
+noremap <space>ht :HopChar2<CR>
+noremap <space>hw :HopWord<CR>
+noremap <space>hl :HopLine<CR>
+noremap <space>hp :HopPattern<CR>
+
+" highlight! link HopNextKey AmoraPurpleBold
+" highlight! link HopNextKey1 AmoraPurpleBold
+" highlight! link HopNextKey2 AmoraRed
+" highlight! link HopUnmatched AmoraComment
+
+highlight! link HopNextKey Function
+highlight! link HopNextKey1 Function
+highlight! link HopNextKey2 String
+highlight! link HopUnmatched Comment
+" }}}
 " {{{ undotree
 let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_HelpLine = 0
