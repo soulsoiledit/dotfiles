@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports = [
@@ -18,23 +18,23 @@
     ./neovim
     ./picom.nix
     ./redshift.nix
-    ./rofi
-    ./scripts
+    ./rofi.nix
     ./services.nix
-    ./spectrwm
     ./starship.nix
     ./udiskie.nix
     ./vars.nix
+    ./wm
     ./x11.nix
   ];
-
+  
   home.packages = with pkgs; [
-    virt-manager
+    multimc
+    openjdk16
     awesome
     # xmonad-with-packages xmobar
     # stumpwm
-
-    unzip ncdu bc trash-cli nix-tree patchelf
+    unzip ncdu trash-cli nix-tree patchelf
+    xplr 
 
     (discord.overrideAttrs (_: rec {
       version = "0.0.15";
