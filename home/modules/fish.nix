@@ -67,7 +67,7 @@
       ns = "sudo nixos-rebuild switch";
       hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
       hs = "home-manager switch --flake /etc/nixos";
-      ng = "sudo nix-collect-garbage -d";
+      gc = "nix store gc";
 
       ls = "ls -h --color";
       lsa = "ls -Ah --color";

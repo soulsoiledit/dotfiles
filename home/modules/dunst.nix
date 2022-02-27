@@ -15,7 +15,6 @@
     in {
       global = {
         geometry = "300x0-10+30";
-        separator_height = 0;
         padding = 10;
         horizontal_padding = 10;
 
@@ -26,13 +25,16 @@
         markup = "full";
         format = "<b>%s</b>\\n%b";
         word_wrap = true;
-        show_indicators = false;
 
         icon_position = "left";
         max_icon_size = 48;
 
         dmenu = "${pkgs.rofi}/bin/rofi -dmenu";
         browser = "${pkgs.firefox}/bin/firefox -new-tab";
+
+        frame_width = 0;
+        separator_height = 10;
+        separator_color = "#00000000";
       };
 
       shortcuts = {

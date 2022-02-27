@@ -5,7 +5,7 @@
     enable = true;
 
     theme = {
-      name = "Matcha-dark-sea";
+      name = "Matcha-dark-azul";
       package = pkgs.matcha-gtk-theme;
     };
 

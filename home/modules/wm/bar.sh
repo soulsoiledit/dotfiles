@@ -21,18 +21,6 @@ else
   fi
 }
 
-temp() {
-  temp=$(acpi -t | grep -Po '\d{2}')
-  if (( $temp < 90 ))
-    then echo "﨎 $temp°C"
-  else if (( $temp < 95 ))
-    then echo "+@fg=2; $temp°C+@fg=0;"
-  else
-    echo "+@fg=1; $temp°C+@fg=0;"
-  fi
-  fi
-}
-
 mem() {
   mem=$(free | awk '/Mem/{printf("%d"), ($2-$7)/$2*100}')
   if (( $mem < 95 ))

@@ -4,13 +4,13 @@
   programs.rofi = {
     enable = true;
 
-    font = "UbuntuMono Nerd Font 14";
-    lines = 10;
+    font = "UbuntuMono Nerd Font 12";
     terminal = "${pkgs.alacritty}/bin/alacritty";
 
     extraConfig = {
-      display-drun = " ";
       show-icons = true;
+      display-drun = " ";
+      drun-display-format = "{name}";
     };
 
     theme =
@@ -19,42 +19,47 @@
         theme = (import ../../other/colors.nix).theme;
     in {
       "*" = {
-        background-color =    mkLiteral theme.background;
-        text-color =          mkLiteral theme.foreground;
-        spacing =             0;
+        background-color = mkLiteral "#00000000";
+        text-color = mkLiteral theme.background;
       };
 
       "window" = {
-          border =            mkLiteral "0px";
-      };
-
-      "element" = {
-        padding =             mkLiteral "0.5%";
-      };
-
-      "element-icon" = {
-        size =                mkLiteral "2ch";
-      };
-
-      "element selected" = {
-        background-color =    mkLiteral theme.selection;
-      };
-
-      "inputbar" = {
-          children =          map mkLiteral [ "prompt" "entry" ];
-          background-color =  mkLiteral theme.highlight;
-          padding =           mkLiteral "0.5% 0";
-      };
-
-      "entry" = {
-          background-color =  mkLiteral "#0000";
-          text-color =        mkLiteral theme.background;
+        background-color = mkLiteral theme.background;
+        text-color = mkLiteral theme.foreground;
+        width = mkLiteral "20%";
       };
 
       "prompt" = {
-          background-color =  mkLiteral "#0000";
-          text-color =        mkLiteral theme.background;
-          padding =           mkLiteral "0 0.5%";
+        enabled = mkLiteral "true";
+        padding = mkLiteral "0.30% 1% 0% -0.5%";
+      };
+
+      "inputbar" = {
+        background-color = mkLiteral theme.highlight;
+        padding = mkLiteral "1.5%";
+      };
+
+      "listview" = {
+        padding = mkLiteral "0px";
+        lines = 5;
+      };
+
+      "element" = {
+        padding = mkLiteral "1% 0.5%";
+      };
+
+      "element-icon" = {
+        size = mkLiteral "32px";
+      };
+
+      "element-text" = {
+        text-color = mkLiteral theme.foreground;
+        vertical-align = mkLiteral "0.5";
+        margin = mkLiteral "1% 0.25%";
+      };
+
+      "element selected" = {
+        background-color = mkLiteral theme.selection;
       };
     };
   };

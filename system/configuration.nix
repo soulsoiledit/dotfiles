@@ -3,6 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./laptop.nix
   ];
 
   system.stateVersion = "20.03";
@@ -26,7 +27,7 @@
   }];
   # }}}
   # Locale {{{
-  time.timeZone = "America/Chicago";
+  time.timeZone = "US/Central";
   # }}}
   # Nix {{{
   nixpkgs.config.allowUnfree = true;
@@ -40,18 +41,17 @@
 
     extraOptions = ''
       keep-outputs = true
-      keep-derivations = true
-      experimental-features = nix-command flakes
+      experimental-features = nix-command flakes ca-derivations
     '';
   };
   # }}}
   # Services {{{
   services = {
     openssh.enable = true;
-    dbus.packages = with pkgs; [ gnome3.dconf ];
     journald.extraConfig = "SystemMaxUse=100M";
   };
-  systemd.packages = [ pkgs.dconf ];
+
+  programs.dconf.enable = true;
   # }}}
   # Fonts {{{
   fonts = {
@@ -71,10 +71,7 @@
     };
   };
 
-  services.connman = {
-    enable = true;
-    enableVPN = false;
-  };
+  services.connman.enable = true;
   # }}}
   # User {{{
   users.users.soil = {
@@ -103,9 +100,9 @@
   # X11 {{{
   services.xserver = {
     enable = true;
-    windowManager.spectrwm.enable = true;
+    windowManager.awesome.enable = true;
     displayManager = {
-      defaultSession = "none+spectrwm";
+      defaultSession = "none+awesome";
       lightdm = {
         enable = true;
         # extraConfig = "user-authority-in-system-dir=true";
@@ -141,113 +138,7 @@
     };
   };
   # }}}
-  # Nvidia {{{
-  services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.nvidia.prime = {
-    offload.enable = true;
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
-
-  environment.systemPackages = with pkgs; [
-    (pkgs.writeShellScriptBin "nvidia-offload" ''
-      __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only $@
-    '')
-  ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      spectrwm = super.spectrwm.overrideAttrs (_: {
-        pname = "spectrwm";
-        version = "3.4.2";
-        src = pkgs.fetchFromGitHub {
-          owner = "conformal";
-          repo = "spectrwm";
-          rev = "92589afb194a931b7bcaff6e6258a74a2e6265aa";
-          sha256 = "JaemmrUiFyj8/6mZDyKefpH/+iRDyYJJdpCuqy4tsBI=";
-        };
-      });
-    })
-  ];
-  # }}}
-  # Laptop Power Management {{{
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;
-  };
-
-  services.tlp.enable = true;
-  # }}}
   programs.command-not-found.enable = false; # temporary
-
-  # qmk {{{
-  services.udev.extraRules = ''
-    # Atmel DFU
-    ### ATmega16U2
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2fef", TAG+="uaccess"
-    ### ATmega32U2
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", TAG+="uaccess"
-    ### ATmega16U4
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff3", TAG+="uaccess"
-    ### ATmega32U4
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", TAG+="uaccess"
-    ### AT90USB64
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff9", TAG+="uaccess"
-    ### AT90USB162
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffa", TAG+="uaccess"
-    ### AT90USB128
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffb", TAG+="uaccess"
-
-    # Input Club
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1c11", ATTRS{idProduct}=="b007", TAG+="uaccess"
-
-    # STM32duino
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1eaf", ATTRS{idProduct}=="0003", TAG+="uaccess"
-    # STM32 DFU
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", TAG+="uaccess"
-
-    # BootloadHID
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05df", TAG+="uaccess"
-
-    # USBAspLoader
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05dc", TAG+="uaccess"
-
-    # ModemManager should ignore the following devices
-    # Atmel SAM-BA (Massdrop)
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="6124", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-
-    # Caterina (Pro Micro)
-    ## Spark Fun Electronics
-    ### Pro Micro 3V3/8MHz
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1b4f", ATTRS{idProduct}=="9203", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ### Pro Micro 5V/16MHz
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1b4f", ATTRS{idProduct}=="9205", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ### LilyPad 3V3/8MHz (and some Pro Micro clones)
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1b4f", ATTRS{idProduct}=="9207", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ## Pololu Electronics
-    ### A-Star 32U4
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="1ffb", ATTRS{idProduct}=="0101", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ## Arduino SA
-    ### Leonardo
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0036", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ### Micro
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0037", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ## Adafruit Industries LLC
-    ### Feather 32U4
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="239a", ATTRS{idProduct}=="000c", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ### ItsyBitsy 32U4 3V3/8MHz
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="239a", ATTRS{idProduct}=="000d", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ### ItsyBitsy 32U4 5V/16MHz
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="239a", ATTRS{idProduct}=="000e", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ## dog hunter AG
-    ### Leonardo
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="0036", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-    ### Micro
-    SUBSYSTEMS=="usb", ATTRS{idVendor}=="2a03", ATTRS{idProduct}=="0037", TAG+="uaccess", ENV{ID_MM_DEVICE_IGNORE}="1"
-
-    # hid_listen
-    KERNEL=="hidraw*", MODE="0660", GROUP="plugdev", TAG+="uaccess", TAG+="udev-acl"
-  '';
-  # }}}
+  services.udev.packages = [ pkgs.qmk-udev-rules ];
 }
