@@ -7,11 +7,12 @@
     GIT_PAGER = "nvim -R";
     MANPAGER = "nvim +Man!";
 
-    "_JAVA_OPTIONS" = ''-Djava.util.prefs.userRoot="${config.xdg.configHome}/java"'';
+    "_JAVA_OPTIONS" =
+      ''-Djava.util.prefs.userRoot="${config.xdg.configHome}/java"'';
     NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
     XCOMPOSEFILE = "${config.xdg.configHome}/X11/xcompose";
     XCOMPOSECACHE = "${config.xdg.configHome}/X11/xcompose";
-    ERRFILE="${config.xdg.cacheHome}/X11/xsession-errors";
+    ERRFILE = "${config.xdg.cacheHome}/X11/xsession-errors";
   };
 
   home.sessionPath = [

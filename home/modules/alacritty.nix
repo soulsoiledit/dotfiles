@@ -14,8 +14,7 @@
         normal.family = "UbuntuMono Nerd Font";
       };
 
-      colors = 
-        let theme = (import ../../other/colors.nix).theme;
+      colors = let theme = (import ../../other/colors.nix).theme;
       in {
         primary = {
           background = theme.background;
@@ -38,9 +37,7 @@
           };
         };
 
-        vi_mode_cursor = {
-          cursor = theme.foreground;
-        };
+        vi_mode_cursor = { cursor = theme.foreground; };
 
         selection = {
           foreground = "CellForeground";

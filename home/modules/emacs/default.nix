@@ -5,9 +5,7 @@
     enable = true;
     doomPrivateDir = ./doom;
 
-    extraPackages = with pkgs; [
-      ripgrep fd
-    ];
+    extraPackages = with pkgs; [ ripgrep fd ];
   };
 
   services.emacs = {

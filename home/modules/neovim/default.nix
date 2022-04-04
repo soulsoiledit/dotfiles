@@ -4,11 +4,13 @@
   programs.neovim = {
     enable = true;
     withNodeJs = true;
-    /* extraConfig = lib.readFile ./init.vim; */
+    # extraConfig = lib.readFile ./init.vim;
     extraPackages = with pkgs; [
-      gcc universal-ctags
+      gcc
+      universal-ctags
       code-minimap
-      ripgrep fd
+      ripgrep
+      fd
 
       rnix-lsp
       pandoc

@@ -24,20 +24,23 @@
     ./wm
     ./x11.nix
   ];
-  
+
   home.packages = with pkgs; [
     polymc
     awesome
     # xmonad-with-packages xmobar
     # stumpwm
-    ncdu trash-cli nix-tree patchelf
-    xplr 
+    ncdu
+    trash-cli
+    nix-tree
+    patchelf
+    xplr
 
     (discord.overrideAttrs (_: rec {
-      version = "0.0.16";
       src = builtins.fetchTarball {
-        url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-        sha256 = "05s7irhw984slalnf7q5rps9i8izq542lnman9s1x6csd26r157s";
+        url =
+          "https://discordapp.com/api/download?platform=linux&format=tar.gz";
+        sha256 = "0hdgif8jpp5pz2c8lxas88ix7mywghdf9c9fn95n0dwf8g1c1xbb";
       };
     }))
   ];

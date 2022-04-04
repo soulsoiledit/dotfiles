@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  programs.fish= {
+  programs.fish = {
     enable = true;
 
     interactiveShellInit = ''
@@ -58,7 +58,8 @@
       ht = "htop -u $USER";
       btc = "bluetoothctl";
       ru = "${pkgs.udiskie}/bin/udiskie-umount -d";
-      rsd = ''sed -i 's/x.*/x":192,/;s/y.*/y":108,/;s/width.*/width":1536,/;s/height.*/height":864/' ~/.config/discord/settings.json'';
+      rsd = ''
+        sed -i 's/x.*/x":192,/;s/y.*/y":108,/;s/width.*/width":1536,/;s/height.*/height":864/' ~/.config/discord/settings.json'';
       ff = "fzf";
       de = "direnv edit .";
       g = "git";
@@ -83,8 +84,10 @@
 
       addr = "ip address | awk '/wlp4s0/{print $2}'";
       ssid = "connmanctl services | awk 'NR==1{print $2}'";
-      sc = "connmanctl connect (connmanctl services | awk '/A .*wifi/{print $3;exit}')";
-      dc = "connmanctl disconnect (connmanctl services | awk '/*A[OR]/{print $3}')";
+      sc =
+        "connmanctl connect (connmanctl services | awk '/A .*wifi/{print $3;exit}')";
+      dc =
+        "connmanctl disconnect (connmanctl services | awk '/*A[OR]/{print $3}')";
     };
   };
 }
