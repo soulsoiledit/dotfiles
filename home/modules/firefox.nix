@@ -2,8 +2,6 @@
   programs.firefox = {
     enable = true;
 
-    profiles = {
-      soil = {};
-    };
+    profiles = { soil = { }; };
   };
 }

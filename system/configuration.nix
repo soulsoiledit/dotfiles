@@ -1,30 +1,25 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware-configuration.nix
-    ./laptop.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
-  system.stateVersion = "20.03";
+  system.stateVersion = "22.05";
 
   # Boot {{{
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 2;
       systemd-boot.editor = false;
-      efi.canTouchEfiVariables = true;
-      timeout = 0;
     };
     plymouth.enable = true;
   };
   # }}}
   # Swap {{{
-  swapDevices = [{
-    device = "/var/swap";
-    size = 2048;
-  }];
+  #swapDevices = [{
+  #  device = "/var/swap";
+  #  size = 2048;
+  #}];
   # }}}
   # Locale {{{
   time.timeZone = "US/Central";
@@ -55,9 +50,7 @@
   # }}}
   # Fonts {{{
   fonts = {
-    fonts = with pkgs; [
-      (nerdfonts.override { fonts = [ "UbuntuMono" ]; })
-    ];
+    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "UbuntuMono" ]; }) ];
   };
   # }}}
   # Networking {{{
@@ -66,7 +59,7 @@
 
     wireless = {
       enable = true;
-      interfaces = [ "wlp4s0" ];
+      interfaces = [ "wlp5s0" ];
       userControlled.enable = true;
     };
   };
@@ -77,7 +70,7 @@
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = ["wheel" "video" ];
+    extraGroups = [ "wheel" "video" ];
   };
   programs.fish.enable = true;
   # }}}
@@ -85,17 +78,13 @@
   services.xserver.libinput.enable = true;
   # }}}
   # Audio {{{
-  hardware = {
-    pulseaudio = {
-      enable = true;
-      package = pkgs.pulseaudioFull;
-      extraConfig = ''
-        load-module module-switch-on-connect
-      '';
-    };
-
-    bluetooth.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
   };
+  hardware.bluetooth.enable = true;
+
   # }}}
   # X11 {{{
   services.xserver = {
@@ -105,14 +94,12 @@
       defaultSession = "none+awesome";
       lightdm = {
         enable = true;
-        # extraConfig = "user-authority-in-system-dir=true";
+        extraConfig = "user-authority-in-system-dir=true";
         background = "/";
         greeters.mini = {
           enable = true;
           user = "soil";
-          extraConfig =
-            let
-              theme = (import ../other/colors.nix).theme;
+          extraConfig = let theme = (import ../other/colors.nix).theme;
           in ''
             [greeter]
             show-password-label = false

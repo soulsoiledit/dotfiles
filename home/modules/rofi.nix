@@ -13,10 +13,9 @@
       drun-display-format = "{name}";
     };
 
-    theme =
-      let
-        inherit (config.lib.formats.rasi) mkLiteral;
-        theme = (import ../../other/colors.nix).theme;
+    theme = let
+      inherit (config.lib.formats.rasi) mkLiteral;
+      theme = (import ../../other/colors.nix).theme;
     in {
       "*" = {
         background-color = mkLiteral "#00000000";
@@ -44,13 +43,9 @@
         lines = 5;
       };
 
-      "element" = {
-        padding = mkLiteral "1% 0.5%";
-      };
+      "element" = { padding = mkLiteral "1% 0.5%"; };
 
-      "element-icon" = {
-        size = mkLiteral "32px";
-      };
+      "element-icon" = { size = mkLiteral "32px"; };
 
       "element-text" = {
         text-color = mkLiteral theme.foreground;
@@ -58,9 +53,7 @@
         margin = mkLiteral "1% 0.25%";
       };
 
-      "element selected" = {
-        background-color = mkLiteral theme.selection;
-      };
+      "element selected" = { background-color = mkLiteral theme.selection; };
     };
   };
 }

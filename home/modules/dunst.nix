@@ -9,9 +9,7 @@
       package = pkgs.gnome3.adwaita-icon-theme;
     };
 
-    settings =
-      let
-        theme = (import ../../other/colors.nix).theme;
+    settings = let theme = (import ../../other/colors.nix).theme;
     in {
       global = {
         geometry = "300x0-10+30";
