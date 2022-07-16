@@ -67,7 +67,7 @@
       nc = "$EDITOR /etc/nixos/system/configuration.nix -c 'cd /etc/nixos'";
       ns = "sudo nixos-rebuild switch";
       hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
-      hs = "home-manager switch --flake /etc/nixos";
+      hs = "nix run /etc/nixos#update-home";
       gc = "nix store gc";
 
       ls = "ls -h --color";

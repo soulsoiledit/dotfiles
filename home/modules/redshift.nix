@@ -1,5 +1,5 @@
 {
-  services.redshift = {
+  services.gammastep = {
     enable = true;
     latitude = "39";
     longitude = "-98";

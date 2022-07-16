@@ -1,0 +1,13 @@
+diff '--color=auto' -uprN a/drivers/bluetooth/btusb.c b/drivers/bluetooth/btusb.c
+--- a/drivers/bluetooth/btusb.c	2022-05-13 15:33:34.732853256 -0500
++++ b/drivers/bluetooth/btusb.c	2022-05-13 15:34:46.079947533 -0500
+@@ -460,6 +460,9 @@ static const struct usb_device_id blackl
+ 	{ USB_DEVICE(0x0489, 0xe0d9), .driver_info = BTUSB_MEDIATEK |
+ 						     BTUSB_WIDEBAND_SPEECH |
+ 						     BTUSB_VALID_LE_STATES },
++	{ USB_DEVICE(0x13d3, 0x3568), .driver_info = BTUSB_MEDIATEK |
++						     BTUSB_WIDEBAND_SPEECH |
++						     BTUSB_VALID_LE_STATES },
+ 
+ 	/* Additional Realtek 8723AE Bluetooth devices */
+ 	{ USB_DEVICE(0x0930, 0x021d), .driver_info = BTUSB_REALTEK },

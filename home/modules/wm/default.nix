@@ -3,5 +3,10 @@
 {
   home.packages = with pkgs; [ brightnessctl scrot xclip acpi dunst ];
 
-  xsession.windowManager.awesome.enable = true;
+  xdg.configFile."river/init" = {
+    source = ./init;
+    executable = true;
+  };
+
+  xsession.windowManager.command = "/home/soil/.config/river/init";
 }

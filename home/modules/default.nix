@@ -14,7 +14,6 @@
     ./imv.nix
     ./lf.nix
     ./neovim
-    ./picom.nix
     ./redshift.nix
     ./rofi.nix
     ./services.nix
@@ -27,14 +26,12 @@
 
   home.packages = with pkgs; [
     polymc
-    awesome
-    # xmonad-with-packages xmobar
-    # stumpwm
     ncdu
     trash-cli
     nix-tree
-    patchelf
     xplr
+
+    river
 
     (discord.overrideAttrs (_: rec {
       src = builtins.fetchTarball {
@@ -44,4 +41,28 @@
       };
     }))
   ];
+
+  programs.waybar.enable = true;
+  programs.waybar.systemd.enable = false;
+
+  services.swayidle = {
+    enable = true;
+    events = [
+      { event = "before-sleep"; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }
+    ];
+    timeouts = [
+      { timeout = 300; command = "${pkgs.swaylock-effects}/bin/swaylock -f --grace=5"; }
+    ];
+  };
+
+  systemd.user.services.swayidle.Install = { WantedBy = [ "graphical-session.target" ]; };
+  
+  programs.swaylock.settings = {
+    screenshots = true;
+    effect-blur = "5x5";
+    fade-in = 0.25;
+    indicator = true;
+    clock = true;
+    ignore-empty-password = true;
+  };
 }

@@ -1,26 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  hardware.nvidia.prime = {
-    offload.enable = true;
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
-
-  environment.systemPackages = with pkgs;
-    [
-      (pkgs.writeShellScriptBin "nvidia-offload" ''
-        __NV_PRIME_RENDER_OFFLOAD=1 __GLX_VENDOR_LIBRARY_NAME=nvidia __VK_LAYER_NV_optimus=NVIDIA_only $@
-      '')
-    ];
-
   # Laptop Power Management {{{
   powerManagement = {
     enable = true;
     powertop.enable = true;
   };
 
-  services.tlp.enable = true;
+  services.power-profiles-daemon.enable = true;
+
 
   services.udev.extraRules = ''
     ACTION=="add", ATTRS{idVendor}=="c2ab", ATTRS{idProduct}=="3939", RUN+="${
