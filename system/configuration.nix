@@ -1,13 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [ ./hardware-configuration.nix ./laptop.nix ];
 
   system.stateVersion = "22.05";
 
   # Boot {{{
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelPatches = [ { name = "MT7922 Patch"; patch = ./mt7922.patch; } ];
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
@@ -44,6 +45,7 @@
   services = {
     openssh.enable = true;
     journald.extraConfig = "SystemMaxUse=100M";
+    gnome.at-spi2-core.enable = true;
   };
 
   programs.dconf.enable = true;
@@ -56,14 +58,8 @@
   # Networking {{{
   networking = {
     hostName = "soilnix";
-
-    wireless = {
-      enable = true;
-      interfaces = [ "wlp5s0" ];
-      userControlled.enable = true;
-    };
+    wireless.userControlled.enable = true;
   };
-
   services.connman.enable = true;
   # }}}
   # User {{{
@@ -85,46 +81,19 @@
   };
   hardware.bluetooth.enable = true;
 
-  # }}}
-  # X11 {{{
-  services.xserver = {
-    enable = true;
-    windowManager.awesome.enable = true;
-    displayManager = {
-      defaultSession = "none+awesome";
-      lightdm = {
-        enable = true;
-        extraConfig = "user-authority-in-system-dir=true";
-        background = "/";
-        greeters.mini = {
-          enable = true;
-          user = "soil";
-          extraConfig = let theme = (import ../other/colors.nix).theme;
-          in ''
-            [greeter]
-            show-password-label = false
-            password-alignment = left
-            show-input-cursor = true
-            [greeter-hotkeys]
-            shutdown-key = p
-            suspend-key = s
-            [greeter-theme]
-            font = "UbuntuMono Nerd Font"
-            font-size = 1em
-            font-weight = normal
-            border-width = 0px
-            password-border-width = 0px
-            background-color = "${theme.background}"
-            window-color = "${theme.background}"
-            password-background-color = "${theme.selection}"
-            password-color = "${theme.foreground}"
-            error-color = "${theme.foreground}"
-          '';
-        };
+  services.greetd = {
+    enable = false;
+    settings = {
+      default_session = {
+        user = "soil";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c ${(pkgs.writeShellScriptBin "river-session" ''
+            export WLR_NO_HARDWARE_CURSOR = 1
+            ${pkgs.river}/bin/river
+          '')}/bin/river-session
+	    ";
       };
     };
   };
-  # }}}
 
   programs.command-not-found.enable = false; # temporary
   services.udev.packages = [ pkgs.qmk-udev-rules ];
