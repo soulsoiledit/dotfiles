@@ -3,7 +3,7 @@
 {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    #package = pkgs.rofi-wayland;
 
     font = "UbuntuMono Nerd Font 12";
     terminal = "${pkgs.alacritty}/bin/alacritty";
