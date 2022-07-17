@@ -7,7 +7,7 @@
 
   # Boot {{{
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_latest;
     kernelPatches = [ { name = "MT7922 Patch"; patch = ./mt7922.patch; } ];
     loader = {
       systemd-boot.enable = true;
@@ -45,7 +45,6 @@
   services = {
     openssh.enable = true;
     journald.extraConfig = "SystemMaxUse=100M";
-    gnome.at-spi2-core.enable = true;
   };
 
   programs.dconf.enable = true;
@@ -70,9 +69,6 @@
   };
   programs.fish.enable = true;
   # }}}
-  # Input {{{
-  services.xserver.libinput.enable = true;
-  # }}}
   # Audio {{{
   services.pipewire = {
     enable = true;
@@ -80,6 +76,13 @@
     pulse.enable = true;
   };
   hardware.bluetooth.enable = true;
+
+  services.xserver = {
+    enable = true;
+    libinput.enable = true;
+    displayManager.sx.enable = true;
+    dpi = 216;
+  };
 
   services.greetd = {
     enable = false;

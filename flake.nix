@@ -25,6 +25,7 @@
           nix.registry.nixpkgs.flake = nixpkgs;
 
           nixpkgs.overlays = [ asusctl.overlays.default ];
+          nixpkgs.config.allowUnfree = true;
 
           services.asusd = {
               enable = true;
@@ -44,14 +45,6 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       modules = [ 
         ./home/home.nix
-
-        {
-	      home = {
-	        username = "soil";
-	        homeDirectory = "/home/soil";
-	        stateVersion = "22.05";
-	      };
-	    }
       ];
     };
 
