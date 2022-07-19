@@ -14,6 +14,8 @@
 
       rnix-lsp
       pandoc
+
+      sumneko-lua-language-server
     ];
 
     # plugins = with pkgs.vimPlugins; [

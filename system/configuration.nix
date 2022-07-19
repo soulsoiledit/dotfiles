@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ./laptop.nix ];
+  imports = [ 
+    ./hardware-configuration.nix 
+    ./laptop.nix
+  ];
 
   system.stateVersion = "22.05";
 
@@ -77,6 +80,7 @@
   };
   hardware.bluetooth.enable = true;
 
+  # xorg
   services.xserver = {
     enable = true;
     libinput.enable = true;
@@ -84,20 +88,33 @@
     dpi = 216;
   };
 
+  # wayland
+  programs.sway.enable = true;
+
   services.greetd = {
-    enable = false;
+    enable = true;
     settings = {
       default_session = {
         user = "soil";
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c ${(pkgs.writeShellScriptBin "river-session" ''
-            export WLR_NO_HARDWARE_CURSOR = 1
-            ${pkgs.river}/bin/river
-          '')}/bin/river-session
-	    ";
+        #command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c '${pkgs.river}/bin/river -c /home/soil/.config/sx/sxrc'";
+        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c ${pkgs.sx}/bin/sx";
       };
     };
   };
 
   programs.command-not-found.enable = false; # temporary
   services.udev.packages = [ pkgs.qmk-udev-rules ];
+
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;
+  };
+
+  services.ratbagd.enable = true;
+
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+  };
 }

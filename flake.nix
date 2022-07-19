@@ -25,7 +25,6 @@
           nix.registry.nixpkgs.flake = nixpkgs;
 
           nixpkgs.overlays = [ asusctl.overlays.default ];
-          nixpkgs.config.allowUnfree = true;
 
           services.asusd = {
               enable = true;

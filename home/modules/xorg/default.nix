@@ -1,18 +1,14 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ brightnessctl scrot xclip acpi dunst 
-  bsp-layout playerctl pamixer ];
-
-#xdg.configFile."river/init" = {
-#  source = ./init;
-#  executable = true;
-#};
+  home.packages = with pkgs; [ 
+    scrot xclip bsp-layout
+  ];
 
   xsession.windowManager.bspwm = {
     enable = true;
     monitors = {
-        eDP-1 = [ "1" "2" "3" "4" "5" "6" "7" "8" "9" "10" ];
+        eDP = [ "1" "2" "3" "4" "5" ];
     };
 
     settings = {
@@ -24,13 +20,39 @@
     };
 
     extraConfig = ''
-      for desktop in $(bspc query --desktops --names); do
-        bsp-layout set tall $desktop --master-size 0.5
-      done
+      bsp-layout set tall 1 --master-size 0.5
+      bsp-layout set tall 2 --master-size 0.5
+      bsp-layout set tall 3 --master-size 0.5
+      bsp-layout set tall 4 --master-size 0.5
+      bsp-layout set tall 5 --master-size 0.5
     '';
   };
 
-  services.playerctld.enable = true;
+  services = {
+    unclutter.enable = true;
+    clipmenu.enable = true;
+  };
+
+  xsession = {
+    initExtra = ''
+      xset s 1800 dpms 0 1800 2100 &
+      ${pkgs.feh}/bin/feh --no-fehbg --bg-fill /etc/nixos/other/bg.png &
+      ${pkgs.xorg.xrandr}/bin/xrandr --dpi 216 &
+    '';
+
+    scriptPath = ".config/sx/sxrc";
+    profilePath = ".config/sx/xprofile";
+  };
+
+  home.pointerCursor.x11.enable = true;
+  xresources.path = ".config/sx/Xresources";
+
+  services.picom = {
+      enable = true;
+      fade = true;
+      vSync = true;
+      fadeDelta = 5;
+  };
 
   services.sxhkd = {
     enable = true;
@@ -47,7 +69,7 @@
 
       # focus/swap
       "super + {j,k}" = "bspc node -f {next,prev}.local.!hidden.window";
-      "super + {_,shift + }{1-9,0}" = "bspc {desktop -f,node -d} '^{1-9,10}'";
+      "super + {_,shift + }{1-5}" = "bspc {desktop -f,node -d} '^{1-5}'";
       "super + {grave,Tab}" = "bspc {node,desktop} -f last";
       "super + {f,shift + f}" = "bspc node -t {~fullscreen,~floating}";
 
@@ -101,16 +123,11 @@
         label-urgent-foreground = "#ff0000";
         label-empty = "";
 
-        ws-icon-0 = "1; ";
-        ws-icon-1 = "2; ";
-        ws-icon-2 = "3; ";
-        ws-icon-3 = "4; ";
-        ws-icon-4 = "5; ";
-        ws-icon-5 = "6; ";
-        ws-icon-6 = "7; ";
-        ws-icon-7 = "8; ";
-        ws-icon-8 = "9; ";
-        ws-icon-9 = "10; ";
+        ws-icon-9 = "1; ";
+        ws-icon-0 = "2; ";
+        ws-icon-1 = "3; ";
+        ws-icon-2 = "4; ";
+        ws-icon-3 = "5; ";
       };
 
       "module/pulseaudio" = {

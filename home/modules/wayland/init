@@ -14,6 +14,8 @@
 #riverctl map normal Super+Shift Return spawn foot
 riverctl map normal Super Space spawn 'rofi -show drun'
 riverctl map normal Super Return spawn foot
+riverctl map normal Super D spawn discord
+riverctl map normal Super+Control L spawn swaylock
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
@@ -30,14 +32,6 @@ riverctl map normal Super K focus-view previous
 riverctl map normal Super+Shift J swap next
 riverctl map normal Super+Shift K swap previous
 
-# Super+Period and Super+Comma to focus the next/previous output
-riverctl map normal Super Period focus-output next
-riverctl map normal Super Comma focus-output previous
-
-# Super+Shift+{Period,Comma} to send the focused view to the next/previous output
-riverctl map normal Super+Shift Period send-to-output next
-riverctl map normal Super+Shift Comma send-to-output previous
-
 # Super+Return to bump the focused view to the top of the layout stack
 riverctl map normal Super+Shift Return zoom
 
@@ -48,24 +42,6 @@ riverctl map normal Super L send-layout-cmd rivertile "main-ratio +0.05"
 # Super+Shift+H and Super+Shift+L to increment/decrement the main count of rivertile(1)
 riverctl map normal Super+Shift H send-layout-cmd rivertile "main-count +1"
 riverctl map normal Super+Shift L send-layout-cmd rivertile "main-count -1"
-
-# Super+Alt+{H,J,K,L} to move views
-riverctl map normal Super+Alt H move left 100
-riverctl map normal Super+Alt J move down 100
-riverctl map normal Super+Alt K move up 100
-riverctl map normal Super+Alt L move right 100
-
-# Super+Alt+Control+{H,J,K,L} to snap views to screen edges
-riverctl map normal Super+Alt+Control H snap left
-riverctl map normal Super+Alt+Control J snap down
-riverctl map normal Super+Alt+Control K snap up
-riverctl map normal Super+Alt+Control L snap right
-
-# Super+Alt+Shif+{H,J,K,L} to resize views
-riverctl map normal Super+Alt+Shift H resize horizontal -100
-riverctl map normal Super+Alt+Shift J resize vertical 100
-riverctl map normal Super+Alt+Shift K resize vertical -100
-riverctl map normal Super+Alt+Shift L resize horizontal 100
 
 # Super + Left Mouse Button to move views
 riverctl map-pointer normal Super BTN_LEFT move-view
@@ -147,7 +123,7 @@ riverctl border-color-focused 0x93a1a1
 riverctl border-color-unfocused 0x586e75
 
 # Set keyboard repeat rate
-riverctl set-repeat 50 300
+riverctl set-repeat 50 200
 
 # Make certain views start floating
 riverctl float-filter-add app-id float
@@ -158,7 +134,7 @@ riverctl csd-filter-add app-id "gedit"
 
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
-riverctl xcursor-theme "capitaine-cursors" 48
+riverctl xcursor-theme "capitaine-cursors" 32
 
 riverctl default-layout rivertile
-rivertile -view-padding 6 -outer-padding 6
+rivertile -view-padding 3 -outer-padding 3
