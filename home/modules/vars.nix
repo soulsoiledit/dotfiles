@@ -10,8 +10,6 @@
     "_JAVA_OPTIONS" =
       ''-Djava.util.prefs.userRoot="${config.xdg.configHome}/java"'';
     NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
-
-    #MOZ_ENABLE_WAYLAND = 1;
   };
 
   home.sessionPath = [

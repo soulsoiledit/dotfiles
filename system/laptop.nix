@@ -7,9 +7,6 @@
     powertop.enable = true;
   };
 
-  services.power-profiles-daemon.enable = true;
-
-
   services.udev.extraRules = ''
     ACTION=="add", ATTRS{idVendor}=="c2ab", ATTRS{idProduct}=="3939", RUN+="${
       pkgs.writeShellScriptBin "kb-add" ''
