@@ -10,8 +10,7 @@
 
       font = {
         size = 8;
-        offset.y = 0;
-        normal.family = "UbuntuMono Nerd Font";
+        normal.family = "FantasqueSansMono Nerd Font";
       };
 
       colors = let theme = (import ../../other/colors.nix).theme;

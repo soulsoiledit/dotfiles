@@ -4,10 +4,11 @@
   programs.rofi = {
     enable = true;
 
-    font = "UbuntuMono Nerd Font 12";
+    font = "FantasqueSansMono Nerd Font 12";
     terminal = "${pkgs.alacritty}/bin/alacritty";
 
     extraConfig = {
+      dpi = 216;
       show-icons = true;
       display-drun = " ";
       drun-display-format = "{name}";
@@ -45,7 +46,9 @@
 
       "element" = { padding = mkLiteral "1% 0.5%"; };
 
-      "element-icon" = { size = mkLiteral "32px"; };
+      "element-icon" = { 
+        size = mkLiteral "2em"; 
+      };
 
       "element-text" = {
         text-color = mkLiteral theme.foreground;
