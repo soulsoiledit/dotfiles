@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, master, ... }:
 
 {
   imports = [
@@ -20,22 +20,37 @@
     #./wayland
   ];
 
-
-
   home.packages = with pkgs; [
     ncdu trash-cli nix-tree xplr
-    polymc discord spotify
+    polymc spotify
+
+    inputs.master.legacyPackages.x86_64-linux.ferium
+    (pkgs.discord.override { nss = pkgs.nss_latest; })
 
     brightnessctl acpi dunst 
     playerctl pamixer
+
+    asusctl
+
+    source-han-sans
+    protonvpn-gui
+
+    piper
   ];
 
-  systemd.user.startServices = true;
+  fonts.fontconfig.enable = true;
+
   services.playerctld.enable = true;
   programs.starship.enable = true;
   programs.firefox = {
     enable = true;
-    profiles.soil = { };
+    profiles.soil = {
+      settings = {
+        "browser.bookmarks.showMobileBookmarks" = true;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "layout.css.devPixelsPerPx" = 2;
+      };
+    };
   };
   programs.fzf.enable = true;
 
@@ -48,8 +63,14 @@
     gtk.enable = true;
   };
 
-  services.udiskie = {
+  services.udiskie.enable = true;
+  services.flameshot.enable = true;
+
+  programs.zathura = {
     enable = true;
-    tray = "never";
+    options = {
+      default-bg = "#222";
+      default-fg = "#ddd";
+    };
   };
 }
