@@ -6,7 +6,7 @@
 
     iconTheme = {
       name = "Adwaita";
-      package = pkgs.gnome3.adwaita-icon-theme;
+      package = pkgs.gnome.adwaita-icon-theme;
     };
 
     settings = let theme = (import ../../other/colors.nix).theme;
@@ -19,7 +19,7 @@
         show_age_threshold = 60;
         idle_threshold = 120;
 
-        font = "UbuntuMono Nerd Font 14";
+        font = "FantasqueSansMono Nerd Font 14";
         markup = "full";
         format = "<b>%s</b>\\n%b";
         word_wrap = true;
