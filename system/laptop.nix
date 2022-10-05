@@ -1,10 +1,24 @@
 { config, pkgs, ... }:
 
 {
-  # Laptop Power Management {{{
-  powerManagement = {
+  # Laptop Power Management
+  boot = {
+    kernelParams = [ "mem_sleep_default=deep" ];
+    initrd.prepend = [ "${/boot/acpi_override}" ];
+  };
+
+  powerManagement.enable = true;
+  powerManagement.cpuFreqGovernor = "conservative";
+
+  services.asusd = {
     enable = true;
-    powertop.enable = true;
+    enable-power-profiles-daemon = true;
+  };
+
+  services.supergfxd = {
+    enable = true;
+    gfx-mode = "Hybrid";
+    gfx-managed = true;
   };
 
   services.udev.extraRules = ''
