@@ -14,16 +14,16 @@
     };
 
     keybindings = {
-      m = "updir";
-      n = "down";
-      e = "up";
-      i = "open";
+      h = "updir";
+      j = "down";
+      k = "up";
+      l = "open";
 
-      h = "mark-save";
-      j = "search-next";
-      J = "search-prev";
-      k = "$$EDITOR $fx";
-      l = "$$PAGER $fx";
+      m = "mark-save";
+      n = "search-next";
+      N = "search-prev";
+      e = "$$EDITOR $fx";
+      i = "$$PAGER $fx";
 
       "." = "set hidden!";
       a = "&for i in $fx; do arc unarchive $i; done";
@@ -31,6 +31,7 @@
       DD = ":trash";
       DU = "$trash-restore";
 
+      t = "";
       td = "push $mkdir<space>";
       tf = "push $touch<space>";
       te = "$chmod +x $fx";
@@ -38,7 +39,7 @@
 
       gn = "cd /etc/nixos";
       gp = "cd ~/pictures";
-      gm = "cd ~/.local/share/polymc/instances/Main/.minecraft/";
+      gm = "cd ~/.local/share/PolyMC/instances/Main/.minecraft/";
       gt = "cd ~/.local/share/Trash/files";
       gu = "cd /run/media/${config.home.username}/";
 
