@@ -1,41 +1,74 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+  theme = (import ../../../other/colors.nix).theme;
+in {
   home.packages = with pkgs; [
-    river wlr-randr swaybg swaylock-effects
+    river wlr-randr swaybg swaylock-effects wl-clipboard
   ];
-
-  home.sessionVariables.MOZ_ENABLE_WAYLAND = 1;
 
   xdg.configFile."river/init" = {
     source = ./init;
     executable = true;
   };
 
-  xsession.windowManager.command = "/home/soil/.config/river/init";
-
   xsession = {
+    windowManager.command = "/home/soil/.config/river/init";
     importedVariables = [ "WAYLAND_DISPLAY" ];
 
     initExtra = ''
-      ${pkgs.wlr-randr}/bin/wlr-randr --output eDP-1 --scale 2 &
-      ${pkgs.swaybg}/bin/swaybg -i /etc/nixos/other/bg.png -m fill &
+      ${pkgs.swaybg}/bin/swaybg -i /etc/nixos/other/bg_${theme.name}.png -m fill &
     '';
 
     scriptPath = ".config/waysession";
     profilePath = ".config/wayprofile";
   };
 
-  rofi.package = pkgs.rofi-wayland;
+  home.pointerCursor.size = 48;
+
+  programs.firefox.profiles.soil = {
+    settings."layout.css.devPixelsPerPx" = 2;
+    userChrome = ''
+      /* #tabbrowser-tabs, #navigator-toolbox, menuitem, menu, ... */
+      * {
+          font-size: 12px !important;
+      }
+
+      /* exception for badge on adblocker */
+      .toolbarbutton-badge {
+          font-size: 8px !important;
+      }       
+    '';
+  };
+
+  xdg.desktopEntries = {
+    firefox = {
+      name = "Firefox";
+      exec = "env MOZ_ENABLE_WAYLAND=1 firefox %U";
+    };
+
+    spotify = {
+      name = "Spotify";
+      exec = "spotify --force-device-scale-factor=2 %U";
+    };
+
+    polymc = {
+      name = "PolyMC";
+      exec = "env QT_SCALE_FACTOR=2 polymc";
+    };
+  };
+
 
   programs.foot = {
     enable = true;
 
     settings = {
-      main.font = "UbuntuMono Nerd Font:size=12";
-      mouse.hide-when-typing = "no";
+      main.font = "UbuntuMono Nerd Font:size=10";
+      mouse.hide-when-typing = "yes";
     };
   };
+
+  programs.rofi.package = pkgs.rofi-wayland;
 
   programs.waybar = {
     enable = true;
@@ -45,12 +78,13 @@
       bar = {
         layer = "bottom";
         position = "top";
-        modules-left =  [ "river/tags" "wlr/taskbar" ];
+        modules-left =  [ "river/tags" ];
         modules-center = [ "battery" "memory" "cpu" "temperature" ];
         modules-right = [ "network" "bluetooth" "pulseaudio" "backlight" "clock" "tray" ];
 
         "river/tags" = {
-          tag-labels = [ "" "" "" "" "" "" "" "" "" ];
+          num-tags = 5;
+          tag-labels = [ "" "" "" "" "" ];
         };
 
         "clock" = {
@@ -82,10 +116,12 @@
           format-disconnected = "";
         };
 
-        "tasklist" = {
-          icon-size = 256;
-          on-click = "activate";
-          on-click-middle = "close";
+        "wlr/taskbar" = {
+          icon-size = 48;
+        };
+
+        "tray" = {
+          icon-size = 48;
         };
       };
     };
@@ -93,11 +129,11 @@
     style = ''
       * {
         /* `otf-font-awesome` is required to be installed for icons */
+        font-size: 32px;
         font-family: UbuntuMono Nerd Font;
-        font-size: 14px;
       }
       
-       window#waybar {
+      window#waybar {
           background-color: rgba(43, 48, 59, 0.5);
           border-bottom: 3px solid rgba(100, 114, 125, 0.5);
           color: #ffffff;
@@ -119,16 +155,8 @@
       }
       */
       
-      window#waybar.termite {
-          background-color: #3F3F3F;
-      }
-      
-      window#waybar.chromium {
-          background-color: #000000;
-          border: none;
-      }
-      
       #workspaces button {
+          font-size: 48px;
           padding: 0 5px;
           background-color: transparent;
           color: #ffffff;
@@ -173,7 +201,7 @@
       #mode,
       #idle_inhibitor,
       #mpd {
-          padding: 0 5px;
+          padding: 0 15px;
           color: #ffffff;
       }
       
@@ -193,7 +221,7 @@
       }
       
       #clock {
-          background-color: #64727D;
+        background-color: #64727D;
       }
       
       #battery {
@@ -267,7 +295,7 @@
       }
       
       #temperature {
-          background-color: #f0932b;
+        background-color: #f0932b;
       }
       
       #temperature.critical {
@@ -283,37 +311,12 @@
       }
       
       #tray > .needs-attention {
-          -gtk-icon-effect: highlight;
-          background-color: #eb4d4b;
+        -gtk-icon-effect: highlight;
+        background-color: #eb4d4b;
       }
       
-      #language {
-          background: #00b093;
-          color: #740864;
-          padding: 0 5px;
-          margin: 0 5px;
-          min-width: 16px;
-      }
-      
-      #keyboard-state {
-          background: #97e1ad;
-          color: #000000;
-          padding: 0 0px;
-          margin: 0 5px;
-          min-width: 16px;
-      }
-      
-      #keyboard-state > label {
-          padding: 0 5px;
-      }
-      
-      #keyboard-state > label.locked {
-          background: rgba(0, 0, 0, 0.2);
-      }
-
       #tags button {
-        font-size: 20px;
-        padding: 0 0;
+        padding: 0 10px;
         color: #aaaaaa;
       }
 
@@ -326,10 +329,25 @@
   services.swayidle = {
     enable = true;
     events = [
-      { event = "before-sleep"; command = "${pkgs.swaylock-effects}/bin/swaylock -f"; }
+      {
+        event = "before-sleep";
+        command = "${pkgs.swaylock-effects}/bin/swaylock -f";
+      }
+      {
+        event = "before-sleep";
+        command = "${pkgs.playerctl}/bin/playerctl pause";
+      }
     ];
     timeouts = [
-      { timeout = 300; command = "${pkgs.swaylock-effects}/bin/swaylock -f --grace=5"; }
+      {
+        timeout = 590;
+        command = "${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
+        resumeCommand = "${pkgs.brightnessctl}/bin/brightness set 10%+"; 
+      }
+      {
+        timeout = 600;
+        command = "${pkgs.swaylock-effects}/bin/swaylock -f --grace=5";
+      }
     ];
   };
 
