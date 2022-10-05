@@ -15,13 +15,19 @@
 riverctl map normal Super Space spawn 'rofi -show drun'
 riverctl map normal Super Return spawn foot
 riverctl map normal Super D spawn discord
+
 riverctl map normal Super+Control L spawn swaylock
+
+riverctl map normal None XF86Launch4 spawn "asusctl profile -n"
+riverctl map normal None XF86KbdBrightnessUp spawn "asusctl -n"
+riverctl map normal None XF86KbdBrightnessDown spawn "asusctl -p"
 
 # Super+Q to close the focused view
 riverctl map normal Super Q close
 
 # Super+Shift+E to exit river
 riverctl map normal Super+Shift E exit
+# create restart command?
 
 # Super+J and Super+K to focus the next/previous view in the layout stack
 riverctl map normal Super J focus-view next
@@ -33,7 +39,7 @@ riverctl map normal Super+Shift J swap next
 riverctl map normal Super+Shift K swap previous
 
 # Super+Return to bump the focused view to the top of the layout stack
-riverctl map normal Super+Shift Return zoom
+riverctl map normal Super G zoom
 
 # Super+H and Super+L to decrease/increase the main ratio of rivertile(1)
 riverctl map normal Super H send-layout-cmd rivertile "main-ratio -0.05"
@@ -49,7 +55,9 @@ riverctl map-pointer normal Super BTN_LEFT move-view
 # Super + Right Mouse Button to resize views
 riverctl map-pointer normal Super BTN_RIGHT resize-view
 
-for i in $(seq 1 9)
+riverctl map-pointer normal Super BTN_MIDDLE close
+
+for i in $(seq 1 5)
 do
     tags=$((1 << ($i - 1)))
 
@@ -98,23 +106,21 @@ riverctl map passthrough Super F11 enter-mode normal
 # not have a modifier
 for mode in normal locked
 do
-    # Eject the optical drive (well if you still have one that is)
-    riverctl map $mode None XF86Eject spawn 'eject -T'
-
     # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
     riverctl map $mode None XF86AudioRaiseVolume  spawn 'pamixer -i 5'
     riverctl map $mode None XF86AudioLowerVolume  spawn 'pamixer -d 5'
-    riverctl map $mode None XF86AudioMute         spawn 'pamixer --toggle-mute'
+    riverctl map $mode None XF86AudioMute         spawn 'pamixer -t'
 
     # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
     riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
     riverctl map $mode None XF86AudioPlay  spawn 'playerctl play-pause'
+    riverctl map $mode None XF86AudioPause  spawn 'playerctl play-pause'
     riverctl map $mode None XF86AudioPrev  spawn 'playerctl previous'
     riverctl map $mode None XF86AudioNext  spawn 'playerctl next'
 
-    # Control screen backlight brighness with light (https://github.com/haikarainen/light)
-    riverctl map $mode None XF86MonBrightnessUp   spawn 'light -A 5'
-    riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
+    # Control screen backlight brighness with brightnessctl
+    riverctl map $mode None XF86MonBrightnessUp spawn "brightnessctl set 20%+"
+    riverctl map $mode None XF86MonBrightnessDown spawn "brightnessctl set 20%-"
 done
 
 # Set background and border color
@@ -134,7 +140,7 @@ riverctl csd-filter-add app-id "gedit"
 
 # Set and exec into the default layout generator, rivertile.
 # River will send the process group of the init executable SIGTERM on exit.
-riverctl xcursor-theme "capitaine-cursors" 32
+riverctl xcursor-theme "capitaine-cursors" 48
 
 riverctl default-layout rivertile
 rivertile -view-padding 3 -outer-padding 3
