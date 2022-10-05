@@ -10,12 +10,13 @@
 
   # Boot {{{
   boot = {
-    kernelPackages = pkgs.linuxPackages_xanmod_latest;
-    kernelPatches = [ { name = "MT7922 Patch"; patch = ./mt7922.patch; } ];
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
     };
+    blacklistedKernelModules = [ "acpi_cpufreq_init" ];
+    kernelModules = [ "amd_pstate" ];
     plymouth.enable = true;
   };
   # }}}
@@ -48,34 +49,39 @@
   services = {
     openssh.enable = true;
     journald.extraConfig = "SystemMaxUse=100M";
+    udisks2.enable = true;
   };
+  programs.ssh.startAgent = true;
 
   programs.dconf.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
   # }}}
   # Fonts {{{
   fonts = {
-    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "UbuntuMono" ]; }) ];
+    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; }) ];
   };
   # }}}
   # Networking {{{
   networking = {
     hostName = "soilnix";
-    wireless.userControlled.enable = true;
+    networkmanager.enable = true;
   };
-  services.connman.enable = true;
   # }}}
   # User {{{
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "video" ];
+    extraGroups = [ "wheel" "video" "networkmanager" ];
   };
   programs.fish.enable = true;
   # }}}
   # Audio {{{
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
   };
   hardware.bluetooth.enable = true;
@@ -85,7 +91,11 @@
     enable = true;
     libinput.enable = true;
     displayManager.sx.enable = true;
-    dpi = 216;
+    excludePackages = [ pkgs.xterm ];
+
+    monitorSection = ''
+      DisplaySize 302 189
+    '';
   };
 
   # wayland
@@ -96,7 +106,7 @@
     settings = {
       default_session = {
         user = "soil";
-        #command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c '${pkgs.river}/bin/river -c /home/soil/.config/sx/sxrc'";
+        #command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c '${pkgs.river}/bin/river -c /home/soil/.config/waysession'";
         command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c ${pkgs.sx}/bin/sx";
       };
     };
@@ -105,16 +115,13 @@
   programs.command-not-found.enable = false; # temporary
   services.udev.packages = [ pkgs.qmk-udev-rules ];
 
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
-  };
-
+  hardware.logitech.wireless.enable = true;
   services.ratbagd.enable = true;
-
 
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    #wlr.enable = true;
   };
+
+  virtualisation.virtualbox.host.enable = true;
 }
