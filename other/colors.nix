@@ -66,6 +66,7 @@ rec {
   };
 
   substrata = {
+    name = "substrata";
     background = "#191c25";
     foreground = "#b5b4c9";
     selection = "#2e313d";
