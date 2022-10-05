@@ -4,7 +4,7 @@
   programs.neovim = {
     enable = true;
     withNodeJs = true;
-    # extraConfig = lib.readFile ./init.vim;
+    extraConfig = "luafile ~/.config/nvim/luainit.lua";
     extraPackages = with pkgs; [
       gcc
       universal-ctags
@@ -15,11 +15,12 @@
       rnix-lsp
       pandoc
 
-      sumneko-lua-language-server
+      nodePackages.live-server
     ];
 
-    # plugins = with pkgs.vimPlugins; [
-    # ];
+    plugins = with pkgs.vimPlugins; [
+      markdown-preview-nvim
+    ];
   };
 
   programs.lazygit.enable = true;
