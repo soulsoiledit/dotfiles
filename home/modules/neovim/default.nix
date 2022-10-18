@@ -1,10 +1,10 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, inputs, ... }:
 
 {
   programs.neovim = {
     enable = true;
     withNodeJs = true;
-    extraConfig = "luafile ~/.config/nvim/luainit.lua";
+    extraConfig = "";
     extraPackages = with pkgs; [
       gcc
       universal-ctags
@@ -15,7 +15,10 @@
       rnix-lsp
       pandoc
 
-      nodePackages.live-server
+
+      nodePackages.neovim
+      cargo
+      go
     ];
 
     plugins = with pkgs.vimPlugins; [
