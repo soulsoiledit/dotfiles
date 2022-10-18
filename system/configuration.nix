@@ -40,9 +40,11 @@
 
     gc = {
       automatic = true;
+      dates = "weekly";
       options = "--delete-older-than 7d";
     };
 
+    settings.auto-optimise-store = true;
     extraOptions = ''
       keep-outputs = true
       experimental-features = nix-command flakes ca-derivations
