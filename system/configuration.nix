@@ -70,6 +70,7 @@
     hostName = "soilnix";
     networkmanager.enable = true;
   };
+  services.adguardhome.enable = true;
   # }}}
   # User {{{
   users.users.soil = {
