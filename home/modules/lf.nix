@@ -23,7 +23,7 @@
       n = "search-next";
       N = "search-prev";
       e = "$$EDITOR $fx";
-      i = "$$PAGER $fx";
+      i = "$$EDITOR $fx";
 
       "." = "set hidden!";
       a = "&for i in $fx; do arc unarchive $i; done";
