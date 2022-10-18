@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [ 
-    ./hardware-configuration.nix 
   imports = [
     ./hardware-configuration.nix
     ./laptop.nix
@@ -23,10 +21,6 @@
   };
   # }}}
   # Swap {{{
-  #swapDevices = [{
-  #  device = "/var/swap";
-  #  size = 2048;
-  #}];
   swapDevices = [{
     device = "/var/swap";
     size = 2048;
@@ -47,6 +41,7 @@
     };
 
     settings.auto-optimise-store = true;
+
     extraOptions = ''
       keep-outputs = true
       experimental-features = nix-command flakes ca-derivations
