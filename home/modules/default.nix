@@ -21,16 +21,21 @@
   ];
 
   home.packages = with pkgs; [
-    ncdu trash-cli nix-tree xplr
-    polymc spotify
+    ncdu
+    trash-cli
+    nix-tree
+    xplr
+    # polymc
+    spotify
 
-    inputs.master.legacyPackages.x86_64-linux.ferium
+    ferium
     (pkgs.discord.override { nss = pkgs.nss_latest; })
 
-    brightnessctl acpi dunst 
-    playerctl pamixer
-
-    asusctl
+    brightnessctl
+    acpi
+    dunst
+    playerctl
+    pamixer
 
     source-han-sans
     protonvpn-gui
