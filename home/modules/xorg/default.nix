@@ -2,17 +2,21 @@
 
 let
   theme = (import ../../../other/colors.nix).theme;
-in {
-  home.packages = with pkgs; [ 
-    scrot xclip bsp-layout i3lock-color
+in
+{
+  home.packages = with pkgs; [
+    scrot
+    xclip
+    bsp-layout
+    i3lock-color
   ];
 
   xsession.windowManager.bspwm = {
     enable = true;
 
     monitors = {
-      eDP = [ "1" "2" "3" "4" "5" ]; 
-      eDP-1 = [ "1" "2" "3" "4" "5" ]; 
+      eDP = [ "1" "2" "3" "4" "5" ];
+      eDP-1 = [ "1" "2" "3" "4" "5" ];
     };
 
     settings = {
@@ -72,19 +76,19 @@ in {
 
     timers = [
       {
-        delay = 300; 
+        delay = 300;
         command = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%-'';
         canceller = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%+'';
       }
 
       {
-        delay = 360; 
+        delay = 360;
         command = ''${pkgs.i3lock-color}/bin/i3lock-color -B 5'';
         canceller = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%+'';
       }
 
       {
-        delay = 600; 
+        delay = 600;
         command = ''systemctl suspend'';
         canceller = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%+'';
       }
@@ -123,7 +127,7 @@ in {
       "super + {_,shift + }{1-5}" = "bspc {desktop -f,node -d} '^{1-5}'";
       "super + Tab" = "bspc desktop -f last";
       "super + {f,shift + f}" = "bspc node -t {~fullscreen,~floating}";
-      
+
       # asus hotkeys
       "XF86Launch4" = "asusctl profile -n";
       "XF86KbdBrightness{Up,Down}" = "asusctl -{n,p}";
@@ -158,7 +162,8 @@ in {
         radius = "10";
         padding = "10pt";
 
-        background = "#2e313d";
+        background = "#313244";
+        foreground = "#cdd6f4";
 
         font-0 = "FantasqueSansMono Nerd Font:size=10;5";
         font-1 = "FantasqueSansMono Nerd Font:size=12;5";
@@ -190,11 +195,11 @@ in {
 
         label-urgent = "%icon%";
         label-urgent-font = 1;
-        label-urgent-foreground = "#f88";
+        label-urgent-foreground = "#f38ba8";
 
         label-empty = " ";
         label-empty-font = 1;
-        label-empty-foreground = "#aaa";
+        label-empty-foreground = "#bac2de";
 
         ws-icon-0 = "1; ";
         ws-icon-1 = "2; ";
@@ -208,10 +213,10 @@ in {
 
         format-volume = "<ramp-volume> <label-volume>";
         label-muted = "ﱝ %percentage%%";
-        label-muted-foreground = "#aaa";
+        label-muted-foreground = "#bac2de";
         ramp-volume-0 = "奄";
         ramp-volume-1 = "奔";
-        ramp-volume-2 = "墳"; 
+        ramp-volume-2 = "墳";
       };
 
       "module/backlight" = {
@@ -230,7 +235,7 @@ in {
       "module/memory" = {
         type = "internal/memory";
         label = " %percentage_used%%";
-        formate-warn-foreground = "#f88";
+        formate-warn-foreground = "#f38ba8";
       };
 
       "module/cpu" = {
@@ -242,21 +247,21 @@ in {
         poll-interval = 1;
 
         full-at = 80;
-
-        label-low = " %percentage%%";
-        format-low = "<label-low>";
         format-full = "<ramp-capacity> <label-full>";
-        format-low-foreground = "#222";
-        format-low-background = "#f88";
-        format-low-padding = 1;
 
-        format-discharging = "<ramp-capacity> <label-discharging>";
+        label-charging = "%percentage%% %time% %consumption%";
         format-charging = "<animation-charging> <label-charging>";
-        format-discharging-foreground = "#ff8";
-        format-charging-foreground = "#8c8";
+        format-charging-foreground = "#a6e3a1";
 
         label-discharging = "%percentage%% %time% %consumption%";
-        label-charging = "%percentage%% %time% %consumption%";
+        format-discharging = "<ramp-capacity> <label-discharging>";
+        format-discharging-foreground = "#f9e2af";
+
+        label-low = " %percentage%% %time% %consumption%";
+        format-low = "<label-low>";
+        format-low-foreground = "#222";
+        format-low-background = "#f38ba8";
+        format-low-padding = 1;
 
         ramp-capacity-0 = "";
         ramp-capacity-1 = "";
@@ -280,7 +285,7 @@ in {
         format-warn = "<ramp><label>";
         base-temperature = 80;
         warn-temperature = 95;
-        format-warn-foreground = "#f88";
+        format-warn-foreground = "#f38ba8";
 
         ramp-0 = " ";
         ramp-1 = " ";
@@ -296,7 +301,7 @@ in {
         label-connected = "直 ";
         label-disconnected = "睊 ";
 
-        format-disconnected-foreground = "#999";
+        format-disconnected-foreground = "#bac2de";
       };
     };
   };
