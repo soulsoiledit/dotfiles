@@ -9,7 +9,6 @@
     ./gammastep.nix
     ./git.nix
     ./gtk.nix
-    ./htop.nix
     ./imv.nix
     ./lf.nix
     ./neovim
@@ -78,6 +77,13 @@
       default-bg = "#222";
       default-fg = "#ddd";
     };
+  };
+
+  programs.discocss = {
+    enable = true;
+    # discordPackage = pkgs.discord.override { nss = pkgs.nss_latest; };
+    discordAlias = false;
+    css = builtins.readFile inputs.catppuccin-discord;
   };
   programs.btop = {
     enable = true;
