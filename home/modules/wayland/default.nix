@@ -2,9 +2,14 @@
 
 let
   theme = (import ../../../other/colors.nix).theme;
-in {
+in
+{
   home.packages = with pkgs; [
-    river wlr-randr swaybg swaylock-effects wl-clipboard
+    river
+    wlr-randr
+    swaybg
+    swaylock-effects
+    wl-clipboard
   ];
 
   xdg.configFile."river/init" = {
@@ -51,11 +56,6 @@ in {
       name = "Spotify";
       exec = "spotify --force-device-scale-factor=2 %U";
     };
-
-    polymc = {
-      name = "PolyMC";
-      exec = "env QT_SCALE_FACTOR=2 polymc";
-    };
   };
 
 
@@ -78,7 +78,7 @@ in {
       bar = {
         layer = "bottom";
         position = "top";
-        modules-left =  [ "river/tags" ];
+        modules-left = [ "river/tags" ];
         modules-center = [ "battery" "memory" "cpu" "temperature" ];
         modules-right = [ "network" "bluetooth" "pulseaudio" "backlight" "clock" "tray" ];
 
@@ -88,7 +88,7 @@ in {
         };
 
         "clock" = {
-          format = "{:%a %m-%d %H:%M}"; 
+          format = "{:%a %m-%d %H:%M}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           interval = 15;
         };
@@ -98,7 +98,7 @@ in {
           format-bluetooth = "{volume}% {icon}";
           format-muted = " ";
           scroll-step = 5;
-          format-icons = [" " " "];
+          format-icons = [ " " " " ];
         };
 
         "backlight" = {
@@ -108,7 +108,7 @@ in {
 
         "battery" = {
           format = "{capacity}% {icon}";
-          format-icons = [" " " " " " " " " "];
+          format-icons = [ " " " " " " " " " " ];
         };
 
         "network" = {
@@ -342,7 +342,7 @@ in {
       {
         timeout = 590;
         command = "${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
-        resumeCommand = "${pkgs.brightnessctl}/bin/brightness set 10%+"; 
+        resumeCommand = "${pkgs.brightnessctl}/bin/brightness set 10%+";
       }
       {
         timeout = 600;
@@ -352,7 +352,7 @@ in {
   };
 
   systemd.user.services.swayidle.Install = { WantedBy = [ "graphical-session.target" ]; };
-  
+
   programs.swaylock.settings = {
     screenshots = true;
     effect-blur = "5x5";
