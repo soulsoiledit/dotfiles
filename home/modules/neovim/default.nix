@@ -14,11 +14,6 @@
 
       rnix-lsp
       pandoc
-
-
-      nodePackages.neovim
-      cargo
-      go
     ];
 
     plugins = with pkgs.vimPlugins; [
@@ -27,5 +22,4 @@
   };
 
   programs.lazygit.enable = true;
-  programs.gh.enable = true;
 }
