@@ -55,7 +55,8 @@
     shellAliases = {
       v = "$EDITOR";
       s = "sudo";
-      ht = "htop -u $USER";
+
+      bt = "btop";
       btc = "bluetoothctl";
       ru = "${pkgs.udiskie}/bin/udiskie-umount -d";
       rsd = ''
