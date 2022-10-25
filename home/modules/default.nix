@@ -63,8 +63,8 @@
   xsession.enable = true;
 
   home.pointerCursor = {
-    name = "capitaine-cursors";
-    package = pkgs.capitaine-cursors;
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
     gtk.enable = true;
   };
 
