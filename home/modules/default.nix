@@ -20,16 +20,25 @@
   ];
 
   home.packages = with pkgs; [
-    ncdu
     trash-cli
     nix-tree
     xplr
+    usbutils
+    pciutils
+
+    # modern unix
+    ncdu
+    ripgrep
+    fd
+    bat
+    exa
 
     spotify
     (pkgs.discord.override { nss = pkgs.nss_latest; })
 
     prismlauncher
     ferium
+    cubiomes-viewer
 
     brightnessctl
     acpi
