@@ -25,9 +25,9 @@
     trash-cli
     nix-tree
     xplr
-    # polymc
     spotify
 
+    prismlauncher
     ferium
     (pkgs.discord.override { nss = pkgs.nss_latest; })
 
