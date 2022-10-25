@@ -39,7 +39,7 @@
 
       gn = "cd /etc/nixos";
       gp = "cd ~/pictures";
-      gm = "cd ~/.local/share/PolyMC/instances/Main/.minecraft/";
+      gm = "cd ~/.local/share/PrismLauncher/instances/Main/.minecraft/";
       gt = "cd ~/.local/share/Trash/files";
       gu = "cd /run/media/${config.home.username}/";
 
