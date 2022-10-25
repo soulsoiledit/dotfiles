@@ -85,6 +85,11 @@
     discordAlias = false;
     css = builtins.readFile inputs.catppuccin-discord;
   };
+
+  programs.bottom = {
+    enable = true;
+  };
+
   programs.btop = {
     enable = true;
     settings = {
