@@ -7,7 +7,6 @@ in
   home.packages = with pkgs; [
     scrot
     xclip
-    bsp-layout
     i3lock-color
   ];
 
@@ -44,7 +43,7 @@ in
   };
 
   home.pointerCursor.x11.enable = true;
-  home.pointerCursor.size = 64;
+  home.pointerCursor.size = 48;
 
   xresources.path = ".config/sx/Xresources";
 
