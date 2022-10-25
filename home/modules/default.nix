@@ -25,11 +25,12 @@
     trash-cli
     nix-tree
     xplr
+
     spotify
+    (pkgs.discord.override { nss = pkgs.nss_latest; })
 
     prismlauncher
     ferium
-    (pkgs.discord.override { nss = pkgs.nss_latest; })
 
     brightnessctl
     acpi
