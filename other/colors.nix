@@ -33,38 +33,6 @@ rec {
     };
   };
 
-  gruvbox-flat = {
-    background = "#1d2021";
-    foreground = "#d4be98";
-    selection = "#3c3836";
-    comment = "#7c6f64";
-    highlight = "#a9b665";
-
-    ansi = {
-      normal = {
-        black = "#1d2021";
-        red = "#ea6962";
-        green = "#a9b665";
-        yellow = "#d8a657";
-        blue = "#7daea3";
-        magenta = "#d3869b";
-        cyan = "#89b482";
-        white = "#d4be98";
-      };
-
-      bright = {
-        black = "#7c6f64";
-        red = "#ea6962";
-        green = "#a9b665";
-        yellow = "#d8a657";
-        blue = "#7daea3";
-        magenta = "#d3869b";
-        cyan = "#89b482";
-        white = "#d4be98";
-      };
-    };
-  };
-
   catppuccin = {
     name = "catppuccin";
     background = "#1e1e2e";
