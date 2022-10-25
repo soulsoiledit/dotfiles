@@ -78,4 +78,18 @@
       default-fg = "#ddd";
     };
   };
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "/home/soil/.config/btop/themes/catppuccin_mocha.theme";
+      vim_keys = true;
+
+      proc_tree = true;
+      proc_gradient = false;
+
+      proc_filter_kernel = true;
+    };
+  };
+
+  xdg.configFile."btop/themes".source = inputs.catppuccin-btop;
 }
