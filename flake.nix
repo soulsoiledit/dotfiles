@@ -4,8 +4,6 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs";
 
-
-
     nixpkgs = unstable;
 
     home-manager = {
@@ -26,6 +24,16 @@
     spotify-adblock = {
       url = "github:fufexan/dotfiles/c7cffa0be4d3a96e463ea1f2a896543ecd27042d";
       inputs.nixpkgs.follows = "unstable";
+    };
+
+    catppuccin-discord = {
+      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
+      flake = false;
+    };
+
+    catppuccin-btop = {
+      url = "github:catppuccin/btop";
+      flake = false;
     };
   };
 
