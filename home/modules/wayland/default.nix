@@ -32,7 +32,6 @@ in
   home.pointerCursor.size = 48;
 
   programs.firefox.profiles.soil = {
-    settings."layout.css.devPixelsPerPx" = 2;
     userChrome = ''
       /* #tabbrowser-tabs, #navigator-toolbox, menuitem, menu, ... */
       * {
