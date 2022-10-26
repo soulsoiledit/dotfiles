@@ -7,8 +7,7 @@
     GIT_PAGER = "nvim -R";
     MANPAGER = "nvim +Man!";
 
-    "_JAVA_OPTIONS" =
-      ''-Djava.util.prefs.userRoot="${config.xdg.configHome}/java"'';
+    "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot='${config.xdg.configHome}/java'";
     NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
   };
 
