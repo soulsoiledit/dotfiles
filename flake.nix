@@ -35,6 +35,11 @@
       url = "github:catppuccin/btop";
       flake = false;
     };
+
+    catppuccin-zathura = {
+      url = "github:catppuccin/zathura";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, asusctl, ... }@inputs: {
