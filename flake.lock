@@ -146,6 +146,22 @@
         "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
       }
     },
+    "catppuccin-zathura": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664239314,
+        "narHash": "sha256-5Vh2bVabuBluVCJm9vfdnjnk32CtsK7wGIWM5+XnacM=",
+        "owner": "catppuccin",
+        "repo": "zathura",
+        "rev": "d85d8750acd0b0247aa10e0653998180391110a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "zathura",
+        "type": "github"
+      }
+    },
     "clightd": {
       "flake": false,
       "locked": {
@@ -1246,6 +1262,7 @@
         "asusctl-src": "asusctl-src",
         "catppuccin-btop": "catppuccin-btop",
         "catppuccin-discord": "catppuccin-discord",
+        "catppuccin-zathura": "catppuccin-zathura",
         "home-manager": "home-manager",
         "master": "master",
         "nixpkgs": "nixpkgs",
