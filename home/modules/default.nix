@@ -93,14 +93,13 @@
     css = builtins.readFile inputs.catppuccin-discord;
   };
 
-  programs.bottom = {
-    enable = true;
-  };
+  programs.bottom.enable = true;
 
+  xdg.configFile."btop/themes".source = inputs.catppuccin-btop;
   programs.btop = {
     enable = true;
     settings = {
-      color_theme = "/home/soil/.config/btop/themes/catppuccin_mocha.theme";
+      color_theme = "catppuccin_mocha.theme";
       vim_keys = true;
 
       proc_tree = true;
@@ -109,6 +108,4 @@
       proc_filter_kernel = true;
     };
   };
-
-  xdg.configFile."btop/themes".source = inputs.catppuccin-btop;
 }
