@@ -83,10 +83,7 @@
 
   programs.zathura = {
     enable = true;
-    options = {
-      default-bg = "#222";
-      default-fg = "#ddd";
-    };
+    extraConfig = "include ${inputs.catppuccin-zathura+"/src/catppuccin-mocha"}";
   };
 
   programs.discocss = {
