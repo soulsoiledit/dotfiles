@@ -221,50 +221,6 @@ in
     ];
   };
 
-  services.sxhkd = {
-    enable = true;
-    keybindings = {
-      # wm independent hotkeys
-      "super + Return" = "alacritty";
-      "super + @space" = "rofi -show drun";
-      "super + d" = "discord";
-
-      "XF86MonBrightness{Up,Down}" = "brightnessctl set 20%{+,-}";
-
-      # power and lock
-      "super + shift + l" = "i3lock-color -B 5";
-      # "XF86Sleep" = "i3lock-color -B && systemctl suspend";
-
-      # media
-      "XF86Audio{Play,Pause,Media}" = "playerctl play-pause";
-      "XF86Audio{Prev,Next}" = "playerctl {previous,next}";
-      "XF86Audio{Raise,Lower}Volume" = "pamixer -{i,d} 5";
-      "XF86AudioMute" = "pamixer -t";
-
-      # bspwm hotkeys
-      "super + shift + {q,r}" = "bspc {quit,wm -r; pkill -USR1 -x sxhkd}";
-      "super + w" = "bspc node -c";
-      "super + m" = "bspc desktop -l next";
-      "super + shift + enter" = "bspc node -s biggest.window.local";
-
-      # focus/swap
-      "super + {_,shift} + {j,k}" = "bspc node {-f,-s} {next,prev}.local.!hidden.window";
-      "super + {h,l}" = "bspc node biggest.window.local -z right {-,_}128 0";
-      "super + {_,shift + }{1-5}" = "bspc {desktop -f,node -d} '^{1-5}'";
-      "super + Tab" = "bspc desktop -f last";
-      "super + {f,shift + f}" = "bspc node -t {~fullscreen,~floating}";
-
-      # asus hotkeys
-      "XF86Launch4" = "asusctl profile -n";
-      "XF86KbdBrightness{Up,Down}" = "asusctl -{n,p}";
-
-      # screenshot
-      "super + s" = "${pkgs.flameshot}/bin/flameshot gui -s -c -p ~/stuff/pictures/screenshots";
-      "super + shift + s" = "${pkgs.flameshot}/bin/flameshot full -c -p ~/stuff/pictures/screenshots";
-      "super + p" = "CM_LAUNCHER=rofi CM_HISTLENGTH=5 ${pkgs.clipmenu}/bin/clipmenu";
-    };
-  };
-
   services.polybar = {
     enable = true;
     package = pkgs.polybarFull;
