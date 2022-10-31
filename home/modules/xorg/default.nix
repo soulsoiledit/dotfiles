@@ -67,7 +67,7 @@ in
     programs = {
       term = "alacritty";
       menu = "rofi -show drun";
-      maximize2 = "sh -c 'xdotool key --clearmodifiers super+bracketleft; polybar-msg cmd toggle";
+      maximize2 = "sh -c '${pkgs.xdotool}/bin/xdotool key --clearmodifiers super+bracketleft; polybar-msg cmd toggle";
 
       brightness_up = "brightnessctl set 20%+";
       brightness_down = "brightnessctl set 20%-";
