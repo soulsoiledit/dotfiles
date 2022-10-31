@@ -5,9 +5,9 @@ let
 in
 {
   home.packages = with pkgs; [
-    scrot
-    xclip
     i3lock-color
+
+    xclip
   ];
 
   xsession.windowManager.bspwm = {
