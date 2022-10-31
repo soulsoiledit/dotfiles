@@ -10,20 +10,163 @@ in
     xclip
   ];
 
-  xsession.windowManager.bspwm = {
+  xsession.windowManager.spectrwm = {
     enable = true;
 
-    monitors = {
-      eDP = [ "1" "2" "3" "4" "5" ];
-      eDP-1 = [ "1" "2" "3" "4" "5" ];
+    settings = {
+      modkey = "Mod4";
+
+
+      workspace_limit = 5;
+      # focus_close		= previous
+      # focus_close_wrap	= 1
+      # focus_default		= last
+      spawn_position = "first";
+
+      maximize_hide_bar = true;
+      # urgent_enable = true;
+
+      # stack_mark_horizontal	= '[-]'
+      # stack_mark_vertical	= '[|]'
+      # stack_mark_max	= '[ ]'
+
+
+      # Window Decoration
+      border_width = 1;
+
+      color_focus = rgb:b4/be/fe;
+      color_unfocus = "rgb:31/32/44";
+
+      region_padding = 20;
+      tile_gap = 20;
+
+      # Remove window border when bar is disabled and there is only one window in workspace
+      disable_border = true;
+
+      # Bar Settings
+      bar_border_width = 5;
+      "bar_border[1]" = "rgb:31/32/44";
+      "bar_color[1]" = "rgb:31/32/44";
+      "bar_font_color[1]" = "rgb:cd/d6/f4";
+
+      bar_font = "FantasqueSansMono Nerd Font:size=10:antialias=true";
+      bar_justify = "center";
+      bar_format = "+12< +S";
+
+      autorun = "ws[1]:firefox";
+      # autorun = "ws[2]:discord";
+      # autorun = "ws[2]:spotify";
+      # autorun = "ws[1]:asus-notify";
+
+      layout = "ws[2]:0:0:0:0:max";
+      # layout = "ws[3]:0:0:0:0:max";
+
+      keyboard_mapping = "/dev/null";
     };
 
-    settings = {
-      border_width = 2;
-      window_gap = 0;
-      split_ratio = 0.5;
-      borderless_monocle = true;
-      gapless_monocle = true;
+    programs = {
+      term = "alacritty";
+      menu = "rofi -show drun";
+      maximize2 = "sh -c 'xdotool key --clearmodifiers super+bracketleft; polybar-msg cmd toggle";
+
+      brightness_up = "brightnessctl set 20%+";
+      brightness_down = "brightnessctl set 20%-";
+
+      lock = "i3lock-color -B 5";
+
+      fan_profile = "asusctl profile - n";
+      kbd_bright_up = "asusctl -n";
+      kbd_bright_down = "asusctl -p";
+
+      screenshot_area = "flameshot gui -s -c -p /home/soil/stuff/pictures/screenshots";
+      screenshot_full = "flameshot full -c -p /home/soil/stuff/pictures/screenshots";
+
+      clipboard = "sh -c 'CM_LAUNCHER=rofi CM_HISTLENGTH=5 clipmenu'";
+
+      playerctl_pause = "playerctl play-pause";
+      playerctl_prev = "playerctl previous";
+      playerctl_next = "playerctl next";
+
+      audio_raise = "pamixer -i 5";
+      audio_lower = "pamixer -d";
+      audio_mute = "pamixer -t";
+
+      discord = "discord";
+    };
+
+    bindings = {
+
+      bar_toggle = "MOD+b";
+
+      cycle_layout = "MOD+Shift+space";
+
+      maximize2 = "MOD+f";
+      maximize_toggle = "MOD+bracketleft";
+      float_toggle = "MOD+Shift+f";
+
+      focus_main = "MOD+m";
+      focus_next = "MOD+j";
+      focus_prev = "MOD+k";
+      focus_urgent = "MOD+u";
+
+      lock = "MOD+Shift+l";
+      # "XF86Sleep" = "i3lock-color -B && systemctl suspend";
+
+      discord = "MOD+d";
+
+      playerctl_pause = "XF86AudioPlay";
+      # playerctl_pause = "XF86AudioPause";
+      # playerctl_pause = "XF86AudioMedia";
+      playerctl_prev = "XF86AudioPrev";
+      playerctl_next = "XF86AudioNext";
+
+      audio_raise = " XF86AudioRaiseVolume";
+      audio_lower = " XF86AudioLowerVolume";
+      audio_mute = " XF86AudioMute";
+
+      master_add = " MOD+comma";
+      master_del = " MOD+period";
+
+      master_grow = "MOD+l";
+      master_shrink = "MOD+h";
+      menu = " MOD+space";
+
+      mvws_1 = " MOD+Shift+1";
+      mvws_2 = " MOD+Shift+2";
+      mvws_3 = " MOD+Shift+3";
+      mvws_4 = " MOD+Shift+4";
+      mvws_5 = " MOD+Shift+5";
+
+      quit = " MOD+Shift+q";
+      restart = " MOD+Shift+r";
+
+      screenshot_area = " MOD+s";
+      screenshot_full = " MOD+Shift+s";
+
+      swap_main = "MOD+Shift+Return";
+      swap_next = "MOD+Shift+j";
+      swap_prev = "MOD+Shift+k";
+
+      term = "MOD+Return";
+
+      wind_del = "MOD+w";
+
+      ws_1 = "MOD+1";
+      ws_2 = "MOD+2";
+      ws_3 = "MOD+3";
+      ws_4 = "MOD+4";
+      ws_5 = "MOD+5";
+
+      ws_prior = "MOD+Tab";
+
+      brightness_up = "XF86MonBrightnessUp";
+      brightness_down = "XF86MonBrightnessDown";
+
+      fan_profile = "XF86Launch4";
+      kbd_bright_up = "XF86KbdBrightnessUp";
+      kbd_bright_down = "XF86KbdBrightnessDown";
+
+      clipboard = "MOD+p";
     };
   };
 
