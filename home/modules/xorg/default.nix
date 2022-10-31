@@ -235,16 +235,16 @@ in
         modules-right = [ "temperature" "battery" "memory" "cpu" ];
 
         module-margin = "1";
-        wm-restack = "bspwm";
+        # wm-restack = "generic";
+        override-redirect = true;
+
+        enable-ipc = true;
 
         dpi = 216;
 
-        offset-x = "0.5%";
-        offset-y = "0.5%";
-        radius = "10";
-        padding = "10pt";
+        padding = "5pt";
 
-        background = "#313244";
+        background = "#00313244";
         foreground = "#cdd6f4";
 
         font-0 = "FantasqueSansMono Nerd Font:size=10;5";
@@ -263,17 +263,14 @@ in
       };
 
       "module/workspaces" = {
-        type = "internal/bspwm";
+        type = "internal/xworkspaces";
+        reverse-scroll = true;
 
-        #label-dimmed = "%icon%";
-
-        label-focused = " ";
-        label-focused-font = 1;
-        # label-focused-foreground = "#fff";
+        label-active = " ";
+        label-active-font = 1;
 
         label-occupied = " ";
         label-occupied-font = 1;
-        # label-occupied-foreground = "#aaa";
 
         label-urgent = "%icon%";
         label-urgent-font = 1;
@@ -281,13 +278,7 @@ in
 
         label-empty = " ";
         label-empty-font = 1;
-        label-empty-foreground = "#bac2de";
-
-        ws-icon-0 = "1; ";
-        ws-icon-1 = "2; ";
-        ws-icon-2 = "3; ";
-        ws-icon-3 = "4; ";
-        ws-icon-4 = "5; ";
+        label-empty-foreground = "#a6adc8";
       };
 
       "module/pulseaudio" = {
@@ -295,7 +286,7 @@ in
 
         format-volume = "<ramp-volume> <label-volume>";
         label-muted = "ﱝ %percentage%%";
-        label-muted-foreground = "#bac2de";
+        label-muted-foreground = "#a6adc8";
         ramp-volume-0 = "奄";
         ramp-volume-1 = "奔";
         ramp-volume-2 = "墳";
@@ -341,7 +332,7 @@ in
 
         label-low = " %percentage%% %time% %consumption%";
         format-low = "<label-low>";
-        format-low-foreground = "#222";
+        format-low-foreground = "#1e1e2e";
         format-low-background = "#f38ba8";
         format-low-padding = 1;
 
@@ -383,7 +374,7 @@ in
         label-connected = "直 ";
         label-disconnected = "睊 ";
 
-        format-disconnected-foreground = "#bac2de";
+        format-disconnected-foreground = "#a6adc8";
       };
     };
   };
