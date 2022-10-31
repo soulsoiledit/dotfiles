@@ -218,12 +218,6 @@ in
         command = ''${pkgs.i3lock-color}/bin/i3lock-color -B 5'';
         canceller = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%+'';
       }
-
-      {
-        delay = 600;
-        command = ''systemctl suspend'';
-        canceller = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%+'';
-      }
     ];
   };
 
