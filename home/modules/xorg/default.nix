@@ -74,7 +74,7 @@ in
 
       lock = "i3lock-color -B 5";
 
-      fan_profile = "asusctl profile - n";
+      fan_profile = "asusctl profile -n";
       kbd_bright_up = "asusctl -n";
       kbd_bright_down = "asusctl -p";
 
@@ -88,7 +88,7 @@ in
       playerctl_next = "playerctl next";
 
       audio_raise = "pamixer -i 5";
-      audio_lower = "pamixer -d";
+      audio_lower = "pamixer -d 5";
       audio_mute = "pamixer -t";
 
       discord = "discord";
