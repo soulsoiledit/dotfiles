@@ -109,4 +109,10 @@
       proc_filter_kernel = true;
     };
   };
+
+  xdg.desktopEntries."org.prismlauncher.PrismLauncher" = {
+    name = "Prism Launcher";
+    exec = "env QT_SCALE_FACTOR=2 prismlauncher";
+    icon = "org.prismlauncher.PrismLauncher";
+  };
 }
