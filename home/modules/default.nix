@@ -50,6 +50,7 @@
     protonvpn-gui
 
     piper
+    steam
   ];
 
   fonts.fontconfig.enable = true;
