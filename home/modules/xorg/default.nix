@@ -25,6 +25,12 @@ in
     initExtra = ''
       xset s 1800 dpms 0 1800 2100 &
       ${pkgs.feh}/bin/feh --no-fehbg --bg-fill /etc/nixos/other/bg_${theme.name}.png &
+
+      firefox &
+      discord &
+      spotify &
+
+      asus-notify &
     '';
 
     scriptPath = ".config/sx/sxrc";
