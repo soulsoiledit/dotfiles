@@ -60,6 +60,7 @@
           ];
         }
       ];
+      specialArgs = { inherit inputs; };
     };
 
     homeConfigurations.soil = home-manager.lib.homeManagerConfiguration

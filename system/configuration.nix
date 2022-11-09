@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -10,7 +10,7 @@
 
   # Boot {{{
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = inputs.master.legacyPackages.x86_64-linux.linuxPackages_testing;
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
@@ -101,7 +101,8 @@
   };
 
   # wayland
-  programs.sway.enable = true;
+  # programs.sway.enable = true;
+  hardware.opengl.driSupport32Bit = true;
 
   services.greetd = {
     enable = true;
