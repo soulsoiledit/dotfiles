@@ -2,10 +2,6 @@
 
 {
   # Laptop Power Management
-  boot = {
-    kernelParams = [ "mem_sleep_default=deep" ];
-    initrd.prepend = [ "${/boot/acpi_override}" ];
-  };
 
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "conservative";
