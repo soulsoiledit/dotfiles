@@ -78,16 +78,5 @@
         ];
         extraSpecialArgs = { inherit inputs; };
       };
-
-    apps.x86_64-linux.update-home = {
-      type = "app";
-      program = (nixpkgs.legacyPackages.x86_64-linux.writeScript "update-home" ''
-        set -euo pipefail
-        old_profile=$(nix profile list | grep home-manager-path | head -n1 | awk '{print $4}')
-        echo $old_profile
-        nix profile remove $old_profile
-        ${self.homeConfigurations.soil.activation-script}/activate || (${nixpkgs.legacyPackages.x86_64-linux.nix}/bin/nix profile install $old_profile)
-      '').outPath;
-    };
   };
 }
