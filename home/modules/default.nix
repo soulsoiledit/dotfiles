@@ -34,7 +34,6 @@
     exa
 
     spotify
-    (pkgs.discord.override { nss = pkgs.nss_latest; })
 
     prismlauncher
     ferium
@@ -81,6 +80,7 @@
 
   services.udiskie.enable = true;
   services.flameshot.enable = true;
+  systemd.user.startServices = "legacy";
 
   programs.zathura = {
     enable = true;
@@ -89,8 +89,8 @@
 
   programs.discocss = {
     enable = true;
-    # discordPackage = pkgs.discord.override { nss = pkgs.nss_latest; };
-    discordAlias = false;
+    discordPackage = pkgs.discord.override { nss = pkgs.nss_latest; };
+    discordAlias = true;
     css = builtins.readFile inputs.catppuccin-discord;
   };
 
