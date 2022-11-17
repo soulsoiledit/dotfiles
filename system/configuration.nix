@@ -10,7 +10,7 @@
 
   # Boot {{{
   boot = {
-    kernelPackages = inputs.master.legacyPackages.x86_64-linux.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_testing;
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
