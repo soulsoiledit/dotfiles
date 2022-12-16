@@ -130,10 +130,11 @@ myvol, voltimer = awful.widget.watch("pamixer --get-volume", 60, function(widget
 end)
 
 local mybat = awful.widget.watch("acpi -b", 5, function(widget, stdout)
-    percentage = tonumber(stdout:match("(%d+)%%"))
-    state = stdout:match(": (.-),")
-    remaining = stdout:match("%%, (.-):%d%d ")
-
+    cleaned = stdout:gsub("$.*rate information unavailable\n","")
+    percentage = tonumber(cleaned:match("(%d+)%%"))
+    state = cleaned:match(": (.-),")
+    remaining = cleaned:match("%%, (.-):%d%d ")
+    --
     if state == "Full" or state == "Not charging" then
         widget:set_markup(" "..percentage.."% ")
     elseif state == "Charging" then
@@ -309,6 +310,7 @@ function create_menubar(s)
     s.mywibox = awful.wibar({ 
         position = "top", 
         screen = s, 
+        visible = true,
         -- width = "99%",
         -- height = awful.screen.focused().workarea.height * 0.03, 
         -- shape = function(cr, width, height) gears.shape.rounded_rect(cr, width, height, 10) end 
@@ -351,4 +353,6 @@ function create_menubar(s)
             s.systray
         },
     }
+
+    return s.mywibox
 end
