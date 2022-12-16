@@ -10,7 +10,7 @@
 
   # Boot {{{
   boot = {
-    kernelPackages = pkgs.linuxPackages_testing;
+    kernelPackages = pkgs.linuxPackages_latest;
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
