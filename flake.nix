@@ -11,16 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    asusctl = {
-      url = "github:Cogitri/cogitri-pkgs";
-      inputs.nixpkgs.follows = "master";
-    };
-
-    asusctl-src = {
-      url = "gitlab:asus-linux/asusctl/4.0.7";
-      flake = false;
-    };
-
     spotify-adblock = {
       url = "github:fufexan/dotfiles/c7cffa0be4d3a96e463ea1f2a896543ecd27042d";
       inputs.nixpkgs.follows = "unstable";
@@ -42,18 +32,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, asusctl, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations.soilnix = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./system/configuration.nix
-        asusctl.nixosModules.asusd
-        asusctl.nixosModules.supergfxd
 
         {
           nix.registry.nixpkgs.flake = nixpkgs;
           nixpkgs.overlays = [
-            asusctl.overlays.default
             (final: prev: {
               wpa_supplicant = inputs.stable.legacyPackages.x86_64-linux.wpa_supplicant;
             })
