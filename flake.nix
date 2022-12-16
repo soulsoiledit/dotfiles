@@ -1,6 +1,5 @@
 {
   inputs = rec {
-    stable.url = "github:nixos/nixpkgs/nixos-22.05";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     master.url = "github:nixos/nixpkgs";
 
@@ -37,14 +36,8 @@
       system = "x86_64-linux";
       modules = [
         ./system/configuration.nix
-
         {
           nix.registry.nixpkgs.flake = nixpkgs;
-          nixpkgs.overlays = [
-            (final: prev: {
-              wpa_supplicant = inputs.stable.legacyPackages.x86_64-linux.wpa_supplicant;
-            })
-          ];
         }
       ];
       specialArgs = { inherit inputs; };
