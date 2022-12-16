@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 # TODO
-# minimize bar info
 # center block?
 #   window name?
 #   song name
@@ -22,8 +21,6 @@
 # window border?
 # window transparency?
 # window blur?
-
-# awesome?
 
 {
   programs.home-manager.enable = true;
