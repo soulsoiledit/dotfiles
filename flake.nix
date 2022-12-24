@@ -50,7 +50,7 @@
           ./home/home.nix
           {
             nixpkgs.overlays = [
-              (final: prev: {
+              (self: super: {
                 # spotify = inputs.spotify-adblock.packages.x86_64-linux.orchis-theme;
               })
             ];
