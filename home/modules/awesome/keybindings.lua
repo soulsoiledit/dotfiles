@@ -13,9 +13,10 @@ lock = "i3lock-color -B 10"
 
 brightness = "brightnessctl s "
 
--- asusctl
+-- asus / rog
 fan_profile = "asusctl profile -n"
 kbd_brightness = "asusctl -"
+rogcc = "rog-control-center"
 
 screenshot_area = "flameshot gui -s -c -p /home/soil/stuff/pictures/screenshots"
 screenshot_full = "flameshot full -c -p /home/soil/stuff/pictures/screenshots"
@@ -52,32 +53,20 @@ globalkeys = gears.table.join(
     awful.key({ modkey }, "d", function () awful.spawn("Discord") end),
     awful.key({ modkey }, "p", function () awful.spawn(clipboard) end),
     awful.key({ modkey, "Shift" }, "l", function () awful.spawn(lock) end),
-    -- "XF86Sleep" = "i3lock-color -B && systemctl suspend";
 
     awful.key({ modkey }, "s", function () awful.spawn(screenshot_area) end),
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn(screenshot_full) end),
     -- Volume
-    awful.key({}, "XF86AudioRaiseVolume", function () awful.spawn.with_line_callback(
-            vol .. "i 5",  {
-                exit = function()  
-                    voltimer:emit_signal("timeout") 
-                end
-            })
-            end),
-    awful.key({}, "XF86AudioLowerVolume", function () awful.spawn.with_line_callback(
-            vol .. "d 5",  {
-                exit = function()  
-                    voltimer:emit_signal("timeout") 
-                end
-            })
-            end),
-    awful.key({}, "XF86AudioMute", function () awful.spawn.with_line_callback(
-            vol .. "t",  {
-                exit = function()  
-                    voltimer:emit_signal("timeout") 
-                end
-            })
-            end),
+    awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 5") end, function() voltimer:emit_signal("timeout") end ),
+    awful.key({ "Shift" }, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 1") end, function() voltimer:emit_signal("timeout") end ),
+    awful.key({ "Mod1" }, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 20") end, function() voltimer:emit_signal("timeout") end ),
+
+    awful.key({}, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 5") end, function() voltimer:emit_signal("timeout") end ),
+    awful.key({ "Shift" }, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 1") end, function() voltimer:emit_signal("timeout") end ),
+    awful.key({ "Mod1" }, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 20") end, function() voltimer:emit_signal("timeout") end ),
+
+    awful.key({}, "XF86AudioMute", function() awful.spawn(vol .. "t") end, function() voltimer:emit_signal("timeout") end ),
+
     awful.key({}, "XF86AudioPlay", function() awful.spawn(playerctl .. "play-pause") end),
     awful.key({}, "XF86AudioPause", function() awful.spawn(playerctl .. "play-pause") end),
     awful.key({}, "XF86AudioMedia", function() awful.spawn(playerctl .. "play-pause") end),
@@ -85,14 +74,14 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioNext", function() awful.spawn(playerctl .. "next") end),
 
     awful.key({}, "XF86Launch4", function() awful.spawn(fan_profile) end),
+    awful.key({}, "XF86Launch1", function() awful.spawn(rogcc) end),
     awful.key({}, "XF86KbdBrightnessUp", function() awful.spawn(kbd_brightness.."n") end),
     awful.key({}, "XF86KbdBrightnessDown", function() awful.spawn(kbd_brightness.."p") end),
 
     -- Brightness
-    awful.key({}, "XF86MonBrightnessUp", function() awful.spawn.with_line_callback(brightness .. "20%+",
-            { exit = function() brighttimer:emit_signal("timeout") end }) end ),
-    awful.key({}, "XF86MonBrightnessDown", function() awful.spawn.with_line_callback(brightness .. "20%-",
-            { exit = function() brighttimer:emit_signal("timeout") end }) end ),
+    awful.key({}, "XF86MonBrightnessUp", function() awful.spawn(brightness .. "20%+") end, function() brighttimer:emit_signal("timeout") end),
+    awful.key({}, "XF86MonBrightnessDown", function() awful.spawn(brightness .. "20%-") end, function() brighttimer:emit_signal("timeout") end),
+
     awful.key({ modkey }, "q", awesome.restart),
     awful.key({ modkey, "Shift" }, "q", awesome.quit),
 
