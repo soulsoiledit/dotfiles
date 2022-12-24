@@ -10,9 +10,7 @@
 # work on quick app menu
 
 # keyboard brightness notification
-# fix led modes
-# fix profile and fan curves
-# fix supergfxd options
+# find good breathing rainbow led mode
 # fix aura conf
 # add refresh rate swapping
 # add cpu profile swapping
@@ -30,10 +28,6 @@
     username = "soil";
     homeDirectory = "/home/soil";
     stateVersion = "22.05";
-
-    # activation.removeClutter = ''
-    #   $DRY_RUN_CMD rm -rf ~/.config/nvim/init.vim
-    # '';
   };
 
   imports = [ ./modules ];
