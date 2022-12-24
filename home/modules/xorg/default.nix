@@ -30,7 +30,7 @@ in
       discord &
       spotify &
 
-      asus-notify &
+      rog-control-center &
     '';
 
     scriptPath = ".config/sx/sxrc";
