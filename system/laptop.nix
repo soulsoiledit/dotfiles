@@ -4,7 +4,7 @@
   # Laptop Power Management
 
   powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "conservative";
+  powerManagement.cpuFreqGovernor = "schedutil";
 
   services.asusd = {
     enable = true;
