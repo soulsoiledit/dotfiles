@@ -14,6 +14,9 @@
 
       rnix-lsp
       pandoc
+
+      rust-analyzer
+      rustfmt
     ];
 
     plugins = with pkgs.vimPlugins; [
