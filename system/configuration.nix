@@ -58,7 +58,7 @@
 
   programs.dconf.enable = true;
 
-  services.gnome.gnome-keyring.enable = true;
+  # services.gnome.gnome-keyring.enable = true;
   # }}}
   # Fonts {{{
   fonts = {
@@ -124,6 +124,7 @@
   xdg.portal = {
     enable = true;
     #wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-kde ];
   };
 
   virtualisation.virtualbox.host.enable = true;
