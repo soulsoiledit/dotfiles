@@ -29,7 +29,7 @@
     };
 
     shellAbbrs = {
-      v = "$EDITOR";
+      v = "nvim";
       s = "sudo";
 
       bt = "btop";
@@ -40,6 +40,12 @@
       td = "trash-rm";
       ts = "trash-restore";
       tf = "cd ~/.local/share/Trash/files/";
+
+      nc = "$EDITOR /etc/nixos/system/configuration.nix -c 'cd /etc/nixos'";
+      ns = "sudo nixos-rebuild switch";
+      hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
+      hs = "home-manager switch --flake /etc/nixos";
+      gc = "nix store gc";
     };
 
     shellAliases = {
@@ -48,11 +54,6 @@
       ff = "fzf";
       de = "direnv edit .";
 
-      nc = "$EDITOR /etc/nixos/system/configuration.nix -c 'cd /etc/nixos'";
-      ns = "sudo nixos-rebuild switch";
-      hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
-      hs = "home-manager switch --flake /etc/nixos";
-      gc = "nix store gc";
 
       ls = "ls -h --color";
       lh = "ls -Ah --color";
