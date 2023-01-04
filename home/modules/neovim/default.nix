@@ -3,8 +3,12 @@
 {
   programs.neovim = {
     enable = true;
+    defaultEditor = true;
+
     withNodeJs = true;
+
     extraConfig = "";
+
     extraPackages = with pkgs; [
       gcc
       universal-ctags
@@ -12,11 +16,10 @@
       ripgrep
       fd
 
-      rnix-lsp
       pandoc
 
-      rust-analyzer
-      rustfmt
+      nil
+      sumneko-lua-language-server
     ];
 
     plugins = with pkgs.vimPlugins; [
