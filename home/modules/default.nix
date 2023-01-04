@@ -20,11 +20,11 @@
   ];
 
   home.packages = with pkgs; [
-    trash-cli
-    nix-tree
-    xplr
-    usbutils
-    pciutils
+    spotify
+    protonvpn-gui
+    piper
+    steam
+
 
     # modern unix
     ncdu
@@ -33,28 +33,29 @@
     bat
     exa
 
-    spotify
 
+    # minecraft
     prismlauncher
     ferium
     cubiomes-viewer
 
+    # qol tools
     brightnessctl
     acpi
     dunst
     playerctl
     pamixer
 
-    source-han-sans
-    protonvpn-gui
+    trash-cli
+    nix-tree
+    xplr
 
-    piper
-    steam
+    # fixing discord fonts...
+    source-han-sans
   ];
 
   fonts.fontconfig.enable = true;
 
-  services.playerctld.enable = true;
   programs.starship.enable = true;
   programs.firefox = {
     enable = true;
@@ -69,8 +70,6 @@
   };
   programs.fzf.enable = true;
 
-  xdg.enable = true;
-  xsession.enable = true;
 
   home.pointerCursor = {
     name = "Bibata-Modern-Classic";
@@ -78,6 +77,7 @@
     gtk.enable = true;
   };
 
+  services.playerctld.enable = true;
   services.udiskie.enable = true;
   services.flameshot.enable = true;
   systemd.user.startServices = "legacy";
@@ -96,7 +96,6 @@
 
   programs.bottom.enable = true;
 
-  xdg.configFile."btop/themes".source = inputs.catppuccin-btop;
   programs.btop = {
     enable = true;
     settings = {
@@ -109,6 +108,11 @@
       proc_filter_kernel = true;
     };
   };
+
+  xdg.configFile."btop/themes".source = inputs.catppuccin-btop;
+
+  xdg.enable = true;
+  xsession.enable = true;
 
   xdg.desktopEntries."org.prismlauncher.PrismLauncher" = {
     name = "Prism Launcher";
