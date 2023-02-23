@@ -6,7 +6,6 @@ in
 {
   home.packages = with pkgs; [
     i3lock-color
-
     xclip
   ];
 
@@ -51,7 +50,6 @@ in
 
   services.xidlehook = {
     enable = true;
-    not-when-fullscreen = true;
     not-when-audio = true;
 
     environment = {
@@ -60,15 +58,8 @@ in
 
     timers = [
       {
-        delay = 300;
-        command = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%-'';
-        canceller = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%+'';
-      }
-
-      {
         delay = 360;
         command = ''${pkgs.i3lock-color}/bin/i3lock-color -B 5'';
-        canceller = ''${pkgs.brightnessctl}/bin/brightnessctl set 40%+'';
       }
     ];
   };

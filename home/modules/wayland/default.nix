@@ -339,11 +339,6 @@ in
     ];
     timeouts = [
       {
-        timeout = 590;
-        command = "${pkgs.brightnessctl}/bin/brightnessctl set 10%-";
-        resumeCommand = "${pkgs.brightnessctl}/bin/brightness set 10%+";
-      }
-      {
         timeout = 600;
         command = "${pkgs.swaylock-effects}/bin/swaylock -f --grace=5";
       }
