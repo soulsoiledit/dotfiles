@@ -20,23 +20,19 @@
   ];
 
   home.packages = with pkgs; [
+    /* (spotify.override { deviceScaleFactor = 2; }) */
     spotify
-    protonvpn-gui
-    piper
-    steam
-
+    /* steam */
 
     # modern unix
-    ncdu
+    gdu
     ripgrep
     fd
     bat
     exa
 
-
     # minecraft
     prismlauncher
-    ferium
     cubiomes-viewer
 
     # qol tools
@@ -52,6 +48,9 @@
 
     # fixing discord fonts...
     source-han-sans
+
+    xmonad-with-packages
+    haskellPackages.xmonad-contrib
   ];
 
   fonts.fontconfig.enable = true;
