@@ -10,7 +10,7 @@
     "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot='${config.xdg.configHome}/java'";
     NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
 
-    CARGO_HOME = "\"$XDG_DATA_HOME\"/cargo";
+    CARGO_HOME = "${config.xdg.dataHome}/cargo";
   };
 
   home.sessionPath = [
