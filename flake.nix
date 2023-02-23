@@ -1,8 +1,6 @@
 {
   inputs = rec {
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    master.url = "github:nixos/nixpkgs";
-    nixpkgs = unstable;
+    nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
 
     home-manager = {
       url = github:nix-community/home-manager;
