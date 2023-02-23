@@ -14,6 +14,7 @@
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
+      systemd-boot.configurationLimit = 2;
     };
     blacklistedKernelModules = [ "acpi_cpufreq_init" ];
     kernelModules = [ "amd_pstate" ];
@@ -54,8 +55,6 @@
     journald.extraConfig = "SystemMaxUse=100M";
     udisks2.enable = true;
   };
-  programs.ssh.startAgent = true;
-
   programs.dconf.enable = true;
 
   # services.gnome.gnome-keyring.enable = true;
@@ -70,6 +69,7 @@
     hostName = "soilnix";
     networkmanager.enable = true;
   };
+
   # }}}
   # User {{{
   users.users.soil = {
@@ -127,5 +127,5 @@
     extraPortals = [ pkgs.xdg-desktop-portal-kde ];
   };
 
-  virtualisation.virtualbox.host.enable = true;
+  virtualisation.podman.enable = true;
 }
