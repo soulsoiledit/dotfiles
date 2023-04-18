@@ -42,7 +42,7 @@ in
   xresources.path = ".config/sx/Xresources";
 
   services.picom = {
-    enable = true;
+    #enable = true;
     vSync = true;
     fade = true;
     fadeDelta = 5;
@@ -50,6 +50,7 @@ in
 
   services.xidlehook = {
     enable = true;
+    not-when-fullscreen = true;
     not-when-audio = true;
 
     environment = {
