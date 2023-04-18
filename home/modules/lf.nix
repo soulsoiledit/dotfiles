@@ -26,7 +26,7 @@
       i = "$$EDITOR $fx";
 
       "." = "set hidden!";
-      a = "&for i in $fx; do arc unarchive $i; done";
+      a = "$for i in $fx; do 7z x $i -o\*; done";
       R = "bulk-rename $fx";
       DD = ":trash";
       DU = "$trash-restore";
@@ -114,7 +114,5 @@
         *.pdf=:\
       '';
     };
-
-    packages = with pkgs; [ archiver ];
   };
 }
