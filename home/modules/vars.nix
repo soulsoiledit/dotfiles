@@ -16,5 +16,6 @@
   home.sessionPath = [
     "/home/soil/.local/bin/"
     "/home/soil/.local/share/npm/bin/"
+    "/home/soil/.local/share/cargo/bin/"
   ];
 }
