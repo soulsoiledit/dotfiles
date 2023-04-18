@@ -175,9 +175,8 @@
   services.ratbagd.enable = true;
 
   xdg.portal = {
-    enable = true;
+    #enable = true;
     #wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-kde ];
   };
 
   virtualisation.podman.enable = true;
