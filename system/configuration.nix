@@ -54,6 +54,59 @@
     openssh.enable = true;
     journald.extraConfig = "SystemMaxUse=100M";
     udisks2.enable = true;
+    kanata = {
+        enable = true;
+        keyboards = {
+          main = {
+            devices = [
+              "/dev/input/by-id/usb-ASUSTeK_Computer_Inc._N-KEY_Device-if02-event-kbd"
+            ];
+            config = ''
+                (defalias
+                  grl (tap-hold 200 200 grv (layer-toggle layers))
+
+                  ;; layer-switch changes the base layer.
+                  gal (layer-switch gallium)
+                  qwr (layer-switch qwerty)
+
+                  ;; tap for capslk, hold for lctl
+                  esc (tap-hold 200 200 esc lctl)
+                )
+
+                (defsrc
+                  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+                  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+                  caps a    s    d    f    g    h    j    k    l    ;    '    ret
+                  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+                  lctl lmet lalt           spc            ralt rmet rctl)
+
+                (deflayer qwerty
+                  @grl  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+                  tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
+                  @esc a    s    d    f    g    h    j    k    l    ;    '    ret
+                  lsft z    x    c    v    b    n    m    ,    .    /    rsft
+                  lctl lmet lalt           spc            ralt rmet rctl
+                )
+
+                (deflayer gallium
+                  @grl  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+                  tab  b    l    d    c    v    z    y    o    u    ,    [    ]    \
+                  @esc n    r    t    s    g    p    h    a    e    i    /    ret
+                  lsft x    m    w    j    q    k    f    '    ;    .    rsft
+                  lctl lmet lalt           spc            ralt rmet rctl
+                )
+
+                (deflayer layers
+                  _    @qwr @gal lrld _    _    _    _    _    _    _    _    _    _
+                  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+                  _    _    _    _    _    _    _    _    _    _    _    _    _
+                  _    _    _    _    _    _    _    _    _    _    _    _
+                  _    _    _              _              _    _    _
+                )
+              '';
+            };
+          };
+        };
   };
   programs.dconf.enable = true;
 
@@ -75,7 +128,7 @@
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
+    extraGroups = [ "wheel" "video" "networkmanager" "input" "uinput" ];
   };
   programs.fish.enable = true;
   # }}}
