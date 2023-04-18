@@ -45,7 +45,9 @@
       ns = "sudo nixos-rebuild switch";
       hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
       hs = "home-manager switch --flake /etc/nixos";
-      gc = "nix store gc";
+      gc = "nix store gc --verbose";
+
+      zp = "7z";
     };
 
     shellAliases = {
