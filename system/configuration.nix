@@ -155,7 +155,8 @@
 
   # wayland
   # programs.sway.enable = true;
-  hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
 
   services.greetd = {
     enable = true;
