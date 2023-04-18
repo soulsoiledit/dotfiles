@@ -2,6 +2,11 @@
 
 {
   # Laptop Power Management
+  boot = {
+    kernelParams = [
+      "amd_pstate=passive"
+    ];
+  };
 
   powerManagement.enable = true;
   powerManagement.cpuFreqGovernor = "schedutil";
