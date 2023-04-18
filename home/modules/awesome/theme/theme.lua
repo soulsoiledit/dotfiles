@@ -27,7 +27,7 @@ theme.magenta = "#cba6f7"
 
 theme.bg_normal     = theme.bg
 theme.bg_focus      = theme.sel
-theme.bg_urgent     = theme.highlight
+theme.bg_urgent     = theme.bg
 
 theme.fg_normal     = theme.fg
 theme.fg_focus      = theme.fg_normal
