@@ -25,7 +25,7 @@ in
 
   xsession = {
     initExtra = ''
-      xset s 1800 dpms 0 1800 2100 &
+      xset s 720
       ${lib.getExe pkgs.feh} --no-fehbg --bg-fill /etc/nixos/other/bg_${theme.name}.png &
 
       firefox &
