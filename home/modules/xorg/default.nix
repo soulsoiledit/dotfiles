@@ -11,8 +11,6 @@ in
 
   xsession.windowManager.awesome = {
     enable = true;
-    luaModules = with pkgs; [ lua53Packages.vicious ];
-    # noArgb = true;
   };
 
   services = {
