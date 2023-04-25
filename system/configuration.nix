@@ -8,7 +8,6 @@
 
   system.stateVersion = "22.05";
 
-  # Boot {{{
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     loader = {
@@ -20,12 +19,9 @@
     kernelModules = [ "amd_pstate" ];
     plymouth.enable = true;
   };
-  # }}}
-  # }}}
-  # Locale {{{
+
   time.timeZone = "US/Central";
-  # }}}
-  # Nix {{{
+
   nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nixUnstable;
@@ -45,8 +41,7 @@
       auto-optimise-store = true;
     };
   };
-  # }}}
-  # Services {{{
+
   services = {
     openssh.enable = true;
     journald.extraConfig = "SystemMaxUse=100M";
@@ -108,8 +103,6 @@
   programs.dconf.enable = true;
 
   # services.gnome.gnome-keyring.enable = true;
-  # }}}
-  # Fonts {{{
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
@@ -117,23 +110,20 @@
       (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
     ];
   };
-  # }}}
-  # Networking {{{
+
   networking = {
     hostName = "soilnix";
     networkmanager.enable = true;
   };
 
-  # }}}
-  # User {{{
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
     extraGroups = [ "wheel" "video" "networkmanager" "input" "uinput" ];
   };
+
   programs.fish.enable = true;
-  # }}}
-  # Audio {{{
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -147,6 +137,7 @@
     enable = true;
     libinput.enable = true;
     displayManager.sx.enable = true;
+
     excludePackages = [ pkgs.xterm ];
 
     monitorSection = ''
