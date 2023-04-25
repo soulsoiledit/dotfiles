@@ -32,7 +32,13 @@
     exa
 
     # minecraft
-    prismlauncher
+    # prismlauncher with higher gui scaling
+    (pkgs.symlinkJoin {
+      name = "prismlauncher";
+      paths = [ pkgs.prismlauncher ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = '' wrapProgram $out/bin/prismlauncher --set QT_SCALE_FACTOR 2 '';
+    })
     cubiomes-viewer
 
     # qol tools
@@ -113,10 +119,4 @@
 
   xdg.enable = true;
   xsession.enable = true;
-
-  xdg.desktopEntries."org.prismlauncher.PrismLauncher" = {
-    name = "Prism Launcher";
-    exec = "env QT_SCALE_FACTOR=2 prismlauncher";
-    icon = "org.prismlauncher.PrismLauncher";
-  };
 }
