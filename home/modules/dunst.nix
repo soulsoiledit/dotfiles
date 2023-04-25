@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   services.dunst = {
@@ -13,7 +13,9 @@
       let theme = (import ../../other/colors.nix).theme;
       in {
         global = {
-          geometry = "300x0-10+30";
+          width = 300;
+          offset = "-10+30";
+
           padding = 10;
           horizontal_padding = 10;
 
