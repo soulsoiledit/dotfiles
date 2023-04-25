@@ -34,6 +34,7 @@
   nixpkgs.config.allowUnfree = true;
   nix = {
     package = pkgs.nixUnstable;
+    registry.nixpkgs.flake = inputs.nixpkgs;
 
     gc = {
       automatic = true;
@@ -41,12 +42,13 @@
       options = "--delete-older-than 7d";
     };
 
-    settings.auto-optimise-store = true;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
 
-    extraOptions = ''
-      keep-outputs = true
-      experimental-features = nix-command flakes ca-derivations
-    '';
+      warn-dirty = false;
+      keep-outputs = true;
+      auto-optimise-store = true;
+    };
   };
   # }}}
   # Services {{{
