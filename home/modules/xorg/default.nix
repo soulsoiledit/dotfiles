@@ -13,6 +13,11 @@ in
     enable = true;
   };
 
+  programs.eww = {
+    # enable = true;
+    package = pkgs.eww;
+  };
+
   services = {
     unclutter.enable = true;
     clipmenu.enable = true;
