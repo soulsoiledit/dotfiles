@@ -174,6 +174,17 @@
   hardware.logitech.wireless.enable = true;
   services.ratbagd.enable = true;
 
+  # Swap and zram
+  # swapDevices = [{
+  #   device = "/var/swap";
+  #   size = 2048;
+  # }];
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 25;
+    # writebackDevice =
   };
 
   virtualisation.podman.enable = true;
