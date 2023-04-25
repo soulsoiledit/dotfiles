@@ -21,11 +21,6 @@
     plymouth.enable = true;
   };
   # }}}
-  # Swap {{{
-  swapDevices = [{
-    device = "/var/swap";
-    size = 2048;
-  }];
   # }}}
   # Locale {{{
   time.timeZone = "US/Central";
