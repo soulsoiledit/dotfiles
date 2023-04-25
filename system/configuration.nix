@@ -13,7 +13,6 @@
     loader = {
       systemd-boot.enable = true;
       systemd-boot.editor = false;
-      systemd-boot.configurationLimit = 2;
     };
     blacklistedKernelModules = [ "acpi_cpufreq_init" ];
     kernelModules = [ "amd_pstate" ];
@@ -102,7 +101,6 @@
   };
   programs.dconf.enable = true;
 
-  # services.gnome.gnome-keyring.enable = true;
   fonts = {
     enableDefaultFonts = true;
     fonts = with pkgs; [
@@ -132,7 +130,6 @@
   };
   hardware.bluetooth.enable = true;
 
-  # xorg
   services.xserver = {
     enable = true;
     libinput.enable = true;
@@ -148,9 +145,9 @@
 
   services.greetd = {
     enable = true;
+    restart = true;
     settings = {
       default_session = {
-        user = "soil";
         command = "${lib.getExe pkgs.greetd.tuigreet} -t -c ${lib.getExe pkgs.sx}";
       };
     };
