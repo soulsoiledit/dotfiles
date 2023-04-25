@@ -115,4 +115,6 @@
       '';
     };
   };
+
+  programs.mpv.enable = true;
 }
