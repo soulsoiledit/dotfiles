@@ -20,7 +20,7 @@
   ];
 
   home.packages = with pkgs; [
-    /* (spotify.override { deviceScaleFactor = 2; }) */
+    # (spotify.override { deviceScaleFactor = 2; })
     spotify
     /* steam */
 
