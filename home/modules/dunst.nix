@@ -28,8 +28,8 @@
           icon_position = "left";
           max_icon_size = 48;
 
-          dmenu = "${pkgs.rofi}/bin/rofi -dmenu";
-          browser = "${pkgs.firefox}/bin/firefox -new-tab";
+          dmenu = "${lib.getExe pkgs.rofi} -dmenu";
+          browser = "${lib.getExe pkgs.firefox} -new-tab";
 
           frame_width = 0;
           separator_height = 10;

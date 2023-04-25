@@ -4,11 +4,10 @@
   programs.rofi = {
     enable = true;
 
-    font = "FantasqueSansMono Nerd Font 12";
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    font = "FantasqueSansMono Nerd Font 24";
+    terminal = "${lib.getExe pkgs.alacritty}";
 
     extraConfig = {
-      dpi = 216;
       show-icons = true;
       display-drun = " ";
       drun-display-format = "{name}";

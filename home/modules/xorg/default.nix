@@ -23,7 +23,7 @@ in
   xsession = {
     initExtra = ''
       xset s 1800 dpms 0 1800 2100 &
-      ${pkgs.feh}/bin/feh --no-fehbg --bg-fill /etc/nixos/other/bg_${theme.name}.png &
+      ${lib.getExe pkgs.feh} --no-fehbg --bg-fill /etc/nixos/other/bg_${theme.name}.png &
 
       firefox &
       discord &
@@ -54,13 +54,13 @@ in
     not-when-audio = true;
 
     environment = {
-      "display" = "$(${pkgs.xorg.xrandr}/bin/xrandr | awk '/ primary/{print $1}')";
+      "display" = "$(${lib.getExe pkgs.xorg.xrandr} | awk '/ primary/{print $1}')";
     };
 
     timers = [
       {
         delay = 360;
-        command = ''${pkgs.i3lock-color}/bin/i3lock-color -B 5'';
+        command = ''brightnessctl set 20%+; ${lib.getExe pkgs.i3lock-color} -B 5'';
       }
     ];
   };
