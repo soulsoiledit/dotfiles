@@ -30,9 +30,6 @@
       system = "x86_64-linux";
       modules = [
         ./system/configuration.nix
-        {
-          nix.registry.nixpkgs.flake = nixpkgs;
-        }
       ];
       specialArgs = { inherit inputs; };
     };
