@@ -22,7 +22,7 @@ in
     importedVariables = [ "WAYLAND_DISPLAY" ];
 
     initExtra = ''
-      ${pkgs.swaybg}/bin/swaybg -i /etc/nixos/other/bg_${theme.name}.png -m fill &
+      ${lib.Exe pkgs.swaybg} -i /etc/nixos/other/bg_${theme.name}.png -m fill &
     '';
 
     scriptPath = ".config/waysession";
@@ -328,21 +328,21 @@ in
   services.swayidle = {
     enable = true;
     events = [
+      # {
+      #   event = "before-sleep";
+      #   command = "${lib.Exe pkgs.swaylock-effects} -f";
+      # }
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock -f";
-      }
-      {
-        event = "before-sleep";
-        command = "${pkgs.playerctl}/bin/playerctl pause";
+        command = "${lib.Exe pkgs.playerctl} pause";
       }
     ];
-    timeouts = [
-      {
-        timeout = 600;
-        command = "${pkgs.swaylock-effects}/bin/swaylock -f --grace=5";
-      }
-    ];
+    #timeouts = [
+    #  {
+    #    timeout = 600;
+    #    command = "${lib.Exe pkgs.swaylock-effects} -f --grace=5";
+    #  }
+    #];
   };
 
   systemd.user.services.swayidle.Install = { WantedBy = [ "graphical-session.target" ]; };

@@ -164,7 +164,7 @@
       default_session = {
         user = "soil";
         #command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c '${pkgs.river}/bin/river -c /home/soil/.config/waysession'";
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c ${pkgs.sx}/bin/sx";
+        command = "${lib.getExe pkgs.greetd.tuigreet} -t -c ${lib.getExe pkgs.sx}";
       };
     };
   };
