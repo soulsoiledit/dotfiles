@@ -8,8 +8,9 @@ in
     river
     wlr-randr
     swaybg
-    swaylock-effects
     wl-clipboard
+    grim
+    slurp
   ];
 
   xdg.configFile."river/init" = {
@@ -35,15 +36,14 @@ in
     enable = true;
 
     settings = {
-      main.font = "UbuntuMono Nerd Font:size=10";
-      mouse.hide-when-typing = "yes";
+      main.font = "FantasqueSansMono Nerd Font:size=16";
     };
   };
 
   programs.rofi.package = pkgs.rofi-wayland;
 
   programs.waybar = {
-    enable = true;
+    # enable = true;
     systemd.enable = true;
 
     settings = {
@@ -101,8 +101,8 @@ in
     style = ''
       * {
         /* `otf-font-awesome` is required to be installed for icons */
-        font-size: 32px;
-        font-family: UbuntuMono Nerd Font;
+        font-size: 16px;
+        font-family: FantasqueSansMono Nerd Font;
       }
       
       window#waybar {
@@ -320,12 +320,17 @@ in
 
   systemd.user.services.swayidle.Install = { WantedBy = [ "graphical-session.target" ]; };
 
-  programs.swaylock.settings = {
-    screenshots = true;
-    effect-blur = "5x5";
-    fade-in = 0.25;
-    indicator = true;
-    clock = true;
-    ignore-empty-password = true;
+  programs.swaylock = {
+    package = pkgs.swaylock-effects;
+    settings = {
+      screenshots = true;
+      effect-blur = "5x5";
+      fade-in = 0.25;
+      indicator = true;
+      clock = true;
+      ignore-empty-password = true;
+    };
   };
+
+  services.clipman.enable = true;
 }
