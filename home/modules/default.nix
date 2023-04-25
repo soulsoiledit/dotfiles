@@ -23,6 +23,7 @@
     # (spotify.override { deviceScaleFactor = 2; })
     spotify
     /* steam */
+    eww
 
     # modern unix
     gdu
