@@ -55,6 +55,7 @@ in
     enable = true;
     not-when-fullscreen = true;
     not-when-audio = true;
+    detect-sleep = true;
 
     environment = {
       "display" = "$(${lib.getExe pkgs.xorg.xrandr} | awk '/ primary/{print $1}')";
@@ -62,8 +63,19 @@ in
 
     timers = [
       {
+        delay = 300;
+        command = "brightnessctl set 20%-";
+        canceller = "brightnessctl set 20%+";
+      }
+
+      {
         delay = 360;
         command = ''brightnessctl set 20%+; ${lib.getExe pkgs.i3lock-color} -B 5'';
+      }
+
+      {
+        delay = 3600;
+        command = "systemctl suspend";
       }
     ];
   };
