@@ -45,7 +45,7 @@ in
   xresources.path = ".config/sx/Xresources";
 
   services.picom = {
-    #enable = true;
+    enable = true;
     vSync = true;
     fade = true;
     fadeDelta = 5;
