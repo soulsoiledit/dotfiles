@@ -40,7 +40,7 @@ in
   };
 
   home.pointerCursor.x11.enable = true;
-  home.pointerCursor.size = 48;
+  home.pointerCursor.size = 24;
 
   xresources.path = ".config/sx/Xresources";
 
