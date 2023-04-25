@@ -115,7 +115,7 @@
     };
   };
 
-  xdg.configFile."btop/themes".source = inputs.catppuccin-btop;
+  xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
 
   xdg.enable = true;
   xsession.enable = true;
