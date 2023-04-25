@@ -114,7 +114,11 @@
   # }}}
   # Fonts {{{
   fonts = {
-    fonts = with pkgs; [ (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; }) ];
+    enableDefaultFonts = true;
+    fonts = with pkgs; [
+      source-han-sans
+      (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    ];
   };
   # }}}
   # Networking {{{
