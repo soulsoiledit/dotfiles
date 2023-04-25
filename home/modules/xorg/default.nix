@@ -1,4 +1,4 @@
-{ pkgs, fetchFromGithub, ... }:
+{ pkgs, lib, ... }:
 
 let
   theme = (import ../../../other/colors.nix).theme;
@@ -25,6 +25,7 @@ in
 
   xsession = {
     initExtra = ''
+      xrandr --dpi 216
       xset s 720
       ${lib.getExe pkgs.feh} --no-fehbg --bg-fill /etc/nixos/other/bg_${theme.name}.png &
 
@@ -40,7 +41,7 @@ in
   };
 
   home.pointerCursor.x11.enable = true;
-  home.pointerCursor.size = 24;
+  home.pointerCursor.size = 48;
 
   xresources.path = ".config/sx/Xresources";
 
