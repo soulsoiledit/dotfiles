@@ -16,7 +16,7 @@
     ./vars.nix
 
     ./xorg
-    #./wayland
+    # ./wayland
   ];
 
   home.packages = with pkgs; [
