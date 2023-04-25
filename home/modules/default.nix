@@ -68,9 +68,8 @@
     profiles.soil = {
       settings = {
         "browser.bookmarks.showMobileBookmarks" = true;
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "layout.css.devPixelsPerPx" = 2;
         "browser.urlbar.suggest.calculator" = true;
+        # "layout.css.devPixelsPerPx" = 2;
       };
     };
   };
