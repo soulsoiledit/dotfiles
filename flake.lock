@@ -19,13 +19,13 @@
     "catppuccin-discord": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-hBihtNCRMKX64Jk+wffvs/LMqKXYLxGySlwROye23zs=",
+        "narHash": "sha256-N+0ZfBes6G0ctkYkTfmIEnOpnI6AWpgFADSaf+4qVXo=",
         "type": "file",
-        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
       },
       "original": {
         "type": "file",
-        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css"
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
       }
     },
     "catppuccin-zathura": {
@@ -51,11 +51,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1681617561,
-        "narHash": "sha256-Fyf2sBz3CK9SuptsN4+Brf62jMfd99BlyijJD5HAtcg=",
+        "lastModified": 1682347289,
+        "narHash": "sha256-BQHY4lzS3Tkx4XLmZPR5FSjKWMP+cKNtUM8pTC4L9Ek=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "21ca88f3a98f15e4791c82697745e3698ad883d8",
+        "rev": "0263da497eae3246ea15ed6f0f7875bc15592cef",
         "type": "github"
       },
       "original": {
@@ -66,11 +66,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1681648924,
-        "narHash": "sha256-pzi3HISK8+7mpEtv08Yr80wswyHKsz+RP1CROG1Qf6s=",
+        "lastModified": 1682268651,
+        "narHash": "sha256-2eZriMhnD24Pmb8ideZWZDiXaAVe6LzJrHQiNPck+Lk=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f294325aed382b66c7a188482101b0f336d1d7db",
+        "rev": "e78d25df6f1036b3fa76750ed4603dd9d5fe90fc",
         "type": "github"
       },
       "original": {
@@ -82,11 +82,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1681682097,
-        "narHash": "sha256-mglDzwLQ4keRWQ0yth3bE//Uw3Ucztewe9zCCAwW13A=",
+        "lastModified": 1682377591,
+        "narHash": "sha256-vImd96mh9st8acsFqjzFQHFJl8vb8GFjr8SpE2OvD58=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "6cf9a90c6991f17dc212fa79a6063551c973aa70",
+        "rev": "b1c37157cc6b86400f3cfcee033f4edc307ced42",
         "type": "github"
       },
       "original": {
