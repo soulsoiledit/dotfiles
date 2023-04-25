@@ -53,9 +53,6 @@
     nix-tree
     xplr
 
-    # fixing discord fonts...
-    source-han-sans
-
     xmonad-with-packages
     haskellPackages.xmonad-contrib
   ];
