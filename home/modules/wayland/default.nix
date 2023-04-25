@@ -31,33 +31,6 @@ in
 
   home.pointerCursor.size = 48;
 
-  programs.firefox.profiles.soil = {
-    userChrome = ''
-      /* #tabbrowser-tabs, #navigator-toolbox, menuitem, menu, ... */
-      * {
-          font-size: 12px !important;
-      }
-
-      /* exception for badge on adblocker */
-      .toolbarbutton-badge {
-          font-size: 8px !important;
-      }       
-    '';
-  };
-
-  xdg.desktopEntries = {
-    firefox = {
-      name = "Firefox";
-      exec = "env MOZ_ENABLE_WAYLAND=1 firefox %U";
-    };
-
-    spotify = {
-      name = "Spotify";
-      exec = "spotify --force-device-scale-factor=2 %U";
-    };
-  };
-
-
   programs.foot = {
     enable = true;
 
