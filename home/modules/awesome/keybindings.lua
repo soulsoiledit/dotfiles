@@ -21,7 +21,7 @@ rogcc = "rog-control-center"
 screenshot_area = "flameshot gui -s -c -p /home/soil/stuff/pictures/screenshots"
 screenshot_full = "flameshot full -c -p /home/soil/stuff/pictures/screenshots"
 
-clipboard    = "sh -c 'CM_LAUNCHER=rofi CM_HISTLENGTH=5 clipmenu'"
+clipboard    = "env CM_LAUNCHER=rofi CM_HISTLENGTH=5 clipmenu"
 
 vol =  "pamixer -"
 
