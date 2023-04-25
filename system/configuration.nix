@@ -157,17 +157,12 @@
     '';
   };
 
-  # wayland
-  # programs.sway.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
 
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
         user = "soil";
-        #command = "${pkgs.greetd.tuigreet}/bin/tuigreet -c '${pkgs.river}/bin/river -c /home/soil/.config/waysession'";
         command = "${lib.getExe pkgs.greetd.tuigreet} -t -c ${lib.getExe pkgs.sx}";
       };
     };
@@ -179,9 +174,6 @@
   hardware.logitech.wireless.enable = true;
   services.ratbagd.enable = true;
 
-  xdg.portal = {
-    #enable = true;
-    #wlr.enable = true;
   };
 
   virtualisation.podman.enable = true;
