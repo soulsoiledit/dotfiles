@@ -8,7 +8,7 @@
     };
 
     catppuccin-discord = {
-      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha.theme.css";
+      url = https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css;
       flake = false;
     };
 
