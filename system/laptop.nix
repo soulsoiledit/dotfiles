@@ -4,8 +4,11 @@
   # Laptop Power Management
   boot = {
     kernelParams = [
-      "amd_pstate=passive"
+      "amd_pstate=active"
     ];
+
+    blacklistedKernelModules = [ "acpi_cpufreq_init" ];
+    kernelModules = [ "amd_pstate" ];
   };
 
   powerManagement.enable = true;

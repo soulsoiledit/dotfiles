@@ -14,8 +14,6 @@
       systemd-boot.enable = true;
       systemd-boot.editor = false;
     };
-    blacklistedKernelModules = [ "acpi_cpufreq_init" ];
-    kernelModules = [ "amd_pstate" ];
     plymouth.enable = true;
   };
 
@@ -136,10 +134,6 @@
     displayManager.sx.enable = true;
 
     excludePackages = [ pkgs.xterm ];
-
-    # monitorSection = ''
-    #   DisplaySize 302 189
-    # '';
   };
 
   services.greetd = {
