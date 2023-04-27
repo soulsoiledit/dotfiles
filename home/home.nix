@@ -2,7 +2,6 @@
 
 # TODO
 # center block?
-#   window name?
 #   song name
 
 # work on spotify w/ playerctl module
@@ -22,7 +21,6 @@
 
 {
   programs.home-manager.enable = true;
-  nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
   home = {
     username = "soil";
