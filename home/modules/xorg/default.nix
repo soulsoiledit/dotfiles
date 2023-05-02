@@ -27,7 +27,7 @@ in
     initExtra = ''
       xrandr --dpi 216
       xset s 720
-      ${lib.getExe pkgs.feh} --no-fehbg --bg-fill /etc/nixos/other/bg_${theme.name}.png &
+      ${lib.getExe pkgs.feh} --no-fehbg --bg-fill /etc/nixos/other/spiderverse.png
 
       firefox &
       discord &
