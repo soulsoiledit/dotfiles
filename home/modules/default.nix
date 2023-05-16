@@ -48,14 +48,11 @@
     dunst
     playerctl
     pamixer
-    ( p7zip.override { enableUnfree = true; } )
+    (p7zip.override { enableUnfree = true; })
 
     trash-cli
     nix-tree
     xplr
-
-    xmonad-with-packages
-    haskellPackages.xmonad-contrib
   ];
 
   fonts.fontconfig.enable = true;
