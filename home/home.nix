@@ -21,6 +21,7 @@
 
 {
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfreePredicate = (pkg: true);
 
   home = {
     username = "soil";
