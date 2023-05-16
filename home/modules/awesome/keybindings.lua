@@ -7,7 +7,7 @@ require("awful.autofocus")
 -- loadfile("bar")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "alacritty"
+terminal = "sh -c 'alacritty msg create-window || alacritty'"
 rofi = "rofi -show drun"
 lock = "i3lock-color -B 10"
 
