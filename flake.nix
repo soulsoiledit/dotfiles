@@ -22,6 +22,11 @@
       flake = false;
     };
 
+    catppuccin-alacritty = {
+      url = github:catppuccin/alacritty;
+      flake = false;
+    };
+
     nur.url = github:nix-community/NUR;
   };
 
