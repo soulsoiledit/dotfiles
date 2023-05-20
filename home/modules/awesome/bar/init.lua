@@ -19,7 +19,7 @@ menubar.utils.terminal = "alacritty" -- Set the terminal for applications that r
 
 -- {{{ Wibar
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock(" %a %m-%d %H:%M ")
+mytextclock = wibox.widget.textclock("󰸗 %a %m-%d %H:%M ")
 
 local function set_fg(text, color)
     return "<span color='"..color.."'>"..text.."</span>"
@@ -43,7 +43,7 @@ local function ramp_icon(icons, current, minimum, maximum)
 end
 
 local mytemp = awful.widget.watch("cat /sys/class/thermal/thermal_zone0/temp", 15, function(widget, stdout)
-    local icons = { " ", " ", " ", " ", " ", " " }
+    local icons = { "󱃃 ", "󰔏 ", "󱃂 ", "󰸁 ", "󰈸" }
     local temperature = tonumber(stdout)/1000
 
     local icon = ramp_icon(icons, temperature, 30, 100)
@@ -54,7 +54,7 @@ local mytemp = awful.widget.watch("cat /sys/class/thermal/thermal_zone0/temp", 1
 end)
 
 mybacklight, brighttimer = awful.widget.watch("brightnessctl -m", 60, function(widget, stdout)
-    local icons = { " ", " ", " ", " ", " ", " " }
+    local icons = { "󰽤 ", "󰽥 ", "󰽣 ", "󰽦 ", "󰽢 ", " " }
     local brightness = stdout:match("(%d+)%%")
 
     local icon = ramp_icon(icons, tonumber(brightness), 0, 100)
@@ -71,7 +71,7 @@ local mymem = awful.widget.watch("cat /proc/meminfo", 5, function(widget, stdout
 
     local color = ( mem_percentage < 90 ) and beautiful.fg or beautiful.red
 
-    local memory_string = " "..mem_percentage.."% "
+    local memory_string = "󰍛 "..mem_percentage.."% "
     widget:set_markup(set_fg(memory_string, color))
 end)
 
@@ -105,7 +105,7 @@ end)
 
 local mynet = awful.widget.watch("cat /sys/class/net/wlan0/operstate", 2, function(widget, stdout)
     local color = stdout:match("up") and beautiful.fg or beautiful.comment
-    local net_string = stdout:match("up") and "直" or "睊"
+    local net_string = stdout:match("up") and "󰖩" or "󰖪"
 
     widget:set_markup(set_fg(net_string.."  ", color))
 end)
@@ -118,11 +118,11 @@ myvol, voltimer = awful.widget.watch("pamixer --get-volume", 60, function(widget
 
         local icon = ""
         if muted or volume <= 33 then
-            icon = " "
+            icon = "󰕿 "
         elseif volume <= 66 then
-            icon = " "
+            icon = "󰖀 "
         else
-            icon = " "
+            icon = "󰕾 "
         end
 
         widget:set_markup(set_fg(icon..volume.."% ", color))
@@ -136,9 +136,9 @@ local mybat = awful.widget.watch("sh -c 'acpi -b | grep -vP 'unav''", 5, functio
     remaining = cleaned:match("%%, (.-):%d%d ")
 
     if state == "Full" or state == "Not charging" then
-        widget:set_markup(" "..percentage.."% ")
+        widget:set_markup("󰂄 "..percentage.."% ")
     elseif state == "Charging" then
-        icons = { "", "", "", "", "" }
+        icons = { "󰢜", "󰂇", "󰢝", "󰂊", "󰂄" }
         icon = ramp_icon(icons, percentage, 15, 80).." "
         widget:set_markup(set_fg(icon..percentage.."% "..remaining.." ", beautiful.green))
     elseif state == "Discharging" then
@@ -146,9 +146,9 @@ local mybat = awful.widget.watch("sh -c 'acpi -b | grep -vP 'unav''", 5, functio
             rate = string.format("%0.1f", math.floor( stdout / 100000 ) / 10).."W "
             if percentage <= 15 then
                 criticalBattery = true
-                widget:set_markup(set_fg(set_bg("  "..percentage.."% "..remaining.." "..rate, beautiful.red), beautiful.bg).." ")
+                widget:set_markup(set_fg(set_bg("󰂃 "..percentage.."% "..remaining.." "..rate, beautiful.red), beautiful.bg).." ")
             else
-                icons = { "", "", "", "", "" }
+                icons = { "󰁺", "󰁼", "󰁾", "󰂁", "󰁹" }
                 icon = ramp_icon(icons, percentage, 15, 80).." "
 
                 widget:set_markup(set_fg(icon..percentage.."% "..remaining.." "..rate, beautiful.yellow))
@@ -185,8 +185,8 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.menu},
 
 mylauncher = wibox.container.margin (awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu }))
-mylauncher.margins = dpi(2)
-mylauncher.right = dpi(4)
+mylauncher.margins = dpi(5)
+mylauncher.right = dpi(2)
 
 function create_menubar(s)
     -- Create a promptbox for each screen
@@ -293,7 +293,7 @@ function create_menubar(s)
                 {
                     id     = 'clienticon',
                     widget = awful.widget.clienticon,
-                    forced_width = dpi(17)
+                    forced_width = dpi(30)
                 },
                 margins = dpi(1),
                 widget  = wibox.container.margin
@@ -319,7 +319,7 @@ function create_menubar(s)
 
     -- s.systray = wibox.widget.systray()
     s.systray = wibox.container.margin(wibox.widget.systray())
-    s.systray.margins = dpi(2)
+    s.systray.margins = dpi(4)
 
     -- Add widgets to the wibox
     s.mywibox:setup {
