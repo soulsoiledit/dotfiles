@@ -14,8 +14,8 @@
       mouse.hide_when_typing = true;
 
       font = {
-        size = 8;
-        normal.family = "FantasqueSansMono Nerd Font";
+        size = 14;
+        normal.family = "FantasqueSansM Nerd Font";
       };
     };
   };
