@@ -35,7 +35,7 @@
     "catppuccin-discord": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-MANn84Aopat28WBOBkIzjfGQ6GBAlaQ2s2kf82KxWp4=",
+        "narHash": "sha256-a0gp9mpU1xItTVdt/igpBJDZ51wMJprOCzJxShGUrj8=",
         "type": "file",
         "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
       },
