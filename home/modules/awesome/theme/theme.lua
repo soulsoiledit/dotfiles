@@ -11,7 +11,7 @@ local themes_path = gfs.get_configuration_dir() .. "theme/"
 
 local theme = {}
 
-theme.font          = "FantasqueSansMono Nerd Font 10"
+theme.font = "FantasqueSansM Nerd Font 16"
 
 theme.bg= "#313244"
 theme.fg= "#cdd6f4"
@@ -33,9 +33,9 @@ theme.fg_normal     = theme.fg
 theme.fg_focus      = theme.fg_normal
 theme.fg_urgent     = theme.bg
 
-theme.useless_gap   = dpi(5)
+theme.useless_gap   = dpi(6)
 
-theme.border_width  = dpi(0.75)
+theme.border_width  = dpi(1.5)
 theme.border_focus = "#b4befe"
 theme.border_normal = theme.sel
 
@@ -69,8 +69,8 @@ theme.notification_height = dpi(1600/8)
 -- menu_[border_color|border_width]
 theme.menu_icon = themes_path.."submenu.png"
 theme.menu_submenu_icon = themes_path.."submenu.png"
-theme.menu_height = dpi(20)
-theme.menu_width  = dpi(100)
+theme.menu_height = dpi(30)
+theme.menu_width  = dpi(200)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -78,9 +78,6 @@ theme.menu_width  = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.taglist = themes_path.."background.png"
-theme.wallpaper = themes_path.."background.png"
-
 -- You can use your own layout icons like this:
 theme.layout_max = themes_path.."layouts/maxw.png"
 theme.layout_tile = themes_path.."layouts/tilew.png"
