@@ -4,7 +4,7 @@
   programs.rofi = {
     enable = true;
 
-    font = "FantasqueSansMono Nerd Font 24";
+    font = "FantasqueSansM Nerd Font 24";
     terminal = "${lib.getExe pkgs.alacritty}";
 
     extraConfig = {

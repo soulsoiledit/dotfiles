@@ -25,9 +25,8 @@ in
 
   xsession = {
     initExtra = ''
-      xrandr --dpi 216
       xset s 720
-      ${lib.getExe pkgs.feh} --no-fehbg --bg-fill /etc/nixos/other/spiderverse.png
+      ${lib.getExe pkgs.feh} --no-fehbg --bg-fill /etc/nixos/other/spiderverse.jpg
 
       firefox &
       discord &
@@ -44,6 +43,9 @@ in
   home.pointerCursor.size = 48;
 
   xresources.path = ".config/sx/Xresources";
+  xresources.properties = {
+    "Xft.dpi" = 128;
+  };
 
   services.picom = {
     enable = true;
