@@ -129,6 +129,7 @@ myvol, voltimer = awful.widget.watch("pamixer --get-volume", 60, function(widget
     end)
 end)
 
+criticalBattery = false
 local mybat = awful.widget.watch("sh -c 'acpi -b | grep -vP 'unav''", 5, function(widget, stdout)
     cleaned = stdout:gsub(".*?rate information unavailable.*\r?\n","")
     percentage = tonumber(cleaned:match("(%d*)%%"))
@@ -137,7 +138,9 @@ local mybat = awful.widget.watch("sh -c 'acpi -b | grep -vP 'unav''", 5, functio
 
     if state == "Full" or state == "Not charging" then
         widget:set_markup("󰂄 "..percentage.."% ")
+        criticalBattery = false
     elseif state == "Charging" then
+        criticalBattery = false
         icons = { "󰢜", "󰂇", "󰢝", "󰂊", "󰂄" }
         icon = ramp_icon(icons, percentage, 15, 80).." "
         widget:set_markup(set_fg(icon..percentage.."% "..remaining.." ", beautiful.green))
@@ -145,7 +148,10 @@ local mybat = awful.widget.watch("sh -c 'acpi -b | grep -vP 'unav''", 5, functio
         awful.spawn.easy_async("cat /sys/class/power_supply/BAT0/power_now", function(stdout)
             rate = string.format("%0.1f", math.floor( stdout / 100000 ) / 10).."W "
             if percentage <= 15 then
-                criticalBattery = true
+                if criticalBattery == false then
+                  criticalBattery = true
+                  awful.spawn("dunstify -u 2 'Low battery!'")
+                end
                 widget:set_markup(set_fg(set_bg("󰂃 "..percentage.."% "..remaining.." "..rate, beautiful.red), beautiful.bg).." ")
             else
                 icons = { "󰁺", "󰁼", "󰁾", "󰂁", "󰁹" }
