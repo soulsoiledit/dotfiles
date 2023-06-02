@@ -59,11 +59,9 @@ globalkeys = gears.table.join(
     -- Volume
     awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 5") end, function() voltimer:emit_signal("timeout") end ),
     awful.key({ "Shift" }, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 1") end, function() voltimer:emit_signal("timeout") end ),
-    awful.key({ "Mod1" }, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 20") end, function() voltimer:emit_signal("timeout") end ),
 
     awful.key({}, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 5") end, function() voltimer:emit_signal("timeout") end ),
     awful.key({ "Shift" }, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 1") end, function() voltimer:emit_signal("timeout") end ),
-    awful.key({ "Mod1" }, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 20") end, function() voltimer:emit_signal("timeout") end ),
 
     awful.key({}, "XF86AudioMute", function() awful.spawn(vol .. "t") end, function() voltimer:emit_signal("timeout") end ),
 
