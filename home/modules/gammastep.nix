@@ -5,7 +5,7 @@
     longitude = "-98";
     temperature = {
       day = 6000;
-      night = 4000;
+      night = 3500;
     };
   };
 }
