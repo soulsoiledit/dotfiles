@@ -44,7 +44,7 @@ in
 
   xresources.path = ".config/sx/Xresources";
   xresources.properties = {
-    "Xft.dpi" = 128;
+    "Xft.dpi" = 192;
   };
 
   services.picom = {
