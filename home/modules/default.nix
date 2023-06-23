@@ -20,7 +20,6 @@
   ];
 
   home.packages = with pkgs; [
-    # (spotify.override { deviceScaleFactor = 2; })
     spotify
     /* steam */
     eww
@@ -33,13 +32,7 @@
     exa
 
     # minecraft
-    # prismlauncher with higher gui scaling
-    (pkgs.symlinkJoin {
-      name = "prismlauncher";
-      paths = [ pkgs.prismlauncher ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = '' wrapProgram $out/bin/prismlauncher --set QT_SCALE_FACTOR 1.75'';
-    })
+    prismlauncher
     cubiomes-viewer
 
     # qol tools
