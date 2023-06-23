@@ -34,7 +34,9 @@ modkey = "Mod4"
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey }, "Tab", awful.tag.history.restore),
+    awful.key({ modkey }, "q", awesome.restart),
+    awful.key({ modkey, "Shift" }, "q", awesome.quit),
+
 
     awful.key({ modkey }, "j", function () awful.client.focus.byidx( 1) end),
     awful.key({ modkey }, "k", function () awful.client.focus.byidx(-1) end),
@@ -44,10 +46,27 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end),
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end),
+
+    awful.key({ modkey }, "l",     function () awful.tag.incmwfact( 0.05)          end),
+    awful.key({ modkey }, "h",     function () awful.tag.incmwfact(-0.05)          end),
+    awful.key({ modkey }, ",",     function () awful.tag.incnmaster(-1, nil, true) end),
+    awful.key({ modkey }, ".",     function () awful.tag.incnmaster(1, nil, true) end),
+
+    awful.key({ modkey }, "i", function () awful.layout.inc(-1)                end),
+    awful.key({ modkey }, "o", function () awful.layout.inc( 1)                end),
+
+    awful.key({ modkey }, "Tab", awful.tag.history.restore),
     awful.key({ modkey }, "u", awful.client.urgent.jumpto),
 
-    -- Standard program
+    awful.key({ modkey }, "b", 
+        function()
+            myscreen = awful.screen.focused()
+            myscreen.mywibox.visible = not myscreen.mywibox.visible
+        end),
+
+    -- Standard programs
     awful.key({ modkey }, "Return", function () awful.spawn(terminal) end),
+    awful.key({ modkey }, "space", function() awful.spawn(rofi) end),
 
     -- My programs
     awful.key({ modkey }, "d", function () awful.spawn("Discord") end),
@@ -56,14 +75,15 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey }, "s", function () awful.spawn(screenshot_area) end),
     awful.key({ modkey, "Shift" }, "s", function () awful.spawn(screenshot_full) end),
-    -- Volume
+
+    -- Media
+    awful.key({}, "XF86AudioMute", function() awful.spawn(vol .. "t") end, function() voltimer:emit_signal("timeout") end ),
+
     awful.key({}, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 5") end, function() voltimer:emit_signal("timeout") end ),
     awful.key({ "Shift" }, "XF86AudioRaiseVolume", function() awful.spawn(vol .. "i 1") end, function() voltimer:emit_signal("timeout") end ),
 
     awful.key({}, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 5") end, function() voltimer:emit_signal("timeout") end ),
     awful.key({ "Shift" }, "XF86AudioLowerVolume", function() awful.spawn(vol .. "d 1") end, function() voltimer:emit_signal("timeout") end ),
-
-    awful.key({}, "XF86AudioMute", function() awful.spawn(vol .. "t") end, function() voltimer:emit_signal("timeout") end ),
 
     awful.key({}, "XF86AudioPlay", function() awful.spawn(playerctl .. "play-pause") end),
     awful.key({}, "XF86AudioPause", function() awful.spawn(playerctl .. "play-pause") end),
@@ -71,32 +91,15 @@ globalkeys = gears.table.join(
     awful.key({}, "XF86AudioPrev", function() awful.spawn(playerctl .. "previous") end),
     awful.key({}, "XF86AudioNext", function() awful.spawn(playerctl .. "next") end),
 
-    awful.key({}, "XF86Launch4", function() awful.spawn(fan_profile) end),
-    awful.key({}, "XF86Launch1", function() awful.spawn(rogcc) end),
-    awful.key({}, "XF86KbdBrightnessUp", function() awful.spawn(kbd_brightness.."n") end),
-    awful.key({}, "XF86KbdBrightnessDown", function() awful.spawn(kbd_brightness.."p") end),
-
     -- Brightness
     awful.key({}, "XF86MonBrightnessUp", function() awful.spawn(brightness .. "20%+") end, function() brighttimer:emit_signal("timeout") end),
     awful.key({}, "XF86MonBrightnessDown", function() awful.spawn(brightness .. "20%-") end, function() brighttimer:emit_signal("timeout") end),
 
-    awful.key({ modkey }, "q", awesome.restart),
-    awful.key({ modkey, "Shift" }, "q", awesome.quit),
-
-    awful.key({ modkey }, "l",     function () awful.tag.incmwfact( 0.05)          end),
-    awful.key({ modkey }, "h",     function () awful.tag.incmwfact(-0.05)          end),
-    awful.key({ modkey, "Shift" }, ",",     function () awful.tag.incnmaster( 1, nil, true) end),
-    awful.key({ modkey, "Shift" }, ".",     function () awful.tag.incnmaster(-1, nil, true) end),
-    awful.key({ modkey }, "o", function () awful.layout.inc( 1)                end),
-    awful.key({ modkey, "Shift" }, "o", function () awful.layout.inc(-1)                end),
-
-    awful.key({ modkey }, "space", function() awful.spawn(rofi) end),
-
-    awful.key({ modkey }, "b", 
-        function()
-            myscreen = awful.screen.focused()
-            myscreen.mywibox.visible = not myscreen.mywibox.visible
-        end)
+    -- Asus
+    awful.key({}, "XF86Launch4", function() awful.spawn(fan_profile) end),
+    awful.key({}, "XF86Launch1", function() awful.spawn(rogcc) end),
+    awful.key({}, "XF86KbdBrightnessUp", function() awful.spawn(kbd_brightness.."n") end),
+    awful.key({}, "XF86KbdBrightnessDown", function() awful.spawn(kbd_brightness.."p") end)
 )
 
 clientkeys = gears.table.join(

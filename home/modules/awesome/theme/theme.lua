@@ -11,7 +11,7 @@ local themes_path = gfs.get_configuration_dir() .. "theme/"
 
 local theme = {}
 
-theme.font = "FantasqueSansM Nerd Font 16"
+theme.font = "FantasqueSansM Nerd Font 11"
 
 theme.bg= "#313244"
 theme.fg= "#cdd6f4"
@@ -33,7 +33,7 @@ theme.fg_normal     = theme.fg
 theme.fg_focus      = theme.fg_normal
 theme.fg_urgent     = theme.bg
 
-theme.useless_gap   = dpi(6)
+theme.useless_gap   = dpi(5)
 
 theme.border_width  = dpi(1.5)
 theme.border_focus = "#b4befe"
@@ -69,8 +69,8 @@ theme.notification_height = dpi(1600/8)
 -- menu_[border_color|border_width]
 theme.menu_icon = themes_path.."submenu.png"
 theme.menu_submenu_icon = themes_path.."submenu.png"
-theme.menu_height = dpi(30)
-theme.menu_width  = dpi(200)
+theme.menu_height = dpi(20)
+theme.menu_width  = dpi(125)
 
 -- You can add as many variables as
 -- you wish and access them by using
@@ -85,9 +85,6 @@ theme.layout_dwindle = themes_path.."layouts/dwindlew.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = themes_path.."amogus.png"
--- theme.awesome_icon = theme_assets.awesome_icon(
---     theme.menu_height, theme.bg_focus, theme.fg_focus
--- )
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
