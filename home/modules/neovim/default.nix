@@ -11,6 +11,7 @@
 
     extraPackages = with pkgs; [
       gcc
+      gnumake
       universal-ctags
       code-minimap
       ripgrep
