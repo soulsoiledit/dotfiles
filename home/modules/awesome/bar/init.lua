@@ -56,12 +56,9 @@ end)
 mybacklight, brighttimer = awful.widget.watch("brightnessctl -m", 60, function(widget, stdout)
     local icons = { "󰽤 ", "󰽥 ", "󰽣 ", "󰽦 ", "󰽢 ", " " }
     local brightness = stdout:match("(%d+)%%")
-
     local icon = ramp_icon(icons, tonumber(brightness), 0, 100)
 
-    local brightness_string = icon..brightness.."%"
-
-    widget:set_markup(brightness_string)
+    widget:set_markup(icon)
 end)
 
 local mymem = awful.widget.watch("cat /proc/meminfo", 5, function(widget, stdout)
@@ -130,37 +127,46 @@ myvol, voltimer = awful.widget.watch("pamixer --get-volume", 60, function(widget
 end)
 
 criticalBattery = false
-local mybat = awful.widget.watch("sh -c 'acpi -b | grep -vP 'unav''", 5, function(widget, stdout)
-    cleaned = stdout:gsub(".*?rate information unavailable.*\r?\n","")
-    percentage = tonumber(cleaned:match("(%d*)%%"))
-    state = cleaned:match(": (.-),")
-    remaining = cleaned:match("%%, (.-):%d%d ")
+local mybat = awful.widget.watch("sh -c 'acpi -b | grep -vP 'unav''", 2, function(widget, stdout)
+    awful.spawn.easy_async("cat /sys/class/power_supply/BAT0/power_now", function(out)
+      state = stdout:match(": (.-),")
+      percentage = tonumber(stdout:match("(%d*)%%"))
 
-    if state == "Full" or state == "Not charging" then
-        widget:set_markup("󰂄 "..percentage.."% ")
-        criticalBattery = false
-    elseif state == "Charging" then
-        criticalBattery = false
-        icons = { "󰢜", "󰂇", "󰢝", "󰂊", "󰂄" }
-        icon = ramp_icon(icons, percentage, 15, 80).." "
-        widget:set_markup(set_fg(icon..percentage.."% "..remaining.." ", beautiful.green))
-    elseif state == "Discharging" then
-        awful.spawn.easy_async("cat /sys/class/power_supply/BAT0/power_now", function(stdout)
-            rate = string.format("%0.1f", math.floor( stdout / 100000 ) / 10).."W "
-            if percentage <= 15 then
-                if criticalBattery == false then
-                  criticalBattery = true
-                  awful.spawn("dunstify -u 2 'Low battery!'")
-                end
-                widget:set_markup(set_fg(set_bg("󰂃 "..percentage.."% "..remaining.." "..rate, beautiful.red), beautiful.bg).." ")
-            else
-                icons = { "󰁺", "󰁼", "󰁾", "󰂁", "󰁹" }
-                icon = ramp_icon(icons, percentage, 15, 80).." "
+      icon, remaining, rate = "", "", ""
+      fg = beautiful.fg
+      bg = beautiful.bg
 
-                widget:set_markup(set_fg(icon..percentage.."% "..remaining.." "..rate, beautiful.yellow))
-            end
-        end)
-    end
+      if state == "Full" or state == "Not charging" then
+        icon = "󰂄 "
+        criticalBattery = false
+      else
+        remaining = stdout:match("%%, (.-):%d%d ").." "
+        if state == "Charging" then
+          icons = { "󰢜", "󰂇", "󰢝", "󰂊", "󰂄" }
+          icon = ramp_icon(icons, percentage, 15, 80).." "
+          criticalBattery = false
+          fg = beautiful.green
+        elseif state == "Discharging" then
+          rate = string.format("%0.1f", math.floor( out / 100000 ) / 10).."W "
+          if percentage <= 15 then
+              if criticalBattery == false then
+                criticalBattery = true
+                awful.spawn("dunstify -u 2 'Low battery!'")
+              end
+
+              icon = " 󰂃 "
+              bg = beautiful.red
+              fg = beautiful.bg
+          else
+              icons = { "󰁺", "󰁼", "󰁾", "󰂁", "󰁹" }
+              icon = ramp_icon(icons, percentage, 15, 80).." "
+              fg = beautiful.yellow
+          end
+        end
+      end
+
+      widget:set_markup(set_fg(set_bg(icon..percentage.."% "..remaining..rate, bg), fg))
+    end)
 end)
 
 local tasklist_buttons = gears.table.join(
@@ -299,7 +305,7 @@ function create_menubar(s)
                 {
                     id     = 'clienticon',
                     widget = awful.widget.clienticon,
-                    forced_width = dpi(30)
+                    forced_width = dpi(20)
                 },
                 margins = dpi(1),
                 widget  = wibox.container.margin
