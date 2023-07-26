@@ -14,15 +14,12 @@
     ./neovim
     ./rofi.nix
     ./vars.nix
-
     ./xorg
-    # ./wayland
   ];
 
   home.packages = with pkgs; [
     spotify
-    /* steam */
-    eww
+    steam
 
     # modern unix
     gdu
@@ -30,6 +27,7 @@
     fd
     bat
     exa
+    # eww
 
     # minecraft
     prismlauncher
