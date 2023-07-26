@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     userName = "soulsoiledit";
-    userEmail = "creepachu21@gmail.com";
+    userEmail = "aryankevat@proton.me";
     extraConfig = {
       init.defaultBranch = "main";
     };
