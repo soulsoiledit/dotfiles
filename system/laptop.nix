@@ -1,27 +1,27 @@
 { config, pkgs, ... }:
 
 {
-  # Laptop Power Management
   boot = {
     kernelParams = [
       "amd_pstate=active"
     ];
-
-    blacklistedKernelModules = [ "acpi_cpufreq_init" ];
-    kernelModules = [ "amd_pstate" ];
   };
 
-  powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "powersave";
-
-  services.asusd = {
+  powerManagement = {
     enable = true;
-    enableUserService = true;
+    cpuFreqGovernor = "performance";
   };
 
-  services.power-profiles-daemon.enable = true;
+  services = {
+    power-profiles-daemon.enable = true;
 
-  services.supergfxd = {
-    settings = null;
+    asusd = {
+      enable = true;
+      enableUserService = true;
+    };
+
+    supergfxd = {
+      enable = true;
+    };
   };
 }

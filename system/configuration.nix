@@ -47,7 +47,7 @@
   programs.dconf.enable = true;
 
   fonts = {
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fonts = with pkgs; [
       source-han-sans
       (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
@@ -62,7 +62,7 @@
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "video" "networkmanager" "input" "uinput" ];
+    extraGroups = [ "wheel" "video" "networkmanager" ];
   };
 
   programs.fish.enable = true;
@@ -74,6 +74,11 @@
     pulse.enable = true;
   };
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Experimental = true;
+    };
+  };
 
   services.xserver = {
     enable = true;
@@ -104,4 +109,6 @@
   programs.command-not-found.enable = false; # temporary
   hardware.logitech.wireless.enable = true;
   services.ratbagd.enable = true;
+
+  hardware.opengl.driSupport32Bit = true;
 }
