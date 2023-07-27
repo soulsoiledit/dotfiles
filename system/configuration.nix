@@ -48,7 +48,7 @@
 
   fonts = {
     enableDefaultPackages = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       source-han-sans
       (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
     ];
