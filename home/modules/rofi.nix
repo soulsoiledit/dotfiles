@@ -5,7 +5,7 @@
     enable = true;
 
     font = "FantasqueSansM Nerd Font 24";
-    terminal = "${lib.getExe pkgs.alacritty}";
+    terminal = "${pkgs.alacritty}/bin/alacritty";
 
     extraConfig = {
       show-icons = true;

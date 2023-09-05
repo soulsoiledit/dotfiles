@@ -2,7 +2,7 @@
 
 {
   services.dunst = {
-    enable = true;
+    # enable = true;
 
     iconTheme = {
       name = "Adwaita";
