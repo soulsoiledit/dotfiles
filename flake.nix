@@ -27,7 +27,7 @@
       flake = false;
     };
 
-    spotify-adblock.url = "https://github.com/NL-TCH/nur-packages";
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: {
