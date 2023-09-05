@@ -9,7 +9,7 @@
 
   powerManagement = {
     enable = true;
-    cpuFreqGovernor = "performance";
+    cpuFreqGovernor = "powersave";
   };
 
   services = {

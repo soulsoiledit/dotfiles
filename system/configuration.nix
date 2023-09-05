@@ -93,7 +93,7 @@
     restart = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.greetd.tuigreet} -t -c ${lib.getExe pkgs.sx}";
+        command = "${lib.getExe pkgs.greetd.tuigreet} -t -c ${pkgs.sx}/bin/sx";
       };
     };
   };
@@ -111,4 +111,9 @@
   services.ratbagd.enable = true;
 
   hardware.opengl.driSupport32Bit = true;
+
+  xdg.portal = {
+      enable = true;
+      extraPortals = [ pkgs.xdg-desktop-portal-hyprland ]; 
+  };
 }
