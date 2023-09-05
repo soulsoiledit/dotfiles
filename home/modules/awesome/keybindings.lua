@@ -87,7 +87,6 @@ globalkeys = gears.table.join(
 
     awful.key({}, "XF86AudioPlay", function() awful.spawn(playerctl .. "play-pause") end),
     awful.key({}, "XF86AudioPause", function() awful.spawn(playerctl .. "play-pause") end),
-    awful.key({}, "XF86AudioMedia", function() awful.spawn(playerctl .. "play-pause") end),
     awful.key({}, "XF86AudioPrev", function() awful.spawn(playerctl .. "previous") end),
     awful.key({}, "XF86AudioNext", function() awful.spawn(playerctl .. "next") end),
 

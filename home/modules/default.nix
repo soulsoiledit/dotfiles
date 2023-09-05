@@ -1,6 +1,8 @@
-{ config, pkgs, lib, inputs, master, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
-{
+let
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+in {
   imports = [
     ./alacritty.nix
     ./direnv.nix
@@ -9,17 +11,18 @@
     ./gammastep.nix
     ./git.nix
     ./gtk.nix
-    ./imv.nix
     ./lf.nix
     ./neovim
     ./rofi.nix
     ./vars.nix
     ./xorg
+    ./hyprland.nix
+    inputs.spicetify-nix.homeManagerModule
   ];
 
   home.packages = with pkgs; [
-    spotify
     steam
+    discord
 
     # modern unix
     gdu
@@ -46,7 +49,23 @@
     xplr
   ];
 
+  programs.spicetify = {
+    enable = true;
+    # theme = spicePkgs.themes.catppuccin-mocha;
+    # colorScheme = "green";
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      autoSkipVideo
+      shuffle
+
+      adblock
+      hidePodcasts
+      songStats
+    ];
+  };
+
   fonts.fontconfig.enable = true;
+  programs.imv.enable = true;
 
   programs.starship.enable = true;
   programs.firefox = {
@@ -79,7 +98,7 @@
   };
 
   programs.discocss = {
-    enable = true;
+    # enable = true;
     discordPackage = pkgs.discord.override { nss = pkgs.nss_latest; };
     discordAlias = true;
     css = builtins.readFile inputs.catppuccin-discord;

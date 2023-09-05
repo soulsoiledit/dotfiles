@@ -1,128 +1,128 @@
 {
   "nodes": {
-    "catppuccin-alacritty": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1664239314,
-        "narHash": "sha256-w9XVtEe7TqzxxGUCDUR9BFkzLZjG8XrplXJ3lX6f+x0=",
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "rev": "3c808cbb4f9c87be43ba5241bc57373c793d2f17",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "type": "github"
-      }
-    },
-    "catppuccin-btop": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1686163899,
-        "narHash": "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=",
-        "owner": "catppuccin",
-        "repo": "btop",
-        "rev": "89ff712eb62747491a76a7902c475007244ff202",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "btop",
-        "type": "github"
-      }
-    },
-    "catppuccin-discord": {
-      "flake": false,
-      "locked": {
-        "narHash": "sha256-q5cjaiDEfU5K7fbW6YBKXN7eXnADjT2VuN0QUeUzFc8=",
-        "type": "file",
-        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
-      },
-      "original": {
-        "type": "file",
-        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
-      }
-    },
-    "catppuccin-zathura": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1664239314,
-        "narHash": "sha256-5Vh2bVabuBluVCJm9vfdnjnk32CtsK7wGIWM5+XnacM=",
-        "owner": "catppuccin",
-        "repo": "zathura",
-        "rev": "d85d8750acd0b0247aa10e0653998180391110a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "zathura",
-        "type": "github"
-      }
-    },
-    "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1690303752,
-        "narHash": "sha256-2YiwFHQERGoaORNORmsdmVlPD8CVVwlwbV2+f77sFhg=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "ba2c0737cc848db03470828fdb5e86df75ed42a8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
-    "nixpkgs": {
-      "locked": {
-        "lastModified": 1690272529,
-        "narHash": "sha256-MakzcKXEdv/I4qJUtq/k/eG+rVmyOZLnYNC2w1mB59Y=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "ef99fa5c5ed624460217c31ac4271cfb5cb2502c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nur": {
-      "locked": {
-        "lastModified": 1690430767,
-        "narHash": "sha256-Fvg8DH9UANk0Gqq/Ac9eT6KMCiXWeXYy2la9NN9zgjE=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "d86c92c7c536f0f260885958eef6581ef029358c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
-      }
-    },
-    "root": {
-      "inputs": {
-        "catppuccin-alacritty": "catppuccin-alacritty",
-        "catppuccin-btop": "catppuccin-btop",
-        "catppuccin-discord": "catppuccin-discord",
-        "catppuccin-zathura": "catppuccin-zathura",
-        "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs",
-        "nur": "nur"
-      }
-    }
+  "catppuccin-alacritty": {
+  "flake": false,
+  "locked": {
+  "lastModified": 1664239314,
+  "narHash": "sha256-w9XVtEe7TqzxxGUCDUR9BFkzLZjG8XrplXJ3lX6f+x0=",
+  "owner": "catppuccin",
+  "repo": "alacritty",
+  "rev": "3c808cbb4f9c87be43ba5241bc57373c793d2f17",
+  "type": "github"
+  },
+  "original": {
+  "owner": "catppuccin",
+  "repo": "alacritty",
+  "type": "github"
+  }
+  },
+  "catppuccin-btop": {
+  "flake": false,
+  "locked": {
+  "lastModified": 1686163899,
+  "narHash": "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=",
+  "owner": "catppuccin",
+  "repo": "btop",
+  "rev": "89ff712eb62747491a76a7902c475007244ff202",
+  "type": "github"
+  },
+  "original": {
+  "owner": "catppuccin",
+  "repo": "btop",
+  "type": "github"
+  }
+  },
+  "catppuccin-discord": {
+  "flake": false,
+  "locked": {
+  "narHash": "sha256-7iDwDiOWIk9RyfGQajEUTBs4As6Ctm7oqbGz5xfi2ik=",
+  "type": "file",
+  "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
+  },
+  "original": {
+  "type": "file",
+  "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
+  }
+  },
+  "catppuccin-zathura": {
+  "flake": false,
+  "locked": {
+  "lastModified": 1664239314,
+  "narHash": "sha256-5Vh2bVabuBluVCJm9vfdnjnk32CtsK7wGIWM5+XnacM=",
+  "owner": "catppuccin",
+  "repo": "zathura",
+  "rev": "d85d8750acd0b0247aa10e0653998180391110a4",
+  "type": "github"
+  },
+  "original": {
+  "owner": "catppuccin",
+  "repo": "zathura",
+  "type": "github"
+  }
+  },
+  "home-manager": {
+  "inputs": {
+  "nixpkgs": [
+  "nixpkgs"
+  ]
+  },
+  "locked": {
+  "lastModified": 1691599243,
+  "narHash": "sha256-Lw3VRCFFbjQLxZu37rL/o2RBb95VG8iThEhEkqo3SV8=",
+  "owner": "nix-community",
+  "repo": "home-manager",
+  "rev": "a8f8f48320c64bd4e3a266a850bbfde2c6fe3a04",
+  "type": "github"
+  },
+  "original": {
+  "owner": "nix-community",
+  "repo": "home-manager",
+  "type": "github"
+  }
+  },
+  "nixpkgs": {
+  "locked": {
+  "lastModified": 1691472822,
+  "narHash": "sha256-XVfYZ2oB3lNPVq6sHCY9WkdQ8lHoIDzzbpg8bB6oBxA=",
+  "owner": "nixos",
+  "repo": "nixpkgs",
+  "rev": "41c7605718399dcfa53dd7083793b6ae3bc969ff",
+  "type": "github"
+  },
+  "original": {
+  "owner": "nixos",
+  "ref": "nixos-unstable",
+  "repo": "nixpkgs",
+  "type": "github"
+  }
+  },
+  "nur": {
+  "locked": {
+  "lastModified": 1691615229,
+  "narHash": "sha256-MdNFFmNAIM3kV3gQrui3RLcq8L6lbaj5JKBMFsphS38=",
+  "owner": "nix-community",
+  "repo": "NUR",
+  "rev": "2366bfc7cf3caa0cbd6a05bb6f2c9befc30e80b8",
+  "type": "github"
+  },
+  "original": {
+  "owner": "nix-community",
+  "repo": "NUR",
+  "type": "github"
+  }
+  },
+  "root": {
+  "inputs": {
+  "catppuccin-alacritty": "catppuccin-alacritty",
+  "catppuccin-btop": "catppuccin-btop",
+  "catppuccin-discord": "catppuccin-discord",
+  "catppuccin-zathura": "catppuccin-zathura",
+  "home-manager": "home-manager",
+  "nixpkgs": "nixpkgs",
+  "nur": "nur"
+  }
+  }
   },
   "root": "root",
   "version": 7
-}
+  }
