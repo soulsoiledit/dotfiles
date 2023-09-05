@@ -12,20 +12,18 @@
     extraPackages = with pkgs; [
       gcc
       gnumake
-      universal-ctags
-      code-minimap
-      ripgrep
-      fd
+      unzip
+      cargo
 
       pandoc
-
-      nil
-      sumneko-lua-language-server
+      ripgrep
+      fd
     ];
 
-    plugins = with pkgs.vimPlugins; [
-      markdown-preview-nvim
-    ];
+    # plugins = with pkgs.vimPlugins; [
+    #   # mason-nvim
+    #   # markdown-preview-nvim
+    # ];
   };
 
   programs.lazygit.enable = true;

@@ -43,6 +43,7 @@
       tf = "cd ~/.local/share/Trash/files/";
 
       nc = "$EDITOR /etc/nixos/system/configuration.nix -c 'cd /etc/nixos'";
+      nb = "sudo nixos-rebuild boot";
       ns = "sudo nixos-rebuild switch";
       hc = "$EDITOR /etc/nixos/home/home.nix -c 'cd /etc/nixos'";
       hs = "home-manager switch --flake /etc/nixos";
