@@ -1,128 +1,181 @@
 {
   "nodes": {
-  "catppuccin-alacritty": {
-  "flake": false,
-  "locked": {
-  "lastModified": 1664239314,
-  "narHash": "sha256-w9XVtEe7TqzxxGUCDUR9BFkzLZjG8XrplXJ3lX6f+x0=",
-  "owner": "catppuccin",
-  "repo": "alacritty",
-  "rev": "3c808cbb4f9c87be43ba5241bc57373c793d2f17",
-  "type": "github"
-  },
-  "original": {
-  "owner": "catppuccin",
-  "repo": "alacritty",
-  "type": "github"
-  }
-  },
-  "catppuccin-btop": {
-  "flake": false,
-  "locked": {
-  "lastModified": 1686163899,
-  "narHash": "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=",
-  "owner": "catppuccin",
-  "repo": "btop",
-  "rev": "89ff712eb62747491a76a7902c475007244ff202",
-  "type": "github"
-  },
-  "original": {
-  "owner": "catppuccin",
-  "repo": "btop",
-  "type": "github"
-  }
-  },
-  "catppuccin-discord": {
-  "flake": false,
-  "locked": {
-  "narHash": "sha256-7iDwDiOWIk9RyfGQajEUTBs4As6Ctm7oqbGz5xfi2ik=",
-  "type": "file",
-  "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
-  },
-  "original": {
-  "type": "file",
-  "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
-  }
-  },
-  "catppuccin-zathura": {
-  "flake": false,
-  "locked": {
-  "lastModified": 1664239314,
-  "narHash": "sha256-5Vh2bVabuBluVCJm9vfdnjnk32CtsK7wGIWM5+XnacM=",
-  "owner": "catppuccin",
-  "repo": "zathura",
-  "rev": "d85d8750acd0b0247aa10e0653998180391110a4",
-  "type": "github"
-  },
-  "original": {
-  "owner": "catppuccin",
-  "repo": "zathura",
-  "type": "github"
-  }
-  },
-  "home-manager": {
-  "inputs": {
-  "nixpkgs": [
-  "nixpkgs"
-  ]
-  },
-  "locked": {
-  "lastModified": 1691599243,
-  "narHash": "sha256-Lw3VRCFFbjQLxZu37rL/o2RBb95VG8iThEhEkqo3SV8=",
-  "owner": "nix-community",
-  "repo": "home-manager",
-  "rev": "a8f8f48320c64bd4e3a266a850bbfde2c6fe3a04",
-  "type": "github"
-  },
-  "original": {
-  "owner": "nix-community",
-  "repo": "home-manager",
-  "type": "github"
-  }
-  },
-  "nixpkgs": {
-  "locked": {
-  "lastModified": 1691472822,
-  "narHash": "sha256-XVfYZ2oB3lNPVq6sHCY9WkdQ8lHoIDzzbpg8bB6oBxA=",
-  "owner": "nixos",
-  "repo": "nixpkgs",
-  "rev": "41c7605718399dcfa53dd7083793b6ae3bc969ff",
-  "type": "github"
-  },
-  "original": {
-  "owner": "nixos",
-  "ref": "nixos-unstable",
-  "repo": "nixpkgs",
-  "type": "github"
-  }
-  },
-  "nur": {
-  "locked": {
-  "lastModified": 1691615229,
-  "narHash": "sha256-MdNFFmNAIM3kV3gQrui3RLcq8L6lbaj5JKBMFsphS38=",
-  "owner": "nix-community",
-  "repo": "NUR",
-  "rev": "2366bfc7cf3caa0cbd6a05bb6f2c9befc30e80b8",
-  "type": "github"
-  },
-  "original": {
-  "owner": "nix-community",
-  "repo": "NUR",
-  "type": "github"
-  }
-  },
-  "root": {
-  "inputs": {
-  "catppuccin-alacritty": "catppuccin-alacritty",
-  "catppuccin-btop": "catppuccin-btop",
-  "catppuccin-discord": "catppuccin-discord",
-  "catppuccin-zathura": "catppuccin-zathura",
-  "home-manager": "home-manager",
-  "nixpkgs": "nixpkgs",
-  "nur": "nur"
-  }
-  }
+    "catppuccin-alacritty": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664239314,
+        "narHash": "sha256-w9XVtEe7TqzxxGUCDUR9BFkzLZjG8XrplXJ3lX6f+x0=",
+        "owner": "catppuccin",
+        "repo": "alacritty",
+        "rev": "3c808cbb4f9c87be43ba5241bc57373c793d2f17",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "alacritty",
+        "type": "github"
+      }
+    },
+    "catppuccin-btop": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1686163899,
+        "narHash": "sha256-J3UezOQMDdxpflGax0rGBF/XMiKqdqZXuX4KMVGTxFk=",
+        "owner": "catppuccin",
+        "repo": "btop",
+        "rev": "89ff712eb62747491a76a7902c475007244ff202",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "btop",
+        "type": "github"
+      }
+    },
+    "catppuccin-discord": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-s3h0XGGYpPSpnMnsEBrnK4MAeS3EpcrADUb5f4Oemzk=",
+        "type": "file",
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css"
+      }
+    },
+    "catppuccin-zathura": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1664239314,
+        "narHash": "sha256-5Vh2bVabuBluVCJm9vfdnjnk32CtsK7wGIWM5+XnacM=",
+        "owner": "catppuccin",
+        "repo": "zathura",
+        "rev": "d85d8750acd0b0247aa10e0653998180391110a4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "zathura",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1685518550,
+        "narHash": "sha256-o2d0KcvaXzTrPRIo0kOLV0/QXHhDQ5DTi+OxcjO8xqY=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "a1720a10a6cfe8234c0e93907ffe81be440f4cef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1693713564,
+        "narHash": "sha256-00w2uwb4O6Y1e2W5LG5UFyl1ZN3KFG7aoRdYEvT/BqA=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "8e49b883890ccb52c059abb152b00a416342ec1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1693663421,
+        "narHash": "sha256-ImMIlWE/idjcZAfxKK8sQA7A1Gi/O58u5/CJA+mxvl8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e56990880811a451abd32515698c712788be5720",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1686020360,
+        "narHash": "sha256-Wee7lIlZ6DIZHHLiNxU5KdYZQl0iprENXa/czzI6Cj4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4729ffac6fd12e26e5a8de002781ffc49b0e94b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "catppuccin-alacritty": "catppuccin-alacritty",
+        "catppuccin-btop": "catppuccin-btop",
+        "catppuccin-discord": "catppuccin-discord",
+        "catppuccin-zathura": "catppuccin-zathura",
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
+        "spicetify-nix": "spicetify-nix"
+      }
+    },
+    "spicetify-nix": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1693075322,
+        "narHash": "sha256-O/qmWiE23pzYMSKNhA74jfY1D5TyiJrHx35PYkRx9Gs=",
+        "owner": "the-argus",
+        "repo": "spicetify-nix",
+        "rev": "78495ade242ad155942c2e33e3930e4a05963f13",
+        "type": "github"
+      },
+      "original": {
+        "owner": "the-argus",
+        "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    }
   },
   "root": "root",
   "version": 7
-  }
+}
