@@ -10,6 +10,7 @@
     extraConfig = "";
 
     extraPackages = with pkgs; [
+      patchelf
       gcc
       gnumake
       unzip
