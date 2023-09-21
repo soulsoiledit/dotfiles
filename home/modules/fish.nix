@@ -1,6 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
+  programs.fzf.enable = true;
+  programs.starship.enable = true;
+
   programs.fish = {
     enable = true;
 
@@ -53,14 +56,9 @@
 
       ff = "fzf";
       de = "direnv edit .";
-    };
 
-    shellAliases = {
       btc = "bluetoothctl";
-      gdu = "gdu -i $HOME/.local/share/Steam/";
 
-      ls = "ls -h --color";
-      lh = "ls -Ah --color";
       "..." = "../..";
     };
   };
