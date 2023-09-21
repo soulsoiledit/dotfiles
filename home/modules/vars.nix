@@ -11,6 +11,7 @@
     NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
 
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
+    NIXOS_OZONE_WL = 1;
   };
 
   home.sessionPath = [
