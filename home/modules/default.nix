@@ -74,14 +74,12 @@ in {
       settings = {
         "browser.bookmarks.showMobileBookmarks" = true;
         "browser.urlbar.suggest.calculator" = true;
-        # "layout.css.devPixelsPerPx" = 2;
       };
     };
   };
-  programs.fzf.enable = true;
-
 
   home.pointerCursor = {
+    size = 24;
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
     gtk.enable = true;
@@ -114,13 +112,11 @@ in {
 
       proc_tree = true;
       proc_gradient = false;
-
       proc_filter_kernel = true;
     };
   };
 
   xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
-
   xdg.enable = true;
 
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/awesome;
