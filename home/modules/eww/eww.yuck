@@ -3,11 +3,11 @@
     :stacking "fg"
     :exclusive false
     :geometry (geometry :x "0px"
-                        :y "-20"
+                        :y "-25px"
                         :width "99%"
-                        :height "20"
+                        :height "25"
                         :anchor "top center")
-    (box
+    (centerbox :space-evenly false
       (topbar)
       (box :halign "center" tray)
       (bottombar)
@@ -19,14 +19,11 @@
     ;;   (image :path "./macchiato_squircle.png" :image-width 50 )
     ;; )
     ;; launcher
-    (box :orientation "h" :space-evenly false :halign "start"
+    (box :orientation "h" :space-evenly false
       (clock)
       (network_widget)
       (volume_widget)
-      ;; network
-
-      ;; volume
-      ;; backlight
+      (brightness_widget)
     )
 )
 
@@ -34,9 +31,8 @@
     (box :orientation "h" :space-evenly false :halign "end"
       (battery)
       (temper)
-      ;; memory
       (memory)
-      ;; cpu
+      (cpu)
     )
 )
 
@@ -52,25 +48,46 @@
 
 (defwidget clock []
   (box :class "clock" :orientation "h"
-    (label :text "${time}")
+    (label :text "󰃭 ${time}")
+  )
+)
+
+(defwidget brightness_widget []
+  (eventbox
+    :onscroll 
+      `if [[ {} == up ]]; 
+        then brightnessctl set 20%+;
+        else brightnessctl set 20%-;
+      fi;
+      eww update brightness=$(./scripts/brightness.sh)
+      `
+    (box :orientation "h"
+      (label :text "${brightness} ")
+    )
   )
 )
 
 (defwidget battery []
-  (box :class "day" :orientation "h"
-    (label :text "${bat}")
+  (box :class "battery" :orientation "h"
+    (label :text "󰁹 ${bat} ")
   )
 )
 
 (defwidget temper []
-  (box :class "day" :orientation "h"
-    (label :text "${temp}")
+  (box :class "temperature" :orientation "h"
+    (label :text "󰔏 ${temp}°C ")
   )
 )
 
 (defwidget memory []
   (box :orientation "h"
-    (label :text "${memory}")
+    (label :text "󰍛 ${memory}% ")
+  )
+)
+
+(defwidget cpu []
+  (box :orientation "h"
+    (label :text " ${round(EWW_CPU['avg'], 1)}% ")
   )
 )
 
@@ -78,44 +95,38 @@
   (button
     :class { network == "up" ? "net_up" : "net_down" }
     :onclick "alacritty -e nmtui &"
-    (label :text { (network == "up") ? "󰖩" : "󰖪" })
+    (label :text { (network == "up") ? "󰖩 " : "󰖪 " })
   )
 )
 
 (defwidget volume_widget []
-  (button
-    ;; :class { volume =~ "\[MUTED\]" ? "vol_muted" : "vol_active" }
-    ;; :class { network == "up" ? "net_up" : "net_down" }
-    ;; :onclick "alacritty -e nmtui &"
-    ;; (label :text { (network == "up") ? "󰖩" : "󰖪" })
-    ;; (label :text { volume })
-    (label :text { volume })
+  (eventbox
+    :onscroll 
+      `if [[ {} == up ]]; 
+        then pamixer -i 5;
+        else pamixer -d 5;
+      fi;
+      eww update volume="$(./scripts/volume.sh)"
+      `
+    :onclick `pavucontrol &`
+    :onmiddleclick `pamixer -t; eww update volume="$(./scripts/volume.sh)"`
+
+    :tooltip `Muted = ${volume.mute}`
+    :onhover `eww update volume="$(./scripts/volume.sh)"`
+
+    (box :orientation "h" :space-evenly "false"
+      :class { volume.mute == "true" ? "vol_muted" : "vol_active" }
+      (label :text { volume.sink =~ 'bluez' ? "󰋋 " : "󰕾 " })
+      (label :text "${volume.volume}% ")
+    )
   )
 )
 
-(defpoll time :interval "1m"
-  `date "+%a %m-%d %H:%M "`)
-
-(defpoll bat :interval "1m"
-  `./scripts/battery.sh`
-)
-
-(defpoll temp :interval "1m"
-  `acpi -t | grep -vP '20.0' | grep -oP '\\d+.0'`)
-
-(defpoll network :interval "5s"
-  `cat /sys/class/net/wlan0/operstate`
-)
-
-(defpoll volume :interval "1s"
-  `wpctl get-volume @DEFAULT_AUDIO_SINK@`
-)
-
-(defpoll memory :interval "5s"
-  `./scripts/memory.sh`
-)
-
-(deflisten tray
-  :initial ""
-  "./scripts/tray.sh"
-)
+(defpoll time :interval "1m" `date "+%a %m-%d %H:%M "`)
+(defpoll bat :interval "1m" `./scripts/battery.sh`)
+(defpoll temp :interval "1m" `acpi -t | grep -vP '20.0' | grep -oP '\\d+.0'`)
+(defpoll network :interval "5s" `cat /sys/class/net/wlan0/operstate`)
+(defpoll memory :interval "5s" `./scripts/memory.sh`)
+(defpoll brightness :interval "1m" `./scripts/brightness.sh`)
+(defpoll volume :interval "15s" `./scripts/volume.sh`)
+(deflisten tray :initial "" "./scripts/tray.sh")
