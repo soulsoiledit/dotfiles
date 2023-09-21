@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 
 {
-
   xdg.configFile."alacritty/catppuccin-mocha.yml".source = "${inputs.catppuccin-alacritty}/catppuccin-mocha.yml";
 
   programs.alacritty = {
