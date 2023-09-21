@@ -3,8 +3,9 @@
 {
   programs.rofi = {
     enable = true;
+    package = pkgs.rofi-wayland;
 
-    font = "FantasqueSansM Nerd Font 24";
+    font = "FantasqueSansM Nerd Font 12";
     terminal = "${pkgs.alacritty}/bin/alacritty";
 
     extraConfig = {
