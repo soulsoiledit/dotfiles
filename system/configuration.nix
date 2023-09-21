@@ -73,19 +73,13 @@
     alsa.enable = true;
     pulse.enable = true;
   };
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.settings = {
-    General = {
-      Experimental = true;
-    };
-  };
-
-  services.xserver = {
+  hardware.bluetooth = {
     enable = true;
-    libinput.enable = true;
-    displayManager.sx.enable = true;
-
-    excludePackages = [ pkgs.xterm ];
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
   };
 
   programs.hyprland.enable = true;
