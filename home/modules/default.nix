@@ -122,5 +122,7 @@ in {
   xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
 
   xdg.enable = true;
-  xsession.enable = true;
+
+  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/awesome;
+  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/eww;
 }
