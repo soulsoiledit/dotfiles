@@ -88,12 +88,13 @@
     excludePackages = [ pkgs.xterm ];
   };
 
+  programs.hyprland.enable = true;
   services.greetd = {
     enable = true;
     restart = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.greetd.tuigreet} -t -c ${pkgs.sx}/bin/sx";
+        command = "${lib.getExe pkgs.greetd.tuigreet} -t -c Hyprland";
       };
     };
   };
@@ -116,4 +117,6 @@
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-hyprland ]; 
   };
+  security.pam.services.swaylock = {};
+
 }
