@@ -113,4 +113,6 @@
   };
   security.pam.services.swaylock = {};
 
+  services.cpupower-gui.enable = true;
+  services.upower.enable = true;
 }
