@@ -22,7 +22,7 @@ in {
 
   home.packages = with pkgs; [
     steam
-    discord
+    webcord-vencord
 
     # modern unix
     gdu
@@ -95,15 +95,7 @@ in {
     extraConfig = "include ${inputs.catppuccin-zathura+"/src/catppuccin-mocha"}";
   };
 
-  programs.discocss = {
-    # enable = true;
-    discordPackage = pkgs.discord.override { nss = pkgs.nss_latest; };
-    discordAlias = true;
-    css = builtins.readFile inputs.catppuccin-discord;
-  };
-
   programs.bottom.enable = true;
-
   programs.btop = {
     enable = true;
     settings = {
