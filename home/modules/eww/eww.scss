@@ -1,0 +1,45 @@
+* {
+  all: unset; //Unsets everything so you can style everything from scratch
+}
+
+$base: #1e1e2e;
+$text: #cdd6f4;
+$gray: #585b70;
+$red: #f38ba8;
+$orange: #fab387;
+$yellow: #f9e2af;
+$green: #a6e3a1;
+$blue: #89b4fa;
+$purple: #b4befe;
+
+.example {
+  background-color: $base;
+  color: $text;
+  font-family: "FantasqueSansMono Nerd Font";
+  font-size: 16px;
+  border-radius: 15px;
+}
+
+.clock {
+  border-radius: 15px;
+}
+
+.day {
+  font-size: 16px;
+}
+
+.net_up {
+  color: $text;
+}
+
+.net_down {
+  color: $gray;
+}
+
+.vol_active {
+  color: $text;
+}
+
+.vol_muted {
+  color: $gray;
+}
