@@ -4,6 +4,7 @@ let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
 in {
   imports = [
+    inputs.spicetify-nix.homeManagerModule
     ./alacritty.nix
     ./direnv.nix
     ./dunst.nix
@@ -15,39 +16,52 @@ in {
     ./neovim
     ./rofi.nix
     ./vars.nix
-    ./xorg
     ./hyprland.nix
-    inputs.spicetify-nix.homeManagerModule
   ];
 
   home.packages = with pkgs; [
     steam
     webcord-vencord
 
-    # modern unix
-    gdu
-    ripgrep
-    fd
-    bat
-    exa
-    # eww
-
-    # minecraft
+    # Minecraft
     prismlauncher
     cubiomes-viewer
 
-    # qol tools
+    # Modern Unix replacements
+    gdu
+    fd
+
+    xplr
+
+    # Qol Tools
     brightnessctl
     acpi
-    dunst
     playerctl
-    pamixer
     (p7zip.override { enableUnfree = true; })
 
     trash-cli
     nix-tree
-    xplr
+    xdg-utils
   ];
+
+  programs.nix-index.enable = true;
+
+  programs.ripgrep.enable = true;
+  programs.bat = {
+    enable = true;
+    config = {
+      pager = "less -FR";
+      theme = "base16";
+    };
+  };
+
+  programs.eza = {
+      enable = true;
+      enableAliases = true;
+      icons = true;
+  };
+
+  programs.xplr.enable = true;
 
   programs.spicetify = {
     enable = true;
@@ -67,7 +81,6 @@ in {
   fonts.fontconfig.enable = true;
   programs.imv.enable = true;
 
-  programs.starship.enable = true;
   programs.firefox = {
     enable = true;
     profiles.soil = {
@@ -87,15 +100,13 @@ in {
 
   services.playerctld.enable = true;
   services.udiskie.enable = true;
-  services.flameshot.enable = true;
-  systemd.user.startServices = "legacy";
+  systemd.user.startServices = "sd-switch";
 
   programs.zathura = {
     enable = true;
     extraConfig = "include ${inputs.catppuccin-zathura+"/src/catppuccin-mocha"}";
   };
 
-  programs.bottom.enable = true;
   programs.btop = {
     enable = true;
     settings = {
