@@ -23,6 +23,7 @@
   nix = {
     package = pkgs.nixUnstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
     gc = {
       automatic = true;
@@ -108,10 +109,10 @@
   hardware.opengl.driSupport32Bit = true;
 
   xdg.portal = {
-      enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-hyprland ]; 
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
   };
-  security.pam.services.swaylock = {};
+  security.pam.services.swaylock = { };
 
   services.cpupower-gui.enable = true;
   services.upower.enable = true;
