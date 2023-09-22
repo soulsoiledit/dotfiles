@@ -32,8 +32,22 @@
   };
 
   services.mako = {
-      enable = true;
-      defaultTimeout = 5000;
+    enable = true;
+    textColor = "#cdd6f4";
+    backgroundColor = "#313244";
+    borderColor = "#89b4fa";
+    borderRadius = 4;
+    font = "FantasqueSansM Nerd Font 10";
+    defaultTimeout = 5000;
+
+    width = 225;
+
+    extraConfig = ''
+      [urgency=high]
+      background-color=#89b4fa
+      text-color=#1e1e2e
+      border-color=#89b4fa
+    '';
   };
 
   programs.waybar = {
