@@ -1,5 +1,3 @@
-{ config, pkgs, lib, ... }:
-
 {
   programs.fzf.enable = true;
   programs.starship.enable = true;
@@ -60,6 +58,10 @@
       btc = "bluetoothctl";
 
       "..." = "../..";
+
+      lsa = "ls -a";
+      lsl = "ls -l";
+      lsal = "ls -al";
     };
   };
 }
