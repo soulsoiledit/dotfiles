@@ -2,12 +2,13 @@
 
 let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-in {
+in
+{
   imports = [
     inputs.spicetify-nix.homeManagerModule
     ./alacritty.nix
     ./direnv.nix
-    ./dunst.nix
+    # ./dunst.nix
     ./fish.nix
     ./gammastep.nix
     ./git.nix
@@ -56,9 +57,9 @@ in {
   };
 
   programs.eza = {
-      enable = true;
-      enableAliases = true;
-      icons = true;
+    enable = true;
+    enableAliases = true;
+    icons = true;
   };
 
   programs.xplr.enable = true;

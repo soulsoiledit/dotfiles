@@ -51,36 +51,36 @@
   };
 
   programs.waybar = {
-      enable = true;
-      settings = {
-        tray = {
-          layer = "top";
-          position = "top";
-          height = 25;
-          width = 150;
-          exclusive = true;
-          margin-top = 4;
+    enable = true;
+    settings = {
+      tray = {
+        layer = "top";
+        position = "top";
+        height = 25;
+        width = 150;
+        exclusive = true;
+        margin-top = 4;
 
-          modules-center = [ "tray" ];
-          "tray" = {
-            icon-size = 20;
-            spacing = 5;
-          };
+        modules-center = [ "tray" ];
+        "tray" = {
+          icon-size = 20;
+          spacing = 5;
         };
       };
-      style = ''
-        * {
-          font-family: FantasqueSansM Nerd Font, monospace;
-          font-size: 10px;
-        }
-
-        #tray, #waybar {
-          background: none;
-          border-bottom: none;
-        }
-      '';
     };
-  
+    style = ''
+      * {
+        font-family: FantasqueSansM Nerd Font, monospace;
+        font-size: 10px;
+      }
+
+      #tray, #waybar {
+        background: none;
+        border-bottom: none;
+      }
+    '';
+  };
+
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
@@ -94,7 +94,7 @@
   };
 
   services.clipman = {
-      enable = true;
+    enable = true;
   };
 
 
