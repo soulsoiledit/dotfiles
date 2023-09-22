@@ -110,8 +110,6 @@
       `
     :onclick `pavucontrol &`
     :onmiddleclick `pamixer -t; eww update volume="$(./scripts/volume.sh)"`
-
-    :tooltip `Muted = ${volume.mute}`
     :onhover `eww update volume="$(./scripts/volume.sh)"`
 
     (box :orientation "h" :space-evenly "false"
