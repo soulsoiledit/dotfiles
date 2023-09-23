@@ -25,10 +25,10 @@
         background = "1e1e2eff";
         text = "cdd6f4ff";
         border = "89b4faff";
-        
+
         selection = "313244ff";
         selection-text = "cdd6f4ff";
-       
+
         selection-match = "a6e3a1ff";
         match = "a6e3a1ff";
       };
