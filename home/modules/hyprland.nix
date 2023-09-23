@@ -36,7 +36,7 @@
     backgroundColor = "#1e1e2e";
     textColor = "#cdd6f4";
     borderColor = "#89b4fa";
-    progressColor= "over #313244";
+    progressColor = "over #313244";
     borderRadius = 4;
     font = "FantasqueSansM Nerd Font 10";
     defaultTimeout = 5000;
