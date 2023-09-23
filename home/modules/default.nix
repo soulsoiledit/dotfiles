@@ -15,7 +15,7 @@ in
     ./gtk.nix
     ./lf.nix
     ./neovim
-    ./rofi.nix
+    ./launcher.nix
     ./vars.nix
     ./hyprland.nix
   ];

@@ -33,14 +33,15 @@
 
   services.mako = {
     enable = true;
+    backgroundColor = "#1e1e2e";
     textColor = "#cdd6f4";
-    backgroundColor = "#313244";
     borderColor = "#89b4fa";
+    progressColor= "over #313244";
     borderRadius = 4;
     font = "FantasqueSansM Nerd Font 10";
     defaultTimeout = 5000;
 
-    width = 225;
+    width = 250;
 
     extraConfig = ''
       [urgency=high]
