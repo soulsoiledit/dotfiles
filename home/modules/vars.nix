@@ -3,8 +3,7 @@
 {
   home.sessionVariables = {
     EDITOR = "nvim";
-    PAGER = "nvim -R";
-    GIT_PAGER = "nvim -R";
+    PAGER = "bat";
     MANPAGER = "nvim +Man!";
 
     "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot='${config.xdg.configHome}/java'";
