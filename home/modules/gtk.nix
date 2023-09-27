@@ -11,7 +11,7 @@
 
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.papirus-maia-icon-theme;
+      package = pkgs.papirus-icon-theme;
     };
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-3.0/gtk2rc";
