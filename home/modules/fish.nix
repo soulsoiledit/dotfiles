@@ -1,6 +1,12 @@
+{ config, ... }:
+
 {
   programs.fzf.enable = true;
   programs.starship.enable = true;
+
+  programs.hyfetch = {
+      enable = true;
+  };
 
   programs.direnv = {
     enable = true;
