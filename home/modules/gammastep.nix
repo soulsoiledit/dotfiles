@@ -1,6 +1,7 @@
 {
-  services.redshift = {
+  services.gammastep = {
     enable = true;
+    tray = true;
     latitude = "39";
     longitude = "-98";
     temperature = {
