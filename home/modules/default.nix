@@ -7,8 +7,6 @@ in
   imports = [
     inputs.spicetify-nix.homeManagerModule
     ./alacritty.nix
-    ./direnv.nix
-    # ./dunst.nix
     ./fish.nix
     ./gammastep.nix
     ./git.nix
@@ -16,13 +14,13 @@ in
     ./lf.nix
     ./neovim
     ./launcher.nix
-    ./vars.nix
     ./hyprland.nix
   ];
 
   home.packages = with pkgs; [
     steam
     webcord-vencord
+    armcord
 
     # Minecraft
     prismlauncher
@@ -31,8 +29,6 @@ in
     # Modern Unix replacements
     gdu
     fd
-
-    xplr
 
     # Qol Tools
     brightnessctl
@@ -66,8 +62,6 @@ in
 
   programs.spicetify = {
     enable = true;
-    # theme = spicePkgs.themes.catppuccin-mocha;
-    # colorScheme = "green";
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplay
       autoSkipVideo
