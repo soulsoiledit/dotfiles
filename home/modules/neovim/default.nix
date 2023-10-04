@@ -15,10 +15,6 @@
       gnumake
       unzip
       cargo
-
-      pandoc
-      ripgrep
-      fd
     ];
 
     # plugins = with pkgs.vimPlugins; [
