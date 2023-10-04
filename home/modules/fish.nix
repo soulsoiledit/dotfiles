@@ -5,7 +5,7 @@
   programs.starship.enable = true;
 
   programs.hyfetch = {
-      enable = true;
+    enable = true;
   };
 
   programs.direnv = {
@@ -84,13 +84,7 @@
       ff = "fzf";
       de = "direnv edit .";
 
-      btc = "bluetoothctl";
-
       "..." = "../..";
-
-      lsa = "ls -a";
-      lsl = "ls -l";
-      lsal = "ls -al";
     };
   };
 }
