@@ -34,38 +34,16 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit =
-      ''
-        bind \cn fzf-cd-widget
-
-        set fish_greeting
-        fish_config theme choose "Catppuccin Mocha"
-      '';
-
-    functions = {
-      f = ''
-        set tmp (mktemp)
-          lf -last-dir-path=$tmp $argv
-          if test -f "$tmp"
-            set dir (cat $tmp)
-            rm -f $tmp
-            if test -d "$dir"
-              if test "$dir" != (pwd)
-              cd $dir
-            end
-          end
-        end
-      '';
-    };
+    interactiveShellInit = ''
+      set fish_greeting
+      fish_config theme choose "Catppuccin Mocha"
+    '';
 
     shellAbbrs = {
       v = "nvim";
       s = "sudo";
-
-      bt = "btop";
-
+      f = "ya";
       g = "git";
-
 
       tp = "trash-put";
       td = "trash-rm";

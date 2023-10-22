@@ -11,7 +11,7 @@ in
     ./gammastep.nix
     ./git.nix
     ./gtk.nix
-    ./lf.nix
+    ./fm.nix
     ./neovim
     ./launcher.nix
     ./hyprland.nix
@@ -57,8 +57,6 @@ in
     enableAliases = true;
     icons = true;
   };
-
-  programs.xplr.enable = true;
 
   programs.spicetify = {
     enable = true;
