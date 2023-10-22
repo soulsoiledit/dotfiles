@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -27,7 +27,7 @@
     settings = {
       source = "./realconfig.conf";
     };
-    systemdIntegration = true;
+    systemd.enable = true;
     xwayland.enable = true;
   };
 
@@ -60,7 +60,7 @@
         height = 25;
         width = 150;
         exclusive = true;
-        margin-top = 4;
+        margin-top = 0;
 
         modules-center = [ "tray" ];
         "tray" = {

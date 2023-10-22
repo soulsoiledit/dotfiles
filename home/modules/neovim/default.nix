@@ -1,4 +1,4 @@
-{ lib, pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim = {
@@ -18,11 +18,9 @@
     ];
 
     # plugins = with pkgs.vimPlugins; [
-    #   # mason-nvim
     #   # markdown-preview-nvim
     # ];
   };
 
   programs.lazygit.enable = true;
-  programs.gh.enable = true;
 }
