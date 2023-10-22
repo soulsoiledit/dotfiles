@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 let
   spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
@@ -8,7 +8,6 @@ in
     inputs.spicetify-nix.homeManagerModule
     ./alacritty.nix
     ./fish.nix
-    ./gammastep.nix
     ./git.nix
     ./gtk.nix
     ./fm.nix
@@ -20,7 +19,7 @@ in
   home.packages = with pkgs; [
     steam
     webcord-vencord
-    armcord
+    # armcord
 
     # Minecraft
     prismlauncher
@@ -39,6 +38,7 @@ in
     trash-cli
     nix-tree
     xdg-utils
+    steam-run
   ];
 
   programs.nix-index.enable = true;
@@ -112,8 +112,8 @@ in
     };
   };
 
-  xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
   xdg.enable = true;
+  xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
 
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/awesome;
   xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/eww;

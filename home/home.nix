@@ -1,27 +1,11 @@
-{ config, pkgs, ... }:
-
-# TODO
-# center block?
-#   song name
-
-# work on spotify w/ playerctl module
-# work on power menu
-# work on quick app menu
-
-# keyboard brightness notification
-# find good breathing rainbow led mode
-# fix aura conf
-# add refresh rate swapping
-# add cpu profile swapping
-# add other asusctl config file options and PR
-
-# window border?
-# window transparency?
-# window blur?
+# Define asusctl config in Nix
+# - Find good breathing rainbow led mode
+# - Keyboard brightness notification
 
 {
   programs.home-manager.enable = true;
-  nixpkgs.config.allowUnfreePredicate = (pkg: true);
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
 
   home = {
     username = "soil";
