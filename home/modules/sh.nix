@@ -1,8 +1,10 @@
-{ config, ... }:
+{ inputs, config, ... }:
 
 {
   programs.fzf.enable = true;
+  programs.ripgrep.enable = true;
   programs.starship.enable = true;
+  programs.nix-index.enable = true;
 
   programs.hyfetch = {
     enable = true;
@@ -13,16 +15,42 @@
     nix-direnv.enable = true;
   };
 
+  programs.btop = {
+    enable = true;
+    settings = {
+      color_theme = "catppuccin_mocha.theme";
+      vim_keys = true;
+
+      proc_tree = true;
+      proc_gradient = false;
+      proc_filter_kernel = true;
+    };
+  };
+
+  xdg.enable = true;
+  xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
+
+  programs.bat = {
+    enable = true;
+    config = {
+      pager = "less -FR";
+      theme = "base16";
+    };
+  };
+
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+    icons = true;
+  };
+
   home.sessionVariables = {
     EDITOR = "nvim";
     PAGER = "bat";
     MANPAGER = "nvim +Man!";
 
-    "_JAVA_OPTIONS" = "-Djava.util.prefs.userRoot='${config.xdg.configHome}/java'";
     NPM_CONFIG_USERCONFIG = "${config.xdg.configHome}/npm/npmrc";
-
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
-    NIXOS_OZONE_WL = 1;
   };
 
   home.sessionPath = [
@@ -34,9 +62,10 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = ''
+    interactiveShellInit = /* fish */ ''
       set fish_greeting
       fish_config theme choose "Catppuccin Mocha"
+      bind \cn fzf-cd-widget
     '';
 
     shellAbbrs = {
