@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -17,6 +17,7 @@
     # configDir = ./eww;
   };
 
+  xdg.configFile."hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/hyprland.conf;
   wayland.windowManager.hyprland = {
     enable = true;
     # plugins = with pkgs; [
@@ -24,12 +25,18 @@
     #   hyprland-autoname-workspaces
     #   hyprdim
     # ];
-    settings = {
-      source = "./realconfig.conf";
-    };
+
     systemd.enable = true;
     xwayland.enable = true;
   };
+
+  # programs.foot = {
+  #   enable = true;
+  #
+  #   settings = {
+  #     main.font = "FantasqueSansMono Nerd Font:size=16";
+  #   };
+  # };
 
   services.mako = {
     enable = true;
@@ -69,7 +76,7 @@
         };
       };
     };
-    style = ''
+    style = /* css */ ''
       * {
         font-family: FantasqueSansM Nerd Font, monospace;
         font-size: 10px;
@@ -94,10 +101,8 @@
     };
   };
 
-  services.clipman = {
-    enable = true;
-    systemdTarget = "hyprland-session.target";
-  };
+  services.clipman.enable = true;
+  services.cliphist.enable = true;
 
   services.gammastep = {
     enable = true;
@@ -108,35 +113,5 @@
       day = 6000;
       night = 3500;
     };
-  };
-
-  # programs.foot = {
-  #   enable = true;
-  #
-  #   settings = {
-  #     main.font = "FantasqueSansMono Nerd Font:size=16";
-  #   };
-  # };
-
-  services.swayidle = {
-    enable = true;
-    systemdTarget = "graphical-session.target";
-    timeouts = [
-      {
-        timeout = 5;
-        command = "brightnessctl set 20%-";
-        resumeCommand = "brightnessctl set 20%+";
-      }
-
-      {
-        timeout = 360;
-        command = "swaylock";
-      }
-
-      {
-        timeout = 3600;
-        command = "systemctl suspend";
-      }
-    ];
   };
 }
