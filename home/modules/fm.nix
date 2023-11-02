@@ -1,6 +1,9 @@
 { config, ... }:
 
 {
+  programs.mpv.enable = true;
+  programs.imv.enable = true;
+
   programs.xplr.enable = true;
 
   programs.yazi = {
@@ -106,6 +109,8 @@
         { on = [ "_" ]; exec = "link --relative"; desc = "Symlink the relative path of files"; }
         { on = [ "d" ]; exec = [ "remove" "escape --visual --select" ]; desc = "Move the files to the trash"; }
         { on = [ "D" ]; exec = [ "remove --permanently" "escape --visual --select" ]; desc = "Permanently delete the files"; }
+        { on = [ "T" ]; exec = [ "shell --block 'for file in $@; do trash-rm $(basename $file); done'" ]; desc = "Remove the files from trash"; }
+        { on = [ "T" ]; exec = [ "shell --block 'basename -a -z $@ | xargs -0 trash-rm'" ]; desc = "Remove the files from trash"; }
         { on = [ "a" ]; exec = "create"; desc = "Create a file or directory (ends with / for directories)"; }
         { on = [ "r" ]; exec = "rename"; desc = "Rename a file or directory"; }
         { on = [ ";" ]; exec = "shell"; desc = "Run a shell command"; }
@@ -285,6 +290,4 @@
       ];
     };
   };
-
-  programs.mpv.enable = true;
 }
