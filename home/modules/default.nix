@@ -7,21 +7,20 @@ in
   imports = [
     inputs.spicetify-nix.homeManagerModule
     ./alacritty.nix
-    ./fish.nix
     ./git.nix
     ./gtk.nix
     ./fm.nix
     ./neovim
     ./launcher.nix
     ./hyprland.nix
+    ./shell.nix
   ];
 
   home.packages = with pkgs; [
     steam
     webcord-vencord
-    # armcord
+    armcord
 
-    # Minecraft
     prismlauncher
     cubiomes-viewer
 
@@ -41,22 +40,6 @@ in
     steam-run
   ];
 
-  programs.nix-index.enable = true;
-
-  programs.ripgrep.enable = true;
-  programs.bat = {
-    enable = true;
-    config = {
-      pager = "less -FR";
-      theme = "base16";
-    };
-  };
-
-  programs.eza = {
-    enable = true;
-    enableAliases = true;
-    icons = true;
-  };
 
   programs.spicetify = {
     enable = true;
@@ -72,7 +55,6 @@ in
   };
 
   fonts.fontconfig.enable = true;
-  programs.imv.enable = true;
 
   programs.firefox = {
     enable = true;
@@ -99,21 +81,6 @@ in
     enable = true;
     extraConfig = "include ${inputs.catppuccin-zathura+"/src/catppuccin-mocha"}";
   };
-
-  programs.btop = {
-    enable = true;
-    settings = {
-      color_theme = "catppuccin_mocha.theme";
-      vim_keys = true;
-
-      proc_tree = true;
-      proc_gradient = false;
-      proc_filter_kernel = true;
-    };
-  };
-
-  xdg.enable = true;
-  xdg.configFile."btop/themes".source = "${inputs.catppuccin-btop}/themes";
 
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/awesome;
   xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/eww;
