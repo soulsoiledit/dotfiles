@@ -2,9 +2,12 @@
   programs.git = {
     enable = true;
     userName = "soulsoiledit";
-    userEmail = "30585327+soulsoiledit@users.noreply.github.com";
+    userEmail = "soulsoill@proton.me";
     extraConfig = {
+      core.editor = "nvim";
       init.defaultBranch = "main";
     };
   };
+
+  programs.lazygit.enable = true;
 }
