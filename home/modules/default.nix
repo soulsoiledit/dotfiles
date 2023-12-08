@@ -13,7 +13,7 @@ in
     ./neovim
     ./launcher.nix
     ./hyprland.nix
-    ./shell.nix
+    ./sh.nix
   ];
 
   home.packages = with pkgs; [
