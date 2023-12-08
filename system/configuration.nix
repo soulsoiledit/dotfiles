@@ -50,7 +50,8 @@
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      source-han-sans
+      noto-fonts-cjk
+      noto-fonts-extra
       (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
     ];
   };
