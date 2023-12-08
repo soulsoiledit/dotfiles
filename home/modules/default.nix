@@ -1,9 +1,11 @@
-{ config, pkgs, inputs, ... }:
-
-let
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-in
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: let
+  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+in {
   imports = [
     inputs.spicetify-nix.homeManagerModule
     ./alacritty.nix
@@ -21,7 +23,7 @@ in
     webcord-vencord
     armcord
 
-    (prismlauncher.override { glfw = pkgs.glfw-wayland-minecraft; } )
+    (prismlauncher.override {glfw = pkgs.glfw-wayland-minecraft;})
     cubiomes-viewer
 
     # Modern Unix replacements
@@ -32,14 +34,13 @@ in
     brightnessctl
     acpi
     playerctl
-    (p7zip.override { enableUnfree = true; })
+    (p7zip.override {enableUnfree = true;})
 
     trash-cli
     nix-tree
     xdg-utils
     steam-run
   ];
-
 
   programs.spicetify = {
     enable = true;
@@ -82,7 +83,7 @@ in
 
   programs.zathura = {
     enable = true;
-    extraConfig = "include ${inputs.catppuccin-zathura+"/src/catppuccin-mocha"}";
+    extraConfig = "include ${inputs.catppuccin-zathura + "/src/catppuccin-mocha"}";
   };
 
   xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/awesome;

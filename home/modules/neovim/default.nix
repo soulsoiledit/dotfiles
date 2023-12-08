@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -18,7 +16,7 @@
       # nix
       nil
       alejandra
-      
+
       # lua
       lua-language-server
       stylua

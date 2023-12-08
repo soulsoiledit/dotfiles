@@ -1,6 +1,8 @@
-{ inputs, config, ... }:
-
 {
+  inputs,
+  config,
+  ...
+}: {
   programs.fzf.enable = true;
   programs.ripgrep.enable = true;
   programs.starship.enable = true;
@@ -62,11 +64,15 @@
   programs.fish = {
     enable = true;
 
-    interactiveShellInit = /* fish */ ''
-      set fish_greeting
-      fish_config theme choose "Catppuccin Mocha"
-      bind \cn fzf-cd-widget
-    '';
+    interactiveShellInit =
+      /*
+      fish
+      */
+      ''
+        set fish_greeting
+        fish_config theme choose "Catppuccin Mocha"
+        bind \cn fzf-cd-widget
+      '';
 
     shellAbbrs = {
       v = "nvim";

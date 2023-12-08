@@ -10,34 +10,34 @@
     cpuFreqGovernor = "powersave";
   };
 
-  services.cpupower-gui.enable = true;
-  services.upower.enable = true;
+  services = {
+    cpupower-gui.enable = true;
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+    supergfxd.enable = true;
+
+    asusd = {
+      enable = true;
+      enableUserService = true;
+    };
+  };
 
   programs.rog-control-center = {
     enable = true;
     autoStart = true;
   };
 
-  services = {
-    power-profiles-daemon.enable = true;
-
-    asusd = {
-      enable = true;
-      enableUserService = true;
-    };
-
-    supergfxd = {
-      enable = true;
-    };
-  };
-
-  users.users.soil.extraGroups = [ "uinput" ];
+  users.users.soil.extraGroups = ["uinput"];
 
   services.kanata = {
-      # enable = true;
-      keyboards = {
-        main = {
-          config = /* kbd */ ''
+    # enable = true;
+    keyboards = {
+      main = {
+        config =
+          /*
+          kbd
+          */
+          ''
             (defsrc
              grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
              tab  q    w    e    r    t    y    u    i    o    p    [    ]    \
@@ -66,8 +66,7 @@
              XX XX XX           XX            XX XX
             )
           '';
-        };
-
       };
+    };
   };
 }
