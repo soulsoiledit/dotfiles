@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   imports = [
@@ -59,12 +59,18 @@
   networking = {
     hostName = "soilnix";
     networkmanager.enable = true;
+    # networkmanager.wifi.backend = "iwd";
   };
 
   users.users.soil = {
     isNormalUser = true;
     shell = pkgs.fish;
-    extraGroups = [ "wheel" "video" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "video"
+      "networkmanager"
+      # "docker"
+    ];
   };
 
   programs.fish.enable = true;
@@ -85,6 +91,8 @@
   };
 
   programs.hyprland.enable = true;
+  security.pam.services.swaylock = { };
+
   services.greetd = {
     enable = true;
     restart = true;
@@ -95,7 +103,7 @@
     };
   };
 
-  virtualisation.podman.enable = true;
+  # virtualisation.docker.enable = true;
 
   zramSwap = {
     enable = true;
@@ -108,13 +116,4 @@
   services.ratbagd.enable = true;
 
   hardware.opengl.driSupport32Bit = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-hyprland ];
-  };
-  security.pam.services.swaylock = { };
-
-  services.cpupower-gui.enable = true;
-  services.upower.enable = true;
 }
