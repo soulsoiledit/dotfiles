@@ -21,7 +21,7 @@ in
     webcord-vencord
     armcord
 
-    prismlauncher
+    (prismlauncher.override { glfw = pkgs.glfw-wayland-minecraft; } )
     cubiomes-viewer
 
     # Modern Unix replacements
