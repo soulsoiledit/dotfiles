@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   ...
 }: {
@@ -11,6 +10,7 @@
     bc
     eww-wayland
     hyprpicker
+    grimblast
   ];
 
   programs.eww = {
@@ -21,14 +21,14 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    systemd.enable = true;
+    xwayland.enable = true;
+
     # plugins = with pkgs; [
     #   hyprland-protocols
     #   hyprland-autoname-workspaces
     #   hyprdim
     # ];
-
-    systemd.enable = true;
-    xwayland.enable = true;
 
     settings = {
       source = "extras.conf";
@@ -161,6 +161,7 @@
       "$mod" = "SUPER";
 
       # Programs
+      "$screenshot" = "grimblast --freeze copysave area ~/stuff/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png";
       "$volume_update" = "eww update volume=\"$(~/.config/eww/scripts/volume.sh)\"";
       "$brightness_update" = "eww update brightness=$(~/.config/eww/scripts/brightness.sh)";
 
@@ -229,7 +230,7 @@
         "$mod, B, exec, pkill waybar"
 
         # Screenshot
-        "$mod, S, exec, grim -g \"$(slurp)\" - | tee ~/stuff/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png | wl-copy"
+        "$mod, S, exec, $screenshot"
 
         # Clipboard
         "$mod, P, exec, cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
@@ -258,7 +259,7 @@
       ];
     };
 
-    extraConfig = ''
+    extraConfig = /* css */ ''
       # Volume
       bind = ,XF86AudioMute, exec, pamixer --toggle-mute; $volume_update
 
