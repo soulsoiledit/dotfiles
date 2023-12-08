@@ -44,14 +44,17 @@ in
   programs.spicetify = {
     enable = true;
     enabledExtensions = with spicePkgs.extensions; [
-      fullAppDisplay
-      autoSkipVideo
+      fullAppDisplayMod
+      autoSkip
       shuffle
 
       adblock
       hidePodcasts
       songStats
     ];
+
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "mocha";
   };
 
   fonts.fontconfig.enable = true;
