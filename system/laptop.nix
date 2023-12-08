@@ -12,6 +12,9 @@
     cpuFreqGovernor = "powersave";
   };
 
+  services.cpupower-gui.enable = true;
+  services.upower.enable = true;
+
   programs.rog-control-center = {
     enable = true;
     autoStart = true;
