@@ -4,7 +4,6 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-
     withNodeJs = true;
 
     extraConfig = "";
@@ -15,12 +14,49 @@
       gnumake
       unzip
       cargo
+
+      # nix
+      nil
+      alejandra
+      
+      # lua
+      lua-language-server
+      stylua
+
+      # python
+      pyright
+      ruff-lsp
+      ruff
+      black
+
+      # rust
+      rust-analyzer
+      rustfmt
+
+      # haskell
+
+      # mult
+      prettierd
+      ltex-ls
+      ast-grep
+
+      # latex
+      texlab
+
+      # markdown
+      marksman
+      cbfmt
+
+      # js/ts
+      javascript-typescript-langserver
+
+      # shell
+      nodePackages.bash-language-server
+      shfmt
+
+      # misc
+      jdt-language-server
+      uncrustify
     ];
-
-    # plugins = with pkgs.vimPlugins; [
-    #   # markdown-preview-nvim
-    # ];
   };
-
-  programs.lazygit.enable = true;
 }
