@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     grim
     slurp
@@ -36,16 +38,16 @@
 
       # set env variables
       env = [
-          # Setup multi-gpu support; use AMD iGPU by default
-          "WLR_DRM_DEVICES,/dev/dri/card1"
+        # Setup multi-gpu support; use AMD iGPU by default
+        "WLR_DRM_DEVICES,/dev/dri/card1"
 
-          # Hint to UI frameworks to use wayland
-          "XDG_SESSION_TYPE=wayland"
-          "NIXOS_OZONE_WL=1"
-          "GDK_BACKEND=wayland,x11"
-          "QT_QPA_PLATFORM=wayland;xcb"
-          "SDL_VIDEODRIVER=wayland"
-          "CLUTTER_BACKEND=wayland"
+        # Hint to UI frameworks to use wayland
+        "XDG_SESSION_TYPE=wayland"
+        "NIXOS_OZONE_WL=1"
+        "GDK_BACKEND=wayland,x11"
+        "QT_QPA_PLATFORM=wayland;xcb"
+        "SDL_VIDEODRIVER=wayland"
+        "CLUTTER_BACKEND=wayland"
       ];
 
       # execute at launch
@@ -86,7 +88,6 @@
         };
       };
 
-
       layerrule = [
         # Blur eww bar
         "blur, gtk-layer-shell"
@@ -96,59 +97,58 @@
       ];
 
       decoration = {
-          rounding = 4;
+        rounding = 4;
 
-          blur = {
-              enabled = true;
-              size = 6;
-              passes = 2;
-          };
+        blur = {
+          enabled = true;
+          size = 6;
+          passes = 2;
+        };
 
-          drop_shadow = false;
+        drop_shadow = false;
       };
 
       animations = {
-          enabled = true;
-          # bezier = expoOut, 0.16, 1, 0.3, 1;
+        enabled = true;
+        # bezier = expoOut, 0.16, 1, 0.3, 1;
 
-          animation = [
-            "windows, 1, 10, default"
-            "windowsOut, 1, 5, default, popin 50%"
+        animation = [
+          "windows, 1, 10, default"
+          "windowsOut, 1, 5, default, popin 50%"
 
-            "fade, 1, 10, default"
-            "fadeOut, 1, 5, default"
+          "fade, 1, 10, default"
+          "fadeOut, 1, 5, default"
 
-            "border, 1, 10, default"
-            "borderangle, 1, 10, default"
-            "workspaces, 1, 10, default, slide"
-          ];
+          "border, 1, 10, default"
+          "borderangle, 1, 10, default"
+          "workspaces, 1, 10, default, slide"
+        ];
       };
 
       # Input
       input = {
-          # kb_file = ~/.local/share/xorg/xkb/gallium_angle
-          follow_mouse = 1;
-          scroll_method = 2;
+        # kb_file = ~/.local/share/xorg/xkb/gallium_angle
+        follow_mouse = 1;
+        scroll_method = 2;
 
-          touchpad = {
-            disable_while_typing = false;
-            natural_scroll = false;
-          };
+        touchpad = {
+          disable_while_typing = false;
+          natural_scroll = false;
+        };
       };
 
       gestures = {
-          workspace_swipe = true;
-          workspace_swipe_invert = false;
+        workspace_swipe = true;
+        workspace_swipe_invert = false;
       };
 
       master = {
-          new_is_master = false;
+        new_is_master = false;
       };
 
       xwayland = {
-          force_zero_scaling = true;
+        force_zero_scaling = true;
       };
-
 
       # Window rules
       windowrulev2 = [
@@ -237,7 +237,6 @@
         # Lock
         "$mod SHIFT, L, exec, swaylock"
 
-
         # Media
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioPause, exec, playerctl play-pause"
@@ -314,24 +313,28 @@
         exclusive = true;
         margin-top = 0;
 
-        modules-center = [ "tray" ];
+        modules-center = ["tray"];
         "tray" = {
           icon-size = 20;
           spacing = 5;
         };
       };
     };
-    style = /* css */ ''
-      * {
-        font-family: FantasqueSansM Nerd Font, monospace;
-        font-size: 10px;
-      }
+    style =
+      /*
+      css
+      */
+      ''
+        * {
+          font-family: FantasqueSansM Nerd Font, monospace;
+          font-size: 10px;
+        }
 
-      #tray, #waybar {
-        background: none;
-        border-bottom: none;
-      }
-    '';
+        #tray, #waybar {
+          background: none;
+          border-bottom: none;
+        }
+      '';
   };
 
   programs.swaylock = {

@@ -1,6 +1,9 @@
-{ pkgs, inputs, lib, ... }:
-
 {
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./laptop.nix
@@ -23,7 +26,7 @@
   nix = {
     package = pkgs.nixUnstable;
     registry.nixpkgs.flake = inputs.nixpkgs;
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
     gc = {
       automatic = true;
@@ -32,7 +35,7 @@
     };
 
     settings = {
-      experimental-features = [ "nix-command" "flakes" "ca-derivations" ];
+      experimental-features = ["nix-command" "flakes" "ca-derivations"];
 
       warn-dirty = false;
       keep-outputs = true;
@@ -52,7 +55,7 @@
     packages = with pkgs; [
       noto-fonts-cjk
       noto-fonts-extra
-      (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      (nerdfonts.override {fonts = ["FantasqueSansMono"];})
     ];
   };
 
@@ -91,7 +94,7 @@
   };
 
   programs.hyprland.enable = true;
-  security.pam.services.swaylock = { };
+  security.pam.services.swaylock = {};
 
   services.greetd = {
     enable = true;
