@@ -7,11 +7,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    catppuccin-discord = {
-      url = "https://catppuccin.github.io/discord/dist/catppuccin-mocha-teal.theme.css";
-      flake = false;
-    };
-
     catppuccin-btop = {
       url = "github:catppuccin/btop";
       flake = false;
@@ -30,24 +25,30 @@
     spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  } @ inputs: {
     nixosConfigurations.soilnix = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ./system/configuration.nix
       ];
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
     };
 
-    homeConfigurations.soil = home-manager.lib.homeManagerConfiguration
+    homeConfigurations.soil =
+      home-manager.lib.homeManagerConfiguration
       {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         modules = [
           ./home/home.nix
         ];
-        extraSpecialArgs = { inherit inputs; };
+        extraSpecialArgs = {inherit inputs;};
       };
 
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
   };
 }
