@@ -52,9 +52,16 @@
       nodePackages.bash-language-server
       shfmt
 
-      # misc
-      jdt-language-server
+      # c/cpp
+      clang-tools
       uncrustify
+
+      # java
+      jdt-language-server
+      google-java-format
+
+      # zig
+      zls
     ];
   };
 }
