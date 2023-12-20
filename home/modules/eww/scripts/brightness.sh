@@ -1,4 +1,4 @@
-brightness=$(brightnessctl -m | rg -o '.*,(\d+)%.*' -r '$1')
+brightness=$(brightnessctl -m | rg '(\d+)%' -or '$1')
 
 if (($brightness < 20)); then
 	icon="󰽤 "
