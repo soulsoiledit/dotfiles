@@ -3,6 +3,14 @@
 ## Center - WM
 ## Bottom - System
 
+### Module Design
+- Return JSON formatted representation of values & css class
+
+# Extra
+- CPU power settings
+- Set refresh rate
+
+
 ### Battery
   - Show percentage
     - Only show when (dis)charging
@@ -34,25 +42,36 @@
   - Show average CPU core usage
 ### Clock
   - Show month, day, hour, minute, and day-of-week
-### Current Window
 ### Launch Menu
+  - Show some apps
 ### Memory
   - Show used memory percentage
 ### Network
   - Show whether connected to network or not
+### playerctl
+  - List currently playing audio if spotify
 ### Power Menu
+  - Show login/power settings
+### Tasklist
+  - Show open windows with icons
+  - No interaction
 ### Temperature
   - Show temperature
+  - Change fan settings?
 ### Tiling layout
   - nil
 ### Tray
   - Show apps in tray
 ### VPN
+  - Show vpn status
+  - Enable disable vpn
+  - Might be part of tray
 ### Volume
   - Show volume percentage
   - Show muted indicator
   - Show type of audio device connected
+### Weather
+  - Show current weather & temperature
+  - Open weather website on click
 ### Workspaces
   - List workspaces
-### playerctl
-  - List currently playing audio if spotify

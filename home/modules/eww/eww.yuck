@@ -4,10 +4,10 @@
     :exclusive false
     :geometry (geometry :x "0px"
                         :y "-25px"
-                        :width "99%"
+                        :width "100%"
                         :height "25"
                         :anchor "top center")
-    (centerbox :space-evenly false
+    (centerbox
       (topbar)
       (box :halign "center" tray)
       (bottombar)
@@ -24,6 +24,8 @@
       (network_widget)
       (volume_widget)
       (brightness_widget)
+      (label :text "| ")
+      (workspace_widget)
     )
 )
 
@@ -32,19 +34,8 @@
       (battery)
       (temper)
       (memory)
-      (cpu)
     )
 )
-
-;; (defwidget clock-vert []
-;;   (box :class "clock" :orientation "h" :space-evenly false
-;;     (label :text "${time-month}")
-;;     (label :text "${time-day}")
-;;     (label :class "day" :text "${time-day-week}")
-;;     (label :text "${time-hour}")
-;;     (label :text "${time-min}")
-;;   )
-;; )
 
 (defwidget clock []
   (box :class "clock" :orientation "h"
@@ -62,32 +53,29 @@
       eww update brightness=$(./scripts/brightness.sh)
       `
     (box :orientation "h"
-      (label :text "${brightness} ")
+      :class "bright"
+      (label :text "${brightness}")
     )
   )
 )
 
 (defwidget battery []
   (box :class "battery" :orientation "h"
-    (label :text "󰁹 ${bat} ")
+    (label :text "󰁹 ${bat.percentage} ${bat.remaining}${bat.remaining == "" ? "" : " "}${round(bat.power / 1000000, 1)}W")
   )
 )
 
 (defwidget temper []
   (box :class "temperature" :orientation "h"
-    (label :text "󰔏 ${temp}°C ")
+    (label :text "󰔏 ${temp}°C")
   )
 )
 
 (defwidget memory []
-  (box :orientation "h"
-    (label :text "󰍛 ${memory}% ")
-  )
-)
-
-(defwidget cpu []
-  (box :orientation "h"
-    (label :text " ${round(EWW_CPU['avg'], 1)}% ")
+  (box :orientation "h" :class "memory"
+    (label :text "󰍛 ${
+      round(100 * (1 - memory.available / memory.total), 1)
+    }%")
   )
 )
 
@@ -95,7 +83,24 @@
   (button
     :class { network == "up" ? "net_up" : "net_down" }
     :onclick "alacritty -e nmtui &"
-    (label :text { (network == "up") ? "󰖩 " : "󰖪 " })
+    (label :text { (network == "up") ? "󰖩" : "󰖪" })
+  )
+)
+
+(defwidget workspace_widget []
+  (eventbox
+    :class "workspace"
+    (box
+      (for entry in workspaces
+        (button
+          :class "workspaces"
+          :onclick "hyprctl dispatch workspace ${entry.id}"
+          (label :text { 
+            entry.id == entry.active ? " " : (entry.windows >= 1 ? " " : " ")
+          })
+        )
+      )
+    )
   )
 )
 
@@ -103,28 +108,29 @@
   (eventbox
     :onscroll 
       `if [[ {} == up ]]; 
-        then pamixer -i 5;
-        else pamixer -d 5;
+        then pamixer --increase 5;
+        else pamixer --decrease 5;
       fi;
       eww update volume="$(./scripts/volume.sh)"
       `
-    :onclick `pavucontrol &`
-    :onmiddleclick `pamixer -t; eww update volume="$(./scripts/volume.sh)"`
+    :onclick `pamixer --toggle-mute; eww update volume="$(./scripts/volume.sh)"`
+    :onmiddleclick `pavucontrol &`
     :onhover `eww update volume="$(./scripts/volume.sh)"`
 
     (box :orientation "h" :space-evenly "false"
       :class { volume.mute == "true" ? "vol_muted" : "vol_active" }
       (label :text { volume.sink =~ 'bluez' ? "󰋋 " : "󰕾 " })
-      (label :text "${volume.volume}% ")
+      (label :text "${volume.volume}%")
     )
   )
 )
 
-(defpoll time :interval "1m" `date "+%a %m-%d %H:%M "`)
+(defpoll time :interval "1m" `date "+%a %m-%d %H:%M"`)
 (defpoll bat :interval "1m" `./scripts/battery.sh`)
 (defpoll temp :interval "1m" `acpi -t | grep -vP '20.0' | grep -oP '\\d+.0'`)
 (defpoll network :interval "5s" `cat /sys/class/net/wlan0/operstate`)
 (defpoll memory :interval "5s" `./scripts/memory.sh`)
 (defpoll brightness :interval "1m" `./scripts/brightness.sh`)
 (defpoll volume :interval "15s" `./scripts/volume.sh`)
+(deflisten workspaces `./scripts/workspaces.sh`)
 (deflisten tray :initial "" "./scripts/tray.sh")

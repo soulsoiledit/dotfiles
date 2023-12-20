@@ -11,7 +11,9 @@ if [[ $acpi_output =~ $regex ]]; then
 fi
 
 power=$(cat /sys/class/power_supply/BAT0/power_now)
-wattage=$(($power / 1000000))
-wattage_dec=$(($power / 100000 % 100))
 
-echo $percentage $remaining $wattage.${wattage_dec}W
+jq --null-input \
+	--arg perc $percentage \
+	--arg remaining "$remaining" \
+	--arg power $power \
+	'{"percentage": $perc, "remaining": $remaining, "power": $power}'

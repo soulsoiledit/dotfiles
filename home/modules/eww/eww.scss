@@ -1,43 +1,81 @@
-* {
-  all: unset;
-}
-// Reset everything so you can style everything from scratch
-
-$base: #1e1e2e;
 $text: #cdd6f4;
+$base: #1e1e2e;
+$base-transparent: rgba(30, 30, 46, 0.625);
 $gray: #585b70;
 $red: #f38ba8;
 $orange: #fab387;
 $yellow: #f9e2af;
 $green: #a6e3a1;
+$sky: #89dceb;
+$sapphire: #74c7ec;
 $blue: #89b4fa;
-$purple: #b4befe;
+$mauve: #cba6f7;
+$pink: #f5c2e7;
+$transparent: rgba(0, 0, 0, 0);
+
+// reset everything to style from scratch
+* {
+  all: unset;
+}
 
 .example {
-  background-color: $base;
+  background-color: $base-transparent;
   color: $text;
   font-family: "FantasqueSansM Nerd Font Propo";
   font-size: 14px;
-  border-radius: 6px;
-  border: 1px solid $blue;
 }
 
 .clock {
-  margin-left: 0.5em;
+  color: $red;
+  padding: 0 0.5em;
+}
+
+.bright {
+  color: $green;
+  padding-right: 0.5em;
+}
+
+.workspaces {
+  color: $sky;
+}
+
+.battery {
+  color: $sapphire;
+  padding-right: 0.5em;
+}
+
+.temperature {
+  color: $blue;
+  padding-right: 0.5em;
+}
+
+.memory {
+  color: $mauve;
+  padding-right: 0.5em;
 }
 
 .net_up {
-  color: $text;
+  color: $orange;
+  padding-right: 0.5em;
 }
 
 .net_down {
   color: $gray;
+  padding-right: 0.5em;
+}
+
+.vol {
+  padding: 0px 2px;
+  margin: 3px;
+  border-radius: 2px;
 }
 
 .vol_active {
-  color: $text;
+  color: $yellow;
+  padding-right: 0.5em;
 }
 
 .vol_muted {
   color: $gray;
+  padding-right: 0.5em;
 }
