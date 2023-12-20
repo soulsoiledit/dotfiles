@@ -241,8 +241,8 @@
         # Media
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioPause, exec, playerctl play-pause"
-        ",XF86AudioPrev, exec, playerctl next"
-        ",XF86AudioNext, exec, playerctl previous"
+        ",XF86AudioPrev, exec, playerctl previous"
+        ",XF86AudioNext, exec, playerctl next"
 
         # ASUS
         ",XF86Launch1, exec, rog-control-center"
@@ -259,7 +259,7 @@
       ];
     };
 
-    extraConfig = /* css */ ''
+    extraConfig = /* python */ ''
       # Volume
       bind = ,XF86AudioMute, exec, pamixer --toggle-mute; $volume_update
 
