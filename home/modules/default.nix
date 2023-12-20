@@ -86,6 +86,5 @@ in {
     extraConfig = "include ${inputs.catppuccin-zathura + "/src/catppuccin-mocha"}";
   };
 
-  xdg.configFile."awesome".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/awesome;
   xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/modules/eww;
 }

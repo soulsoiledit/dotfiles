@@ -10,7 +10,6 @@
 - CPU power settings
 - Set refresh rate
 
-
 ### Battery
   - Show percentage
     - Only show when (dis)charging
