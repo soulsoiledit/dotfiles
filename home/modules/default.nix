@@ -8,14 +8,15 @@
 in {
   imports = [
     inputs.spicetify-nix.homeManagerModule
-    ./alacritty.nix
+    ./cli.nix
+    ./fm.nix
     ./git.nix
     ./gtk.nix
-    ./fm.nix
-    ./neovim
-    ./launcher.nix
     ./hyprland.nix
+    ./launcher.nix
+    ./neovim
     ./sh.nix
+    ./term.nix
   ];
 
   home.packages = with pkgs; [
