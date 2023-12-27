@@ -574,9 +574,9 @@
           desc = "Go to the config directory";
         }
         {
-          on = ["g" "p"];
-          exec = "cd ~/stuff/pictures/";
-          desc = "Go to the pictures directory";
+          on = ["g" "s"];
+          exec = "cd ~/stuff/pictures/screenshots/";
+          desc = "Go to the screenshots directory";
         }
         {
           on = ["g" "m"];
