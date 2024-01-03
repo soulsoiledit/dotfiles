@@ -23,25 +23,19 @@ in {
     steam
     webcord-vencord
     armcord
+    piper
 
     (prismlauncher.override {glfw = pkgs.glfw-wayland-minecraft;})
     cubiomes-viewer
 
-    # Modern Unix replacements
-    gdu
-    fd
-
-    # Qol Tools
-    brightnessctl
-    acpi
-    playerctl
-    (p7zip.override {enableUnfree = true;})
-
-    trash-cli
-    nix-tree
-    xdg-utils
-    steam-run
+    (obsidian.override {electron = pkgs.electron;})
+    (logseq.override {electron_25 = pkgs.electron;})
   ];
+
+  programs.firefox = {
+    enable = true;
+    profiles.soil = {};
+  };
 
   programs.spicetify = {
     enable = true;
@@ -60,16 +54,6 @@ in {
   };
 
   fonts.fontconfig.enable = true;
-
-  programs.firefox = {
-    enable = true;
-    profiles.soil = {
-      settings = {
-        "browser.bookmarks.showMobileBookmarks" = true;
-        "browser.urlbar.suggest.calculator" = true;
-      };
-    };
-  };
 
   home.pointerCursor = {
     size = 24;

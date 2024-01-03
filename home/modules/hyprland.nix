@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     grim
     slurp
@@ -11,6 +8,11 @@
     eww-wayland
     hyprpicker
     grimblast
+
+    jq
+    socat
+    pamixer
+    pavucontrol
   ];
 
   programs.eww = {
