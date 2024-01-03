@@ -183,6 +183,10 @@
         "$mod SHIFT, 4, movetoworkspacesilent, 4"
         "$mod SHIFT, 5, movetoworkspacesilent, 5"
 
+        # scroll through existing workspaces with mouse
+        "$mod, mouse_down, workspace, e+1"
+        "$mod, mouse_up, workspace, e-1"
+
         # Move to last workspace
         "$mod, Tab, workspace, previous"
 
@@ -214,15 +218,6 @@
         # Hyprland
         "$mod SHIFT, E, exit,"
 
-        # Mouse bindings
-        # Scroll through existing workspaces with mod + scroll
-        "$mod, mouse_down, workspace, e+1"
-        "$mod, mouse_up, workspace, e-1"
-
-        # Move/resize windows with mod + LMB/RMB and dragging
-        "$mod, mouse:272, movewindowpixel"
-        "$mod, mouse:273, resizewindowpixel"
-
         # Programs
         "$mod, Return, exec, footclient"
         "$mod, space, exec, fuzzel"
@@ -235,46 +230,56 @@
         "$mod, S, exec, $screenshot"
 
         # Clipboard
-        "$mod, P, exec, cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
+        "$mod, p, exec, cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
 
         # Lock
-        "$mod SHIFT, L, exec, swaylock"
+        "$mod shift, l, exec, swaylock"
 
         # Media
-        ",XF86AudioPlay, exec, playerctl play-pause"
-        ",XF86AudioPause, exec, playerctl play-pause"
-        ",XF86AudioPrev, exec, playerctl previous"
-        ",XF86AudioNext, exec, playerctl next"
+        ",xf86audioplay, exec, playerctl play-pause"
+        ",xf86audiopause, exec, playerctl play-pause"
+        ",xf86audioprev, exec, playerctl previous"
+        ",xf86audionext, exec, playerctl next"
 
-        # ASUS
-        ",XF86Launch1, exec, rog-control-center"
-        ",XF86Launch3, exec, asusctl led-mode --next-mode"
-        ",XF86Launch4, exec, asusctl profile --next"
-        ",XF86KbdBrightnessUp, exec, asusctl --next-kbd-bright"
-        ",XF86KbdBrightnessDown, exec, asusctl --prev-kbd-bright"
+        # asus
+        ",xf86launch1, exec, rog-control-center"
+        ",xf86launch3, exec, asusctl led-mode --next-mode"
+        ",xf86launch4, exec, asusctl profile --next"
+        ",xf86kbdbrightnessup, exec, asusctl --next-kbd-bright"
+        ",xf86kbdbrightnessdown, exec, asusctl --prev-kbd-bright"
 
-        # Notifications
-        "CTRL, space, exec, makoctl dismiss"
-        "CTRL SHIFT, space, exec, makoctl dismiss --all"
-        "CTRL SHIFT, comma, exec, makoctl restore"
-        "CTRL SHIFT, period, exec, makoctl invoke"
+        # notifications
+        "ctrl, space, exec, makoctl dismiss"
+        "ctrl shift, space, exec, makoctl dismiss --all"
+        "ctrl shift, comma, exec, makoctl restore"
+        "ctrl shift, period, exec, makoctl invoke"
+      ];
+
+      bindm = [
+        # move/resize windows with mouse
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
       ];
     };
 
-    extraConfig = /* python */ ''
-      # Volume
-      bind = ,XF86AudioMute, exec, pamixer --toggle-mute; $volume_update
+    extraConfig =
+      /*
+      python
+      */
+      ''
+        # Volume
+        bind = ,XF86AudioMute, exec, pamixer --toggle-mute; $volume_update
 
-      binde = ,XF86AudioRaiseVolume, exec, pamixer --increase 5; $volume_update
-      binde = ,XF86AudioLowerVolume, exec, pamixer --decrease 5; $volume_update
+        binde = ,XF86AudioRaiseVolume, exec, pamixer --increase 5; $volume_update
+        binde = ,XF86AudioLowerVolume, exec, pamixer --decrease 5; $volume_update
 
-      binde = SHIFT ,XF86AudioRaiseVolume, exec, pamixer --increase 1; $volume_update
-      binde = SHIFT ,XF86AudioLowerVolume, exec, pamixer --decrease 1; $volume_update
+        binde = SHIFT ,XF86AudioRaiseVolume, exec, pamixer --increase 1; $volume_update
+        binde = SHIFT ,XF86AudioLowerVolume, exec, pamixer --decrease 1; $volume_update
 
-      # Brightness
-      binde = ,XF86MonBrightnessUp, exec, brightnessctl set 20%+; $brightness_update
-      binde = ,XF86MonBrightnessDown, exec, brightnessctl set 20%-; $brightness_update
-    '';
+        # Brightness
+        binde = ,XF86MonBrightnessUp, exec, brightnessctl set 20%+; $brightness_update
+        binde = ,XF86MonBrightnessDown, exec, brightnessctl set 20%-; $brightness_update
+      '';
   };
 
   # programs.foot = {
