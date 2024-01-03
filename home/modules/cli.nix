@@ -1,7 +1,33 @@
 {
+  pkgs,
   inputs,
   ...
 }: {
+  home.packages = with pkgs; [
+    tmux
+
+    # Modern Unix replacements
+    gdu
+    fd
+    duf
+
+    acpi
+    brightnessctl
+    playerctl
+
+    # Qol Tools
+    zip
+    unzip
+    (p7zip.override {enableUnfree = true;})
+
+    nix-tree
+
+    trash-cli
+    xdg-utils
+
+    steam-run
+  ];
+
   programs.fzf.enable = true;
   programs.ripgrep.enable = true;
   programs.nix-index.enable = true;
