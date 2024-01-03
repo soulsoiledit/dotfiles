@@ -224,7 +224,7 @@
         "$mod, mouse:273, resizewindowpixel"
 
         # Programs
-        "$mod, Return, exec, alacritty msg create-window || alacritty"
+        "$mod, Return, exec, footclient"
         "$mod, space, exec, fuzzel"
 
         # Bar
