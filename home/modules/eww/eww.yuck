@@ -1,4 +1,4 @@
-(defwindow example
+(defwindow bar
     :monitor 0
     :stacking "fg"
     :exclusive false
