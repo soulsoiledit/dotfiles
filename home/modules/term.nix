@@ -1,5 +1,5 @@
 {inputs, ...}: {
-  xdg.configFile."alacritty/catppuccin-mocha.yml".source = "${inputs.catppuccin-alacritty}/catppuccin-mocha.yml";
+  # xdg.configFile."alacritty/catppuccin-mocha.yml".source = "${inputs.catppuccin-alacritty}/catppuccin-mocha.yml";
 
   programs.alacritty = {
     enable = true;
@@ -23,14 +23,22 @@
 
     settings = {
       main = {
-        font = "FantasqueSansM Nerd Font:size=9";
-        dpi-aware = "yes";
+        font = "FantasqueSansM Nerd Font:size=10";
+        selection-target = "both";
       };
 
       mouse = {
         hide-when-typing = "yes";
       };
 
+      scrollback.lines = 10000;
+
+      url = {
+        osc8-underline = "always";
+        # label-letters = "sadfjklewcmpgh.";
+      };
+
+      # https://raw.githubusercontent.com/catppuccin/foot/main/catppuccin-mocha.conf
       colors = {
         foreground = "cdd6f4";
         background = "1e1e2e";
