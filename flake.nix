@@ -7,6 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     catppuccin-btop = {
       url = "github:catppuccin/btop";
       flake = false;
@@ -16,13 +21,6 @@
       url = "github:catppuccin/zathura";
       flake = false;
     };
-
-    catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty";
-      flake = false;
-    };
-
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
   };
 
   outputs = {

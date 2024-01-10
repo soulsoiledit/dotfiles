@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "catppuccin-alacritty": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1704045909,
-        "narHash": "sha256-bpHznCqkNMbauDQjh98qj2+r1V8mXQIVmvKTldLcln0=",
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "rev": "ce476fb41f307d90f841c1a4fd7f0727c21248b2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "type": "github"
-      }
-    },
     "catppuccin-btop": {
       "flake": false,
       "locked": {
@@ -102,25 +86,8 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1686020360,
-        "narHash": "sha256-Wee7lIlZ6DIZHHLiNxU5KdYZQl0iprENXa/czzI6Cj4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "4729ffac6fd12e26e5a8de002781ffc49b0e94b7",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
-        "catppuccin-alacritty": "catppuccin-alacritty",
         "catppuccin-btop": "catppuccin-btop",
         "catppuccin-zathura": "catppuccin-zathura",
         "home-manager": "home-manager",
@@ -131,14 +98,16 @@
     "spicetify-nix": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1699986787,
-        "narHash": "sha256-eYlLWibKtHN/uWJQLzOMRXpoTbO6VcFTfVY4dpgdJcQ=",
+        "lastModified": 1704167711,
+        "narHash": "sha256-kFDq+kf/Di/P8bq5sUP8pVwRkrSVrABksBjMPmLic3s=",
         "owner": "the-argus",
         "repo": "spicetify-nix",
-        "rev": "3c702af1f717b7876fac08809201b1368d0d956c",
+        "rev": "1325416f951d6a82cfddb1289864ad782e2b87c4",
         "type": "github"
       },
       "original": {
