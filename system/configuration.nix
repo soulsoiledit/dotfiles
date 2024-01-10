@@ -77,7 +77,6 @@
       "wheel"
       "video"
       "networkmanager"
-      "plugdev"
       # "docker"
     ];
   };
@@ -87,7 +86,7 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    # pulse.enable = true;
+    pulse.enable = true;
   };
 
   hardware.bluetooth.enable = true;
@@ -106,13 +105,9 @@
     restart = true;
     settings = {
       default_session = {
-        command = "${lib.getExe pkgs.greetd.tuigreet} -t -c Hyprland";
+        command = "${lib.getExe pkgs.greetd.tuigreet} -t -r --remember-user-session";
       };
     };
-  };
-
-  programs.regreet = {
-    # enable = true;
   };
 
   programs.hyprland.enable = true;
