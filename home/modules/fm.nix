@@ -1,8 +1,10 @@
-{config, ...}: {
+{pkgs, ...}: {
   programs.mpv.enable = true;
   programs.imv.enable = true;
 
-  programs.xplr.enable = true;
+  programs.xplr = {
+    enable = true;
+  };
 
   programs.yazi = {
     enable = true;
@@ -48,12 +50,10 @@
             name = "*/";
             use = "open";
           }
-
           {
             mime = "text/*";
             use = "edit";
           }
-
           {
             mime = "application/zip";
             use = "extract";
@@ -70,7 +70,6 @@
             mime = "application/x-*";
             use = "untar";
           }
-
           {
             mime = "*";
             use = "open";
