@@ -57,7 +57,7 @@
       # execute at launch
       exec-once = [
         "swaybg -i /etc/nixos/other/spiderverse.jpg --mode fill"
-        "eww daemon"
+        "eww open bar --toggle"
         "rog-control-center"
         "firefox"
       ];
@@ -225,7 +225,7 @@
         "$mod, space, exec, fuzzel"
 
         # Bar
-        "$mod, B, exec, eww open example --toggle"
+        "$mod, B, exec, eww open bar --toggle"
         "$mod, B, exec, pkill waybar"
 
         # Screenshot
@@ -283,14 +283,6 @@
         binde = ,XF86MonBrightnessDown, exec, brightnessctl set 20%-; $brightness_update
       '';
   };
-
-  # programs.foot = {
-  #   enable = true;
-  #
-  #   settings = {
-  #     main.font = "FantasqueSansMono Nerd Font:size=16";
-  #   };
-  # };
 
   services.mako = {
     enable = true;
