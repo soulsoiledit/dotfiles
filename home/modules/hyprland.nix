@@ -33,23 +33,25 @@
     # ];
 
     settings = {
-      source = "extras.conf";
-
       # set monitor preferences
       monitor = ",preferred,auto,auto";
 
       # set env variables
       env = [
-        # Setup multi-gpu support; use AMD iGPU by default
-        "WLR_DRM_DEVICES,/dev/dri/card1"
+        # setup multi-gpu support; use AMD iGPU by default
+        "WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
 
-        # Hint to UI frameworks to use wayland
-        "XDG_SESSION_TYPE=wayland"
-        "NIXOS_OZONE_WL=1"
-        "GDK_BACKEND=wayland,x11"
-        "QT_QPA_PLATFORM=wayland;xcb"
-        "SDL_VIDEODRIVER=wayland"
-        "CLUTTER_BACKEND=wayland"
+        # hint to UI frameworks to use wayland
+        "NIXOS_OZONE_WL,1"
+        "GDK_BACKEND,wayland,x11"
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "SDL_VIDEODRIVER,wayland"
+        "CLUTTER_BACKEND,wayland"
+
+        # set XDG spec explicitly
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
       ];
 
       # execute at launch
