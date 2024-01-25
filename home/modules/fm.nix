@@ -294,24 +294,19 @@
           desc = "Symlink the relative path of files";
         }
         {
-          on = ["d"];
+          on = ["d" "d"];
           exec = ["remove" "escape --visual --select"];
           desc = "Move the files to the trash";
+        }
+        {
+          on = ["d" "t"];
+          exec = ["shell --block 'for file in \"$@\"; do trash-rm \"$(basename \"$file\")\"; done'"];
+          desc = "Remove the files from trash";
         }
         {
           on = ["D"];
           exec = ["remove --permanently" "escape --visual --select"];
           desc = "Permanently delete the files";
-        }
-        {
-          on = ["T"];
-          exec = ["shell --block 'for file in $@; do trash-rm $(basename $file); done'"];
-          desc = "Remove the files from trash";
-        }
-        {
-          on = ["T"];
-          exec = ["shell --block 'basename -a -z $@ | xargs -0 trash-rm'"];
-          desc = "Remove the files from trash";
         }
         {
           on = ["a"];
