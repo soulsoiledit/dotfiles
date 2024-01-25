@@ -5,35 +5,18 @@
     ];
   };
 
-  powerManagement = {enable = true;};
+  powerManagement = {
+    enable = true;
+    cpuFreqGovernor = "powersave";
+  };
 
   services = {
     upower.enable = true;
-
-    # auto-epp.enable = true;
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        charger = {
-          governor = "powersave";
-          energy_performance_preference = "balance_power";
-        };
-
-        battery = {
-          governor = "powersave";
-          energy_performance_preference = "balance_power";
-          scaling_max_freq = 2500000;
-          turbo = "never";
-        };
-      };
-    };
 
     asusd = {
       enable = true;
       enableUserService = true;
     };
-
-    supergfxd.enable = true;
   };
 
   programs.rog-control-center = {
