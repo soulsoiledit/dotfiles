@@ -4,7 +4,7 @@
     settings = {
       main = {
         font = "FantasqueSansM Nerd Font Propo:size=12";
-        prompt = "_ ";
+        prompt = ''" "'';
         icon-theme = "Papirus-Dark";
         terminal = "alacritty -e";
 
