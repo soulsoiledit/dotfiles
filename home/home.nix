@@ -9,7 +9,7 @@
   home = {
     username = "soil";
     homeDirectory = "/home/soil";
-    stateVersion = "22.05";
+    stateVersion = "23.11";
   };
 
   imports = [./modules];

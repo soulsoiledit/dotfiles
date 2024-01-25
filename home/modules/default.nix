@@ -3,9 +3,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
-in {
+}: {
   imports = [
     inputs.spicetify-nix.homeManagerModule
     ./cli.nix
@@ -25,11 +23,11 @@ in {
     armcord
     piper
 
-    (prismlauncher.override {glfw = pkgs.glfw-wayland-minecraft;})
+    prismlauncher
     cubiomes-viewer
 
     (obsidian.override {electron = pkgs.electron;})
-    (logseq.override {electron_25 = pkgs.electron;})
+    logseq
   ];
 
   programs.firefox = {
@@ -37,7 +35,9 @@ in {
     profiles.soil = {};
   };
 
-  programs.spicetify = {
+  programs.spicetify = let
+    spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  in {
     enable = true;
     enabledExtensions = with spicePkgs.extensions; [
       fullAppDisplayMod

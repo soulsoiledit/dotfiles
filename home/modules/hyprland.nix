@@ -38,8 +38,8 @@
 
       # set env variables
       env = [
-        # setup multi-gpu support; use AMD iGPU by default
-        "WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
+        # setup multi-gpu support; use AMD iGPU only
+        "WLR_DRM_DEVICES,/dev/dri/card1"
 
         # hint to UI frameworks to use wayland
         "NIXOS_OZONE_WL,1"
@@ -77,7 +77,10 @@
 
       misc = {
         disable_hyprland_logo = true;
+        mouse_move_enables_dpms = true;
         key_press_enables_dpms = true;
+        # nix user moment
+        disable_autoreload = true;
       };
 
       group = {
