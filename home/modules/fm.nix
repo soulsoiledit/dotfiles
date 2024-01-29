@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   programs.mpv.enable = true;
   programs.imv.enable = true;
 
@@ -38,7 +38,7 @@
         ];
         extract = [
           {
-            exec = ''7z x "$1" -o\*'';
+            exec = ''7z -y x "$1" -o\*'';
             desc = "Extract other archives";
           }
         ];
