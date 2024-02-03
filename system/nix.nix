@@ -3,18 +3,15 @@
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    package = pkgs.nixFlakes;
+    # disable channels to prevent unwanted errors
     channel.enable = false;
-    registry.nixpkgs.flake = inputs.nixpkgs;
 
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
+    # makes nix commands use same nixpkgs as system
+    registry.nixpkgs.flake = inputs.nixpkgs;
 
     settings = {
       auto-optimise-store = true;
+
       experimental-features = [
         "flakes"
         "nix-command"

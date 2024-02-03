@@ -1,4 +1,13 @@
+{ pkgs, ... }:
+
 {
+
+  # add support for xdg directories, not used system-wide for compat
+  nix = {
+    package = pkgs.nixStable;
+    settings.use-xdg-base-directories = true;
+  };
+
   nixpkgs = {
     config = {
       allowUnfree = true;
