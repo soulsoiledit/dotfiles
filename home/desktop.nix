@@ -1,4 +1,38 @@
-{pkgs, ...}: {
+{ pkgs, config, ... }:
+
+{
+  gtk = {
+    enable = true;
+
+    theme = {
+      name = "Catppuccin-Mocha-Compact-Mauve-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [
+          "mauve"
+          "pink"
+          "red"
+          "peach"
+          "yellow"
+          "green"
+          "teal"
+          "sky"
+          "sapphire"
+          "blue"
+          "lavender"
+        ];
+        size = "compact";
+        variant = "mocha";
+      };
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    # gtk2.configLocation = "${config.xdg.configHome}/gtk-3.0/gtk2rc";
+  };
+
   home.packages = with pkgs; [
     grim
     slurp
@@ -16,8 +50,8 @@
   ];
 
   programs.eww = {
-    enable = false;
-    package = pkgs.eww-wayland;
+    # enable = false;
+    # package = pkgs.eww-wayland;
     # configDir = ./eww;
   };
 
@@ -58,7 +92,7 @@
       exec-once = [
         "swaybg -i /etc/nixos/other/spiderverse.jpg --mode fill"
         "eww open bar --toggle"
-        "rog-control-center"
+        # "rog-control-center"
         "firefox"
       ];
 
@@ -77,10 +111,6 @@
 
       misc = {
         disable_hyprland_logo = true;
-        mouse_move_enables_dpms = true;
-        key_press_enables_dpms = true;
-        # nix user moment
-        disable_autoreload = true;
       };
 
       group = {
@@ -169,7 +199,7 @@
 
       # Programs
       "$screenshot" = "grimblast --freeze copysave area ~/stuff/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png";
-      "$volume_update" = "eww update volume=\"$(~/.config/eww/scripts/volume.sh)\"";
+      "$volume_update" = ''eww update volume="$(~/.config/eww/scripts/volume.sh)"'';
       "$brightness_update" = "eww update brightness=$(~/.config/eww/scripts/brightness.sh)";
 
       bind = [
@@ -268,9 +298,7 @@
     };
 
     extraConfig =
-      /*
-      python
-      */
+      # python
       ''
         # Volume
         bind = ,XF86AudioMute, exec, pamixer --toggle-mute; $volume_update
@@ -318,7 +346,7 @@
         exclusive = true;
         margin-top = 0;
 
-        modules-center = ["tray"];
+        modules-center = [ "tray" ];
         "tray" = {
           icon-size = 20;
           spacing = 5;
@@ -326,9 +354,7 @@
       };
     };
     style =
-      /*
-      css
-      */
+      # css
       ''
         * {
           font-family: FantasqueSansM Nerd Font, monospace;

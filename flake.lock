@@ -1,37 +1,5 @@
 {
   "nodes": {
-    "catppuccin-btop": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1696688295,
-        "narHash": "sha256-jodJl4f2T9ViNqsY9fk8IV62CrpC5hy7WK3aRpu70Cs=",
-        "owner": "catppuccin",
-        "repo": "btop",
-        "rev": "c6469190f2ecf25f017d6120bf4e050e6b1d17af",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "btop",
-        "type": "github"
-      }
-    },
-    "catppuccin-zathura": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1664239314,
-        "narHash": "sha256-5Vh2bVabuBluVCJm9vfdnjnk32CtsK7wGIWM5+XnacM=",
-        "owner": "catppuccin",
-        "repo": "zathura",
-        "rev": "d85d8750acd0b0247aa10e0653998180391110a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "zathura",
-        "type": "github"
-      }
-    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -50,18 +18,18 @@
         "type": "github"
       }
     },
-    "home-manager": {
+    "hm": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1705446327,
-        "narHash": "sha256-n7FCuAR2BI1SvLjF6eFc8VE6WLZCMlbToyfqU2ihbkU=",
+        "lastModified": 1706473109,
+        "narHash": "sha256-iyuAvpKTsq2u23Cr07RcV5XlfKExrG8gRpF75hf1uVc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "16cefa78cc801911ebd4ff1faddc6280ab3c9228",
+        "rev": "d634c3abafa454551f2083b054cd95c3f287be61",
         "type": "github"
       },
       "original": {
@@ -72,15 +40,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1705316053,
-        "narHash": "sha256-J2Ey5mPFT8gdfL2XC0JTZvKaBw/b2pnyudEXFvl+dQM=",
-        "owner": "nixos",
+        "lastModified": 1706550542,
+        "narHash": "sha256-UcsnCG6wx++23yeER4Hg18CXWbgNpqNXcHIo5/1Y+hc=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c3e128f3c0ecc1fb04aef9f72b3dcc2f6cecf370",
+        "rev": "97b17f32362e475016f942bbdfda4a4a72a8a652",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -88,14 +56,12 @@
     },
     "root": {
       "inputs": {
-        "catppuccin-btop": "catppuccin-btop",
-        "catppuccin-zathura": "catppuccin-zathura",
-        "home-manager": "home-manager",
+        "hm": "hm",
         "nixpkgs": "nixpkgs",
-        "spicetify-nix": "spicetify-nix"
+        "spicetify": "spicetify"
       }
     },
-    "spicetify-nix": {
+    "spicetify": {
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": [
