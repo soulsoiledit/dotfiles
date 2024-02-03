@@ -20,6 +20,7 @@
         # label-letters = "sadfjklewcmpgh.";
       };
 
+      # TODO: fetch theme from github with flakes
       # https://raw.githubusercontent.com/catppuccin/foot/main/catppuccin-mocha.conf
       colors = {
         foreground = "cdd6f4";
@@ -43,6 +44,9 @@
       };
     };
   };
+
+  # resolve https://github.com/nix-community/home-manager/issues/3940
+  systemd.user.services.foot.Service.Environment = "PATH=/run/current-system/sw/bin/";
 
   programs.rio.enable = true;
   programs.wezterm.enable = true;
