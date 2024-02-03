@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   programs.mpv.enable = true;
   programs.imv.enable = true;
 
@@ -82,40 +83,61 @@
       manager.append_keymap = [
         # Goto
         {
-          on = ["g" "h"];
+          on = [
+            "g"
+            "h"
+          ];
           exec = "cd ~";
           desc = "Go to the home directory";
         }
         {
-          on = ["g" "n"];
-          exec = "cd /etc/nixos/";
+          on = [
+            "g"
+            "n"
+          ];
+          exec = "cd ~/code/dotfiles/";
           desc = "Go to the config directory";
         }
         {
-          on = ["g" "s"];
+          on = [
+            "g"
+            "s"
+          ];
           exec = "cd ~/stuff/pictures/screenshots/";
           desc = "Go to the screenshots directory";
         }
         {
-          on = ["g" "m"];
+          on = [
+            "g"
+            "m"
+          ];
           exec = "cd ~/.local/share/PrismLauncher/instances/Main/.minecraft/";
           desc = "Go to the MC directory";
         }
         {
-          on = ["g" "r"];
+          on = [
+            "g"
+            "r"
+          ];
           exec = "cd ~/.local/share/Trash/files";
           desc = "Go to the trash directory";
         }
         {
-          on = ["g" "u"];
+          on = [
+            "g"
+            "u"
+          ];
           exec = "cd /run/media/";
           desc = "Go to the USB directory";
         }
 
         # trash
         {
-          on = ["'" "t"];
-          exec = ["shell --block 'for file in \"$@\"; do trash-rm \"$(basename \"$file\")\"; done'"];
+          on = [
+            "'"
+            "t"
+          ];
+          exec = [ "shell --block 'for file in \"$@\"; do trash-rm \"$(basename \"$file\")\"; done'" ];
           desc = "Remove the files from trash";
         }
       ];
