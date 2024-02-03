@@ -1,5 +1,6 @@
 { pkgs, lib, ... }:
 {
+  # enable sound and bluetooth
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

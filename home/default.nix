@@ -6,8 +6,14 @@
 }:
 
 {
+  # TODO:
+  # Define asusctl config in Nix
+  # - Find good breathing rainbow led mode
+  # - Keyboard brightness notification
+
   imports = [
     inputs.spicetify.homeManagerModule
+    inputs.nix-index-db.hmModules.nix-index
 
     ./nix.nix
     ./shell.nix
@@ -19,18 +25,23 @@
     ./files.nix
   ];
 
+  programs.home-manager.enable = true;
+
   home.username = "soil";
   home.homeDirectory = "/home/soil";
   home.stateVersion = "23.11";
 
-  programs.home-manager.enable = true;
+  # auto start/stop services
+  systemd.user.startServices = "sd-switch";
+
+  xdg.enable = true;
 
   home.packages = with pkgs; [
     (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
 
-    steam
     vesktop
 
+    steam
     piper
 
     prismlauncher
@@ -59,31 +70,20 @@
       colorScheme = "mocha";
 
       enabledExtensions = with spicePkgs.extensions; [
-        # fullAppDisplay
-        # autoSkipVideo
-        # keyboardShortcut
-        # shuffle
+        fullAppDisplay
+        autoSkipVideo
+        keyboardShortcut
 
         # autoVolume
         # volumeProfiles
-        # hidePodcasts
+        hidePodcasts
         adblock
-        # songStats
+        songStats
       ];
     };
 
-  fonts.fontconfig.enable = true;
-
-  home.pointerCursor = {
-    size = 24;
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
-    gtk.enable = true;
-  };
-
   services.playerctld.enable = true;
   services.udiskie.enable = true;
-  systemd.user.startServices = "sd-switch";
 
   programs.zathura.enable = true;
 

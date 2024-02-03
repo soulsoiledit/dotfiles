@@ -1,9 +1,28 @@
 { pkgs, config, ... }:
 
 {
+  home.packages = with pkgs; [
+    (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    noto-fonts-cjk
+
+    grimblast
+    swaybg
+    wl-clipboard
+    eww-wayland
+
+    bc
+    jq
+    socat
+    pamixer
+    pavucontrol
+  ];
+
+  fonts.fontconfig.enable = true;
+
   gtk = {
     enable = true;
 
+    # TODO: play around with non compact sizes
     theme = {
       name = "Catppuccin-Mocha-Compact-Mauve-Dark";
       package = pkgs.catppuccin-gtk.override {
@@ -30,24 +49,15 @@
       package = pkgs.papirus-icon-theme;
     };
 
-    # gtk2.configLocation = "${config.xdg.configHome}/gtk-3.0/gtk2rc";
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 
-  home.packages = with pkgs; [
-    grim
-    slurp
-    wl-clipboard
-    swaybg
-    bc
-    eww-wayland
-    hyprpicker
-    grimblast
-
-    jq
-    socat
-    pamixer
-    pavucontrol
-  ];
+  home.pointerCursor = {
+    size = 24;
+    name = "Bibata-Modern-Classic";
+    package = pkgs.bibata-cursors;
+    gtk.enable = true;
+  };
 
   programs.eww = {
     # enable = false;
@@ -90,9 +100,9 @@
 
       # execute at launch
       exec-once = [
-        "swaybg -i ~/code/dotfiles/extra/spiderverse.jpg --mode fill"
+        "swaybg -i ~/code/dotfiles/extra/darkspace.jpg"
         "eww open bar --toggle"
-        # "rog-control-center"
+        "rog-control-center"
         "firefox"
       ];
 
@@ -198,7 +208,7 @@
       "$mod" = "SUPER";
 
       # Programs
-      "$screenshot" = "grimblast --freeze copysave area ~/stuff/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png";
+      "$screenshot" = "grimblast --freeze copysave area ~/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png";
       "$volume_update" = ''eww update volume="$(~/.config/eww/scripts/volume.sh)"'';
       "$brightness_update" = "eww update brightness=$(~/.config/eww/scripts/brightness.sh)";
 
@@ -335,6 +345,7 @@
     '';
   };
 
+  # TODO: switch to ags?
   programs.waybar = {
     enable = true;
     settings = {
@@ -378,6 +389,7 @@
       indicator = true;
       ignore-empty-password = true;
 
+      # TODO: ... how do i fetch this
       bs-hl-color = "f5e0dc";
       caps-lock-bs-hl-color = "f5e0dc";
       caps-lock-key-hl-color = "a6e3a1";
@@ -409,13 +421,14 @@
     };
   };
 
-  services.cliphist.enable = true;
-
   services.gammastep = {
     enable = true;
     tray = true;
-    latitude = "39";
-    longitude = "-98";
+
+    # close enough
+    latitude = "40";
+    longitude = "-100";
+
     temperature = {
       day = 6000;
       night = 3500;

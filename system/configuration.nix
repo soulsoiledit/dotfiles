@@ -25,5 +25,4 @@
   ];
 
   networking.hostName = "zephyrus";
-
 }

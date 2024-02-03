@@ -9,8 +9,10 @@
       "wheel"
       "networkmanager"
       "libvirtd"
+      # docker
     ];
   };
 
+  # needed for setting shell ig
   programs.fish.enable = true;
 }

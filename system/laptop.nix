@@ -1,7 +1,10 @@
-{ 
+{
+  # disable amd-pstate to hopefully resolve suspend problems
+  boot.kernelParams = [ "initcall_blacklist=amd_pstate_init" ];
+
   powerManagement = {
-    enable = true;
-    cpuFreqGovernor = "powersave";
+    # ondemand is good enough
+    cpuFreqGovernor = "ondemand";
   };
 
   services = {
@@ -9,12 +12,12 @@
 
     asusd = {
       enable = true;
-      enableUserService = true;
+      # user services seems to be unfinished atm...
+      # enableUserService = true;
     };
   };
 
-    programs.rog-control-center = {
-      enable = true;
-      autoStart = true;
-    };
+  programs.rog-control-center.enable = true;
+
+  # colemakdh/kanata configuration ...
 }
