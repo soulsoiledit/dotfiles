@@ -90,7 +90,7 @@
 
       # execute at launch
       exec-once = [
-        "swaybg -i /etc/nixos/other/spiderverse.jpg --mode fill"
+        "swaybg -i ~/code/dotfiles/extra/spiderverse.jpg --mode fill"
         "eww open bar --toggle"
         # "rog-control-center"
         "firefox"
