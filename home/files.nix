@@ -11,6 +11,12 @@
     enable = true;
     enableFishIntegration = true;
 
+    theme = {
+      manager = {
+        syntect_theme = "~/.config/bat/themes/Catppuccin-mocha.tmTheme";
+      };
+    };
+
     settings = {
       manager = {
         sort_by = "alphabetical";
@@ -45,6 +51,9 @@
         ];
       };
 
+      # TODO: 
+      # make sure extraction binds are working properly
+      # create/find archive keybind
       open = {
         rules = [
           {
@@ -103,7 +112,7 @@
             "g"
             "s"
           ];
-          exec = "cd ~/stuff/pictures/screenshots/";
+          exec = "cd ~/pictures/screenshots/";
           desc = "Go to the screenshots directory";
         }
         {
