@@ -39,13 +39,13 @@
         ];
         untar = [
           {
-            exec = ''tar axvf "$1"'';
+            exec = ''tar axvf "$1" --one-top-level'';
             desc = "Extract tarballs";
           }
         ];
         extract = [
           {
-            exec = ''7z -y x "$1" -o\*'';
+            exec = ''7z -y x "$1" -spe -o\*;'';
             desc = "Extract other archives";
           }
         ];
