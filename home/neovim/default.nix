@@ -17,6 +17,7 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    withNodeJs = true;
 
     extraPackages = with pkgs; [
       gcc
@@ -28,7 +29,6 @@
 
       # nix
       nil
-      alejandra
 
       # lua
       lua-language-server
