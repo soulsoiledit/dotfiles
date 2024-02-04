@@ -5,6 +5,7 @@
     (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
     noto-fonts-cjk
 
+    libnotify
     grimblast
     swaybg
     wl-clipboard
@@ -212,6 +213,9 @@
       "$volume_update" = ''eww update volume="$(~/.config/eww/scripts/volume.sh)"'';
       "$brightness_update" = "eww update brightness=$(~/.config/eww/scripts/brightness.sh)";
 
+      "$notify_kbd" = ''notify-send "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
+      "$notify_led" = ''notify-send "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
+
       bind = [
         # Workspaces
         # Switch workspaces with mainMod + [0-4]
@@ -288,10 +292,10 @@
 
         # asus
         ",xf86launch1, exec, rog-control-center"
-        ",xf86launch3, exec, asusctl led-mode --next-mode"
+        ",xf86launch3, exec, asusctl led-mode --next-mode; $notify_led"
         ",xf86launch4, exec, asusctl profile --next"
-        ",xf86kbdbrightnessup, exec, asusctl --next-kbd-bright"
-        ",xf86kbdbrightnessdown, exec, asusctl --prev-kbd-bright"
+        ",xf86kbdbrightnessup, exec, asusctl --next-kbd-bright; $notify_kbd"
+        ",xf86kbdbrightnessdown, exec, asusctl --prev-kbd-bright; $notify_kbd"
 
         # notifications
         "ctrl, space, exec, makoctl dismiss"
