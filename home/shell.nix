@@ -39,7 +39,7 @@
     nix-tree
 
     trash-cli
-    # xdg-utils
+    xdg-utils
 
     steam-run
   ];

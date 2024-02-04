@@ -421,6 +421,8 @@
     };
   };
 
+  services.cliphist.enable = true;
+
   services.gammastep = {
     enable = true;
     tray = true;

@@ -51,35 +51,73 @@
         ];
       };
 
-      # TODO: 
-      # make sure extraction binds are working properly
+      # TODO: make sure extraction binds are working properly
       # create/find archive keybind
       open = {
         rules = [
           {
             name = "*/";
-            use = "open";
+            use = [
+              "edit"
+              "open"
+            ];
           }
+
           {
             mime = "text/*";
             use = "edit";
           }
           {
+            mime = "inode/x-empty";
+            use = "edit";
+          }
+          {
+            mime = "application/json";
+            use = "edit";
+          }
+          {
+            mime = "*/javascript";
+            use = "edit";
+          }
+
+          {
+            mime = "image/*";
+            use = "open";
+          }
+          {
+            mime = "video/*";
+            use = "open";
+          }
+          {
+            mime = "audio/*";
+            use = "open";
+          }
+
+          {
             mime = "application/zip";
+            use = "extract";
+          }
+          {
+            mime = "application/gzip";
+            use = "untar";
+          }
+          {
+            mime = "application/x-xz";
+            use = "untar";
+          }
+          {
+            mime = "application/zstd";
+            use = "untar";
+          }
+          {
+            mime = "application/x-rar";
             use = "extract";
           }
           {
             mime = "application/x-7z-compressed";
             use = "extract";
           }
-          {
-            mime = "application/vnd.rar";
-            use = "extract";
-          }
-          {
-            mime = "application/x-*";
-            use = "untar";
-          }
+
           {
             mime = "*";
             use = "open";
