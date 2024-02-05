@@ -45,14 +45,13 @@
         ];
         extract = [
           {
-            exec = ''7z -y x "$1" -spe -o\*;'';
+            exec = ''7z -y x "$1" -spe -o\*'';
             desc = "Extract other archives";
           }
         ];
       };
 
-      # TODO: make sure extraction binds are working properly
-      # create/find archive keybind
+      # TODO: create/find archive keybind
       open = {
         rules = [
           {
