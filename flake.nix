@@ -8,10 +8,14 @@
       hm,
       ...
     }@inputs:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
+          inherit system pkgs;
           specialArgs = {
             inherit inputs;
           };
@@ -21,7 +25,7 @@
 
       homeConfigurations = {
         soil = hm.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
           };
@@ -41,7 +45,7 @@
     };
 
     spicetify = {
-      url = "github:the-argus/spicetify-nix";
+      url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

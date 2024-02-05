@@ -5,9 +5,7 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     PAGER = "bat";
-    # TODO: see which is better
-    # MANPAGER = "nvim +Man!";
-    MANPAGER = "bat";
+    MANPAGER = "nvim +Man!";
 
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
     RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
@@ -58,6 +56,7 @@
   # TODO: declaratively set btop theme and config
   programs.btop.enable = true;
 
+  # TODO: contribute manpage themeing for catppuccin theme
   programs.bat = {
     enable = true;
     config = {
