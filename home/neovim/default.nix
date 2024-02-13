@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   programs.git = {
@@ -16,6 +16,8 @@
 
   xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "/home/soil/code/dotfiles/home/neovim/lua";
 
+  programs.helix.enable = true;
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -28,56 +30,57 @@
       # for mason
       wget
       unzip
+      cargo
+
+      # multi
+      ltex-ls
+      nodePackages.prettier
 
       # nix
       nil
+      nixfmt-rfc-style
 
       # lua
       lua-language-server
       stylua
 
-      # python
-      pyright
-      ruff-lsp
-      ruff
-      black
+      # json/yaml/toml
+      vscode-langservers-extracted
+      yaml-language-server
+      taplo-lsp
 
-      # rust
-      cargo
-      rust-analyzer
-      rustfmt
-
-      # haskell
-
-      # mult
-      prettierd
-      ltex-ls
-      ast-grep
-
-      # latex
-      texlab
+      # sh
+      nodePackages.bash-language-server
+      shfmt
 
       # markdown
       marksman
-      cbfmt
+
+      # rust
+      rust-analyzer
+      rustfmt
+
+      # python
+      python3Packages.python-lsp-server
+      ruff
+      ruff-lsp
+
+      # haskell
+      haskellPackages.haskell-language-server
+      ormolu
+  
+      # zig
+      zls
+
+      # c
+      clang-tools
 
       # js/ts
       javascript-typescript-langserver
 
-      # shell
-      nodePackages.bash-language-server
-      shfmt
-
-      # c/cpp
-      clang-tools
-      uncrustify
-
       # java
       jdt-language-server
       google-java-format
-
-      # zig
-      zls
     ];
   };
 }
