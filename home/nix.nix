@@ -1,6 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  imports = [ inputs.nix-index-db.hmModules.nix-index ];
+
+  home.packages = with pkgs; [ nix-tree ];
+
+  programs = {
+    nix-index.enable = true;
+    nix-index-database.comma.enable = true;
+  };
 
   # add support for xdg directories, not used system-wide for compat
   nix = {
