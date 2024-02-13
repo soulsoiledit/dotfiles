@@ -23,6 +23,4 @@
 
     ./laptop.nix
   ];
-
-  networking.hostName = "zephyrus";
 }

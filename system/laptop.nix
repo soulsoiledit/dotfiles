@@ -1,10 +1,12 @@
 {
+  networking.hostName = "zephyrus";
+
   # disable amd-pstate to hopefully resolve suspend problems
-  boot.kernelParams = [ "initcall_blacklist=amd_pstate_init" ];
+  boot.kernelParams = [ "amd_pstate=passive" ];
 
   powerManagement = {
-    # ondemand is good enough
-    cpuFreqGovernor = "ondemand";
+    # schedutil is good enough
+    cpuFreqGovernor = "schedutil";
   };
 
   services = {

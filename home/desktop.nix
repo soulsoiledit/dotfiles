@@ -12,7 +12,6 @@
     eww-wayland
 
     bc
-    jq
     socat
     pamixer
     pavucontrol

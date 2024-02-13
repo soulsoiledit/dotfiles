@@ -9,6 +9,14 @@
 
   hardware.bluetooth.enable = true;
 
+  fonts = {
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+      noto-fonts-cjk
+    ];
+  };
+
   services.udisks2.enable = true;
   services.ratbagd.enable = true;
 
