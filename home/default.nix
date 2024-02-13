@@ -6,14 +6,8 @@
 }:
 
 {
-  # TODO:
-  # Define asusctl config in Nix
-  # - Find good breathing rainbow led mode
-  # - Keyboard brightness notification
-
   imports = [
-    inputs.spicetify.homeManagerModule
-    inputs.nix-index-db.hmModules.nix-index
+    inputs.spicetify.homeManagerModules.default
 
     ./nix.nix
     ./shell.nix
@@ -87,5 +81,5 @@
 
   programs.fuzzel.enable = true;
 
-  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink /home/soil/code/dotfiles/home/eww;
+  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink "/home/soil/code/dotfiles/home/eww";
 }

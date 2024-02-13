@@ -14,6 +14,8 @@
 
   programs.lazygit.enable = true;
 
+  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "/home/soil/code/dotfiles/home/neovim/lua";
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
