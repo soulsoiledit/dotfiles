@@ -116,6 +116,13 @@
             mime = "application/x-7z-compressed";
             use = "extract";
           }
+          {
+            mime = "application/java-archive";
+            use = [
+              "open"
+              "extract"
+            ];
+          }
 
           {
             mime = "*";

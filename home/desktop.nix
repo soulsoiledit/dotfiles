@@ -54,6 +54,7 @@
 
   home.pointerCursor = {
     size = 24;
+    # TODO: Try Vimix
     name = "Bibata-Modern-Classic";
     package = pkgs.bibata-cursors;
     gtk.enable = true;
@@ -284,17 +285,17 @@
         "$mod shift, l, exec, swaylock"
 
         # Media
-        ",xf86audioplay, exec, playerctl play-pause"
-        ",xf86audiopause, exec, playerctl play-pause"
-        ",xf86audioprev, exec, playerctl previous"
-        ",xf86audionext, exec, playerctl next"
+        ",XF86AudioPlay, exec, playerctl play-pause"
+        ",XF86AudioPause, exec, playerctl play-pause"
+        ",XF86AudioPrev, exec, playerctl previous"
+        ",XF86AudioNext, exec, playerctl next"
 
         # asus
-        ",xf86launch1, exec, rog-control-center"
-        ",xf86launch3, exec, asusctl led-mode --next-mode; $notify_led"
-        ",xf86launch4, exec, asusctl profile --next"
-        ",xf86kbdbrightnessup, exec, asusctl --next-kbd-bright; $notify_kbd"
-        ",xf86kbdbrightnessdown, exec, asusctl --prev-kbd-bright; $notify_kbd"
+        ",XF86Launch1, exec, rog-control-center"
+        ",XF86Launch3, exec, asusctl led-mode --next-mode; $notify_led"
+        ",XF86Launch4, exec, asusctl profile --next"
+        ",XF86KbdBrightnessUp, exec, asusctl --next-kbd-bright; $notify_kbd"
+        ",XF86KbdBrightnessDown, exec, asusctl --prev-kbd-bright; $notify_kbd"
 
         # notifications
         "ctrl, space, exec, makoctl dismiss"

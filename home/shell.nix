@@ -34,41 +34,40 @@
     # qol
     (p7zip.override { enableUnfree = true; })
 
-    nix-tree
-
     trash-cli
     xdg-utils
 
     steam-run
   ];
 
-  programs.fzf.enable = true;
-  programs.ripgrep.enable = true;
-  programs.nix-index.enable = true;
-  programs.nix-index-database.comma.enable = true;
-  programs.hyfetch.enable = true;
+  programs = {
+    fzf.enable = true;
+    ripgrep.enable = true;
+    hyfetch.enable = true;
+    jq.enable = true;
 
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-  };
-
-  # TODO: declaratively set btop theme and config
-  programs.btop.enable = true;
-
-  # TODO: contribute manpage themeing for catppuccin theme
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "Catppuccin-mocha";
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
-  };
 
-  programs.eza = {
-    enable = true;
-    enableAliases = true;
-    git = true;
-    icons = true;
+    # TODO: declaratively set btop theme and config
+    btop.enable = true;
+
+    # TODO: contribute manpage themeing for catppuccin theme
+    bat = {
+      enable = true;
+      config = {
+        theme = "Catppuccin-mocha";
+      };
+    };
+
+    eza = {
+      enable = true;
+      enableAliases = true;
+      git = true;
+      icons = true;
+    };
   };
 
   # TODO: fetch fish theme automagically
