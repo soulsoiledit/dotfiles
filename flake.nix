@@ -15,7 +15,7 @@
     {
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
-          inherit system pkgs;
+          inherit system;
           specialArgs = {
             inherit inputs;
           };

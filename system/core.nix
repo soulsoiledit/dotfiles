@@ -16,7 +16,7 @@
         configurationLimit = 16;
       };
 
-      timeout = 2;
+      timeout = 0;
     };
 
     plymouth = {
