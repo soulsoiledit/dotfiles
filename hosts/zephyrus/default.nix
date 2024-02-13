@@ -1,4 +1,5 @@
 {
+  imports = [ ./hardware-configuration.nix ];
   networking.hostName = "zephyrus";
 
   # disable amd-pstate to hopefully resolve suspend problems
