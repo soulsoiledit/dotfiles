@@ -13,13 +13,18 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
           };
-          modules = [ ./system/configuration.nix ];
+          modules = [
+            ./system
+            ./hosts/zephyrus
+          ];
         };
       };
 
@@ -32,8 +37,6 @@
           modules = [ ./home ];
         };
       };
-
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
     };
 
   inputs = {
