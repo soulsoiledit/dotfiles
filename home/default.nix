@@ -53,7 +53,7 @@
 
   programs.spicetify =
     let
-      spicePkgs = inputs.spicetify.packages.${pkgs.system}.default;
+      spicePkgs = inputs.spicetify.legacyPackages.${pkgs.system};
     in
     {
       enable = true;
@@ -62,15 +62,12 @@
       colorScheme = "mocha";
 
       enabledExtensions = with spicePkgs.extensions; [
-        fullAppDisplay
+        # official
         autoSkipVideo
-        keyboardShortcut
 
-        # autoVolume
-        # volumeProfiles
-        hidePodcasts
+        # community
         adblock
-        songStats
+        hidePodcasts
       ];
     };
 
