@@ -24,8 +24,6 @@
     };
   };
 
-  # programs.command-not-found.enable = false;
-
   # zram
   zramSwap = {
     enable = true;
