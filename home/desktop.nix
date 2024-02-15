@@ -115,10 +115,10 @@
         gaps_out = 6;
         border_size = 1;
 
+        cursor_inactive_timeout = 4;
+
         "col.inactive_border" = "rgba(6c7086ff)";
         "col.active_border" = "rgb(89dceb) rgb(a6e3a1) 45deg";
-
-        cursor_inactive_timeout = 5;
       };
 
       misc = {
@@ -147,13 +147,6 @@
 
       decoration = {
         rounding = 4;
-
-        blur = {
-          enabled = true;
-          size = 6;
-          passes = 2;
-        };
-
         drop_shadow = false;
       };
 
@@ -177,12 +170,11 @@
       # Input
       input = {
         # kb_file = ~/.local/share/xorg/xkb/gallium_angle
-        follow_mouse = 1;
-        scroll_method = 2;
+        scroll_method = "2fg";
 
         touchpad = {
-          disable_while_typing = false;
-          natural_scroll = false;
+          # disable_while_typing = false;
+          # natural_scroll = false;
         };
       };
 
@@ -220,6 +212,7 @@
       bind = [
         # Workspaces
         # Switch workspaces with mainMod + [0-4]
+        # TODO: generate these automatically
         "$mod, 1, workspace, 1"
         "$mod, 2, workspace, 2"
         "$mod, 3, workspace, 3"
@@ -384,6 +377,8 @@
       '';
   };
 
+  services.batsignal.enable = true;
+
   programs.swaylock = {
     enable = true;
     package = pkgs.swaylock-effects;
@@ -425,6 +420,17 @@
       text-wrong-color = "eba0ac";
     };
   };
+
+  # TODO: Add swayidle service
+  # timers:
+  # brightness decrement and restore
+  # turn off screen
+  # screenlock
+  # suspend
+  # events:
+  # lock before suspend
+  # run swaylock on lock
+  # turn on display after resume
 
   services.cliphist.enable = true;
 
