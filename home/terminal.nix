@@ -1,7 +1,11 @@
 {
   programs.foot = {
     enable = true;
-    server.enable = true;
+
+    # this causes https://github.com/nix-community/home-manager/issues/3940 for some reason
+    # server.enable = true;
+    # potential fix
+    # systemd.user.services.foot.Service.Environment = "PATH=/run/current-system/sw/bin/";
 
     settings = {
       main = {
@@ -45,9 +49,5 @@
     };
   };
 
-  # resolve https://github.com/nix-community/home-manager/issues/3940
-  systemd.user.services.foot.Service.Environment = "PATH=/run/current-system/sw/bin/";
-
-  programs.rio.enable = true;
   programs.wezterm.enable = true;
 }

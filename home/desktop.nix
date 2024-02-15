@@ -103,8 +103,9 @@
       exec-once = [
         "swaybg -i ~/code/dotfiles/extra/darkspace.jpg"
         "eww open bar --toggle"
-        "rog-control-center"
+        "foot --server"
         "firefox"
+        "rog-control-center"
       ];
 
       general = {
