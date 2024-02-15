@@ -19,9 +19,7 @@
 
     settings = {
       manager = {
-        sort_by = "alphabetical";
-        sort_reverse = false;
-        sort_sensitive = false;
+        sort_dir_first = true;
       };
 
       opener = {
