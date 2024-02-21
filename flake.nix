@@ -5,7 +5,7 @@
     {
       self,
       nixpkgs,
-      hm,
+      home-manager,
       ...
     }@inputs:
     let
@@ -29,7 +29,7 @@
       };
 
       homeConfigurations = {
-        soil = hm.lib.homeManagerConfiguration {
+        soil = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
@@ -42,17 +42,17 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    hm = {
+    home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    spicetify = {
+    spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-index-db = {
+    nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };

@@ -2,7 +2,8 @@
 
 {
   home.packages = with pkgs; [
-    (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    fantasque-sans-mono
+    (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     noto-fonts-cjk
 
     libnotify
@@ -366,7 +367,7 @@
       # css
       ''
         * {
-          font-family: FantasqueSansM Nerd Font, monospace;
+          font-family: Fantasque Sans Mono;
           font-size: 10px;
         }
 
