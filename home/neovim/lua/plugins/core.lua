@@ -1,5 +1,5 @@
 return {
-	-- set colorscheme to catppccin
+	-- set colorscheme to catppuccin
 	{
 		"LazyVim/LazyVim",
 		opts = {

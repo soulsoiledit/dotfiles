@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       main = {
-        font = "FantasqueSansM Nerd Font Propo:size=12";
+        font = "Fantasque Sans Mono:size=12";
         prompt = ''" "'';
         icon-theme = "Papirus-Dark";
         terminal = "alacritty -e";

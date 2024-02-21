@@ -13,6 +13,6 @@
     ];
   };
 
-  # needed for setting shell ig
+  # needed for setting shell
   programs.fish.enable = true;
 }

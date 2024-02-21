@@ -4,12 +4,12 @@
 
     # this causes https://github.com/nix-community/home-manager/issues/3940 for some reason
     # server.enable = true;
-    # potential fix
+    # potential fix (at the cost of opening urls)
     # systemd.user.services.foot.Service.Environment = "PATH=/run/current-system/sw/bin/";
 
     settings = {
       main = {
-        font = "FantasqueSansM Nerd Font:size=10";
+        font = "Fantasque Sans Mono:size=10";
         selection-target = "both";
       };
 

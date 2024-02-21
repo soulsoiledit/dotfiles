@@ -9,17 +9,17 @@
 
   hardware.bluetooth.enable = true;
 
-  fonts = {
-    enableDefaultPackages = true;
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-      noto-fonts-cjk
-    ];
-  };
+  # base set of fonts for regular use
+  fonts.enableDefaultPackages = true;
 
+  # for udiskie
   services.udisks2.enable = true;
+
+  # for controlling mice
   services.ratbagd.enable = true;
 
+  # login manager
+  # TODO: try (package) QtGreet or other pretty greeters
   services.greetd = {
     enable = true;
 
@@ -30,8 +30,12 @@
     };
   };
 
+  # sets a lot of other settings that we like
   programs.hyprland.enable = true;
+
+  # lets swaylock work
   security.pam.services.swaylock = { };
 
+  # gaming
   hardware.opengl.driSupport32Bit = true;
 }

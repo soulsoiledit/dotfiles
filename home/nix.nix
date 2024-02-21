@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }:
 
 {
-  imports = [ inputs.nix-index-db.hmModules.nix-index ];
+  imports = [ inputs.nix-index-database.hmModules.nix-index ];
 
   home.packages = with pkgs; [ nix-tree ];
 

@@ -1,19 +1,18 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-
   home.sessionVariables = {
     EDITOR = "nvim";
     PAGER = "bat";
     MANPAGER = "nvim +Man!";
 
-    CARGO_HOME = "${config.xdg.dataHome}/cargo";
-    RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+    CARGO_HOME = "$XDG_DATA_HOME/cargo";
+    RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
   };
 
   home.sessionPath = [
     "/home/soil/.local/bin"
-    "/home/soil/.local/share/cargo/bin"
+    "$XDG_DATA_HOME/cargo/bin"
   ];
 
   home.packages = with pkgs; [
@@ -26,7 +25,7 @@
     fd
     duf
 
-    # i need it
+    # i neeeed it
     acpi
     brightnessctl
     playerctl
@@ -45,6 +44,7 @@
     ripgrep.enable = true;
     hyfetch.enable = true;
     jq.enable = true;
+    cava.enable = true;
 
     direnv = {
       enable = true;

@@ -7,7 +7,7 @@
 
 {
   imports = [
-    inputs.spicetify.homeManagerModules.default
+    inputs.spicetify-nix.homeManagerModules.default
 
     ./nix.nix
     ./shell.nix
@@ -38,9 +38,6 @@
 
     prismlauncher
     cubiomes-viewer
-
-    # obsidian
-    logseq
   ];
 
   programs.firefox = {
@@ -53,7 +50,7 @@
 
   programs.spicetify =
     let
-      spicePkgs = inputs.spicetify.legacyPackages.${pkgs.system};
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
     in
     {
       enable = true;
