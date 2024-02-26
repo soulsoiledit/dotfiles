@@ -57,6 +57,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    eww-tray = {
+      # TODO: remove when eww https://github.com/elkowar/eww/pull/743 is merged
+      url = "github:ralismark/eww/tray-3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # catppuccin repos
   };
 }
