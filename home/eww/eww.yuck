@@ -36,10 +36,8 @@
   )
 )
 
-;; TODO: signals for network
-
 ;; TODO: waiting for https://github.com/elkowar/eww/pull/629 to use elvis & safe access operators
-(defpoll network :interval "5s" "./scripts/network.sh")
+(deflisten network "scripts/network.sh")
 (defwidget network []
   (button 
     :onclick "foot -e nmtui &" 
@@ -48,7 +46,7 @@
   )
 )
 
-(deflisten volume "./scripts/volume.sh")
+(deflisten volume "scripts/volume.sh")
 (defwidget volume []
   (eventbox
     :onscroll
@@ -68,7 +66,7 @@
   )
 )
 
-(deflisten brightness "./scripts/brightness.sh")
+(deflisten brightness "scripts/brightness.sh")
 (defwidget brightness []
   (eventbox :class "brightness"
     :onscroll 
@@ -81,12 +79,12 @@
   )
 )
 
-(defpoll weather :interval "1h" "./scripts/weather.sh")
+(defpoll weather :interval "1h" "scripts/weather.sh")
 (defwidget weather []
   (label :class "weather" :text {weather == "" ? "󰼯" : weather.symbol})
 )
 
-(deflisten playerctl "./scripts/playerctl.sh")
+(deflisten playerctl "scripts/playerctl.sh")
 (defwidget player []
   (box :orientation "v" :class "button playerctl"
     (button :onclick "playerctl previous" "󰙣")
@@ -104,7 +102,7 @@
   )
 )
 
-(deflisten workspaces "./scripts/workspaces.sh")
+(deflisten workspaces "scripts/workspaces.sh")
 (defwidget workspaces []
   (box :orientation "v" :class "button"
     (for entry in { workspaces ?: "[]" }
@@ -151,7 +149,7 @@
   )
 )
 
-(deflisten battery "./scripts/battery.sh")
+(deflisten battery "scripts/battery.sh")
 (defwidget battery []
   (box :orientation "v" :space-evenly false :class "battery" 
     :tooltip "${battery == "" ? 0 : battery.remaining} left @ ${battery == "" ? 0 : round(battery.wattage / 1000000, 0) }W"
@@ -163,7 +161,7 @@
   )
 )
 
-(defpoll memory :interval "5s" "./scripts/memory.sh")
+(defpoll memory :interval "5s" "scripts/memory.sh")
 (defwidget memory []
   (box :orientation "v" :space-evenly false :class "memory"
     "󰍛"
@@ -171,7 +169,7 @@
   )
 )
 
-(defpoll temperature :interval "1m" "./scripts/temperature.sh")
+(defpoll temperature :interval "1m" "scripts/temperature.sh")
 (defwidget temperature []
   (box :orientation "v" :space-evenly false :class "temperature"
     "󰔏"
@@ -179,7 +177,7 @@
   )
 )
 
-(defpoll cpu :interval "1m" "./scripts/cpu.sh")
+(defpoll cpu :interval "1m" "scripts/cpu.sh")
 (defwidget cpu []
   (box :orientation "v" :space-evenly false :class "cpu"
     "󰘚"
@@ -189,7 +187,7 @@
   )
 )
 
-(defpoll time :interval "30s" "./scripts/date.sh")
+(defpoll time :interval "30s" "scripts/date.sh")
 (defwidget clock []
   (box :orientation "v" :space-evenly false :class "button clock"
     {time == "" ? "00" : time.hour}
