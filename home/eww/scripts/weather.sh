@@ -1,6 +1,7 @@
 # full json output
-wttr=$(curl 'https://wttr.in?format=j2')
-weather_code=$(echo "$wttr" | jq '.current_condition[0].weatherCode')
+weather_json=$(curl 'https://wttr.in?format=j2')
+tooltip=$(curl 'wttr.in/?format=%t+(%f)+%C+%w')
+weather_code=$(echo "$weather_json" | jq '.current_condition[0].weatherCode')
 
 # source: https://github.com/chubin/wttr.in/blob/master/lib/constants.py
 weather_codes_map='{
@@ -78,4 +79,4 @@ weather_icons_map='{
 }'
 
 weather_condition=$(echo "$weather_codes_map" | jq ".$weather_code")
-echo "$weather_icons_map" | jq "{symbol: .$weather_condition}"
+echo "$weather_icons_map" | jq --arg tooltip "$tooltip" "{symbol: .$weather_condition, tooltip: \$tooltip}"

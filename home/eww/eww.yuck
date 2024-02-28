@@ -81,7 +81,12 @@
 
 (defpoll weather :interval "1h" "scripts/weather.sh")
 (defwidget weather []
-  (label :class "weather" :text {weather == "" ? "󰼯" : weather.symbol})
+  (button
+    :class "weather" 
+    :tooltip {weather == "" ? "N/A" : weather.tooltip}
+    :onmiddleclick "xdg-open 'https://weather.com/weather/today/' &"
+    {weather == "" ? "󰼯" : weather.symbol}
+  )
 )
 
 (deflisten playerctl "scripts/playerctl.sh")
@@ -190,8 +195,9 @@
 (defpoll time :interval "30s" "scripts/date.sh")
 (defwidget clock []
   (box :orientation "v" :space-evenly false :class "button clock"
-    {time == "" ? "00" : time.hour}
-    {time == "" ? "00" : time.minute}
+    :tooltip {datetime == "" ? "N/A" : datetime.full}
+    {datetime == "" ? "00" : datetime.hour}
+    {datetime == "" ? "00" : datetime.minute}
   )
 )
 
