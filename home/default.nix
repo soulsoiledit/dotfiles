@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -13,20 +8,23 @@
     ./shell.nix
     ./terminal.nix
     ./desktop.nix
-    ./neovim
-    # ./eww
-    ./menu.nix
+
     ./files.nix
+    ./lock_screen.nix
+    ./launcher.nix
+    ./notify.nix
+
+    ./eww
+    ./neovim
   ];
 
   programs.home-manager.enable = true;
 
-  home.username = "soil";
-  home.homeDirectory = "/home/soil";
-  home.stateVersion = "23.11";
-
-  # auto start/stop services
-  systemd.user.startServices = "sd-switch";
+  home = {
+    username = "soil";
+    homeDirectory = "/home/soil";
+    stateVersion = "23.11";
+  };
 
   xdg.enable = true;
 
@@ -68,12 +66,13 @@
       ];
     };
 
-  services.playerctld.enable = true;
-  services.udiskie.enable = true;
-
   programs.zathura.enable = true;
 
-  programs.fuzzel.enable = true;
+  # auto start/stop services
+  systemd.user.startServices = "sd-switch";
 
-  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink "/home/soil/code/dotfiles/home/eww";
+  services = {
+    playerctld.enable = true;
+    udiskie.enable = true;
+  };
 }

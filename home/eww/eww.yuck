@@ -1,136 +1,204 @@
 (defwindow bar
-    :monitor 0
-    :stacking "fg"
-    :exclusive false
-    :geometry (geometry :x "0px"
-                        :y "-25px"
-                        :width "100%"
-                        :height "25"
-                        :anchor "top center")
-    (centerbox
-      (topbar)
-      (box :halign "center" tray)
-      (bottombar)
-    )
+  :monitor 0
+  :stacking "fg"
+  :exclusive true
+  :geometry (geometry 
+    :width "24"
+    :height "100%"
+    :anchor "left center")
+  (centerbox :orientation "v"
+    (topbar)
+    (centerbar)
+    (bottombar)
+  )
 )
 
 (defwidget topbar []
-    ;; (box :orientation "h" :space-evenly false
-    ;;   (image :path "./macchiato_squircle.png" :image-width 50 )
-    ;; )
-    ;; launcher
-    (box :orientation "h" :space-evenly false
-      (clock)
-      (network_widget)
-      (volume_widget)
-      (brightness_widget)
-      (label :text "| ")
-      (workspace_widget)
-    )
-)
-
-(defwidget bottombar []
-    (box :orientation "h" :space-evenly false :halign "end"
-      (battery)
-      (temper)
-      (memory)
-    )
-)
-
-(defwidget clock []
-  (box :class "clock" :orientation "h"
-    (label :text "󰃭 ${time}")
+  (box :orientation "v" :space-evenly false
+    (launcher)
+    (user)
+    (player)
   )
 )
 
-(defwidget brightness_widget []
+(defwidget launcher []
+  (button :onclick "fuzzel &" :class "button launcher" "")
+)
+
+(defwidget user []
+  (box :orientation "v" :space-evenly false :class "button"
+    (network)
+    (volume)
+    (brightness)
+    (weather)
+  )
+)
+
+;; TODO: waiting for https://github.com/elkowar/eww/pull/629 to use elvis & safe access operators
+(defpoll network :interval "5s" "./scripts/network.sh")
+(defwidget network []
+  (button 
+    :onclick "foot -e nmtui &" 
+    :class {network == "" ? "network_down" : network.status} 
+    {network == "" ? "󰋗" : network.symbol}
+  )
+)
+
+(defpoll volume :interval "15s" "./scripts/volume.sh")
+(defvar volume-update 'eww update volume="$(./scripts/volume.sh)"')
+(defwidget volume []
   (eventbox
-    :onscroll 
-      `if [[ {} == up ]]; 
-        then brightnessctl set 20%+;
-        else brightnessctl set 20%-;
+    :onscroll
+    "if [[ {} == up ]]; 
+      then pamixer --increase 5;
+      else pamixer --decrease 5;
       fi;
-      eww update brightness=$(./scripts/brightness.sh)
-      `
-    (box :orientation "h"
-      :class "bright"
-      (label :text "${brightness}")
+      ${volume-update}
+      "
+    :onclick "pamixer --toggle-mute; ${volume-update}"
+    :onmiddleclick "pavucontrol &"
+
+    (box :orientation "v" :space-evenly false 
+      :class {volume == "" ? "volume_unmuted" : volume.mute}
+      {volume == "" ? "󰋗" : volume.symbol}
+      (label :class "small_text" :text "${volume == "" ? 100 : volume.volume}%")
     )
   )
 )
 
-(defwidget battery []
-  (box :class "battery" :orientation "h"
-    (label :text "󰁹 ${bat.percentage} ${bat.remaining}${bat.remaining == "" ? "" : " "}${round(bat.power / 1000000, 1)}W")
+(deflisten brightness "./scripts/brightness.sh")
+(defwidget brightness []
+  (eventbox :class "brightness"
+    :onscroll 
+    "if [[ {} == up ]]; 
+      then brightnessctl set 20%+;
+      else brightnessctl set 20%-;
+      fi;
+      "
+    {brightness == "" ? "󰋗" : brightness.symbol}
   )
 )
 
-(defwidget temper []
-  (box :class "temperature" :orientation "h"
-    (label :text "󰔏 ${temp}°C")
+(defpoll weather :interval "30m" "./scripts/weather.sh")
+(defwidget weather []
+  (label :class "weather" :text {weather == "" ? "󰼯" : weather.symbol})
+)
+
+(defpoll playerctl :interval "5s" "./scripts/playerctl.sh")
+(defvar playerctl-update 'eww update playerctl="$(./scripts/playerctl.sh)"')
+(defwidget player []
+  (box :orientation "v" :class "button playerctl"
+    (button :onclick "playerctl previous; ${playerctl-update}" "󰙣")
+    (button :onclick "playerctl play-pause; ${playerctl-update}" 
+      {playerctl == "" ? "󰋗" : playerctl.symbol}
+    )
+    (button :onclick "playerctl next; ${playerctl-update}" "󰙡")
   )
 )
 
-(defwidget memory []
-  (box :orientation "h" :class "memory"
-    (label :text "󰍛 ${
-      round(100 * (1 - memory.available / memory.total), 1)
-    }%")
+(defwidget centerbar []
+  (box :orientation "v" :space-evenly false
+    (workspaces)
+    ;; (open-window)
   )
 )
 
-(defwidget network_widget []
-  (button
-    :class { network == "up" ? "net_up" : "net_down" }
-    :onclick "alacritty -e nmtui &"
-    (label :text { (network == "up") ? "󰖩" : "󰖪" })
-  )
-)
+(deflisten workspaces "./scripts/workspaces.sh")
+(defwidget workspaces []
+  (box :orientation "v" :class "button"
+    (for entry in { workspaces ?: "[]" }
+      (button
+        :onclick "hyprctl dispatch workspace ${entry.id}"
 
-(defwidget workspace_widget []
-  (eventbox
-    :class "workspace"
-    (box
-      (for entry in workspaces
-        (button
-          :class "workspaces"
-          :onclick "hyprctl dispatch workspace ${entry.id}"
-          (label :text { 
-            entry.id == entry.active ? " " : (entry.windows >= 1 ? " " : " ")
-          })
-        )
+        :class "workspaces ${ 
+          entry.id == entry.active ? "workspaces_active"
+          : (entry.windows >= 1 ? "workspaces_used_${entry.id}" 
+            : "workspaces_empty")
+        }"
+
+        { 
+          entry.id == entry.active ? "󰮯" 
+          : (entry.windows >= 1 ? "󰊠" 
+            : "󰧞")
+        }
       )
     )
   )
 )
 
-(defwidget volume_widget []
-  (eventbox
-    :onscroll 
-      `if [[ {} == up ]]; 
-        then pamixer --increase 5;
-        else pamixer --decrease 5;
-      fi;
-      eww update volume="$(./scripts/volume.sh)"
-      `
-    :onclick `pamixer --toggle-mute; eww update volume="$(./scripts/volume.sh)"`
-    :onmiddleclick `pavucontrol &`
-    :onhover `eww update volume="$(./scripts/volume.sh)"`
+(defwidget bottombar []
+  (box :orientation "v" :space-evenly false :valign "end"
+    (tray)
+    (system)
+    (clock)
+    (power_menu)
+  )
+)
 
-    (box :orientation "h" :space-evenly "false"
-      :class { volume.mute == "true" ? "vol_muted" : "vol_active" }
-      (label :text { volume.sink =~ 'bluez' ? "󰋋 " : "󰕾 " })
-      (label :text "${volume.volume}%")
+(defwidget tray []
+  (box :orientation "v" :class "button"
+    (systray :pack-direction "down" :icon-size 18)
+  )
+)
+
+(defwidget system []
+  (box :orientation "v" :space-evenly false :class "button"
+    (battery)
+    (memory)
+    (temperature)
+    (cpu)
+  )
+)
+
+(defpoll battery :interval "1m" "./scripts/battery.sh")
+(defwidget battery []
+  (box :orientation "v" :space-evenly false :class "battery" 
+    :tooltip "${battery == "" ? 0 : battery.remaining} left @ ${battery == "" ? 0 : round(battery.wattage / 1000000, 0) }W"
+    {battery == "" ? "󰂑" : battery.symbol}
+    (box :orientation "v" :space-evenly false :class "small_text"
+      :visible { battery == "" ? false : battery.state != "Full" && battery.state != "Not charging" }
+      (label :text "${battery == "" ? 0 : battery.percentage}%")
     )
   )
 )
 
-(defpoll time :interval "1m" `date "+%a %m-%d %H:%M"`)
-(defpoll bat :interval "1m" `./scripts/battery.sh`)
-(defpoll temp :interval "1m" `acpi -t | grep -vP '20.0' | grep -oP '\\d+.0'`)
-(defpoll network :interval "5s" `cat /sys/class/net/wlan0/operstate`)
-(defpoll memory :interval "5s" `./scripts/memory.sh`)
-(defpoll brightness :interval "1m" `./scripts/brightness.sh`)
-(defpoll volume :interval "15s" `./scripts/volume.sh`)
-(deflisten workspaces `./scripts/workspaces.sh`)
-(deflisten tray :initial "" "./scripts/tray.sh")
+(defpoll memory :interval "5s" "./scripts/memory.sh")
+(defwidget memory []
+  (box :orientation "v" :space-evenly false :class "memory"
+    "󰍛"
+    (label :class "small_text" :text "${round(memory == "" ? 0 : memory.used_percentage, 0)}%")
+  )
+)
+
+(defpoll temperature :interval "1m" "./scripts/temperature.sh")
+(defwidget temperature []
+  (box :orientation "v" :space-evenly false :class "temperature"
+    "󰔏"
+    (label :class "small_text" :text "${temperature}°C")
+  )
+)
+
+(defpoll cpu :interval "1m" "./scripts/cpu.sh")
+(defwidget cpu []
+  (box :orientation "v" :space-evenly false :class "cpu"
+    "󰘚"
+    (label :class "small_text" 
+      :text "${round(100 - (cpu == "" ? 99: cpu.cpu_percentage), 0)}%"
+    )
+  )
+)
+
+(defpoll time :interval "30s" "./scripts/date.sh")
+(defwidget clock []
+  (box :orientation "v" :space-evenly false :class "button clock"
+    {time == "" ? "00" : time.hour}
+    {time == "" ? "00" : time.minute}
+  )
+)
+
+;; TODO: Add actual power menu....
+(defwidget power_menu []
+  (box :class "button power_menu"
+    "󰐥"
+  )
+)

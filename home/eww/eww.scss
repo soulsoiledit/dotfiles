@@ -1,81 +1,198 @@
 $text: #cdd6f4;
+
 $base: #1e1e2e;
-$base-transparent: rgba(30, 30, 46, 0.625);
-$gray: #585b70;
+$base-transparent: rgba(#1e1e2e, 0.5);
+
+$surface: #313244;
+$surface1: #45475a;
+$overlay: #6c7086;
+$subtext: #a6adc8;
+
+$rosewater: #f5e0dc;
+$flamingo: #f2cdcd;
+$pink: #f5c2e7;
+$mauve: #cba6f7;
 $red: #f38ba8;
-$orange: #fab387;
+$maroon: #eba0ac;
+$peach: #fab387;
 $yellow: #f9e2af;
 $green: #a6e3a1;
+$teal: #94e2d5;
 $sky: #89dceb;
 $sapphire: #74c7ec;
 $blue: #89b4fa;
-$mauve: #cba6f7;
-$pink: #f5c2e7;
-$transparent: rgba(0, 0, 0, 0);
+$lavender: #b4befe;
 
-// reset everything to style from scratch
+$gray: $overlay;
+
+// reset important things to style from scratch
 * {
-  all: unset;
+  color: unset;
+  opacity: unset;
+
+  font: unset;
+  text-shadow: unset;
+
+  margin: unset;
+  padding: unset;
+  border: unset;
+  outline: unset;
+
+  background: unset;
+  box-shadow: unset;
+
+  transition: unset;
+  animation: unset;
 }
 
 .bar {
-  background-color: $base-transparent;
+  background: $base-transparent;
   color: $text;
-  font-family: "Fantasque Sans Mono";
-  font-size: 14px;
+
+  font:
+    18px "Fantasque Sans Mono",
+    "Symbols Nerd Font";
 }
 
-.clock {
+.button {
+  background: $surface;
+  border-radius: 4px;
+  padding: 2px 0px;
+  margin: 2px 2px;
+}
+
+.small_text {
+  font-size: 10px;
+}
+
+.launcher {
   color: $red;
-  padding: 0 0.5em;
 }
 
-.bright {
+.network_up {
+  color: $peach;
+}
+
+.network_down {
+  color: $gray;
+}
+
+.volume_unmuted {
+  color: $yellow;
+}
+
+.volume_muted {
+  color: $gray;
+}
+
+.brightness {
   color: $green;
-  padding-right: 0.5em;
 }
 
-.workspaces {
+.weather {
+  color: $teal;
+}
+
+.playerctl {
   color: $sky;
+}
+
+// pacman
+.workspaces_active {
+  color: $yellow;
+}
+
+// blinky
+.workspaces_used_1 {
+  color: $red;
+}
+
+// pinky
+.workspaces_used_2 {
+  color: $pink;
+}
+
+// inky
+.workspaces_used_3 {
+  color: $blue;
+}
+
+// clyde
+.workspaces_used_4 {
+  color: $peach;
+}
+
+// sue
+.workspaces_used_5 {
+  color: $mauve;
+}
+
+// pellet
+.workspaces_empty {
+  color: $gray;
 }
 
 .battery {
   color: $sapphire;
-  padding-right: 0.5em;
-}
-
-.temperature {
-  color: $blue;
-  padding-right: 0.5em;
 }
 
 .memory {
+  color: $blue;
+}
+
+.temperature {
+  color: $lavender;
+}
+
+.cpu {
   color: $mauve;
-  padding-right: 0.5em;
 }
 
-.net_up {
-  color: $orange;
-  padding-right: 0.5em;
+.clock {
+  color: $pink;
+  font-size: 16px;
 }
 
-.net_down {
-  color: $gray;
-  padding-right: 0.5em;
+.power_menu {
+  color: $flamingo;
 }
 
-.vol {
-  padding: 0px 2px;
-  margin: 3px;
-  border-radius: 2px;
+// styling elements of the systray
+// super basic and most likely incomplete
+menubar {
+  & menu {
+    background: $base;
+    color: $text;
+    font-size: 12px;
+
+    padding: 4px;
+    border: 2px $surface solid;
+
+    menuitem:hover {
+      background: $surface1;
+    }
+
+    separator {
+      margin: 2px;
+      background: $surface;
+    }
+
+    check {
+      background: $surface;
+      margin: 0px 4px;
+
+      &:checked {
+        color: $base;
+        background: $mauve;
+      }
+    }
+  }
 }
 
-.vol_active {
-  color: $yellow;
-  padding-right: 0.5em;
-}
-
-.vol_muted {
-  color: $gray;
-  padding-right: 0.5em;
+tooltip {
+  background: $base;
+  color: $text;
+  font:
+    12px "Fantasque Sans Mono",
+    "Symbols Nerd Font";
 }

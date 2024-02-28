@@ -10,12 +10,11 @@
     grimblast
     swaybg
     wl-clipboard
-    eww-wayland
 
-    bc
-    socat
+    # various utilities
     pamixer
-    pavucontrol
+    brightnessctl
+    playerctl
   ];
 
   fonts.fontconfig.enable = true;
@@ -61,10 +60,8 @@
     gtk.enable = true;
   };
 
-  programs.eww = {
-    # enable = false;
-    # package = pkgs.eww-wayland;
-    # configDir = ./eww;
+  wayland.windowManager.sway = {
+    enable = true;
   };
 
   wayland.windowManager.hyprland = {
@@ -92,8 +89,8 @@
 
         # set env variables
         env = [
-          # setup multi-gpu support; use AMD iGPU only
-          "WLR_DRM_DEVICES,/dev/dri/card1"
+          # setup multi-gpu support; use iGPU as primary and dgpu as fallback
+          "WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
 
           # hint to UI frameworks to use wayland
           "NIXOS_OZONE_WL,1"
@@ -146,10 +143,7 @@
           };
         };
 
-        layerrule = [
-          # blur eww background
-          "blur, gtk-layer-shell"
-        ];
+        layerrule = [ "blur, gtk-layer-shell" ];
 
         decoration = {
           rounding = 4;
@@ -177,10 +171,6 @@
         input = {
           # kb_file = ~/.local/share/xorg/xkb/gallium_angle
           scroll_method = "2fg";
-
-          touchpad = {
-            # disable_while_typing = false;
-          };
         };
 
         gestures = {
@@ -209,7 +199,6 @@
         # Programs
         "$screenshot" = "grimblast --freeze copysave area ~/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png";
         "$volume_update" = ''eww update volume="$(~/.config/eww/scripts/volume.sh)"'';
-        "$brightness_update" = "eww update brightness=$(~/.config/eww/scripts/brightness.sh)";
 
         "$notify_kbd" = ''notify-send "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
         "$notify_led" = ''notify-send "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
@@ -307,8 +296,8 @@
           "ctrl shift, period, exec, makoctl invoke"
 
           # brightness
-          ",XF86MonBrightnessUp, exec, brightnessctl set 20%+; $brightness_update"
-          ",XF86MonBrightnessDown, exec, brightnessctl set 20%-; $brightness_update"
+          ",XF86MonBrightnessUp, exec, brightnessctl set 20%+"
+          ",XF86MonBrightnessDown, exec, brightnessctl set 20%-"
 
           # volume
           ",XF86AudioMute, exec, pamixer --toggle-mute; $volume_update"
@@ -330,41 +319,6 @@
       };
   };
 
-  # TODO: switch to ags?
-  programs.waybar = {
-    enable = true;
-    settings = {
-      tray = {
-        layer = "top";
-        position = "top";
-        height = 25;
-        width = 150;
-        exclusive = true;
-        margin-top = 0;
-
-        modules-center = [ "tray" ];
-        "tray" = {
-          icon-size = 20;
-          spacing = 5;
-        };
-      };
-    };
-    style =
-      # css
-      ''
-        * {
-          font-family: Fantasque Sans Mono;
-          font-size: 10px;
-        }
-
-        #tray, #waybar {
-          background: none;
-          border-bottom: none;
-        }
-      '';
-  };
-
-  services.batsignal.enable = true;
   # TODO: Add swayidle service
   # timers:
   # brightness decrement and restore
