@@ -24,6 +24,7 @@ $blue: #89b4fa;
 $lavender: #b4befe;
 
 $gray: $overlay;
+$accent: $mauve;
 
 // reset important things to style from scratch
 * {
@@ -157,6 +158,17 @@ $gray: $overlay;
   color: $flamingo;
 }
 
+tooltip {
+  background: $base;
+  color: $text;
+
+  font:
+    12px "Fantasque Sans Mono",
+    "Symbols Nerd Font";
+
+  border: 2px $surface solid;
+}
+
 // styling elements of the systray
 // super basic and most likely incomplete
 menubar {
@@ -183,16 +195,8 @@ menubar {
 
       &:checked {
         color: $base;
-        background: $mauve;
+        background: $accent;
       }
     }
   }
-}
-
-tooltip {
-  background: $base;
-  color: $text;
-  font:
-    12px "Fantasque Sans Mono",
-    "Symbols Nerd Font";
 }
