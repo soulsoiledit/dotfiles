@@ -1,14 +1,20 @@
+{ pkgs, ... }:
+
 {
   imports = [ ./hardware.nix ];
   networking.hostName = "zephyrus";
 
-  # disable amd-pstate to hopefully resolve suspend problems
-  boot.kernelParams = [ "amd_pstate=passive" ];
+  boot = {
+    kernelParams = [ "amd_pstate=active" ];
+  };
 
   powerManagement = {
-    # schedutil is good enough
-    cpuFreqGovernor = "schedutil";
+    enable = true;
+    cpuFreqGovernor = "powersave";
   };
+
+  # powerprofilesctl
+  # openrgb
 
   services = {
     upower.enable = true;
