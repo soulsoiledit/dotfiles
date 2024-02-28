@@ -1,3 +1,5 @@
+; vim: set commentstring=;;%s:
+
 (defwindow bar
   :monitor 0
   :stacking "fg"
@@ -33,6 +35,8 @@
     (weather)
   )
 )
+
+;; TODO: signals for network
 
 ;; TODO: waiting for https://github.com/elkowar/eww/pull/629 to use elvis & safe access operators
 (defpoll network :interval "5s" "./scripts/network.sh")
@@ -77,7 +81,7 @@
   )
 )
 
-(defpoll weather :interval "30m" "./scripts/weather.sh")
+(defpoll weather :interval "1h" "./scripts/weather.sh")
 (defwidget weather []
   (label :class "weather" :text {weather == "" ? "󰼯" : weather.symbol})
 )
@@ -147,7 +151,7 @@
   )
 )
 
-(defpoll battery :interval "1m" "./scripts/battery.sh")
+(deflisten battery "./scripts/battery.sh")
 (defwidget battery []
   (box :orientation "v" :space-evenly false :class "battery" 
     :tooltip "${battery == "" ? 0 : battery.remaining} left @ ${battery == "" ? 0 : round(battery.wattage / 1000000, 0) }W"

@@ -1,4 +1,4 @@
-full json output
+# full json output
 wttr=$(curl 'https://wttr.in?format=j2')
 weather_code=$(echo "$wttr" | jq '.current_condition[0].weatherCode')
 
