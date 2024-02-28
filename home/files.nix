@@ -1,4 +1,3 @@
-{ ... }:
 {
   programs.mpv.enable = true;
   programs.imv.enable = true;

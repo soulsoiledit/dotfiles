@@ -6,7 +6,7 @@
         font = "Fantasque Sans Mono:size=12";
         prompt = ''" "'';
         icon-theme = "Papirus-Dark";
-        terminal = "alacritty -e";
+        terminal = "foot -e";
 
         width = 30;
         horizontal-pad = 20;

@@ -48,6 +48,4 @@
       };
     };
   };
-
-  programs.wezterm.enable = true;
 }
