@@ -41,6 +41,9 @@
 (defwidget network []
   (button 
     :onclick "foot -e nmtui &" 
+    ;; TODO: add network name tooltip
+    ;; TODO: add vpn status icons
+    :tooltip "Network name:"
     :class {network == "" ? "network_down" : network.status} 
     {network == "" ? "󰋗" : network.symbol}
   )
@@ -57,7 +60,7 @@
       "
     :onclick "pamixer --toggle-mute"
     :onmiddleclick "pavucontrol &"
-
+    ;;TODO: indicate currently used device (bt, speaker, ext speaker, jack)
     (box :orientation "v" :space-evenly false 
       :class {volume == "" ? "volume_unmuted" : volume.mute}
       {volume == "" ? "󰋗" : volume.symbol}
@@ -92,6 +95,9 @@
 (deflisten playerctl "scripts/playerctl.sh")
 (defwidget player []
   (box :orientation "v" :class "button playerctl"
+    ;; TODO: dynamically change theme/accents based on song
+    ;; TODO: add currently playing song tooltip
+    :tooltip "Current song:"
     (button :onclick "playerctl previous" "󰙣")
     (button :onclick "playerctl play-pause" 
       {playerctl == "" ? "󰋗" : playerctl.symbol}
@@ -166,7 +172,7 @@
   )
 )
 
-(defpoll memory :interval "5s" "scripts/memory.sh")
+(defpoll memory :interval "10s" "scripts/memory.sh")
 (defwidget memory []
   (box :orientation "v" :space-evenly false :class "memory"
     "󰍛"
@@ -192,7 +198,7 @@
   )
 )
 
-(defpoll time :interval "30s" "scripts/date.sh")
+(defpoll datetime :interval "10s" "scripts/date.sh")
 (defwidget clock []
   (box :orientation "v" :space-evenly false :class "button clock"
     :tooltip {datetime == "" ? "N/A" : datetime.full}
