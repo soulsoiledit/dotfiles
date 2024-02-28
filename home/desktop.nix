@@ -198,7 +198,6 @@
 
         # Programs
         "$screenshot" = "grimblast --freeze copysave area ~/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png";
-        "$volume_update" = ''eww update volume="$(~/.config/eww/scripts/volume.sh)"'';
 
         "$notify_kbd" = ''notify-send "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
         "$notify_led" = ''notify-send "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
@@ -300,15 +299,15 @@
           ",XF86MonBrightnessDown, exec, brightnessctl set 20%-"
 
           # volume
-          ",XF86AudioMute, exec, pamixer --toggle-mute; $volume_update"
+          ",XF86AudioMute, exec, pamixer --toggle-mute"
 
-          "SHIFT, XF86AudioRaiseVolume, exec, pamixer --increase 1; $volume_update"
-          "SHIFT, XF86AudioLowerVolume, exec, pamixer --decrease 1; $volume_update"
+          "SHIFT, XF86AudioRaiseVolume, exec, pamixer --increase 1"
+          "SHIFT, XF86AudioLowerVolume, exec, pamixer --decrease 1"
         ];
 
         binde = [
-          ",XF86AudioRaiseVolume, exec, pamixer --increase 5; $volume_update"
-          ",XF86AudioLowerVolume, exec, pamixer --decrease 5; $volume_update"
+          ",XF86AudioRaiseVolume, exec, pamixer --increase 5"
+          ",XF86AudioLowerVolume, exec, pamixer --decrease 5"
         ];
 
         bindm = [

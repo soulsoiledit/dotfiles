@@ -13,6 +13,7 @@
     pavucontrol
     socat
     inotify-tools
+    pulseaudio
   ];
 
   # used for making quick changes
