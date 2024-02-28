@@ -44,8 +44,7 @@
   )
 )
 
-(defpoll volume :interval "15s" "./scripts/volume.sh")
-(defvar volume-update 'eww update volume="$(./scripts/volume.sh)"')
+(deflisten volume "./scripts/volume.sh")
 (defwidget volume []
   (eventbox
     :onscroll
@@ -53,9 +52,8 @@
       then pamixer --increase 5;
       else pamixer --decrease 5;
       fi;
-      ${volume-update}
       "
-    :onclick "pamixer --toggle-mute; ${volume-update}"
+    :onclick "pamixer --toggle-mute"
     :onmiddleclick "pavucontrol &"
 
     (box :orientation "v" :space-evenly false 
@@ -84,15 +82,14 @@
   (label :class "weather" :text {weather == "" ? "󰼯" : weather.symbol})
 )
 
-(defpoll playerctl :interval "5s" "./scripts/playerctl.sh")
-(defvar playerctl-update 'eww update playerctl="$(./scripts/playerctl.sh)"')
+(deflisten playerctl "./scripts/playerctl.sh")
 (defwidget player []
   (box :orientation "v" :class "button playerctl"
-    (button :onclick "playerctl previous; ${playerctl-update}" "󰙣")
-    (button :onclick "playerctl play-pause; ${playerctl-update}" 
+    (button :onclick "playerctl previous" "󰙣")
+    (button :onclick "playerctl play-pause" 
       {playerctl == "" ? "󰋗" : playerctl.symbol}
     )
-    (button :onclick "playerctl next; ${playerctl-update}" "󰙡")
+    (button :onclick "playerctl next" "󰙡")
   )
 )
 
