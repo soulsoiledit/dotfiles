@@ -25,11 +25,6 @@
     fd
     duf
 
-    # i neeeed it
-    acpi
-    brightnessctl
-    playerctl
-
     # qol
     (p7zip.override { enableUnfree = true; })
 
