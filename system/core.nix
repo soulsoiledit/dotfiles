@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   system.stateVersion = "23.11";
 
@@ -35,6 +36,13 @@
     "vm.watermark_scale_factor" = 125;
     "vm.page-cluster" = 0;
   };
+
+  # btrfs options
+  fileSystems."/".options = [
+    "compress=zstd"
+    "noatime"
+    "autodefrag"
+  ];
 
   environment.systemPackages = with pkgs; [
     neovim

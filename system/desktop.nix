@@ -1,4 +1,5 @@
 { pkgs, lib, ... }:
+
 {
   # enable sound and bluetooth
   security.rtkit.enable = true;
@@ -19,7 +20,7 @@
   services.ratbagd.enable = true;
 
   # login manager
-  # TODO: try (package) QtGreet or other pretty greeters
+  # TODO: try QtGreet, gtkgreet, cosmic-greeter
   services.greetd = {
     enable = true;
 
