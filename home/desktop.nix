@@ -107,7 +107,7 @@
 
         # execute at launch
         exec-once = [
-          "swaybg -i ~/code/dotfiles/extra/darkspace.jpg"
+          "swaybg -i ~/pictures/wallpaper"
           "eww open bar --toggle"
           "foot --server"
           "firefox"
