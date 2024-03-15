@@ -19,7 +19,7 @@
   (box :orientation "v" :space-evenly false
     (launcher)
     (user)
-    (player)
+    (mpris)
   )
 )
 
@@ -92,17 +92,16 @@
   )
 )
 
-(deflisten playerctl "scripts/playerctl.sh")
-(defwidget player []
-  (box :orientation "v" :class "button playerctl"
-    ;; TODO: dynamically change theme/accents based on song
-    ;; TODO: add currently playing song tooltip
-    :tooltip "Current song:"
-    (button :onclick "playerctl previous" "󰙣")
-    (button :onclick "playerctl play-pause" 
-      {playerctl == "" ? "󰋗" : playerctl.symbol}
+(deflisten mpris-status :initial "{}" "scripts/mpris.sh status")
+(deflisten mpris-metadata :initial "{}" "scripts/mpris.sh metadata")
+(defwidget mpris []
+  (tooltip :class "button"
+    "${mpris-metadata.title}\\n${mpris-metadata.artist} - ${mpris-metadata.album}"
+    (box :orientation "v" :space-evenly false :class "button mpris"
+      (button :onclick "playerctl previous" "󰙣")
+      (button :onclick "playerctl play-pause" {mpris-status.symbol})
+      (button :onclick "playerctl next" "󰙡")
     )
-    (button :onclick "playerctl next" "󰙡")
   )
 )
 
