@@ -32,6 +32,4 @@
       };
     };
   };
-
-  programs.wofi.enable = true;
 }

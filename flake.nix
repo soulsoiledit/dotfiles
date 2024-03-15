@@ -1,6 +1,32 @@
 {
   description = "soil's nix flake";
 
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    latest.url = "github:NixOS/nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    eww-tray = {
+      # TODO: remove when eww https://github.com/elkowar/eww/pull/743 is merged
+      url = "github:ralismark/eww/tray-3";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+  };
+
   outputs =
     {
       self,
@@ -38,31 +64,4 @@
         };
       };
     };
-
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    spicetify-nix = {
-      url = "github:Gerg-L/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    nix-index-database = {
-      url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    eww-tray = {
-      # TODO: remove when eww https://github.com/elkowar/eww/pull/743 is merged
-      url = "github:ralismark/eww/tray-3";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # catppuccin repos
-  };
 }

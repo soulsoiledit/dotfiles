@@ -14,7 +14,7 @@
 
   programs.lazygit.enable = true;
 
-  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "/home/soil/code/dotfiles/home/neovim/lua";
+  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/dotfiles/home/neovim/lua";
 
   programs.helix.enable = true;
 
@@ -68,7 +68,7 @@
       # haskell
       haskellPackages.haskell-language-server
       ormolu
-  
+
       # zig
       zls
 

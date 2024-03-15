@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 {
   services.mako =
     let
@@ -12,14 +14,16 @@
 
       width = 250;
       borderRadius = 4;
+      layer = "overlay";
 
       font = "Fantasque Sans Mono 10";
       backgroundColor = "${background}";
       textColor = "${text}";
       borderColor = "${accent}";
-      progressColor = "over ${progress}";
+      progressColor = "source ${progress}";
 
-      # TODO: volume notifications
+      iconPath = "${pkgs.papirus-icon-theme}/share/icons/Papirus-Dark";
+
       extraConfig = ''
         [urgency=high]
         background-color=${accent}
@@ -31,4 +35,8 @@
         format=<b>%s</b>\n%b
       '';
     };
+
+  services.swayosd = {
+    enable = true;
+  };
 }

@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -22,10 +27,13 @@
   gtk = {
     enable = true;
 
-    # TODO: play around with non compact sizes
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+
     theme = {
-      name = "Catppuccin-Mocha-Compact-Mauve-Dark";
+      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
+
       package = pkgs.catppuccin-gtk.override {
+        variant = "mocha";
         accents = [
           "mauve"
           "pink"
@@ -39,30 +47,35 @@
           "blue"
           "lavender"
         ];
-        size = "compact";
-        variant = "mocha";
+        tweaks = [ "rimless" ];
       };
     };
 
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = config.colors.accent;
+      };
     };
-
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 
   home.pointerCursor = {
-    size = 24;
-    # TODO: Try Vimix
-    name = "Bibata-Modern-Classic";
-    package = pkgs.bibata-cursors;
     gtk.enable = true;
+
+    size = 24;
+
+    name = "Afterglow-Recolored-Catppuccin-Macchiato";
+
+    package = pkgs.afterglow-cursors-recolored;
+    # package = pkgs.bibata-cursors;
+    # package = pkgs.rose-pine-cursor;
+    # package = pkgs.qogir-icon-theme;
   };
 
-  wayland.windowManager.sway = {
-    enable = true;
-  };
+  # disable ~/.icons/ generation
+  home.file.".icons/${config.home.pointerCursor.name}".enable = lib.mkForce false;
+  home.file.".icons/default/index.theme".enable = lib.mkForce false;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -92,17 +105,9 @@
           # setup multi-gpu support; use iGPU as primary and dgpu as fallback
           "WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
 
-          # hint to UI frameworks to use wayland
-          "NIXOS_OZONE_WL,1"
-          "GDK_BACKEND,wayland,x11"
-          "QT_QPA_PLATFORM,wayland;xcb"
-          "SDL_VIDEODRIVER,wayland"
-          "CLUTTER_BACKEND,wayland"
-
-          # set XDG spec explicitly
-          "XDG_CURRENT_DESKTOP,Hyprland"
-          "XDG_SESSION_TYPE,wayland"
-          "XDG_SESSION_DESKTOP,Hyprland"
+          # hidpi scaling
+          "GDK_SCALE,2"
+          "STEAM_FORCE_DESKTOPUI_SCALING,1.5"
         ];
 
         # execute at launch
@@ -186,6 +191,11 @@
           force_zero_scaling = true;
         };
 
+        misc = {
+          mouse_move_enables_dpms = true;
+          key_press_enables_dpms = true;
+        };
+
         # Window rules
         windowrulev2 = [
           # Float file picker dialog
@@ -201,6 +211,8 @@
 
         "$notify_kbd" = ''notify-send "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
         "$notify_led" = ''notify-send "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
+
+        "$notify_vol" = ''notify-send -c volume -i audio-volume-medium --hint=int:value:$(pamixer --get-volume) $(pamixer --get-volume)'';
 
         bind = [
           # Workspaces
@@ -220,8 +232,6 @@
           "$mod SHIFT, 5, movetoworkspacesilent, 5"
 
           # scroll through existing workspaces with mouse
-          # "$mod, mouse_down, workspace, e+1"
-          # "$mod, mouse_up, workspace, e-1"
 
           # Move to last workspace
           "$mod, Tab, workspace, previous"
@@ -232,6 +242,8 @@
           "$mod, K, layoutmsg, cycleprev"
           "$mod, J, changegroupactive, b"
           "$mod, K, changegroupactive, f"
+          "$mod, mouse_down, layoutmsg, cyclenext"
+          "$mod, mouse_up, layoutmsg, cycleprev"
 
           # Swap windows
           "$mod, O, layoutmsg, swapwithmaster"
@@ -299,15 +311,15 @@
           ",XF86MonBrightnessDown, exec, brightnessctl set 20%-"
 
           # volume
-          ",XF86AudioMute, exec, pamixer --toggle-mute"
+          ",XF86AudioMute, exec, pamixer --toggle-mute; $notify_vol"
 
-          "SHIFT, XF86AudioRaiseVolume, exec, pamixer --increase 1"
-          "SHIFT, XF86AudioLowerVolume, exec, pamixer --decrease 1"
+          "SHIFT, XF86AudioRaiseVolume, exec, pamixer --increase 1; $notify_vol"
+          "SHIFT, XF86AudioLowerVolume, exec, pamixer --decrease 1; $notify_vol"
         ];
 
         binde = [
-          ",XF86AudioRaiseVolume, exec, pamixer --increase 5"
-          ",XF86AudioLowerVolume, exec, pamixer --decrease 5"
+          ",XF86AudioRaiseVolume, exec, pamixer --increase 5; $notify_vol"
+          ",XF86AudioLowerVolume, exec, pamixer --decrease 5; $notify_vol"
         ];
 
         bindm = [
