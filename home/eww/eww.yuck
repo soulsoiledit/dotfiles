@@ -37,15 +37,14 @@
 )
 
 ;; TODO: waiting for https://github.com/elkowar/eww/pull/629 to use elvis & safe access operators
-(deflisten network "scripts/network.sh")
+(deflisten network :initial "{}" "scripts/network.sh")
 (defwidget network []
+  ;; TODO: indicate vpn
   (button 
     :onclick "foot -e nmtui &" 
-    ;; TODO: add network name tooltip
-    ;; TODO: add vpn status icons
-    :tooltip "Network name:"
-    :class {network == "" ? "network_down" : network.status} 
-    {network == "" ? "󰋗" : network.symbol}
+    :tooltip {network.ssid}
+    :class {network.status} 
+    {network.symbol}
   )
 )
 
