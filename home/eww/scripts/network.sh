@@ -1,8 +1,5 @@
 network() {
-	status=''
-	symbol=''
-
-	if cat /sys/class/net/*/operstate | rg 'up' &>/dev/null; then
+	if [[ -n $(ip route) ]]; then
 		status='network_up'
 		symbol='󰖩'
 	else
@@ -10,10 +7,16 @@ network() {
 		symbol='󰖪'
 	fi
 
-	jq -n -c --arg status "$status" --arg symbol "$symbol" '{status: $status, symbol: $symbol}'
+	ssid=$(nmcli -t -f name connection show --active | head -n 1)
+
+	if [[ "$ssid" == "lo" ]]; then
+		ssid="None"
+	fi
+
+	jq -n -c --arg status "$status" --arg symbol "$symbol" --arg ssid "$ssid" '{status: $status, symbol: $symbol, $ssid}'
 }
 
 network
-ip monitor link | rg --line-buffered 'state' | while read -r _; do
+ip monitor route | rg --line-buffered 'default' | while read -r _; do
 	network
 done
