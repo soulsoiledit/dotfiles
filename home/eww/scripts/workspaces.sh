@@ -1,5 +1,3 @@
-# TODO: figure out how to do this better
-
 workspaces() {
 	WORKSPACE_WINDOWS=$(hyprctl workspaces -j | jq 'map({key: .id | tostring, value: .windows}) | from_entries')
 	ACTIVE_WORKSPACE=$(hyprctl activeworkspace -j | jq '.id')

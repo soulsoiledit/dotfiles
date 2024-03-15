@@ -36,7 +36,6 @@
   )
 )
 
-;; TODO: waiting for https://github.com/elkowar/eww/pull/629 to use elvis & safe access operators
 (deflisten network :initial "{}" "scripts/network.sh")
 (defwidget network []
   ;; TODO: indicate vpn
@@ -48,7 +47,7 @@
   )
 )
 
-(deflisten volume "scripts/volume.sh")
+(deflisten volume :initial "{}" "scripts/volume.sh")
 (defwidget volume []
   (eventbox
     :onscroll
@@ -59,16 +58,18 @@
       "
     :onclick "pamixer --toggle-mute"
     :onmiddleclick "pavucontrol &"
+
     ;;TODO: indicate currently used device (bt, speaker, ext speaker, jack)
+
     (box :orientation "v" :space-evenly false 
-      :class {volume == "" ? "volume_unmuted" : volume.mute}
-      {volume == "" ? "󰋗" : volume.symbol}
-      (label :class "small_text" :text "${volume == "" ? 100 : volume.volume}%")
+      :class {volume.mute}
+      {volume.symbol}
+      (label :class "small_text" :text "${volume.volume}%")
     )
   )
 )
 
-(deflisten brightness "scripts/brightness.sh")
+(deflisten brightness :initial "{}" "scripts/brightness.sh")
 (defwidget brightness []
   (eventbox :class "brightness"
     :onscroll 
@@ -77,17 +78,17 @@
       else brightnessctl set 20%-;
       fi;
       "
-    {brightness == "" ? "󰋗" : brightness.symbol}
+    {brightness.symbol}
   )
 )
 
-(defpoll weather :interval "1h" "scripts/weather.sh")
+(defpoll weather :initial "{}" :interval "1h" "scripts/weather.sh")
 (defwidget weather []
   (button
     :class "weather" 
-    :tooltip {weather == "" ? "N/A" : weather.tooltip}
+    :tooltip {weather.tooltip}
     :onmiddleclick "xdg-open 'https://weather.com/weather/today/' &"
-    {weather == "" ? "󰼯" : weather.symbol}
+    {weather.symbol ?: "󰼯"}
   )
 )
 
@@ -111,10 +112,10 @@
   )
 )
 
-(deflisten workspaces "scripts/workspaces.sh")
+(deflisten workspaces :initial "[]" "scripts/workspaces.sh")
 (defwidget workspaces []
   (box :orientation "v" :class "button"
-    (for entry in { workspaces ?: "[]" }
+    (for entry in { workspaces }
       (button
         :onclick "hyprctl dispatch workspace ${entry.id}"
 
@@ -158,27 +159,27 @@
   )
 )
 
-(deflisten battery "scripts/battery.sh")
+(deflisten battery :initial "{}" "scripts/battery.sh")
 (defwidget battery []
   (box :orientation "v" :space-evenly false :class "battery" 
-    :tooltip "${battery == "" ? 0 : battery.remaining} left @ ${battery == "" ? 0 : round(battery.wattage / 1000000, 0) }W"
-    {battery == "" ? "󰂑" : battery.symbol}
+    :tooltip "${battery.remaining} left @ ${round(battery.wattage ?: 0 / 1000000, 0)}W"
+    {battery.symbol}
     (box :orientation "v" :space-evenly false :class "small_text"
-      :visible { battery == "" ? false : battery.state != "Full" && battery.state != "Not charging" }
-      (label :text "${battery == "" ? 0 : battery.percentage}%")
+      :visible {battery.state != "Full" && battery.state != "Not charging"}
+      (label :text "${battery.percentage}%")
     )
   )
 )
 
-(defpoll memory :interval "10s" "scripts/memory.sh")
+(defpoll memory :initial "{}" :interval "10s" "scripts/memory.sh")
 (defwidget memory []
   (box :orientation "v" :space-evenly false :class "memory"
     "󰍛"
-    (label :class "small_text" :text "${round(memory == "" ? 0 : memory.used_percentage, 0)}%")
+    (label :class "small_text" :text "${round(memory.used_percentage ?: 0, 0)}%")
   )
 )
 
-(defpoll temperature :interval "1m" "scripts/temperature.sh")
+(defpoll temperature :initial "" :interval "1m" "scripts/temperature.sh")
 (defwidget temperature []
   (box :orientation "v" :space-evenly false :class "temperature"
     "󰔏"
@@ -186,26 +187,26 @@
   )
 )
 
-(defpoll cpu :interval "1m" "scripts/cpu.sh")
+(defpoll cpu :initial "{}" :interval "1m" "scripts/cpu.sh")
 (defwidget cpu []
   (box :orientation "v" :space-evenly false :class "cpu"
     "󰘚"
     (label :class "small_text" 
-      :text "${round(100 - (cpu == "" ? 99: cpu.cpu_percentage), 0)}%"
+      :text "${round(100 - (cpu.cpu_percentage ?: 99), 0)}%"
     )
   )
 )
 
-(defpoll datetime :interval "10s" "scripts/date.sh")
+(defpoll datetime :initial "{}" :interval "10s" "scripts/date.sh")
 (defwidget clock []
   (box :orientation "v" :space-evenly false :class "button clock"
-    :tooltip {datetime == "" ? "N/A" : datetime.full}
-    {datetime == "" ? "00" : datetime.hour}
-    {datetime == "" ? "00" : datetime.minute}
+    :tooltip {datetime.full}
+    {datetime.hour}
+    {datetime.minute}
   )
 )
 
-;; TODO: Add actual power menu....
+;; TODO: add actual power menu....
 (defwidget power_menu []
   (box :class "button power_menu"
     "󰐥"
