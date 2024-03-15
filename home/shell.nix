@@ -11,7 +11,7 @@
   };
 
   home.sessionPath = [
-    "/home/soil/.local/bin"
+    "$HOME/.local/bin"
     "$XDG_DATA_HOME/cargo/bin"
   ];
 
@@ -46,26 +46,25 @@
       nix-direnv.enable = true;
     };
 
-    # TODO: declaratively set btop theme and config
     btop.enable = true;
 
-    # TODO: contribute manpage themeing for catppuccin theme
     bat = {
       enable = true;
       config = {
-        theme = "Catppuccin-mocha";
+        theme = "Catppuccin Mocha";
       };
     };
 
     eza = {
       enable = true;
-      enableAliases = true;
       git = true;
       icons = true;
     };
   };
 
-  # TODO: fetch fish theme automagically
+  # slows builds down
+  programs.man.generateCaches = false;
+
   programs.fish = {
     enable = true;
 

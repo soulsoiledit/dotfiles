@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  lib,
+  ...
+}:
 
 {
   imports = [
@@ -10,69 +15,82 @@
     ./desktop.nix
 
     ./files.nix
-    ./lock_screen.nix
     ./launcher.nix
     ./notify.nix
+    ./screenlock.nix
 
     ./eww
     ./neovim
   ];
 
-  programs.home-manager.enable = true;
+  config = {
 
-  home = {
-    username = "soil";
-    homeDirectory = "/home/soil";
-    stateVersion = "23.11";
-  };
+    programs.home-manager.enable = true;
 
-  xdg.enable = true;
-
-  home.packages = with pkgs; [
-    # vesktop
-
-    steam
-    piper
-
-    prismlauncher
-    cubiomes-viewer
-  ];
-
-  programs.firefox = {
-    enable = true;
-    policies = { };
-    profiles.soil = {
-      settings = { };
+    home = {
+      username = "soil";
+      homeDirectory = "/home/soil";
+      stateVersion = "23.11";
     };
-  };
 
-  programs.spicetify =
-    let
-      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-    in
-    {
+    xdg.enable = true;
+
+    home.packages = with pkgs; [
+      vesktop
+
+      steam
+      piper
+
+      prismlauncher
+      cubiomes-viewer
+    ];
+
+    programs.firefox = {
       enable = true;
-
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
-
-      enabledExtensions = with spicePkgs.extensions; [
-        # official
-        autoSkipVideo
-
-        # community
-        adblock
-        hidePodcasts
-      ];
+      policies = { };
+      profiles.soil = {
+        settings = { };
+      };
     };
 
-  programs.zathura.enable = true;
+    programs.spicetify =
+      let
+        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+      in
+      {
+        enable = true;
 
-  # auto start/stop services
-  systemd.user.startServices = "sd-switch";
+        theme = spicePkgs.themes.catppuccin;
+        colorScheme = "mocha";
 
-  services = {
-    playerctld.enable = true;
-    udiskie.enable = true;
+        enabledExtensions = with spicePkgs.extensions; [
+          # official
+          autoSkipVideo
+
+          # community
+          adblock
+          hidePodcasts
+        ];
+      };
+
+    programs.zathura.enable = true;
+
+    # auto start/stop services
+    systemd.user.startServices = "sd-switch";
+
+    services = {
+      playerctld.enable = true;
+      udiskie.enable = true;
+    };
+  };
+
+  options.colors = {
+    accent = with lib; lib.mkOption { type = types.str; };
+    accentCap = with lib; lib.mkOption { type = types.str; };
+  };
+
+  config.colors = {
+    accent = "mauve";
+    accentCap = "Mauve";
   };
 }

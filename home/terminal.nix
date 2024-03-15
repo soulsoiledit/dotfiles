@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   programs.foot = {
     enable = true;
@@ -24,8 +26,6 @@
         # label-letters = "sadfjklewcmpgh.";
       };
 
-      # TODO: fetch theme from github with flakes
-      # https://raw.githubusercontent.com/catppuccin/foot/main/catppuccin-mocha.conf
       colors = {
         foreground = "cdd6f4";
         background = "1e1e2e";

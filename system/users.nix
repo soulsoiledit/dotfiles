@@ -7,6 +7,7 @@
 
     extraGroups = [
       "wheel"
+      "video"
       "networkmanager"
       "libvirtd"
       # docker
