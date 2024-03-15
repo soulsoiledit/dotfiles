@@ -1,7 +1,7 @@
 $text: #cdd6f4;
 
 $base: #1e1e2e;
-$base-transparent: rgba(#1e1e2e, 0.5);
+$base-transparent: rgba(#1e1e2e, 0.625);
 
 $surface: #313244;
 $surface1: #45475a;
@@ -53,6 +53,8 @@ $accent: $mauve;
   font:
     18px "Fantasque Sans Mono",
     "Symbols Nerd Font";
+
+  padding: 2px 0px;
 }
 
 .button {
@@ -94,7 +96,7 @@ $accent: $mauve;
   color: $teal;
 }
 
-.playerctl {
+.mpris {
   color: $sky;
 }
 

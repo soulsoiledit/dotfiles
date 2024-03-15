@@ -5,13 +5,14 @@ battery() {
 	remaining=$(echo "$acpi_output" | rg -o ' (\d+:\d+)' -r '$1')
 	wattage=$(cat /sys/class/power_supply/BAT0/power_now)
 
-	# TODO: add ramping symbols
-	if [ "$state" == "full" ] || [ "$state" == "Not charging" ]; then
+	if [ "$state" == "Full" ] || [ "$state" == "Not charging" ]; then
 		symbol="󰁹"
 	elif [ "$state" == "Discharging" ]; then
-		symbol="󰁾"
+		symbols=('󰂎' '󱊡' '󱊢' '󱊣')
+		symbol=${symbols[(((10#$percentage * 4 - 1) / 100))]}
 	elif [ "$state" == "Charging" ]; then
-		symbol="󰂄"
+		symbols=('󰢟' '󱊤' '󱊥' '󱊦')
+		symbol=${symbols[(((10#$percentage * 4 - 1) / 100))]}
 	fi
 
 	jq -n -c \
