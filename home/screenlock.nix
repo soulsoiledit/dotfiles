@@ -11,7 +11,6 @@
       indicator = true;
       ignore-empty-password = true;
 
-      # TODO: ... how do i fetch this
       bs-hl-color = "f5e0dc";
       caps-lock-bs-hl-color = "f5e0dc";
       caps-lock-key-hl-color = "a6e3a1";
