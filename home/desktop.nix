@@ -376,13 +376,11 @@
     enable = true;
     tray = true;
 
-    # close enough
-    latitude = "40";
-    longitude = "-100";
+    provider = "geoclue2";
 
     temperature = {
       day = 6000;
-      night = 3500;
+      night = 4500;
     };
   };
 }
