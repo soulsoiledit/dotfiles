@@ -330,16 +330,45 @@
       };
   };
 
-  # TODO: Add swayidle service
-  # timers:
-  # brightness decrement and restore
-  # turn off screen
-  # screenlock
-  # suspend
-  # events:
-  # lock before suspend
-  # run swaylock on lock
-  # turn on display after resume
+  services.swayidle = {
+    enable = true;
+
+    events = [
+      {
+        event = "lock";
+        command = "swaylock";
+      }
+      {
+        event = "before-sleep";
+        command = "loginctl lock-session";
+      }
+      {
+        event = "after-resume";
+        command = "hyprctl dispatch dpms on; brightnessctl -r";
+      }
+    ];
+
+    timeouts = [
+      {
+        timeout = 600;
+        command = "brightnessctl -s; brightnessctl set 0%";
+        resumeCommand = "brightnessctl -r";
+      }
+      {
+        timeout = 660;
+        command = "hyprctl dispatch dpms off";
+        resumeCommand = "hyprctl dispatch dpms on";
+      }
+      {
+        timeout = 900;
+        command = "loginctl lock-session";
+      }
+      {
+        timeout = 1800;
+        command = "systemctl suspend";
+      }
+    ];
+  };
 
   services.cliphist.enable = true;
 
