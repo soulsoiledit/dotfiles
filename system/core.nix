@@ -3,7 +3,12 @@
 {
   system.stateVersion = "23.11";
 
-  time.timeZone = "US/Central";
+  # set timezone (automatically)
+  # time.timeZone = "US/Central";
+  services.automatic-timezoned.enable = true;
+
+  # location provider
+  location.provider = "geoclue2";
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
