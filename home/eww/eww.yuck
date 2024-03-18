@@ -99,7 +99,7 @@
     "${mpris-metadata.title}\\n${mpris-metadata.artist} - ${mpris-metadata.album}"
     (box :orientation "v" :space-evenly false :class "button mpris"
       (button :onclick "playerctl previous" "󰙣")
-      (button :onclick "playerctl play-pause" {mpris-status.symbol})
+      (button :onclick "playerctl play-pause" {mpris-status.symbol ?: "󰐌"})
       (button :onclick "playerctl next" "󰙡")
     )
   )
