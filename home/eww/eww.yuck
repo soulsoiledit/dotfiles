@@ -162,7 +162,7 @@
 (deflisten battery :initial "{}" "scripts/battery.sh")
 (defwidget battery []
   (box :orientation "v" :space-evenly false :class "battery" 
-    :tooltip "${battery.remaining} left @ ${round(battery.wattage ?: 0 / 1000000, 0)}W"
+    :tooltip "${battery.remaining} left @ ${round((battery.wattage ?: 0) / 1000000, 1)}W"
     {battery.symbol}
     (box :orientation "v" :space-evenly false :class "small_text"
       :visible {battery.state != "Full" && battery.state != "Not charging"}
