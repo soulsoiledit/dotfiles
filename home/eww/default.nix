@@ -11,7 +11,6 @@
     acpi
     pavucontrol
     socat
-    inotify-tools
     pulseaudio
   ];
 
