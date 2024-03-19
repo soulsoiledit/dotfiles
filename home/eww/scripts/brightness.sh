@@ -10,4 +10,6 @@ brightness() {
 }
 
 brightness
-while inotifywait -e close_write /sys/class/backlight/*/brightness &>/dev/null; do brightness; done
+udevadm monitor -u | rg --line-buffered "backlight" | while read -r _; do
+	brightness
+done
