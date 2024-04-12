@@ -146,7 +146,7 @@
 
 (defwidget tray []
   (box :orientation "v" :class "button"
-    (systray :pack-direction "down" :icon-size 18)
+    (systray :orientation "v" :icon-size 18)
   )
 )
 

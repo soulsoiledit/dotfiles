@@ -172,8 +172,8 @@ tooltip {
 }
 
 // styling elements of the systray
-// super basic and most likely incomplete
-menubar {
+// super basic and likely incomplete
+box {
   & menu {
     background: $base;
     color: $text;
