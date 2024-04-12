@@ -151,11 +151,13 @@
 )
 
 (defwidget system []
-  (box :orientation "v" :space-evenly false :class "button"
-    (battery)
-    (memory)
-    (temperature)
-    (cpu)
+  (button :onmiddleclick "foot -e btop &"
+    (box :orientation "v" :space-evenly false :class "button"
+      (battery)
+      (memory)
+      (temperature)
+      (cpu)
+    )
   )
 )
 
@@ -183,7 +185,7 @@
 (defwidget temperature []
   (box :orientation "v" :space-evenly false :class "temperature"
     "󰔏"
-    (label :class "small_text" :text "${temperature}°C")
+    (label :class "small_text" :text "${temperature}°")
   )
 )
 

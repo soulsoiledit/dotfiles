@@ -7,7 +7,7 @@
 
 {
   home.packages = with pkgs; [
-    inputs.eww-tray.packages.x86_64-linux.eww
+    inputs.eww.packages.${pkgs.system}.default
     acpi
     pavucontrol
     socat

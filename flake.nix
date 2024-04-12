@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    latest.url = "github:NixOS/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -20,9 +19,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    eww-tray = {
-      # TODO: remove when eww https://github.com/elkowar/eww/pull/743 is merged
-      url = "github:ralismark/eww/tray-3";
+    # TODO: remove on next release of eww
+    eww = {
+      url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -35,18 +34,17 @@
       ...
     }@inputs:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs { system = "x86_64-linux"; };
     in
     {
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixfmt-rfc-style;
+      formatter.${pkgs.system} = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
-          inherit system;
           specialArgs = {
             inherit inputs;
           };
+
           modules = [
             ./system
             ./hosts/zephyrus
@@ -57,9 +55,11 @@
       homeConfigurations = {
         soil = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
+
           extraSpecialArgs = {
             inherit inputs;
           };
+
           modules = [ ./home ];
         };
       };
