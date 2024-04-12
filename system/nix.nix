@@ -1,14 +1,11 @@
-{ inputs, ... }:
+{ lib, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
 
   nix = {
-    # disable channels to prevent state
-    channel.enable = false;
-
-    # makes nix commands use same nixpkgs as system
-    registry.nixpkgs.flake = inputs.nixpkgs;
+    # disable channels
+    # channel.enable = false;
 
     settings = {
       # optimize nix store automatically
@@ -21,6 +18,6 @@
     };
   };
 
-  # enable running random binaries (sometimes)
+  # fix running random binaries
   programs.nix-ld.enable = true;
 }
