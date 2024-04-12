@@ -209,14 +209,14 @@
         # Programs
         "$screenshot" = "grimblast --freeze copysave area ~/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png";
 
-        "$notify_kbd" = ''notify-send "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
-        "$notify_led" = ''notify-send "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
+        "$notify_kbd" = ''notify-send -c kbd-bright "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
+        "$notify_led" = ''notify-send -c kbd-mode "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
 
         "$notify_vol" = ''notify-send -c volume -i audio-volume-medium --hint=int:value:$(pamixer --get-volume) $(pamixer --get-volume)'';
 
         bind = [
           # Workspaces
-          # Switch workspaces with mainMod + [0-4]
+          # Switch workspaces
           # TODO: generate these automatically
           "$mod, 1, workspace, 1"
           "$mod, 2, workspace, 2"
@@ -224,7 +224,7 @@
           "$mod, 4, workspace, 4"
           "$mod, 5, workspace, 5"
 
-          # Move active window to a workspace with mod + SHIFT + [0-9]
+          # Move active window to workspace
           "$mod SHIFT, 1, movetoworkspacesilent, 1"
           "$mod SHIFT, 2, movetoworkspacesilent, 2"
           "$mod SHIFT, 3, movetoworkspacesilent, 3"
@@ -237,13 +237,15 @@
           "$mod, Tab, workspace, previous"
 
           # Navigation
-          # Move focus with mod + arrow keys
+          # Move focus
           "$mod, J, layoutmsg, cyclenext"
           "$mod, K, layoutmsg, cycleprev"
-          "$mod, J, changegroupactive, b"
-          "$mod, K, changegroupactive, f"
-          "$mod, mouse_down, layoutmsg, cyclenext"
-          "$mod, mouse_up, layoutmsg, cycleprev"
+          "$mod, J, changegroupactive, f"
+          "$mod, K, changegroupactive, b"
+          "$mod, mouse_up, layoutmsg, cyclenext"
+          "$mod, mouse_down, layoutmsg, cycleprev"
+          "$mod, mouse_up, changegroupactive, f"
+          "$mod, mouse_down, changegroupactive, b"
 
           # Swap windows
           "$mod, O, layoutmsg, swapwithmaster"
@@ -262,6 +264,10 @@
           "$mod, W, killactive,"
           "$mod, F, fullscreen, 1"
           "$mod, T, togglefloating, 1"
+
+          # Groups
+          "$mod, G, togglegroup"
+          "$mod SHIFT, G, lockactivegroup, toggle"
 
           # Hyprland
           "$mod SHIFT, E, exit,"
