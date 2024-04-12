@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.sessionVariables = {
@@ -6,13 +6,13 @@
     PAGER = "bat";
     MANPAGER = "nvim +Man!";
 
-    CARGO_HOME = "$XDG_DATA_HOME/cargo";
-    RUSTUP_HOME = "$XDG_DATA_HOME/rustup";
+    CARGO_HOME = "${config.xdg.dataHome}/cargo";
+    RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
   };
 
   home.sessionPath = [
     "$HOME/.local/bin"
-    "$XDG_DATA_HOME/cargo/bin"
+    "${config.xdg.dataHome}/cargo/bin"
   ];
 
   home.packages = with pkgs; [
@@ -61,9 +61,6 @@
       icons = true;
     };
   };
-
-  # slows builds down
-  programs.man.generateCaches = false;
 
   programs.fish = {
     enable = true;
