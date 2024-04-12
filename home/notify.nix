@@ -33,10 +33,18 @@
         [category=volume]
         group-by=category
         format=<b>%s</b>\n%b
+
+        [category=kbd-bright]
+        group-by=category
+        format=<b>%s</b>\n%b
+
+        [category=kbd-mode]
+        group-by=category
+        format=<b>%s</b>\n%b
       '';
     };
 
   services.swayosd = {
-    enable = true;
+    enable = false;
   };
 }
