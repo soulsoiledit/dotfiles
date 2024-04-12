@@ -1,5 +1,5 @@
 function status() {
-	playerctl -p playerctld -F status | while read -r status; do
+	playerctl -p "playerctld" -F status | while read -r status; do
 		if [ "$status" == "Playing" ]; then
 			symbol='󰏥'
 		else
@@ -11,7 +11,7 @@ function status() {
 }
 
 function metadata() {
-	playerctl -F -p playerctld metadata --format '{"artist": "{{ artist }}", "album": "{{ album }}", "title": "{{ title }}"}' | while read -r metadata; do
+	playerctl -p "playerctld" -F metadata --format '{"artist": "{{ artist }}", "album": "{{ album }}", "title": "{{ title }}"}' | while read -r metadata; do
 		echo "$metadata" | jq -c
 	done
 }
