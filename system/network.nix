@@ -1,13 +1,5 @@
 {
-  networking = {
-    networkmanager = {
-      enable = true;
-      wifi = {
-        powersave = true;
-        backend = "iwd";
-      };
-    };
-  };
+  networking.networkmanager.enable = true;
 
   services = {
     openssh.enable = true;
