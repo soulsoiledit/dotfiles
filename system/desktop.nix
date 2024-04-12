@@ -38,5 +38,5 @@
   security.pam.services.swaylock = { };
 
   # gaming
-  hardware.opengl.driSupport32Bit = true;
+  programs.steam.enable = true;
 }
