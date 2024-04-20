@@ -400,17 +400,18 @@
       }
     ];
   };
+    wlsunset = {
+      enable = true;
 
+      latitude = "40";
+      longitude = "-100";
 
-  services.gammastep = {
-    enable = true;
-    tray = true;
-
-    provider = "geoclue2";
-
-    temperature = {
-      day = 6000;
-      night = 4500;
+      temperature = {
+        day = 6000;
+        night = 4500;
+      };
     };
+
+
   };
 }
