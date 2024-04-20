@@ -75,11 +75,11 @@
 
     size = 24;
 
-    name = "Afterglow-Recolored-Catppuccin-Macchiato";
+    name = "BreezeX-RosePine-Linux";
 
-    package = pkgs.afterglow-cursors-recolored;
+    # package = pkgs.afterglow-cursors-recolored;
     # package = pkgs.bibata-cursors;
-    # package = pkgs.rose-pine-cursor;
+    package = pkgs.rose-pine-cursor;
     # package = pkgs.qogir-icon-theme;
   };
 
