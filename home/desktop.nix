@@ -205,11 +205,23 @@
           key_press_enables_dpms = true;
         };
 
-        # Window rules
+        # window rules
         windowrulev2 = [
-          # Float file picker dialog
-          "float, title:^(Open File)$"
-          "center, title:^(Open File)$"
+          # group all windows on workspace 2 that aren't floating
+          "group set always, workspace:2, floating:0"
+
+          # float & center file picker dialog
+          "float, title:^Open Files*$"
+          "center 1, title:^Open Files*$"
+          "size 65% 65%, title:^Open Files*$"
+
+          # TODO: move windows to workspace 2 automatically
+
+          # float & center vesktop startup
+          "center 1, title:^vesktop$"
+
+          # tile & fullscreen steam
+          "tile, fullscreen, class:^steam_app_.*$"
         ];
 
         # Keybindings
