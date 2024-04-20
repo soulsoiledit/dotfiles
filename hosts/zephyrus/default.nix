@@ -4,24 +4,13 @@
   imports = [ ./hardware.nix ];
   networking.hostName = "zephyrus";
 
-  boot = {
-    kernelParams = [ "amd_pstate=active" ];
-  };
-
-  powerManagement = {
-    cpuFreqGovernor = "powersave";
-  };
-
-  # powerprofilesctl
-  # openrgb
-
   services = {
     upower.enable = true;
 
     asusd = {
       enable = true;
-      # user services seems to be unfinished atm...
-      # enableUserService = true;
+      # package = pkgs.callPackage ../../pkgs/asusctl { };
+      enableUserService = true;
     };
   };
 
