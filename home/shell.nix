@@ -37,24 +37,33 @@
   ];
 
   programs = {
-    fzf.enable = true;
+    fzf = {
+      enable = true;
+      catppuccin.enable = true;
+    };
+
     ripgrep.enable = true;
     hyfetch.enable = true;
     jq.enable = true;
-    cava.enable = true;
+
+    cava = {
+      enable = true;
+      catppuccin.enable = true;
+    };
 
     direnv = {
       enable = true;
       nix-direnv.enable = true;
     };
 
-    btop.enable = true;
+    btop = {
+      enable = true;
+      catppuccin.enable = true;
+    };
 
     bat = {
       enable = true;
-      config = {
-        theme = "Catppuccin Mocha";
-      };
+      catppuccin.enable = true;
     };
 
     eza = {
@@ -66,10 +75,10 @@
 
   programs.fish = {
     enable = true;
+    catppuccin.enable = true;
 
     interactiveShellInit = ''
       set fish_greeting
-      fish_config theme choose "Catppuccin Mocha"
     '';
 
     shellAbbrs = {
@@ -87,5 +96,8 @@
     plugins = [ ];
   };
 
-  programs.starship.enable = true;
+  programs.starship = {
+    enable = true;
+    catppuccin.enable = true;
+  };
 }

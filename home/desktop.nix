@@ -29,33 +29,39 @@
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
 
-    theme = {
-      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
-
-      package = pkgs.catppuccin-gtk.override {
-        variant = "mocha";
-        accents = [
-          "mauve"
-          "pink"
-          "red"
-          "peach"
-          "yellow"
-          "green"
-          "teal"
-          "sky"
-          "sapphire"
-          "blue"
-          "lavender"
-        ];
-        tweaks = [ "rimless" ];
-      };
+    catppuccin = {
+      enable = true;
+      accent = "mauve";
+      tweaks = [ "rimless" ];
     };
 
+    # theme = {
+    #   name = "Catppuccin-Mocha-Standard-Mauve-Dark";
+    #
+    #   package = pkgs.catppuccin-gtk.override {
+    #     variant = "mocha";
+    #     accents = [
+    #       "mauve"
+    #       "pink"
+    #       "red"
+    #       "peach"
+    #       "yellow"
+    #       "green"
+    #       "teal"
+    #       "sky"
+    #       "sapphire"
+    #       "blue"
+    #       "lavender"
+    #     ];
+    #     tweaks = [ "rimless" ];
+    #   };
+    # };
+    #
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.catppuccin-papirus-folders.override {
         flavor = "mocha";
-        accent = config.colors.accent;
+        accent = "mauve";
       };
     };
   };
@@ -81,6 +87,7 @@
     enable = true;
     systemd.enable = true;
     xwayland.enable = true;
+    catppuccin.enable = true;
 
     # plugins = with pkgs; [
     #   hyprland-protocols
@@ -92,9 +99,9 @@
       let
         gap = 2;
 
-        gray = "6c7086";
-        accent1 = "cba6f7";
-        accent2 = "f38ba8";
+        gray = "$surface0";
+        accent1 = "$mauve";
+        accent2 = "$red";
       in
       {
         # set monitor preferences
@@ -128,8 +135,8 @@
 
           cursor_inactive_timeout = 4;
 
-          "col.inactive_border" = "rgb(${gray})";
-          "col.active_border" = "rgb(${accent1}) rgb(${accent2}) 45deg";
+          "col.inactive_border" = "${gray}";
+          "col.active_border" = "${accent1} ${accent2} 45deg";
         };
 
         misc = {
@@ -137,14 +144,20 @@
         };
 
         group = {
-          "col.border_inactive" = "rgb(${gray})";
-          "col.border_active" = "rgb(${accent1}) rgb(${accent2}) 45deg";
+          "col.border_inactive" = "${gray}";
+          "col.border_active" = "${accent1} ${accent2} 45deg";
+
+          "col.border_locked_inactive" = "${gray}";
+          "col.border_locked_active" = "${accent2} ${accent1} 45deg";
 
           groupbar = {
             gradients = false;
             render_titles = false;
-            "col.inactive" = "rgb(${gray})";
-            "col.active" = "rgb(${accent1}) rgb(${accent2}) 45deg";
+            "col.inactive" = "${gray}";
+            "col.active" = "${accent1} ${accent2} 45deg";
+
+            "col.locked_inactive" = "${gray}";
+            "col.locked_active" = "${accent2} ${accent1} 45deg";
           };
         };
 
@@ -353,6 +366,10 @@
         command = "hyprctl dispatch dpms on; brightnessctl -r";
       }
     ];
+  services = {
+    cliphist.enable = true;
+    playerctld.enable = true;
+    udiskie.enable = true;
 
     timeouts = [
       {
@@ -376,7 +393,6 @@
     ];
   };
 
-  services.cliphist.enable = true;
 
   services.gammastep = {
     enable = true;

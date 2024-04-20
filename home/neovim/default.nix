@@ -15,8 +15,15 @@
   programs.lazygit.enable = true;
 
   xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/dotfiles/home/neovim/lua";
+  programs.lazygit = {
+    enable = true;
+    catppuccin.enable = true;
+  };
 
-  programs.helix.enable = true;
+  programs.helix = {
+    enable = true;
+    catppuccin.enable = true;
+  };
 
   programs.neovim = {
     enable = true;

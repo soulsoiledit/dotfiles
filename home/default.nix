@@ -1,13 +1,9 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     inputs.spicetify-nix.homeManagerModules.default
+    inputs.catppuccin.homeManagerModules.catppuccin
 
     ./nix.nix
     ./shell.nix
@@ -21,76 +17,62 @@
 
     ./eww
     ./neovim
+
+    ./sway.nix
   ];
 
-  config = {
+  catppuccin.flavour = "mocha";
 
-    programs.home-manager.enable = true;
+  programs.home-manager.enable = true;
 
-    home = {
-      username = "soil";
-      homeDirectory = "/home/soil";
-      stateVersion = "23.11";
+  home = {
+    username = "soil";
+    homeDirectory = "/home/soil";
+    stateVersion = "23.11";
+  };
+
+  xdg.enable = true;
+
+  home.packages = with pkgs; [
+    vesktop
+    piper
+
+    prismlauncher
+    cubiomes-viewer
+
+    bottles
+  ];
+
+  programs.firefox = {
+    enable = true;
+    policies = { };
+    profiles.soil = {
+      settings = { };
     };
+  };
 
-    xdg.enable = true;
-
-    home.packages = with pkgs; [
-      vesktop
-
-      steam
-      piper
-
-      prismlauncher
-      cubiomes-viewer
-    ];
-
-    programs.firefox = {
+  programs.spicetify =
+    let
+      spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+    in
+    {
       enable = true;
-      policies = { };
-      profiles.soil = {
-        settings = { };
-      };
+
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
+
+      enabledExtensions = with spicePkgs.extensions; [
+        # official
+        autoSkipVideo
+
+        # community
+        adblock
+        hidePodcasts
+      ];
     };
 
-    programs.spicetify =
-      let
-        spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-      in
-      {
-        enable = true;
+  programs.zathura.enable = false;
 
-        theme = spicePkgs.themes.catppuccin;
-        colorScheme = "mocha";
-
-        enabledExtensions = with spicePkgs.extensions; [
-          # official
-          autoSkipVideo
-
-          # community
-          adblock
-          hidePodcasts
-        ];
-      };
-
-    programs.zathura.enable = true;
-
-    # auto start/stop services
-    systemd.user.startServices = "sd-switch";
-
-    services = {
-      playerctld.enable = true;
-      udiskie.enable = true;
-    };
-  };
-
-  options.colors = {
-    accent = with lib; lib.mkOption { type = types.str; };
-    accentCap = with lib; lib.mkOption { type = types.str; };
-  };
-
-  config.colors = {
-    accent = "mauve";
-    accentCap = "Mauve";
-  };
+  # auto start/stop services
+  systemd.user.startServices = "sd-switch";
 }
