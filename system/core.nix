@@ -42,13 +42,6 @@
     "vm.page-cluster" = 0;
   };
 
-  # btrfs options
-  fileSystems."/".options = [
-    "compress=zstd"
-    "noatime"
-    "autodefrag"
-  ];
-
   environment.systemPackages = with pkgs; [
     neovim
     git
