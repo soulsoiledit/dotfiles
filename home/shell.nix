@@ -13,7 +13,7 @@
   };
 
   home.sessionPath = [
-    "$HOME/.local/bin"
+    "${config.home.homeDirectory}/.local/bin"
     "${config.xdg.dataHome}/cargo/bin"
   ];
 
@@ -21,10 +21,8 @@
     tmux
 
     # modern unix replacements
-    gdu
-    du-dust
     dua
-    fd
+    du-dust
     duf
 
     # qol
@@ -43,6 +41,7 @@
     };
 
     ripgrep.enable = true;
+    fd.enable = true;
     hyfetch.enable = true;
     jq.enable = true;
 
