@@ -357,49 +357,11 @@
       };
   };
 
-  services.swayidle = {
-    enable = true;
-
-    events = [
-      {
-        event = "lock";
-        command = "swaylock";
-      }
-      {
-        event = "before-sleep";
-        command = "loginctl lock-session";
-      }
-      {
-        event = "after-resume";
-        command = "hyprctl dispatch dpms on; brightnessctl -r";
-      }
-    ];
   services = {
     cliphist.enable = true;
     playerctld.enable = true;
     udiskie.enable = true;
 
-    timeouts = [
-      {
-        timeout = 600;
-        command = "brightnessctl -s; brightnessctl set 0%";
-        resumeCommand = "brightnessctl -r";
-      }
-      {
-        timeout = 660;
-        command = "hyprctl dispatch dpms off";
-        resumeCommand = "hyprctl dispatch dpms on";
-      }
-      {
-        timeout = 900;
-        command = "loginctl lock-session";
-      }
-      {
-        timeout = 1800;
-        command = "systemctl suspend";
-      }
-    ];
-  };
     wlsunset = {
       enable = true;
 
@@ -412,6 +374,46 @@
       };
     };
 
+    swayidle =
+      let
+        swaylock = lib.getExe pkgs.swaylock-effects;
+        brightnessctl = lib.getExe pkgs.brightnessctl;
+        loginctl = lib.getExe' pkgs.systemd "loginctl";
+        systemctl = lib.getExe' pkgs.systemd "systemctl";
+      in
+      {
+        enable = true;
 
+        events = [
+          {
+            event = "lock";
+            command = "${swaylock}";
+          }
+          {
+            event = "before-sleep";
+            command = "${loginctl} lock-session";
+          }
+          {
+            event = "after-resume";
+            command = "${brightnessctl} -r";
+          }
+        ];
+
+        timeouts = [
+          {
+            timeout = 600;
+            command = "${brightnessctl} -s; ${brightnessctl} set 0%";
+            resumeCommand = "${brightnessctl} -r";
+          }
+          {
+            timeout = 900;
+            command = "${loginctl} lock-session";
+          }
+          {
+            timeout = 1800;
+            command = "${systemctl} suspend";
+          }
+        ];
+      };
   };
 }
