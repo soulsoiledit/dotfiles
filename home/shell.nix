@@ -8,6 +8,8 @@
 
     CARGO_HOME = "${config.xdg.dataHome}/cargo";
     RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
+
+    FLAKE = "${config.home.homeDirectory}/code/dotfiles";
   };
 
   home.sessionPath = [
@@ -77,8 +79,8 @@
       g = "lazygit";
       x = "7z";
 
-      ns = "sudo nixos-rebuild switch --flake ~/code/dotfiles";
-      hs = "home-manager switch --flake ~/code/dotfiles";
+      ns = "nh os switch";
+      hs = "nh home switch";
     };
 
     functions = { };
