@@ -3,7 +3,11 @@
 {
   imports = [ inputs.nix-index-database.hmModules.nix-index ];
 
-  home.packages = with pkgs; [ nix-tree ];
+  home.packages = with pkgs; [
+    nix-tree
+    nix-output-monitor
+    nvd
+  ];
 
   programs = {
     nix-index.enable = true;
