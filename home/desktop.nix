@@ -187,12 +187,6 @@
           ];
         };
 
-        # Input
-        input = {
-          # kb_file = ~/.local/share/xorg/xkb/gallium_angle
-          scroll_method = "2fg";
-        };
-
         gestures = {
           workspace_swipe = true;
           workspace_swipe_invert = false;
