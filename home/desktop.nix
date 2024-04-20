@@ -15,12 +15,12 @@
     fantasque-sans-mono
     (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
 
+    # dependencies
     libnotify
     grimblast
-    swaybg
     wl-clipboard
 
-    # various utilities
+    # utils
     pamixer
     brightnessctl
     playerctl
@@ -83,7 +83,7 @@
     # package = pkgs.qogir-icon-theme;
   };
 
-  # disable ~/.icons/ generation
+  # dont generate ~/.icons/
   home.file.".icons/${config.home.pointerCursor.name}".enable = lib.mkForce false;
   home.file.".icons/default/index.theme".enable = lib.mkForce false;
 
@@ -113,9 +113,6 @@
 
         # set env variables
         env = [
-          # setup multi-gpu support; use iGPU as primary and dgpu as fallback
-          "WLR_DRM_DEVICES,/dev/dri/card1:/dev/dri/card0"
-
           # hidpi scaling
           "GDK_SCALE,2"
           "STEAM_FORCE_DESKTOPUI_SCALING,1.5"
@@ -123,11 +120,12 @@
 
         # execute at launch
         exec-once = [
-          "swaybg -i ~/pictures/wallpaper"
-          "eww open bar --toggle"
+          "${lib.getExe pkgs.swaybg} -i ~/pictures/wallpaper"
+          "${lib.getExe pkgs.wayland-pipewire-idle-inhibit}"
           "foot --server"
           "firefox"
           "rog-control-center"
+          "eww open bar --toggle"
         ];
 
         general = {
