@@ -7,9 +7,13 @@
 
 {
   home.packages = with pkgs; [
+    # fonts
+    roboto
+    roboto-serif
+    roboto-mono
+    noto-fonts-cjk
     fantasque-sans-mono
     (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
-    noto-fonts-cjk
 
     libnotify
     grimblast
