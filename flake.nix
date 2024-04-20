@@ -24,6 +24,8 @@
       url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =
