@@ -10,15 +10,12 @@
     ./terminal.nix
     ./desktop.nix
 
+    ./neovim.nix
     ./files.nix
     ./launcher.nix
     ./notify.nix
     ./screenlock.nix
-
     ./eww
-    ./neovim
-
-    ./sway.nix
   ];
 
   catppuccin.flavour = "mocha";
