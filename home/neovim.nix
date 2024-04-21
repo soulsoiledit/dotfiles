@@ -141,14 +141,37 @@
         action = "<cmd>noh<CR>";
       }
 
-      # TODO: add my keymaps
+      {
+        mode = "n";
+        key = "<leader>g";
+        lua = true;
+        action = ''
+          function()
+            require('toggleterm.terminal').Terminal:new({direction='float',cmd='lazygit',hidden=true}):toggle()
+          end
+        '';
+        options = {
+          desc = "lazygit";
+          silent = true;
+        };
+      }
 
-      # lsp
-      # telescope
+      {
+        mode = "n";
+        key = "<leader>fF";
+        lua = true;
+        action = ''
+          function()
+            require('telescope.builtin').find_files({hidden = true,no_ignore = true,follow = true})
+          end
+        '';
+        options = {
+          desc = "find all files";
+        };
+      }
+
+      # TODO: add buffer/window maps
       # buffers/windows
-      # flash
-      # surround
-      # lazygit
     ];
 
     colorschemes = {
@@ -200,7 +223,16 @@
 
         keymaps = {
           diagnostic = { };
-          lspBuf = { };
+          lspBuf = {
+            K = "hover";
+            gd = "definition";
+            gD = "type_definition";
+            gI = "implementation";
+            gR = "references";
+
+            "<leader>ca" = "code_action";
+            gr = "rename";
+          };
         };
 
         servers = {
@@ -265,12 +297,11 @@
           mapping = {
             "<C-n>" = ''cmp.mapping.select_next_item()'';
             "<C-p>" = ''cmp.mapping.select_prev_item()'';
-
             "<C-b>" = ''cmp.mapping.scroll_docs(-4)'';
             "<C-f>" = ''cmp.mapping.scroll_docs(4)'';
             "<C-Space>" = ''cmp.mapping.complete()'';
             "<C-e>" = ''cmp.mapping.abort()'';
-            "<CR>" = ''cmp.mapping.confirm({ select = true })'';
+            "<CR>" = ''cmp.mapping.confirm({cmp.ConfirmBehavior.Insert, select = true })'';
 
             "<Tab>" = ''
               cmp.mapping(function(fallback)
@@ -331,15 +362,34 @@
         enable = true;
         settings = {
           open_mapping = "[[<leader>t]]";
-          autochdir = true;
           insert_mappings = false;
-          shade_terminals = true;
+          autochdir = true;
         };
       };
 
       # navigation
       telescope = {
         enable = true;
+        keymaps = {
+          "<leader>ff" = "find_files";
+          "<leader>fs" = "live_grep";
+          "<leader>fb" = "buffers";
+          "<leader>fa" = "find_files";
+          "<leader>fr" = "oldfiles";
+
+          "<leader>fc" = "commands";
+          "<leader>fe" = "command_history";
+          "<leader>fh" = "help_tags";
+          "<leader>fm" = "marks";
+
+          "<leader>fgc" = "git_commits";
+          "<leader>fgs" = "git_status";
+
+          "<leader>ld" = "lsp_document_symbols";
+          "<leader>lw" = "lsp_workspace_symbols";
+
+          "<leader>fp" = "planets";
+        };
         extensions = {
           fzf-native.enable = true;
         };
@@ -392,7 +442,13 @@
 
       indent-blankline.enable = true;
       rainbow-delimiters.enable = true;
-      todo-comments.enable = true;
+      todo-comments = {
+        enable = true;
+        keymaps = {
+          todoTelescope.key = "<leader>ft";
+          todoQuickFix.key = "<leader>fT";
+        };
+      };
 
       nvim-lightbulb = {
         enable = true;
