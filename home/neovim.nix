@@ -48,7 +48,10 @@
       clang-tools
     ];
 
-    extraPlugins = with pkgs; [ vimPlugins.aerial-nvim ];
+    extraPlugins = with pkgs.vimPlugins; [
+      dressing-nvim
+      aerial-nvim
+    ];
 
     opts = {
       autowrite = true;
@@ -453,9 +456,8 @@
       nvim-lightbulb = {
         enable = true;
         settings = {
-          autocmd = {
-            enabled = true;
-          };
+          autocmd.enabled = true;
+          sign.text = "󰌵";
         };
       };
 
