@@ -102,15 +102,15 @@
         key = "s";
         action = "function() require('flash').jump() end";
         lua = true;
+        options.desc = "flash search";
       }
-
       {
         mode = "o";
         key = "r";
         action = "function() require('flash').remote() end";
         lua = true;
+        options.desc = "flash remote";
       }
-
       {
         mode = [
           "n"
@@ -123,7 +123,6 @@
           silent = true;
         };
       }
-
       {
         mode = [
           "n"
@@ -136,14 +135,12 @@
           silent = true;
         };
       }
-
-      # clear on escape
       {
+        # clear on escape
         mode = "n";
         key = "<Esc>";
         action = "<cmd>noh<CR>";
       }
-
       {
         mode = "n";
         key = "<leader>g";
@@ -158,10 +155,33 @@
           silent = true;
         };
       }
-
       {
         mode = "n";
-        key = "<leader>fF";
+        key = "<leader>ff";
+        lua = true;
+        action = ''
+          function()
+            local opts = {}
+
+            local builtin = require('telescope.builtin')
+            local cwd = vim.fn.getcwd()
+            local is_inside_work_tree = {}
+
+            vim.fn.system("git rev-parse --is-inside-work-tree")
+            is_inside_work_tree[cwd] = vim.v.shell_error == 0
+
+            if is_inside_work_tree[cwd] then
+              builtin.git_files(opts)
+            else
+              builtin.find_files(opts)
+            end
+          end
+        '';
+        options.desc = "files";
+      }
+      {
+        mode = "n";
+        key = "<leader>fa";
         lua = true;
         action = ''
           function()
@@ -169,7 +189,7 @@
           end
         '';
         options = {
-          desc = "find all files";
+          desc = "all files";
         };
       }
 
@@ -226,25 +246,80 @@
 
         keymaps = {
           diagnostic = { };
-          lspBuf = {
-            K = "hover";
-            gd = "definition";
-            gD = "type_definition";
-            gI = "implementation";
-            gR = "references";
-
-            "<leader>ca" = "code_action";
-            gr = "rename";
-          };
+          extra = [
+            {
+              mode = [
+                "n"
+                "v"
+              ];
+              key = "<leader>la";
+              lua = true;
+              action = "vim.lsp.buf.code_action";
+              options.desc = "code action";
+            }
+            {
+              mode = [ "n" ];
+              key = "gr";
+              lua = true;
+              action = "vim.lsp.buf.rename";
+              options.desc = "rename";
+            }
+            {
+              mode = [ "n" ];
+              key = "gd";
+              lua = true;
+              action = "require('telescope.builtin').lsp_definitions";
+              options.desc = "definition";
+            }
+            {
+              mode = [ "n" ];
+              key = "K";
+              lua = true;
+              action = "vim.lsp.buf.hover";
+              options.desc = "hover";
+            }
+            {
+              mode = [ "n" ];
+              key = "gD";
+              lua = true;
+              action = "require('telescope.builtin').lsp_type_definitions";
+              options.desc = "type definition";
+            }
+            {
+              mode = [ "n" ];
+              key = "gI";
+              lua = true;
+              action = "require('telescope.builtin').lsp_implementations";
+              options.desc = "implementation";
+            }
+            {
+              mode = [ "n" ];
+              key = "gR";
+              lua = true;
+              action = "require('telescope.builtin').lsp_references";
+              options.desc = "references";
+            }
+            {
+              mode = [ "n" ];
+              key = "<leader>ld";
+              lua = true;
+              action = "require('telescope.builtin').lsp_document_symbols";
+              options.desc = "doc symbols";
+            }
+            {
+              mode = [ "n" ];
+              key = "<leader>lw";
+              lua = true;
+              action = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+              options.desc = "workspace symbols";
+            }
+          ];
         };
 
         servers = {
           nil_ls = {
             enable = true;
             settings.formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
-            extraOptions = {
-              nix.flake.autoArchive = true;
-            };
           };
 
           lua-ls.enable = true;
@@ -296,6 +371,12 @@
             { name = "buffer"; }
             { name = "calc"; }
           ];
+
+          snippet.expand = ''
+            function(args)
+              require('luasnip').lsp_expand(args.body)
+            end
+          '';
 
           mapping = {
             "<C-n>" = ''cmp.mapping.select_next_item()'';
@@ -374,24 +455,38 @@
       telescope = {
         enable = true;
         keymaps = {
-          "<leader>ff" = "find_files";
-          "<leader>fs" = "live_grep";
-          "<leader>fb" = "buffers";
-          "<leader>fa" = "find_files";
-          "<leader>fr" = "oldfiles";
-
-          "<leader>fc" = "commands";
-          "<leader>fe" = "command_history";
-          "<leader>fh" = "help_tags";
-          "<leader>fm" = "marks";
-
-          "<leader>fgc" = "git_commits";
-          "<leader>fgs" = "git_status";
-
-          "<leader>ld" = "lsp_document_symbols";
-          "<leader>lw" = "lsp_workspace_symbols";
-
-          "<leader>fp" = "planets";
+          "<leader>fs" = {
+            action = "live_grep";
+            options.desc = "live grep";
+          };
+          "<leader>fb" = {
+            action = "buffers";
+            options.desc = "buffers";
+          };
+          "<leader>fr" = {
+            action = "oldfiles";
+            options.desc = "recent files";
+          };
+          "<leader>fc" = {
+            action = "commands";
+            options.desc = "commands";
+          };
+          "<leader>fe" = {
+            action = "command_history";
+            options.desc = "command history";
+          };
+          "<leader>fh" = {
+            action = "help_tags";
+            options.desc = "help";
+          };
+          "<leader>fm" = {
+            action = "marks";
+            options.desc = "marks";
+          };
+          "<leader>fp" = {
+            action = "builtin";
+            options.desc = "all";
+          };
         };
         extensions = {
           fzf-native.enable = true;
@@ -430,7 +525,14 @@
       };
 
       # ui
-      noice.enable = true;
+      noice = {
+        enable = true;
+        lsp.override = {
+          "vim.lsp.util.convert_input_to_markdown_lines" = true;
+          "vim.lsp.util.stylize_markdown" = true;
+          "cmp.entry.get_documentation" = true;
+        };
+      };
       notify.enable = true;
 
       bufferline.enable = true;
@@ -441,15 +543,27 @@
         theme = "dashboard";
       };
 
-      which-key.enable = true;
+      which-key = {
+        enable = true;
+        registrations = {
+          "<leader>t" = "toggle terminal";
+          "<leader>f".name = "telescope";
+          "<leader>l".name = "lsp";
+        };
+      };
 
       indent-blankline.enable = true;
       rainbow-delimiters.enable = true;
       todo-comments = {
         enable = true;
         keymaps = {
-          todoTelescope.key = "<leader>ft";
-          todoQuickFix.key = "<leader>fT";
+          todoTelescope = {
+            key = "<leader>ft";
+            options = {
+              silent = true;
+              desc = "todo";
+            };
+          };
         };
       };
 
