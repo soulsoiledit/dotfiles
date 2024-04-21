@@ -210,18 +210,27 @@
           # group all windows on workspace 2 that aren't floating
           "group set always, workspace:2, floating:0"
 
-          # float & center file picker dialog
+          # spawn these windows on workspace 2
+          "workspace 2 silent, class:steam title:Steam"
+          "workspace 2 silent, class:Spotify title:Spotify"
+          "workspace 2 silent, class:vesktop title:vesktop"
+          "workspace 2 silent, class:vesktop title:Discord"
+
+          "group set, class:steam title:Steam"
+          "group set, class:Spotify title:Spotify"
+          "group set, class:vesktop title:vesktop"
+          "group set, class:vesktop title:Discord"
+
+          # float, center, & resize file picker dialog
           "float, title:^Open Files*$"
-          "center 1, title:^Open Files*$"
+          "center, title:^Open Files*$"
           "size 65% 65%, title:^Open Files*$"
 
-          # TODO: move windows to workspace 2 automatically
-
           # float & center vesktop startup
-          "center 1, title:^vesktop$"
+          "center, class:vesktop title:vesktop"
 
-          # tile & fullscreen steam
-          "tile, fullscreen, class:^steam_app_.*$"
+          # tile steam games
+          "tile, class:steam_app_"
         ];
 
         # Keybindings
