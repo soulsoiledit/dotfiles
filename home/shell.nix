@@ -89,6 +89,7 @@
 
       ns = "nh os switch";
       hs = "nh home switch";
+      cl = "nh clean all --nogcroots";
     };
 
     functions = { };
