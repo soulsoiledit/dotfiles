@@ -2,20 +2,21 @@
 
 {
   imports = [
-    inputs.spicetify-nix.homeManagerModules.default
     inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.spicetify-nix.homeManagerModules.default
 
+    ./desktop.nix
     ./nix.nix
     ./shell.nix
     ./terminal.nix
-    ./desktop.nix
 
-    ./neovim.nix
+    ./eww
     ./files.nix
+    ./hyprland.nix
     ./launcher.nix
+    ./neovim.nix
     ./notify.nix
     ./screenlock.nix
-    ./eww
   ];
 
   catppuccin.flavour = "mocha";
