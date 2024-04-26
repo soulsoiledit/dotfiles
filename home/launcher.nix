@@ -4,7 +4,7 @@
     settings = {
       main = {
         font = "Fantasque Sans Mono:size=12";
-        prompt = ''" "'';
+        prompt = "\"❯ \"";
         icon-theme = "Papirus-Dark";
         terminal = "foot -e";
 
