@@ -209,6 +209,21 @@
           desc = "all files";
         };
       }
+      {
+        mode = "n";
+        key = "<leader>fS";
+        lua = true;
+        action = ''
+          function()
+            require('telescope.builtin').live_grep({
+              grep_open_files = true
+            })
+          end
+        '';
+        options = {
+          desc = "current file grep";
+        };
+      }
 
       # TODO: add buffer/window maps
       # buffers/windows
@@ -292,6 +307,13 @@
             }
             {
               mode = [ "n" ];
+              key = "gld";
+              lua = true;
+              action = "vim.lsp.buf.declaration";
+              options.desc = "declaration";
+            }
+            {
+              mode = [ "n" ];
               key = "K";
               lua = true;
               action = "vim.lsp.buf.hover";
@@ -323,14 +345,14 @@
               key = "<leader>ld";
               lua = true;
               action = "require('telescope.builtin').lsp_document_symbols";
-              options.desc = "doc symbols";
+              options.desc = "file symbols";
             }
             {
               mode = [ "n" ];
               key = "<leader>lw";
               lua = true;
               action = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
-              options.desc = "workspace symbols";
+              options.desc = "project symbols";
             }
           ];
         };
@@ -498,13 +520,17 @@
             action = "help_tags";
             options.desc = "help";
           };
+          "<leader>fk" = {
+            action = "keymaps";
+            options.desc = "keymaps";
+          };
           "<leader>fm" = {
             action = "marks";
             options.desc = "marks";
           };
           "<leader>fp" = {
             action = "builtin";
-            options.desc = "all";
+            options.desc = "pickers";
           };
         };
         extensions = {
