@@ -4,10 +4,6 @@
   programs.foot = {
     enable = true;
 
-    # this causes https://github.com/nix-community/home-manager/issues/3940 for some reason
-    # server.enable = true;
-    # potential fix (at the cost of opening urls)
-    # systemd.user.services.foot.Service.Environment = "PATH=/run/current-system/sw/bin/";
     catppuccin.enable = true;
 
     settings = {

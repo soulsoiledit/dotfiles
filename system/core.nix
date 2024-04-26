@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   system.stateVersion = "23.11";
@@ -7,7 +7,13 @@
   time.timeZone = "US/Central";
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_xanmod_stable;
+    kernelParams = [
+      "quiet"
+      "splash"
+    ];
+
+    crashDump.enable = true;
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -17,6 +23,16 @@
         editor = false;
         configurationLimit = 16;
       };
+
+      # grub = {
+      #   enable = true;
+      #   backgroundColor = "#1e1e2e";
+      #   configurationLimit = 16;
+      #   default = "saved";
+      #   device = "/dev/disk/by-label/boot";
+      #   efiSupport = true;
+      #   useOSProber = true;
+      # };
 
       timeout = 0;
     };
