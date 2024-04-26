@@ -51,7 +51,21 @@
     extraPlugins = with pkgs.vimPlugins; [
       dressing-nvim
       aerial-nvim
+      lsp-inlayhints-nvim
     ];
+
+    extraConfigLua = ''
+      local signs = {
+        Error = " ",
+        Warn  = " ",
+        Hint  = "󰌶 ",
+        Info  = " ",
+      }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
+    '';
 
     opts = {
       autowrite = true;
@@ -244,6 +258,8 @@
       ts-context-commentstring.enable = true;
 
       # lsp
+      lsp-lines.enable = true;
+
       lsp = {
         enable = true;
 
@@ -540,10 +556,9 @@
 
       bufferline.enable = true;
       lualine.enable = true;
-      # dashboard.enable = true;
       alpha = {
         enable = true;
-        theme = "dashboard";
+        theme = "theta";
       };
 
       which-key = {
@@ -555,6 +570,7 @@
         };
       };
 
+      lspkind.enable = true;
       indent-blankline.enable = true;
       rainbow-delimiters.enable = true;
       todo-comments = {
