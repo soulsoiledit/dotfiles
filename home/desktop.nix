@@ -80,6 +80,7 @@
         systemctl = lib.getExe' pkgs.systemd "systemctl";
       in
       {
+        enable = true;
 
         events = [
           {
