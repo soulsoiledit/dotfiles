@@ -5,18 +5,20 @@
     inputs.catppuccin.homeManagerModules.catppuccin
     inputs.spicetify-nix.homeManagerModules.default
 
-    ./desktop.nix
     ./nix.nix
-    ./shell.nix
-    ./terminal.nix
 
-    ./eww
+    ./shell.nix
     ./files.nix
+    ./git.nix
+    ./neovim.nix
+
+    ./desktop.nix
+    ./eww
     ./hyprland.nix
     ./launcher.nix
-    ./neovim.nix
     ./notify.nix
     ./screenlock.nix
+    ./terminal.nix
   ];
 
   catppuccin.flavour = "mocha";
