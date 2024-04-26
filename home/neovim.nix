@@ -185,7 +185,10 @@
         lua = true;
         action = ''
           function()
-            require('telescope.builtin').find_files({hidden = true,no_ignore = true,follow = true})
+            require('telescope.builtin').find_files({
+              hidden = true,
+              no_ignore = true
+            })
           end
         '';
         options = {
