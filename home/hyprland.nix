@@ -46,9 +46,9 @@
           "${lib.getExe pkgs.swaybg} -i ~/pictures/wallpaper"
           "${lib.getExe pkgs.wayland-pipewire-idle-inhibit}"
           "foot --server"
-          "firefox"
-          "rog-control-center"
           "eww open bar --toggle"
+          "[workspace 1 silent] firefox"
+          "rog-control-center"
         ];
 
         general = {

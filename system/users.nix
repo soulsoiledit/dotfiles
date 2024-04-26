@@ -10,10 +10,9 @@
       "video"
       "networkmanager"
       "libvirtd"
-      # docker
+      "docker"
     ];
   };
 
-  # needed for setting shell
   programs.fish.enable = true;
 }

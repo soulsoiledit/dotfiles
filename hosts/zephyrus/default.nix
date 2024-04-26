@@ -9,7 +9,6 @@
 
     asusd = {
       enable = true;
-      # package = pkgs.callPackage ../../pkgs/asusctl { };
       enableUserService = true;
     };
   };
