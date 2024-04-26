@@ -11,10 +11,6 @@
 
     font = "Fantasque Sans Mono 10";
     catppuccin.enable = true;
-    # backgroundColor = "${background}";
-    # textColor = "${text}";
-    # borderColor = "${accent}";
-    # progressColor = "source ${progress}";
 
     iconPath = "${pkgs.papirus-icon-theme}/share/icons/Papirus-Dark";
 
@@ -31,9 +27,5 @@
       group-by=category
       format=<b>%s</b>\n%b
     '';
-  };
-
-  services.swayosd = {
-    enable = false;
   };
 }
