@@ -8,10 +8,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_xanmod_stable;
-    kernelParams = [
-      "quiet"
-      "splash"
-    ];
+    kernelParams = [ "quiet" ];
 
     crashDump.enable = true;
 
