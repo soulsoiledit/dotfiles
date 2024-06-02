@@ -1,15 +1,15 @@
 { pkgs, ... }:
 
 {
-  users.users.soil = {
+  users.users.user = {
+    name = "soil";
+
     isNormalUser = true;
     shell = pkgs.fish;
 
     extraGroups = [
       "wheel"
       "video"
-      "networkmanager"
-      "libvirtd"
       "docker"
     ];
   };
