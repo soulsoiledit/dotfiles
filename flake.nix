@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # asusctl.url = "github:soulsoiledit/nixpkgs-asusctl-5.0.10/asusctl-5.0.10";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,12 +16,6 @@
 
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # TODO: remove on next release of eww
-    eww = {
-      url = "github:elkowar/eww";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -43,7 +35,8 @@
       ...
     }@inputs:
     let
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
     in
     {
       formatter.${pkgs.system} = pkgs.nixfmt-rfc-style;
