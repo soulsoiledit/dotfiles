@@ -4,6 +4,7 @@
   imports = [
     ./boot.nix
     ./nix.nix
+    ./swap.nix
     ./users.nix
   ];
 
