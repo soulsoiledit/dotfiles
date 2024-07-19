@@ -7,15 +7,7 @@
 
 {
   home.packages = with pkgs; [
-    roboto
-    roboto-serif
-    roboto-mono
-    noto-fonts-cjk
-    fantasque-sans-mono
-    (pkgs.nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
-
-  fonts.fontconfig.enable = true;
 
   gtk = {
     enable = true;
