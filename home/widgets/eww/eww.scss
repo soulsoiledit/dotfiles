@@ -40,17 +40,17 @@ $accent: $blue;
     "CommitMono Nerd Font",
     "sans";
 
-  margin: 0.25em 0;
+  margin: 0.25rem 0;
 }
 
 .layer {
   background: $surface;
-  border-radius: 0.5em;
-  margin: 0 0.25em;
+  border-radius: 0.5rem;
+  margin: 0 0.25rem;
   color: $accent;
 
   label {
-    padding: 0 0.25em;
+    padding: 0 0.25rem;
   }
 }
 
@@ -68,11 +68,11 @@ $accent: $blue;
 
 .workspaces {
   * {
-    margin: 0.625em 0.25em;
-    border-radius: 2em;
+    margin: 0.625rem 0.25rem;
+    border-radius: 2rem;
 
     background: $surface1;
-    padding: 0 0.75em;
+    padding: 0 0.75rem;
   }
 
   *:hover,
@@ -82,12 +82,12 @@ $accent: $blue;
 
   .active {
     background: $accent;
-    padding: 0 1.75em;
+    padding: 0 1.75rem;
   }
 
   .used {
     background: $gray;
-    padding: 0 1em;
+    padding: 0 1rem;
   }
 }
 
@@ -95,23 +95,23 @@ tooltip {
   background: $surface;
   color: $text;
 
-  font-size: 0.75em;
+  font-size: 0.75rem;
 
-  border: 0.05em $base solid;
-  border-radius: 0.5em;
+  border: 0.05rem $base solid;
+  border-radius: 0.5rem;
 
   box-shadow: none;
 
   decoration {
     box-shadow: none;
-    border-radius: 0.5em;
+    border-radius: 0.5rem;
   }
 }
 
 .systray {
   > widget {
     > image {
-      margin: 0 0.125em;
+      margin: 0 0.125rem;
     }
 
     .popup menu {
@@ -120,7 +120,7 @@ tooltip {
       border-radius: 0.5em;
       color: $text;
       background: $surface;
-      font-size: 0.75rem;
+      font-size: 0.75em;
 
       menuitem {
         padding: 0.375em 0;
