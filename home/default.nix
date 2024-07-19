@@ -18,7 +18,8 @@
     ./launcher.nix
     ./notify.nix
     ./screenlock.nix
-    ./terminal.nix
+    # TODO: update
+    ./terminal
   ];
 
   catppuccin.flavour = "mocha";

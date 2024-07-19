@@ -1,14 +1,10 @@
-{ config, ... }:
-
 {
   programs.foot = {
     enable = true;
 
-    catppuccin.enable = true;
-
     settings = {
       main = {
-        font = "Fantasque Sans Mono:size=10";
+        font = "monospace:size=10";
         selection-target = "both";
         # pad = "20x20";
       };
@@ -26,5 +22,5 @@
     };
   };
 
-  programs.wezterm.enable = false;
+  wayland.windowManager.hyprland.settings.exec-once = [ "foot --server" ];
 }
