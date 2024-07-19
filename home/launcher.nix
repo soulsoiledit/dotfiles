@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       main = {
-        font = "Fantasque Sans Mono:size=12";
+        font = "monospace:size=12";
         prompt = "\"❯ \"";
         icon-theme = "Papirus-Dark";
         terminal = "foot -e";
