@@ -1,0 +1,144 @@
+$text: #cdd6f4;
+
+$base: #1e1e2e;
+$base-transparent: rgba(#1e1e2e, 0.625);
+
+$surface: #313244;
+$surface1: #45475a;
+$overlay: #6c7086;
+$subtext: #a6adc8;
+
+$rosewater: #f5e0dc;
+$flamingo: #f2cdcd;
+$pink: #f5c2e7;
+$mauve: #cba6f7;
+$red: #f38ba8;
+$maroon: #eba0ac;
+$peach: #fab387;
+$yellow: #f9e2af;
+$green: #a6e3a1;
+$teal: #94e2d5;
+$sky: #89dceb;
+$sapphire: #74c7ec;
+$blue: #89b4fa;
+$lavender: #b4befe;
+
+$gray: $overlay;
+$accent: $blue;
+
+* {
+  all: unset;
+  transition: 0.125s;
+}
+
+.bar {
+  background: $base;
+  color: $text;
+
+  font:
+    16px "Inter Medium",
+    "CommitMono Nerd Font",
+    "sans";
+
+  margin: 0.25em 0;
+}
+
+.layer {
+  background: $surface;
+  border-radius: 0.5em;
+  margin: 0 0.25em;
+  color: $accent;
+
+  label {
+    padding: 0 0.25em;
+  }
+}
+
+.hover:hover {
+  background: $surface1;
+}
+
+.clock:hover {
+  background: red;
+}
+
+.volume_muted {
+  color: $gray;
+}
+
+.workspaces {
+  * {
+    margin: 0.625em 0.25em;
+    border-radius: 2em;
+
+    background: $surface1;
+    padding: 0 0.75em;
+  }
+
+  *:hover,
+  .used:hover {
+    background: $accent;
+  }
+
+  .active {
+    background: $accent;
+    padding: 0 1.75em;
+  }
+
+  .used {
+    background: $gray;
+    padding: 0 1em;
+  }
+}
+
+tooltip {
+  background: $surface;
+  color: $text;
+
+  font-size: 0.75em;
+
+  border: 0.05em $base solid;
+  border-radius: 0.5em;
+
+  box-shadow: none;
+
+  decoration {
+    box-shadow: none;
+    border-radius: 0.5em;
+  }
+}
+
+.systray {
+  image {
+    margin: 0 0.125em;
+  }
+
+  decoration {
+    box-shadow: none;
+    border-radius: 0.5em;
+  }
+
+  menu {
+    background: $surface;
+    color: $text;
+    border: 0.05em $base solid;
+    border-radius: 0.5em;
+
+    margin: 0;
+    padding: 0.25em;
+    box-shadow: none;
+
+    check:checked {
+      background: $accent;
+    }
+
+    menuitem {
+      font: 0.825rem "Inter";
+      padding: 0.25em 0.75em;
+    }
+
+    separator {
+      margin: 0.125em;
+    }
+  }
+}

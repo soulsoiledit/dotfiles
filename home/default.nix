@@ -15,7 +15,9 @@
 
     # TODO: update
     ./desktop.nix
-    ./eww
+    # TODO: update
+    ./widgets
+    # TODO: update
     ./wm
     # TODO: update
     ./launcher.nix
