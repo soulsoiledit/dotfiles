@@ -36,10 +36,10 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
-      formatter.${pkgs.system} = pkgs.nixfmt-rfc-style;
+      formatter.${system} = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
