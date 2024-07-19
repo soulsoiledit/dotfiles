@@ -13,9 +13,11 @@
     ./editor
     ./fonts.nix
 
+    # TODO: update
     ./desktop.nix
     ./eww
-    ./hyprland.nix
+    ./wm
+    # TODO: update
     ./launcher.nix
     # TODO: update
     ./notify.nix

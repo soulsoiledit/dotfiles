@@ -7,44 +7,56 @@
 
 {
   home.packages = with pkgs; [
+    distrobox
+    clipse
   ];
 
   gtk = {
     enable = true;
-
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus Dark";
+    };
 
     catppuccin = {
       enable = true;
-      accent = "mauve";
-      tweaks = [ "rimless" ];
+      icon.enable = false;
+      cursor.enable = false;
     };
+  };
 
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
-        accent = "mauve";
-      };
-    };
+  qt = {
+    enable = true;
+    platformTheme.name = "kvantum";
+    style.name = "kvantum";
+    style.catppuccin.enable = true;
   };
 
   home.pointerCursor = {
     gtk.enable = true;
-
     size = 24;
-
     name = "BreezeX-RosePine-Linux";
-
+    package = pkgs.rose-pine-cursor;
     # package = pkgs.afterglow-cursors-recolored;
     # package = pkgs.bibata-cursors;
-    package = pkgs.rose-pine-cursor;
     # package = pkgs.qogir-icon-theme;
   };
 
   # dont generate ~/.icons/
   home.file.".icons/${config.home.pointerCursor.name}".enable = lib.mkForce false;
   home.file.".icons/default/index.theme".enable = lib.mkForce false;
+
+  programs.wpaperd = {
+    enable = true;
+    settings.default = {
+      path = "~/pictures/wallpapers/deer-sunset.jpg";
+      mode = "center";
+      # duration = "4h";
+      # sorting = "random";
+      transition.fade = { };
+    };
+  };
 
   services = {
     cliphist.enable = true;
@@ -72,7 +84,7 @@
         systemctl = lib.getExe' pkgs.systemd "systemctl";
       in
       {
-        enable = true;
+        # enable = true;
 
         events = [
           {
@@ -82,10 +94,6 @@
           {
             event = "before-sleep";
             command = "${loginctl} lock-session";
-          }
-          {
-            event = "after-resume";
-            command = "${hyprctl} dispatch dpms on; ${brightnessctl} -r";
           }
         ];
 
@@ -100,12 +108,12 @@
             command = "${hyprctl} dispatch dpms off";
             resumeCommand = "${hyprctl} dispatch dpms on";
           }
+          # {
+          #   timeout = 900;
+          #   command = "${loginctl} lock-session";
+          # }
           {
             timeout = 900;
-            command = "${loginctl} lock-session";
-          }
-          {
-            timeout = 1800;
             command = "${systemctl} suspend";
           }
         ];
