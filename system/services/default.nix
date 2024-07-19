@@ -1,12 +1,10 @@
 {
   imports = [
     ./audio.nix
-    ./greetd.nix
     ./libvirt.nix
+    ./login
     ./podman.nix
   ];
 
-  services = {
-    udisks2.enable = true;
-  };
+  services.udisks2.enable = true;
 }

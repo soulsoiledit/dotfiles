@@ -26,7 +26,7 @@ in
     rose-pine-cursor
   ];
 
-  services.greetd.settings.default_session.command = "${dbus-run-session} ${hyprland} --config ${hyprland-conf}";
+  services.greetd.settings.default_session.command = "${dbus-run-session} ${hyprland} --config ${hyprland-conf} &> /dev/null";
 
   programs.regreet = {
     enable = true;
@@ -38,7 +38,7 @@ in
         XCURSOR_SIZE = "24";
       };
 
-      "GTK" = {
+      GTK = {
         application_prefer_dark_theme = true;
 
         font_name = "DejaVu Sans 16";
