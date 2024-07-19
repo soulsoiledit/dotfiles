@@ -1,19 +1,22 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [ ./hardware.nix ];
   networking.hostName = "zephyrus";
 
+  powerManagement.cpuFreqGovernor = "powersave";
+
   services = {
-    upower.enable = true;
+    upower = {
+      enable = true;
+      noPollBatteries = true;
+    };
+
+    power-profiles-daemon.enable = true;
 
     asusd = {
-      enable = true;
+      # enable = true;
       enableUserService = true;
     };
   };
-
-  programs.rog-control-center.enable = true;
-
-  # colemakdh/kanata configuration ...
 }
