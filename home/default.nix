@@ -1,14 +1,21 @@
-{ pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
     inputs.catppuccin.homeManagerModules.catppuccin
-    inputs.spicetify-nix.homeManagerModules.default
 
     ./nix.nix
 
+    # TODO: update
     ./shell.nix
+    # TODO: update
     ./files.nix
+    # TODO: update
     ./git.nix
     ./editor
     ./fonts.nix
