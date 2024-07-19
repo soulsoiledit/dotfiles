@@ -1,9 +1,6 @@
-{
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-  };
+{ pkgs, ... }:
 
-  # mangohud
-  # gamemode
+{
+  programs.steam.enable = true;
+  environment.systemPackages = with pkgs; [ mangohud ];
 }
