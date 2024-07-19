@@ -16,7 +16,7 @@
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     iconTheme = {
       package = pkgs.papirus-icon-theme;
-      name = "Papirus Dark";
+      name = "Papirus-Dark";
     };
 
     catppuccin = {
