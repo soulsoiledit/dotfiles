@@ -1,0 +1,6 @@
+{
+  imports = [
+    ./nvim
+    ./helix.nix
+  ];
+}
