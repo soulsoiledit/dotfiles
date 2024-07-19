@@ -27,7 +27,18 @@ $gray: $overlay;
 $accent: $blue;
 
 * {
-  all: unset;
+  // all: unset;
+  font: unset;
+  background: unset;
+  border-radius: unset;
+  border: unset;
+  box-shadow: none;
+  color: unset;
+  margin: unset;
+  padding: unset;
+  min-height: unset;
+  min-width: unset;
+
   transition: 125ms;
 }
 
@@ -116,15 +127,18 @@ tooltip {
 
     .popup menu {
       border: 0.0625em $accent solid;
-      padding: 0.25em;
+      padding: 0.5em;
       border-radius: 0.5em;
       color: $text;
       background: $surface;
       font-size: 0.75rem;
 
       menuitem {
-        padding: 0.375em 0;
         border-radius: inherit;
+
+        > label {
+          padding: 0.375em 0.5em;
+        }
 
         &:hover {
           background: $surface1;
@@ -144,47 +158,23 @@ tooltip {
       check,
       arrow,
       radio {
-        min-width: 1em;
-        min-height: 1em;
-        padding: 0 0.5em;
+        min-width: 1.5em;
+        min-height: 1.5em;
       }
 
       check {
-        -gtk-icon-source: -gtk-icontheme("checkbox-symbolic");
-        color: $gray;
+        border-radius: 50%;
+        background: $surface1;
+        color: $surface;
 
         &:checked {
-          color: $accent;
-          -gtk-icon-source: -gtk-icontheme("checkbox-checked-symbolic");
+          background: $accent;
+          color: $base;
         }
       }
 
       arrow {
         color: $text;
-
-        &.top {
-          -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
-        }
-
-        &.bottom {
-          -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
-        }
-
-        &.left {
-          -gtk-icon-source: -gtk-icontheme("pan-home-symbolic");
-        }
-
-        &.right {
-          -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
-        }
-      }
-
-      radio {
-        -gtk-icon-source: -gtk-icontheme("radio-symbolic");
-
-        &:hover {
-          -gtk-icon-source: -gtk-icontheme("radio-checked-symbolic");
-        }
       }
     }
   }
