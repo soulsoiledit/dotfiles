@@ -1,6 +1,7 @@
 {
   boot = {
     kernelParams = [ "quiet" ];
+    initrd.verbose = false;
 
     loader = {
       efi.canTouchEfiVariables = true;
@@ -15,6 +16,6 @@
       };
     };
 
-    plymouth.enable = true;
+    plymouth.enable = false;
   };
 }
