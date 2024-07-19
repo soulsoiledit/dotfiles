@@ -4,11 +4,9 @@
     userName = "soulsoiledit";
     userEmail = "soulsoill@proton.me";
 
-    delta = {
-      enable = true;
-      catppuccin.enable = true;
-    };
+    delta.enable = true;
 
+    # TODO: add keys
     signing = null;
 
     extraConfig = {
@@ -20,6 +18,5 @@
 
   programs.lazygit = {
     enable = true;
-    catppuccin.enable = true;
   };
 }
