@@ -15,7 +15,7 @@
     (box :space-evenly false :halign "end"
       (volume)
       (battery)
-      (box (systray :class "layer systray" :icon-size 16))
+      (systray :class "layer systray" :icon-size 16)
     )
   )
 )

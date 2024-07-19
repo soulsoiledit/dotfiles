@@ -28,7 +28,7 @@ $accent: $blue;
 
 * {
   all: unset;
-  transition: 0.125s;
+  transition: 125ms;
 }
 
 .bar {
@@ -109,36 +109,83 @@ tooltip {
 }
 
 .systray {
-  image {
-    margin: 0 0.125em;
-  }
-
-  decoration {
-    box-shadow: none;
-    border-radius: 0.5em;
-  }
-
-  menu {
-    background: $surface;
-    color: $text;
-    border: 0.05em $base solid;
-    border-radius: 0.5em;
-
-    margin: 0;
-    padding: 0.25em;
-    box-shadow: none;
-
-    check:checked {
-      background: $accent;
+  > widget {
+    > image {
+      margin: 0 0.125em;
     }
 
-    menuitem {
-      font: 0.825rem "Inter";
-      padding: 0.25em 0.75em;
-    }
+    .popup menu {
+      border: 0.0625em $accent solid;
+      padding: 0.25em;
+      border-radius: 0.5em;
+      color: $text;
+      background: $surface;
+      font-size: 0.75rem;
 
-    separator {
-      margin: 0.125em;
+      menuitem {
+        padding: 0.375em 0;
+        border-radius: inherit;
+
+        &:hover {
+          background: $surface1;
+        }
+
+        &:disabled {
+          color: $gray;
+        }
+      }
+
+      separator {
+        background: $surface1;
+        margin: 0.25em 0;
+        min-height: 0.0625em;
+      }
+
+      check,
+      arrow,
+      radio {
+        min-width: 1em;
+        min-height: 1em;
+        padding: 0 0.5em;
+      }
+
+      check {
+        -gtk-icon-source: -gtk-icontheme("checkbox-symbolic");
+        color: $gray;
+
+        &:checked {
+          color: $accent;
+          -gtk-icon-source: -gtk-icontheme("checkbox-checked-symbolic");
+        }
+      }
+
+      arrow {
+        color: $text;
+
+        &.top {
+          -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
+        }
+
+        &.bottom {
+          -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+        }
+
+        &.left {
+          -gtk-icon-source: -gtk-icontheme("pan-home-symbolic");
+        }
+
+        &.right {
+          -gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+        }
+      }
+
+      radio {
+        -gtk-icon-source: -gtk-icontheme("radio-symbolic");
+
+        &:hover {
+          -gtk-icon-source: -gtk-icontheme("radio-checked-symbolic");
+        }
+      }
     }
   }
 }
