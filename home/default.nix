@@ -20,6 +20,8 @@
     ./screenlock.nix
     # TODO: update
     ./terminal
+    # TODO: update
+    ./firefox.nix
   ];
 
   catppuccin.flavour = "mocha";
