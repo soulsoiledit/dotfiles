@@ -22,6 +22,8 @@
     ./terminal
     # TODO: update
     ./firefox.nix
+    # TODO: update
+    ./spotify.nix
   ];
 
   catppuccin.flavour = "mocha";
