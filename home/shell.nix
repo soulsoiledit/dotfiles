@@ -2,7 +2,6 @@
 
 {
   home.sessionVariables = {
-    EDITOR = "nvim";
     PAGER = "bat";
     MANPAGER = "nvim +Man!";
 
@@ -24,8 +23,7 @@
     duf
 
     # qol
-    (p7zip.override { enableUnfree = true; })
-
+    p7zip
     trash-cli
     xdg-utils
 
@@ -33,34 +31,26 @@
   ];
 
   programs = {
-    fzf = {
-      enable = true;
-      catppuccin.enable = true;
-    };
-
-    ripgrep.enable = true;
+    bat.enable = true;
+    btop.enable = true;
     fd.enable = true;
-    hyfetch.enable = true;
+    fzf.enable = true;
     jq.enable = true;
 
-    cava = {
+    ripgrep = {
       enable = true;
-      catppuccin.enable = true;
+      arguments = [ "--smart-case" ];
     };
+    zellij.enable = true;
+
+    fastfetch.enable = true;
+    hyfetch.enable = true;
+
+    cava.enable = true;
 
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-    };
-
-    btop = {
-      enable = true;
-      catppuccin.enable = true;
-    };
-
-    bat = {
-      enable = true;
-      catppuccin.enable = true;
     };
 
     eza = {
@@ -72,30 +62,28 @@
 
   programs.fish = {
     enable = true;
-    catppuccin.enable = true;
 
-    interactiveShellInit = ''
-      set fish_greeting
-    '';
+    interactiveShellInit = # fish
+      ''
+        set fish_greeting
+      '';
 
     shellAbbrs = {
-      v = "nvim";
       s = "sudo";
-      f = "ya";
+      e = config.home.sessionVariables.EDITOR;
+      f = config.programs.yazi.shellWrapperName;
       g = "lazygit";
-      x = "7z";
+      a = "7z";
 
       ns = "nh os switch";
+      nb = "nh os boot";
       hs = "nh home switch";
-      cl = "nh clean all --nogcroots";
+      gc = "nh clean all --keep 5 --nogcroots";
     };
 
     functions = { };
     plugins = [ ];
   };
 
-  programs.starship = {
-    enable = true;
-    catppuccin.enable = true;
-  };
+  programs.starship.enable = true;
 }
