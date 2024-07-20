@@ -6,10 +6,13 @@
         modules = {
           ai = { };
           align = { };
-
-          # TODO: remove
-          # basics = {};
-
+          basics = {
+            options.extra_ui = true;
+            navigation = {
+              windows = true;
+              move_with_alt = true;
+            };
+          };
           bracketed = { };
           cursorword = { };
 
