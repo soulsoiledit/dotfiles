@@ -22,6 +22,7 @@
 
       indent-blankline.enable = true;
       rainbow-delimiters.enable = true;
+      nvim-colorizer.enable = true;
 
       yanky = {
         enable = true;
