@@ -9,6 +9,7 @@
       scrolloff = 4;
 
       timeoutlen = 250;
+      autochdir = true;
     };
 
     globals = {
