@@ -26,6 +26,9 @@ $lavender: #b4befe;
 $gray: $overlay;
 $accent: $blue;
 
+$radius: 0.5rem;
+$border-style: solid 0.0625rem $accent;
+
 * {
   // all: unset;
   font: unset;
@@ -56,7 +59,7 @@ $accent: $blue;
 
 .layer {
   background: $surface;
-  border-radius: 0.5em;
+  border-radius: $radius;
   margin: 0 0.25em;
   color: $accent;
 
@@ -102,80 +105,71 @@ $accent: $blue;
   }
 }
 
-tooltip {
-  background: $surface;
-  color: $text;
+.systray {
+  padding: 0 0.125em;
 
-  font-size: 0.75em;
-
-  border: 0.05em $base solid;
-  border-radius: 0.5em;
-
-  box-shadow: none;
-
-  decoration {
-    box-shadow: none;
-    border-radius: 0.5em;
+  > widget > image {
+    padding: 0 0.125em;
   }
 }
 
-.systray {
-  > widget {
-    > image {
-      margin: 0 0.125em;
+tooltip {
+  background: $surface;
+  color: $text;
+  border-radius: $radius;
+  border: $border-style;
+  font-size: 0.75em;
+}
+
+.popup menu {
+  border: $border-style;
+  padding: 0.5em;
+  border-radius: $radius;
+  color: $text;
+  background: $surface;
+  font-size: 0.75rem;
+
+  menuitem {
+    border-radius: inherit;
+
+    > label {
+      padding: 0.375em 0.5em;
     }
 
-    .popup menu {
-      border: 0.0625em $accent solid;
-      padding: 0.5em;
-      border-radius: 0.5em;
-      color: $text;
-      background: $surface;
-      font-size: 0.75rem;
-
-      menuitem {
-        border-radius: inherit;
-
-        > label {
-          padding: 0.375em 0.5em;
-        }
-
-        &:hover {
-          background: $surface1;
-        }
-
-        &:disabled {
-          color: $gray;
-        }
-      }
-
-      separator {
-        background: $surface1;
-        margin: 0.25em 0;
-        min-height: 0.0625em;
-      }
-
-      check,
-      arrow,
-      radio {
-        min-width: 1.5em;
-        min-height: 1.5em;
-      }
-
-      check {
-        border-radius: 50%;
-        background: $surface1;
-        color: $surface;
-
-        &:checked {
-          background: $accent;
-          color: $base;
-        }
-      }
-
-      arrow {
-        color: $text;
-      }
+    &:hover {
+      background: $surface1;
     }
+
+    &:disabled {
+      color: $gray;
+    }
+  }
+
+  separator {
+    background: $surface1;
+    margin: 0.25em 0;
+    min-height: 0.0625em;
+  }
+
+  check,
+  arrow,
+  radio {
+    min-width: 1.5em;
+    min-height: 1.5em;
+  }
+
+  check {
+    border-radius: 50%;
+    background: $surface1;
+    color: $surface;
+
+    &:checked {
+      background: $accent;
+      color: $base;
+    }
+  }
+
+  arrow {
+    color: $text;
   }
 }

@@ -7,23 +7,34 @@
     :height "5%"
     :anchor "center top")
   (box
-    (box :space-evenly false :halign "start"
-    (clock)
-    (workspaces)
+    (box :halign "start"
+      ;; launcher
+      ;; power
+      (workspaces)
     )
 
-    (box :space-evenly false :halign "end"
+    (box
+      :halign "center"
+      (clock)
+    )
+
+    (box :halign "end"
       (volume)
       (battery)
-      (systray :class "layer systray" :icon-size 16)
+      (tray)
+      ;; settings
+      ;; power
     )
   )
 )
 
-(defpoll datetime :initial "{}" :interval "10s" "scripts/date.sh")
+;; add popup with different timezones configured
+(defpoll datetime :initial "{}" :interval "1s" "scripts/date.sh")
 (defwidget clock []
-  (box :class "layer clock"
-    {datetime.full}
+  (box 
+    :class "layer clock"
+    :tooltip {datetime.long}
+    {datetime.short}
   )
 )
 
@@ -55,6 +66,77 @@
   )
 )
 
+(deflisten workspace_list :initial "[1]" "scripts/workspaces.sh list")
+(deflisten workspace_empty :initial "{}" "scripts/workspaces.sh empty")
+(deflisten workspace_active :initial "{}" "scripts/workspaces.sh active")
+(defwidget workspaces []
+  (box :space-evenly false :class "layer workspaces"
+    (for ws in workspace_list
+      (button 
+        :class { 
+          ws == workspace_active?.id ?
+            "active" :
+            (workspace_empty?.[ws] ?: 0) >= 1 ?
+              "used" :
+              ""
+        }
+        :onclick "hyprctl dispatch workspace ${ws}"
+      )
+    )
+  )
+)
+
+(defwidget tray []
+    (systray 
+      :class "layer systray"
+      :icon-size 16
+    )
+)
+
+;; (defwidget system []
+;;   (button :onmiddleclick "foot -e btop &"
+;;     (box :space-evenly false :class "button"
+;;       (battery)
+;;       ;; (memory)
+;;       ;; (temperature)
+;;       ;; (cpu)
+;;     )
+;;   )
+;; )
+;;
+;;
+;; (defpoll memory :initial "{}" :interval "10s" "scripts/memory.sh")
+;; (defwidget memory []
+;;   (box :space-evenly false :class "memory"
+;;     "󰍛 "
+;;     (label :class "small_text" :text "${round(memory.used_percentage ?: 0, 0)}% ")
+;;   )
+;; )
+;;
+;; (defpoll temperature :initial "" :interval "1m" "scripts/temperature.sh")
+;; (defwidget temperature []
+;;   (box :space-evenly false :class "temperature"
+;;     "󰔏 "
+;;     (label :class "small_text" :text "${temperature}° ")
+;;   )
+;; )
+;;
+;; (defpoll cpu :initial "{}" :interval "1m" "scripts/cpu.sh")
+;; (defwidget cpu []
+;;   (box :space-evenly false :class "cpu"
+;;     "󰘚 "
+;;     (label :class "small_text" 
+;;       :text "${round(100 - (cpu.cpu_percentage ?: 99), 0)}% "
+;;     )
+;;   )
+;; )
+;;
+;; TODO: add actual power menu....
+;;
+;; (defwidget power_menu []
+;;   (button :onclick "fuzzel &" :class "button power" "󰐥")
+;; )
+;;
 ;; (defwidget launcher []
 ;;   (button :onclick "fuzzel &" :class "button launcher" "")
 ;; )
@@ -116,66 +198,3 @@
 ;; )
 ;;
 
-(deflisten workspace_list :initial "[1]" "scripts/workspaces.sh list")
-(deflisten workspace_empty :initial "{}" "scripts/workspaces.sh empty")
-(deflisten workspace_active :initial "{}" "scripts/workspaces.sh active")
-(defwidget workspaces []
-  (box :space-evenly false :class "layer workspaces"
-    (for ws in workspace_list
-      (button 
-        :class { 
-          ws == workspace_active?.id ?
-            "active" :
-            (workspace_empty?.[ws] ?: 0) >= 1 ?
-              "used" :
-              ""
-        }
-        :onclick "hyprctl dispatch workspace ${ws}"
-      )
-    )
-  )
-)
-
-;; (defwidget system []
-;;   (button :onmiddleclick "foot -e btop &"
-;;     (box :space-evenly false :class "button"
-;;       (battery)
-;;       ;; (memory)
-;;       ;; (temperature)
-;;       ;; (cpu)
-;;     )
-;;   )
-;; )
-;;
-;;
-;; (defpoll memory :initial "{}" :interval "10s" "scripts/memory.sh")
-;; (defwidget memory []
-;;   (box :space-evenly false :class "memory"
-;;     "󰍛 "
-;;     (label :class "small_text" :text "${round(memory.used_percentage ?: 0, 0)}% ")
-;;   )
-;; )
-;;
-;; (defpoll temperature :initial "" :interval "1m" "scripts/temperature.sh")
-;; (defwidget temperature []
-;;   (box :space-evenly false :class "temperature"
-;;     "󰔏 "
-;;     (label :class "small_text" :text "${temperature}° ")
-;;   )
-;; )
-;;
-;; (defpoll cpu :initial "{}" :interval "1m" "scripts/cpu.sh")
-;; (defwidget cpu []
-;;   (box :space-evenly false :class "cpu"
-;;     "󰘚 "
-;;     (label :class "small_text" 
-;;       :text "${round(100 - (cpu.cpu_percentage ?: 99), 0)}% "
-;;     )
-;;   )
-;; )
-
-;; TODO: add actual power menu....
-;;
-;; (defwidget power_menu []
-;;   (button :onclick "fuzzel &" :class "button power" "󰐥")
-;; )
