@@ -76,7 +76,15 @@ $border-style: solid 0.0625rem $accent;
   background: red;
 }
 
-.volume_muted {
+.volume-muted {
+  color: $gray;
+}
+
+.network {
+  padding-right: 0.25em;
+}
+
+.network-down {
   color: $gray;
 }
 

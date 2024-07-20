@@ -7,10 +7,10 @@ pw-mon -o -a | rg --line-buffered 'changed:' -A3 | rg --line-buffered 'Node' | w
 
   # mute status & symbol
   if [ "$(pamixer --get-mute)" == "true" ]; then
-    mute='volume_muted'
+    mute='volume-muted'
     symbol='󰝟'
   else
-    mute='volume_unmuted'
+    mute='volume-unmuted'
   fi
 
   jq -n -c --argjson volume "$volume" --arg mute "$mute" --arg symbol "$symbol" '{volume: $volume, mute: $mute, symbol: $symbol}'

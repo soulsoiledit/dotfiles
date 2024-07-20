@@ -5,21 +5,29 @@
   :geometry (geometry 
     :width "100%"
     :height "5%"
-    :anchor "center top")
-  (box
-    (box :halign "start"
+    :anchor "center top"
+  )
+  (centerbox
+    :orientation "horizontal"
+
+    (box 
+      :space-evenly false
       ;; launcher
       ;; power
       (workspaces)
     )
 
     (box
-      :halign "center"
+      :space-evenly false
       (clock)
     )
 
-    (box :halign "end"
+    (box 
+      :space-evenly false
+      :halign "end"
+
       (volume)
+      (network)
       (battery)
       (tray)
       ;; settings
@@ -29,7 +37,11 @@
 )
 
 ;; add popup with different timezones configured
-(defpoll datetime :initial "{}" :interval "1s" "scripts/date.sh")
+(defpoll datetime 
+  :initial "{}" 
+  :interval "1s" 
+  "scripts/date.sh"
+)
 (defwidget clock []
   (box 
     :class "layer clock"
@@ -38,41 +50,84 @@
   )
 )
 
-(deflisten volume :initial "{}" "scripts/volume.sh")
+;; current used device (wireless, wired, speaker, onboard)
+;; popup
+;; currently playing audio with media control
+;; input streams
+;; microphone toggle
+(defvar volume_step 5)
+(deflisten volume 
+  :initial "{}" 
+  "scripts/volume.sh"
+)
 (defwidget volume []
-  (box :class "layer"
+  (box 
+    :class "layer"
     (eventbox
       :class "layer hover volume ${volume.mute}"
       :onscroll
         "if [[ {} == up ]]; 
-          then pamixer --increase 5;
-          else pamixer --decrease 5;
+          then pamixer --increase ${volume_step};
+          else pamixer --decrease ${volume_step};
         fi;
         "
       :onclick "pamixer --toggle-mute"
       :onmiddleclick "pavucontrol &"
 
-      ;;TODO: indicate currently used device (bt, speaker, ext speaker, jack)
       "${volume.symbol} ${volume.volume}%"
     )
   )
 )
 
-(deflisten battery :initial "{}" "scripts/battery.sh")
+;; power profiles
+;; cpu usage
+;; memory usage
+;; brightness
+(deflisten battery 
+  :initial "{}"
+  "scripts/battery.sh"
+)
 (defwidget battery []
-  (box :class "layer battery" 
+  (box
+    :class "layer battery" 
     :tooltip "${battery.remaining} left @ ${round((battery.wattage ?: 0) / 1000000, 1)}W"
     "${battery.symbol}  ${battery.percentage}%"
   )
 )
 
-(deflisten workspace_list :initial "[1]" "scripts/workspaces.sh list")
-(deflisten workspace_empty :initial "{}" "scripts/workspaces.sh empty")
-(deflisten workspace_active :initial "{}" "scripts/workspaces.sh active")
+;; vpn status
+(deflisten network
+  :initial "{}"
+  "scripts/network.sh"
+)
+(defwidget network []
+  (box
+    :class "layer network ${network.status}"
+    ;; :onclick "foot -e nmtui &" 
+    :tooltip {network.ssid}
+    {network.symbol}
+  )
+)
+
+(deflisten workspace_list 
+  :initial "[1]"
+  "scripts/workspaces.sh list"
+)
+(deflisten workspace_empty
+  :initial "{}"
+  "scripts/workspaces.sh empty"
+)
+(deflisten workspace_active
+  :initial "{}"
+  "scripts/workspaces.sh active"
+)
 (defwidget workspaces []
-  (box :space-evenly false :class "layer workspaces"
+  (box 
+    :space-evenly false 
+    :class "layer workspaces"
     (for ws in workspace_list
       (button 
+        :onclick "hyprctl dispatch workspace ${ws}"
         :class { 
           ws == workspace_active?.id ?
             "active" :
@@ -80,17 +135,16 @@
               "used" :
               ""
         }
-        :onclick "hyprctl dispatch workspace ${ws}"
       )
     )
   )
 )
 
 (defwidget tray []
-    (systray 
-      :class "layer systray"
-      :icon-size 16
-    )
+  (systray 
+    :class "layer systray"
+    :icon-size 16
+  )
 )
 
 ;; (defwidget system []
@@ -149,16 +203,6 @@
 ;;   )
 ;; )
 ;;
-;; (deflisten network :initial "{}" "scripts/network.sh")
-;; (defwidget network []
-;;   ;; TODO: indicate vpn
-;;   (button 
-;;     :onclick "foot -e nmtui &" 
-;;     :tooltip {network.ssid}
-;;     :class {network.status} 
-;;     "${network.symbol} "
-;;   )
-;; )
 ;;
 ;;
 ;; (deflisten brightness :initial "{}" "scripts/brightness.sh")
