@@ -37,16 +37,11 @@
 )
 
 ;; add popup with different timezones configured
-(defpoll datetime 
-  :initial "{}" 
-  :interval "1s" 
-  "scripts/date.sh"
-)
 (defwidget clock []
   (eventbox 
     :class "layer clock hover"
-    :tooltip {datetime.long}
-    {datetime.short}
+    :tooltip {formattime(EWW_TIME, "%c")}
+    {formattime(EWW_TIME, "%a %b %-d, %-H:%M")}
   )
 )
 
