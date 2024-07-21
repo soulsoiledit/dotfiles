@@ -1,30 +1,32 @@
-$background-0: #070a18;
-$background-1: #1c2130;
-$background-2: #343a4b;
-$background-3: #4f5566;
+$background-0: #1e0e25;
+$background-1: #37263f;
+$background-2: #523f5a;
+$background-3: #6e5b77;
 
-$foreground-0: #c6cde2;
-$foreground-1: #a6aec2;
-$foreground-2: #888fa2;
-$foreground-3: #6b7184;
+$foreground-0: #cab5d4;
+$foreground-1: #aa95b4;
+$foreground-2: #8c7895;
+$foreground-3: #6e5b77;
+
+$accent-1: #ff9ea6;
+$accent-2: #f5ae39;
+$accent-3: #92d36c;
+$accent-4: #00d8d9;
+$accent-5: #91c1ff;
+$accent-6: #e19fff;
 
 $base: $background-0;
 $surface: $background-1;
 $surface1: $background-2;
 $overlay: $background-3;
-$text: $foreground-0;
+$subtle: $foreground-2;
 $subtext: $foreground-1;
-$subtle: $foreground-3;
+$text: $foreground-0;
 
-$accent: #bb9af4;
-$accent-1: #f089aa;
-$accent-2: #55b8f8;
-$accent-3: #a3ba55;
-$accent-4: #ea9952;
-$accent-5: #24c8b1;
+$accent: $accent-1;
 
 $radius: 0.5rem;
-$border-style: solid 0.0625rem $accent;
+$border-style: solid 0.0625rem $background-3;
 
 * {
   // all: unset;
@@ -90,7 +92,7 @@ $border-style: solid 0.0625rem $accent;
     margin: 0.625em 0.25em;
     border-radius: 2em;
 
-    background: $surface1;
+    background: $background-2;
     padding: 0 0.75em;
   }
 
