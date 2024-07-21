@@ -71,16 +71,14 @@ $border-style: solid 0.0625rem $background-3;
   background: $surface1;
 }
 
-.clock:hover {
-  background: red;
-}
-
 .volume-muted {
   color: $foreground-3;
 }
 
 .network {
-  padding-right: 0.25em;
+  label {
+    padding-right: 0.5em;
+  }
 }
 
 .network-down {

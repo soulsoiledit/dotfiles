@@ -43,8 +43,8 @@
   "scripts/date.sh"
 )
 (defwidget clock []
-  (box 
-    :class "layer clock"
+  (eventbox 
+    :class "layer clock hover"
     :tooltip {datetime.long}
     {datetime.short}
   )
@@ -89,9 +89,12 @@
 )
 (defwidget battery []
   (box
-    :class "layer battery" 
-    :tooltip "${battery.remaining} left @ ${round((battery.wattage ?: 0) / 1000000, 1)}W"
-    "${battery.symbol}  ${battery.percentage}%"
+    :class "layer"
+    (eventbox
+      :class "layer battery hover" 
+      :tooltip "${battery.remaining} left @ ${round((battery.wattage ?: 0) / 1000000, 1)}W"
+      "${battery.symbol}  ${battery.percentage}%"
+    )
   )
 )
 
@@ -102,10 +105,13 @@
 )
 (defwidget network []
   (box
-    :class "layer network ${network.status}"
-    ;; :onclick "foot -e nmtui &" 
-    :tooltip {network.ssid}
-    {network.symbol}
+    :class "layer"
+    (eventbox
+      :class "layer hover network ${network.status}"
+      :onclick "foot -e nmtui &" 
+      :tooltip {network.ssid}
+      {network.symbol}
+    )
   )
 )
 
