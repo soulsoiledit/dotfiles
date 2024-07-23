@@ -36,11 +36,8 @@
   home.pointerCursor = {
     gtk.enable = true;
     size = 24;
-    name = "BreezeX-RosePine-Linux";
-    package = pkgs.rose-pine-cursor;
-    # package = pkgs.afterglow-cursors-recolored;
-    # package = pkgs.bibata-cursors;
-    # package = pkgs.qogir-icon-theme;
+    name = "breeze_cursors";
+    package = pkgs.kdePackages.breeze;
   };
 
   # dont generate ~/.icons/
