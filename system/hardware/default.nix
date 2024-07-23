@@ -2,7 +2,7 @@
   imports = [
     ./bluetooth.nix
     ./kanata.nix
-    ./logitech.nix
+    ./mouse.nix
     ./network.nix
   ];
 }
