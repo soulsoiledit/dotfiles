@@ -13,6 +13,7 @@
     };
 
     globals = {
+      mapleader = " ";
       localleader = "\\";
     };
 
