@@ -1,6 +1,6 @@
 (defwindow bar
   :monitor 0
-  :stacking "fg"
+  :stacking "bottom"
   :exclusive true
   :geometry (geometry 
     :width "100%"
