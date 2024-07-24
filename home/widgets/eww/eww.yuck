@@ -2,7 +2,7 @@
   :monitor 0
   :stacking "bottom"
   :exclusive true
-  :geometry (geometry 
+  :geometry (geometry
     :width "100%"
     :height "5%"
     :anchor "center top"
@@ -10,7 +10,7 @@
   (centerbox
     :orientation "horizontal"
 
-    (box 
+    (box
       :space-evenly false
       ;; launcher
       ;; power
@@ -22,13 +22,19 @@
       (clock)
     )
 
-    (box 
+    (box
       :space-evenly false
       :halign "end"
 
-      (volume)
-      (network)
-      (battery)
+      (eventbox
+        :class "layer hover"
+        (box
+          :space-evenly false
+          (volume)
+          (network)
+          (battery)
+        )
+      )
       (tray)
       ;; settings
       ;; power
@@ -38,7 +44,7 @@
 
 ;; add popup with different timezones configured
 (defwidget clock []
-  (eventbox 
+  (eventbox
     :class "layer clock hover"
     :tooltip {formattime(EWW_TIME, "%c")}
     {formattime(EWW_TIME, "%a %b %-d, %-H:%M")}
@@ -51,26 +57,23 @@
 ;; input streams
 ;; microphone toggle
 (defvar volume_step 5)
-(deflisten volume 
-  :initial "{}" 
+(deflisten volume
+  :initial "{}"
   "scripts/volume.sh"
 )
 (defwidget volume []
-  (box 
-    :class "layer"
-    (eventbox
-      :class "layer hover volume ${volume.mute}"
-      :onscroll
-        "if [[ {} == up ]]; 
-          then pamixer --increase ${volume_step};
-          else pamixer --decrease ${volume_step};
-        fi;
-        "
-      :onclick "pamixer --toggle-mute"
-      :onmiddleclick "pavucontrol &"
+  (eventbox
+    :class "volume ${volume.mute}"
+    :onscroll
+    "if [[ {} == up ]];
+      then pamixer --increase ${volume_step};
+      else pamixer --decrease ${volume_step};
+      fi;
+      "
+    :onclick "pamixer --toggle-mute"
+    :onmiddleclick "pavucontrol &"
 
-      "${volume.symbol} ${volume.volume}%"
-    )
+    "${volume.symbol} ${volume.volume}%"
   )
 )
 
@@ -78,19 +81,16 @@
 ;; cpu usage
 ;; memory usage
 ;; brightness
-(deflisten battery 
+(deflisten battery
   :initial "{}"
   "scripts/battery.sh"
 )
 (defwidget battery []
-  (box
-    :class "layer"
     (eventbox
-      :class "layer battery hover" 
+      :class "battery"
       :tooltip "${battery.remaining} left @ ${round((battery.wattage ?: 0) / 1000000, 1)}W"
       "${battery.symbol}  ${battery.percentage}%"
     )
-  )
 )
 
 ;; vpn status
@@ -99,18 +99,15 @@
   "scripts/network.sh"
 )
 (defwidget network []
-  (box
-    :class "layer"
-    (eventbox
-      :class "layer hover network ${network.status}"
-      :onclick "foot -e nmtui &" 
-      :tooltip {network.ssid}
-      {network.symbol}
-    )
+  (eventbox
+    :class "network ${network.status}"
+    :onclick "foot -e nmtui &"
+    :tooltip {network.ssid}
+    {network.symbol}
   )
 )
 
-(deflisten workspace_list 
+(deflisten workspace_list
   :initial "[1]"
   "scripts/workspaces.sh list"
 )
@@ -123,26 +120,26 @@
   "scripts/workspaces.sh active"
 )
 (defwidget workspaces []
-  (box 
-    :space-evenly false 
+  (box
+    :space-evenly false
     :class "layer workspaces"
     (for ws in workspace_list
-      (button 
-        :onclick "hyprctl dispatch workspace ${ws}"
-        :class { 
-          ws == workspace_active?.id ?
-            "active" :
-            (workspace_empty?.[ws] ?: 0) >= 1 ?
-              "used" :
-              ""
-        }
+      (button
+	:onclick "hyprctl dispatch workspace ${ws}"
+	:class {
+	  ws == workspace_active?.id ?
+	  "active" :
+	  (workspace_empty?.[ws] ?: 0) >= 1 ?
+	  "used" :
+	  ""
+	}
       )
     )
   )
 )
 
 (defwidget tray []
-  (systray 
+  (systray
     :class "layer systray"
     :icon-size 16
   )
@@ -180,7 +177,7 @@
 ;; (defwidget cpu []
 ;;   (box :space-evenly false :class "cpu"
 ;;     "󰘚 "
-;;     (label :class "small_text" 
+;;     (label :class "small_text"
 ;;       :text "${round(100 - (cpu.cpu_percentage ?: 99), 0)}% "
 ;;     )
 ;;   )
@@ -209,8 +206,8 @@
 ;; (deflisten brightness :initial "{}" "scripts/brightness.sh")
 ;; (defwidget brightness []
 ;;   (eventbox :class "brightness"
-;;     :onscroll 
-;;     "if [[ {} == up ]]; 
+;;     :onscroll
+;;     "if [[ {} == up ]];
 ;;       then brightnessctl set 20%+;
 ;;       else brightnessctl set 20%-;
 ;;       fi;
@@ -222,7 +219,7 @@
 ;; (defpoll weather :initial "{}" :interval "1h" "scripts/weather.sh")
 ;; (defwidget weather []
 ;;   (button
-;;     :class "weather" 
+;;     :class "weather"
 ;;     :tooltip {weather.tooltip}
 ;;     :onmiddleclick "xdg-open 'https://weather.com/weather/today/' &"
 ;;     "${weather.symbol ?: "󰼯"} "
