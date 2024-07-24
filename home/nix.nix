@@ -6,7 +6,6 @@
   home.packages = with pkgs; [
     nix-tree
     nix-output-monitor
-    nvd
   ];
 
   programs = {
