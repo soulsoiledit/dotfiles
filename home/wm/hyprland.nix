@@ -47,7 +47,6 @@
         border_size = 1;
         gaps_in = 2;
         gaps_out = gaps_in * 2;
-        gaps_workspaces = gaps_in * 64;
 
         "col.inactive_border" = "$surface0";
         "col.active_border" = "$accent";
