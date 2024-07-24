@@ -12,6 +12,7 @@
         return {
           color_scheme = "Catppuccin Mocha",
 
+          font_size = 12,
           font = wezterm.font_with_fallback {
               "monospace",
               "Symbols Nerd Font",
@@ -23,7 +24,7 @@
               "Noto Sans Mono",
           },
 
-          font_size = 12,
+          line_height = 0.9,
 
           hide_tab_bar_if_only_one_tab = true
         }
