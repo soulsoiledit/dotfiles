@@ -11,15 +11,12 @@
     fantasque-sans-mono
     (pkgs.nerdfonts.override {
       fonts = [
-        "ComicShannsMono"
         "CommitMono"
         "FantasqueSansMono"
-        "FiraCode"
-        "Iosevka"
-        "JetBrainsMono"
+        # "Iosevka"
+        # "JetBrainsMono"
         "NerdFontsSymbolsOnly"
-        "VictorMono"
-        "ZedMono"
+        # "VictorMono"
       ];
     })
     maple-mono-NF
@@ -51,7 +48,7 @@
         "Symbols Nerd Font"
       ];
       monospace = [
-        "FantasqueSansM Nerd Font"
+        "Maple Mono NF"
         "Symbols Nerd Font"
         "Roboto Mono"
         "Noto Sans Mono CJK SC"
