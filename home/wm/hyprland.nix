@@ -39,7 +39,6 @@
         "${lib.getExe pkgs.wayland-pipewire-idle-inhibit}"
         "firefox"
         "eww open bar --toggle"
-        "wl-paste --primary --watch wl-copy"
         "wl-paste --primary --watch cliphist store"
       ];
 
