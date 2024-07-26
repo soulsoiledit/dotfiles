@@ -22,6 +22,7 @@
         adblock
         autoSkipVideo
         hidePodcasts
+        beautifulLyrics
       ];
     };
 }
