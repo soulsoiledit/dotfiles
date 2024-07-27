@@ -11,33 +11,18 @@
 
     ./nix.nix
 
-    # TODO: update
-    ./shell.nix
-    # TODO: update
-    ./files.nix
-    # TODO: update
-    ./git.nix
     ./editor
+    ./files.nix
     ./fonts.nix
+    ./git.nix
+    ./shell.nix
 
-    # TODO: update
-    ./desktop.nix
-    # TODO: update
-    ./widgets
-    # TODO: update
-    ./wm
-    # TODO: update
-    ./launcher.nix
-    # TODO: update
-    ./notify.nix
-    # TODO: update
-    ./screenlock.nix
-    # TODO: update
-    ./terminal
-    # TODO: update
+    ./desktop
     ./firefox.nix
-    # TODO: update
     ./spotify.nix
+    ./terminal
+    ./widgets
+    ./wm
   ];
 
   programs.home-manager.enable = true;
@@ -60,6 +45,8 @@
     cubiomes-viewer
 
     # bottles
+    distrobox
+    clipse
   ];
 
   catppuccin = {
