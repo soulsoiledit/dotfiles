@@ -27,9 +27,10 @@
     catppuccin = {
       enable = true;
       icon.enable = false;
-      cursor.enable = false;
     };
   };
+
+  catppuccin.pointerCursor.enable = false;
 
   qt = {
     enable = true;

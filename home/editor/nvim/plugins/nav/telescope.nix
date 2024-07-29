@@ -51,8 +51,7 @@
       {
         mode = "n";
         key = "<leader>ff";
-        lua = true;
-        action = # lua
+        action.__raw = # lua
           ''
             function()
               local opts = {}
@@ -77,8 +76,7 @@
       {
         mode = "n";
         key = "<leader>fa";
-        lua = true;
-        action = # lua
+        action.__raw = # lua
           ''
             function()
               require('telescope.builtin').find_files({
@@ -95,8 +93,7 @@
       {
         mode = "n";
         key = "<leader>fS";
-        lua = true;
-        action = # lua
+        action.__raw = # lua
           ''
             function()
               require('telescope.builtin').live_grep({

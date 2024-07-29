@@ -26,7 +26,7 @@
 
       yanky = {
         enable = true;
-        highlight.timer = 125;
+        settings.highlight.timer = 125;
       };
     };
   };

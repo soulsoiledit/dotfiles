@@ -7,15 +7,15 @@
         highlight.enable = true;
         incremental_selection.enable = true;
         indent.enable = true;
+        incrementalSelection.enable = true;
       };
 
       nixvimInjections = true;
-      incrementalSelection.enable = true;
     };
 
     treesitter-context = {
       enable = true;
-      maxLines = 4;
+      settings.maxLines = 4;
     };
 
     treesitter-textobjects = {

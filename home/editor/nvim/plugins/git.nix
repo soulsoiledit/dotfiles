@@ -10,8 +10,7 @@
           "v"
         ];
         key = "<leader>g";
-        lua = true;
-        action = "require('lazygit').lazygit";
+        action.__raw = "require('lazygit').lazygit";
         options = {
           desc = "lazygit";
           silent = true;

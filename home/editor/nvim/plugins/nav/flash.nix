@@ -10,15 +10,13 @@
           "o"
         ];
         key = "s";
-        action = "function() require('flash').jump() end";
-        lua = true;
+        action.__raw = "function() require('flash').jump() end";
         options.desc = "flash search";
       }
       {
         mode = "o";
         key = "r";
-        action = "function() require('flash').remote() end";
-        lua = true;
+        action.__raw = "function() require('flash').remote() end";
         options.desc = "flash remote";
       }
     ];
