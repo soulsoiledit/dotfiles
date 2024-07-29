@@ -1,13 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./boot.nix
-    ./nix.nix
-    ./swap.nix
-    ./users.nix
-  ];
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   system.stateVersion = "24.05";
