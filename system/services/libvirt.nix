@@ -1,14 +1,22 @@
-{
-  virtualisation = {
-    libvirtd = {
-      enable = true;
+{ config, lib, ... }:
 
-      # don't start previously running vms automatically
-      onBoot = "ignore";
-    };
+{
+  options = {
+    opts.virt-manager.enable = lib.mkEnableOption "enable virt-manager";
   };
 
-  users.users.user.extraGroups = [ "libvirtd" ];
+  config = lib.mkIf config.opts.virt-manager.enable {
+    virtualisation = {
+      libvirtd = {
+        enable = true;
 
-  programs.virt-manager.enable = true;
+        # don't start previously running vms automatically
+        onBoot = "ignore";
+      };
+    };
+
+    users.users.user.extraGroups = [ "libvirtd" ];
+
+    programs.virt-manager.enable = true;
+  };
 }
