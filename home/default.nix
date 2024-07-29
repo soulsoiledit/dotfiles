@@ -1,29 +1,7 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ pkgs, inputs, ... }:
 
 {
-  imports = [
-    inputs.catppuccin.homeManagerModules.catppuccin
-
-    ./nix.nix
-
-    ./editor
-    ./files.nix
-    ./fonts.nix
-    ./git.nix
-    ./shell.nix
-
-    ./desktop
-    ./firefox.nix
-    ./spotify.nix
-    ./terminal
-    ./widgets
-    ./wm
-  ];
+  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
   programs.home-manager.enable = true;
 
