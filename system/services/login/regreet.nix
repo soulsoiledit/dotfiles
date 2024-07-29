@@ -20,32 +20,40 @@ let
   '';
 in
 {
-  environment.systemPackages = with pkgs; [
-    (catppuccin-gtk.override { variant = "mocha"; })
-    papirus-icon-theme
-    rose-pine-cursor
-  ];
+  options = {
+    opts.greeter.regreet.enable = lib.mkEnableOption "enable regreet greeter";
+  };
 
-  services.greetd.settings.default_session.command = "${dbus-run-session} ${hyprland} --config ${hyprland-conf} &> /dev/null";
+  config = lib.mkIf config.opts.greeter.regreet.enable {
+    opts.greeter.tuigreet.enable = lib.mkForce false;
 
-  programs.regreet = {
-    enable = true;
+    environment.systemPackages = with pkgs; [
+      (catppuccin-gtk.override { variant = "mocha"; })
+      papirus-icon-theme
+      rose-pine-cursor
+    ];
 
-    settings = {
-      # background = {};
+    services.greetd.settings.default_session.command = "${dbus-run-session} ${hyprland} --config ${hyprland-conf} &> /dev/null";
 
-      env = {
-        XCURSOR_SIZE = "24";
-      };
+    programs.regreet = {
+      enable = true;
 
-      GTK = {
-        application_prefer_dark_theme = true;
+      settings = {
+        # background = {};
 
-        font_name = "DejaVu Sans 16";
+        env = {
+          XCURSOR_SIZE = "24";
+        };
 
-        theme_name = "Catppuccin-Mocha-Standard-Blue-Dark";
-        icon_theme_name = "Papirus-Dark";
-        cursor_theme_name = "BreezeX-RosePine-Linux";
+        GTK = {
+          application_prefer_dark_theme = true;
+
+          font_name = "DejaVu Sans 16";
+
+          theme_name = "Catppuccin-Mocha-Standard-Blue-Dark";
+          icon_theme_name = "Papirus-Dark";
+          cursor_theme_name = "BreezeX-RosePine-Linux";
+        };
       };
     };
   };
