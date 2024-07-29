@@ -1,20 +1,28 @@
 {
-  pkgs,
-  modulesPath,
+  config,
   lib,
+  modulesPath,
+  pkgs,
   ...
 }:
 
 {
-  imports = [
-    (import (modulesPath + "/programs/wayland/wayland-session.nix") {
-      inherit lib pkgs;
-      enableXWayland = false;
-      enableWlrPortal = false;
-    })
-  ];
+  options = {
+    opts.compositor.niri.enable = lib.mkEnableOption "enable niri compositor";
+  };
 
-  environment.systemPackages = [ pkgs.niri ];
+  config = lib.mkIf config.opts.compositor.niri.enable (
+    lib.mkMerge [
+      (import (modulesPath + "/programs/wayland/wayland-session.nix") {
+        inherit lib pkgs;
+        enableXWayland = false;
+        enableWlrPortal = false;
+      })
 
-  services.displayManager.sessionPackages = [ pkgs.niri ];
+      {
+        environment.systemPackages = [ pkgs.niri ];
+        services.displayManager.sessionPackages = [ pkgs.niri ];
+      }
+    ]
+  );
 }
