@@ -1,11 +1,20 @@
+{ lib, config, ... }:
+
 {
-  virtualisation = {
-    podman = {
-      enable = true;
-      dockerCompat = true;
-      autoPrune.enable = true;
-    };
+  options = {
+    opts.podman.enable = lib.mkEnableOption "enable podman";
   };
 
-  users.users.user.extraGroups = [ "podman" ];
+  config = lib.mkIf config.opts.podman.enable {
+
+    virtualisation = {
+      podman = {
+        enable = true;
+        dockerCompat = true;
+        autoPrune.enable = true;
+      };
+    };
+
+    users.users.user.extraGroups = [ "podman" ];
+  };
 }
