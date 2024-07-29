@@ -54,10 +54,7 @@
             inherit inputs;
           };
 
-          modules = [
-            ./system
-            ./hosts/zephyrus
-          ];
+          modules = [ ./hosts/zephyrus ];
         };
       };
 
@@ -69,7 +66,7 @@
             inherit inputs;
           };
 
-          modules = [ ./home ];
+          modules = inputs.self.lib.autoimport ./home;
         };
       };
     };

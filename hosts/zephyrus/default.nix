@@ -1,7 +1,8 @@
-{ lib, pkgs, ... }:
+{ inputs, ... }:
 
 {
-  imports = [ ./hardware.nix ];
+  imports = [ ./hardware.nix ] ++ inputs.self.lib.autoimport ../../system;
+
   networking.hostName = "zephyrus";
 
   powerManagement.cpuFreqGovernor = "powersave";
