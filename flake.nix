@@ -38,17 +38,14 @@
   };
 
   outputs =
-    {
-      self,
-      nixpkgs,
-      home-manager,
-      ...
-    }@inputs:
+    { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in
     {
+      lib = import ./lib inputs;
+
       formatter.${system} = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations = {
