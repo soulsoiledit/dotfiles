@@ -1,10 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   programs.wezterm = {
     enable = true;
-
-    package = pkgs.callPackage ./wezterm_git.nix { };
+    package = inputs.wezterm.packages.${pkgs.system}.default;
 
     colorSchemes = { };
     extraConfig = # lua
