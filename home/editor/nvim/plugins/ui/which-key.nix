@@ -1,10 +1,19 @@
 {
   programs.nixvim.plugins.which-key = {
     enable = true;
-    registrations = {
-      "<leader>t" = "toggle terminal";
-      "<leader>f".name = "telescope";
-      "<leader>l".name = "lsp";
-    };
+    settings.spec = [
+      {
+        __unkeyed-1 = "<leader>t";
+        desc = "toggle terminal";
+      }
+      {
+        __unkeyed-1 = "<leader>f";
+        desc = "telescope";
+      }
+      {
+        __unkeyed-1 = "<leader>l";
+        desc = "lsp";
+      }
+    ];
   };
 }
