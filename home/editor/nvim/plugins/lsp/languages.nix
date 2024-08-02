@@ -1,11 +1,31 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.nixvim.plugins = {
     lsp.servers = {
+      # INFO: remove when nixd has more features
       nil-ls = {
         enable = true;
         settings.formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+      };
+
+      nixd = {
+        enable = true;
+        settings =
+          let
+            getFlake = ''(builtins.getFlake "${inputs.self}")'';
+            user = "${config.home.username}";
+          in
+          {
+            formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
+            options.home-manager.expr = ''${getFlake}.homeConfigurations.${user}.options'';
+          };
       };
 
       lua-ls.enable = true;
