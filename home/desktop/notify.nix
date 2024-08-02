@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   services = {
@@ -15,17 +15,10 @@
       iconPath = "${pkgs.papirus-icon-theme}/share/icons/Papirus-Dark";
 
       extraConfig = ''
-        [category=volume]
+        [category=osd]
         group-by=category
         format=<b>%s</b>\n%b
-
-        [category=kbd-bright]
-        group-by=category
-        format=<b>%s</b>\n%b
-
-        [category=kbd-mode]
-        group-by=category
-        format=<b>%s</b>\n%b
+        default-timeout=${builtins.toString (config.services.mako.defaultTimeout / 2)}
       '';
     };
 
