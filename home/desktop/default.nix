@@ -6,16 +6,6 @@
 }:
 
 {
-  imports = [
-    ./gamma.nix
-    ./idle.nix
-    ./launcher.nix
-    ./lock.nix
-    ./notify.nix
-    ./services.nix
-    ./wall.nix
-  ];
-
   gtk = {
     enable = true;
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
