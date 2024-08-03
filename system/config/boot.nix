@@ -16,6 +16,6 @@
       };
     };
 
-    plymouth.enable = false;
+    plymouth.enable = true;
   };
 }
