@@ -25,6 +25,7 @@
           {
             formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
             options.home-manager.expr = ''${getFlake}.homeConfigurations.${user}.options'';
+            diagnostic.suppress = [ "sema-escaping-with" ];
           };
       };
 
