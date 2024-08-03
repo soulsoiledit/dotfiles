@@ -8,6 +8,4 @@
       "nix-command"
     ];
   };
-
-  programs.nix-ld.enable = true;
 }
