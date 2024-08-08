@@ -79,7 +79,6 @@
       ns = "nh os switch";
       nb = "nh os boot";
       hs = "nh home switch";
-      gc = "nh clean all --keep 5 --nogcroots";
     };
 
     functions = { };
