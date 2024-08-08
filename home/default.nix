@@ -8,7 +8,7 @@
   home = {
     username = "soil";
     homeDirectory = "/home/soil";
-    stateVersion = "23.11";
+    stateVersion = "24.05";
     preferXdgDirectories = true;
   };
 
