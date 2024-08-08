@@ -2,6 +2,7 @@
   programs.nixvim = {
 
     opts = {
+      expandtab = true;
       shiftwidth = 2;
       softtabstop = 2;
 
