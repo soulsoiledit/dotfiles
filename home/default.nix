@@ -9,6 +9,7 @@
     username = "soil";
     homeDirectory = "/home/soil";
     stateVersion = "23.11";
+    preferXdgDirectories = true;
   };
 
   systemd.user.startServices = true;
