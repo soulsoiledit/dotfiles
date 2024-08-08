@@ -1,14 +1,14 @@
-pw-mon -o -a | rg --line-buffered 'changed:' -A3 | rg --line-buffered 'Node' | while
+pw-mon -o -a | rg -s --line-buffered 'Node' | while
   # volume value & symbol
   volume=$(pamixer --get-volume)
 
-  symbols=('󰕿' '󰖀' '󰕾')
+  symbols=('' '' '')
   symbol=${symbols[(((10#$volume * 3 - 1) / 100))]}
 
   # mute status & symbol
   if [ "$(pamixer --get-mute)" == "true" ]; then
     mute='volume-muted'
-    symbol='󰝟'
+    symbol=''
   else
     mute='volume-unmuted'
   fi
