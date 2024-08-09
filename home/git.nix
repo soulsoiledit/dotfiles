@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     userName = "soulsoiledit";
-    userEmail = "soulsoill@proton.me";
+    userEmail = "no.sleep410@passinbox.com";
 
     delta.enable = true;
 
