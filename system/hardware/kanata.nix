@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
 {
-  config.opts.kanata.enable = lib.mkEnableOption "enable kanata remapping";
+  options.opts.kanata.enable = lib.mkEnableOption "enable kanata remapping";
 
-  options = lib.mkIf config.opts.kanata.enable {
+  config = lib.mkIf config.opts.kanata.enable {
     users.users.user.extraGroups = [ "uinput" ];
 
     services.kanata = {
@@ -21,8 +21,8 @@
                 left up down right
               )
 
-              (defalias 
-                esc (tap-hold 150 150 esc alt)
+              (defalias
+                esc (tap-hold 150 150 esc lctl)
                 nav (layer-while-held nav)
                 oss (one-shot-press 1000 lsft)
                 osc (one-shot-press 1000 lctl)
@@ -35,7 +35,7 @@
                 tab q w f p b j l u y ' [ ] \
                 @esc a r s t g m n e i o ; ret
                 lsft x c d v z k h , . / rsft
-                lalt lmet lctl spc @nav rctl
+                lctl lmet lalt spc @nav rctl
                 left up down right
               )
 
