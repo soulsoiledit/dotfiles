@@ -1,4 +1,1 @@
-{
-  networking.networkmanager.enable = true;
-  programs.nm-applet.enable = true;
-}
+{ networking.networkmanager.enable = true; }
