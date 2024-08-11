@@ -31,7 +31,6 @@
 
         # qt theme
         "QT_QPA_PLATFORMTHEME,${config.qt.platformTheme.name}"
-        "QT_STYLE_OVERRIDE,${config.qt.style.name}"
       ];
 
       exec-once = [
