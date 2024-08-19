@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  config,
-  ...
-}:
+{ inputs, pkgs, ... }:
 
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
@@ -16,7 +11,7 @@
       enable = true;
 
       theme = spicePkgs.themes.catppuccin;
-      colorScheme = config.catppuccin.flavor;
+      colorScheme = "mocha";
 
       enabledExtensions = with spicePkgs.extensions; [
         adblock

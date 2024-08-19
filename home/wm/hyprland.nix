@@ -41,13 +41,16 @@
         "wl-paste --primary --watch cliphist store"
       ];
 
+      "$active" = "rgb(ca3f3f)";
+      "$inactive" = "rgb(221e1e)";
+
       general = rec {
         border_size = 1;
         gaps_in = 2;
         gaps_out = gaps_in * 2;
 
-        "col.inactive_border" = "$surface0";
-        "col.active_border" = "$accent";
+        "col.inactive_border" = "$inactive";
+        "col.active_border" = "$active";
 
         layout = "master";
       };
@@ -71,8 +74,8 @@
         "center, class:vesktop title:vesktop"
 
         # tile and fullscreen games
-        "tile, class:steam_app_"
-        "fullscreen, class:steam_app_"
+        "tile, class:(steam_app_|Minecraft\*)"
+        "fullscreen, class:(steam_app_|Minecraft\*)"
       ];
 
       decoration = {
@@ -93,28 +96,24 @@
         ];
       };
 
-      group =
-        let
-          groupCfg = config.wayland.windowManager.hyprland.settings.group;
-        in
-        {
-          "col.border_inactive" = "$surface0";
-          "col.border_active" = "$accent";
-          "col.border_locked_inactive" = "$surfac0";
-          "col.border_locked_active" = "$accent";
+      group = {
+        "col.border_inactive" = "$inactive";
+        "col.border_active" = "$active";
+        "col.border_locked_inactive" = "$inactive";
+        "col.border_locked_active" = "$active";
 
-          groupbar = {
-            enabled = true;
-            gradients = false;
-            height = 50;
-            render_titles = false;
+        groupbar = {
+          enabled = true;
+          gradients = false;
+          height = 50;
+          render_titles = false;
 
-            "col.inactive" = groupCfg."col.border_inactive";
-            "col.active" = groupCfg."col.border_active";
-            "col.locked_inactive" = groupCfg."col.border_locked_inactive";
-            "col.locked_active" = groupCfg."col.border_locked_active";
-          };
+          "col.inactive" = "$inactive";
+          "col.active" = "$active";
+          "col.locked_inactive" = "$inactive";
+          "col.locked_active" = "$active";
         };
+      };
 
       input = {
         touchpad = {

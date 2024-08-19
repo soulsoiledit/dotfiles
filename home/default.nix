@@ -1,8 +1,6 @@
 { pkgs, inputs, ... }:
 
 {
-  imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
-
   programs.home-manager.enable = true;
 
   home = {
@@ -27,10 +25,4 @@
     distrobox
     clipse
   ];
-
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    accent = "blue";
-  };
 }

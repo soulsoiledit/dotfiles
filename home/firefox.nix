@@ -1,9 +1,6 @@
 {
   programs.firefox = {
     enable = true;
-    policies = { };
-    profiles.soil = {
-      settings = { };
-    };
+    profiles.soil = { };
   };
 }

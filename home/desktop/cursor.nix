@@ -15,7 +15,6 @@
   };
 
   # dont generate ~/.icons/
-  catppuccin.pointerCursor.enable = false;
   home.file.".icons/${config.home.pointerCursor.name}".enable = lib.mkForce false;
   home.file.".icons/default/index.theme".enable = lib.mkForce false;
 }
