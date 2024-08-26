@@ -17,26 +17,28 @@
     plugins.conform-nvim = {
       enable = true;
 
-      formatOnSave = {
-        lspFallback = true;
-        timeoutMs = 500;
-      };
+      settings = {
+        format_on_save = {
+          lsp_fallback = true;
+          timeout_ms = 500;
+        };
 
-      formattersByFt = {
-        lua = [ "stylua" ];
-        java = [ "google-java-format" ];
-        haskell = [ "ormolu" ];
-        sh = [ "shfmt" ];
+        formatters_by_ft = {
+          lua = [ "stylua" ];
+          java = [ "google-java-format" ];
+          haskell = [ "ormolu" ];
+          sh = [ "shfmt" ];
 
-        javascript = [ "prettier" ];
-        javascriptreact = [ "prettier" ];
-        typescript = [ "prettier" ];
-        typescriptreact = [ "prettier" ];
-        css = [ "prettier" ];
-        scss = [ "prettier" ];
-        html = [ "prettier" ];
-        json = [ "prettier" ];
-        yaml = [ "prettier" ];
+          javascript = [ "prettier" ];
+          javascriptreact = [ "prettier" ];
+          typescript = [ "prettier" ];
+          typescriptreact = [ "prettier" ];
+          css = [ "prettier" ];
+          scss = [ "prettier" ];
+          html = [ "prettier" ];
+          json = [ "prettier" ];
+          yaml = [ "prettier" ];
+        };
       };
     };
   };
