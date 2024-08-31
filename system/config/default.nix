@@ -10,11 +10,6 @@
   programs = {
     git.enable = true;
     neovim.enable = true;
-
-    appimage = {
-      enable = true;
-      binfmt = true;
-    };
   };
 
   security.sudo.extraConfig = ''
