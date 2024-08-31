@@ -15,6 +15,9 @@
       };
     };
 
-    users.users.user.extraGroups = [ "podman" ];
+    users.users.user.extraGroups = [ 
+      "podman"
+      "docker"
+    ];
   };
 }
