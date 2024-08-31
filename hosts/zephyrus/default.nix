@@ -3,10 +3,12 @@
 {
   imports = [ ./hardware.nix ] ++ inputs.self.lib.autoimport ../../system;
 
+  networking.hostName = "zephyrus";
+
   opts = {
     compositor.hyprland.enable = true;
 
-    gaming.enable = true;
+    zram.enable = true;
     podman.enable = true;
     virt-manager.enable = true;
 
@@ -14,16 +16,11 @@
     kanata.enable = true;
   };
 
-  networking.hostName = "zephyrus";
-
+  hardware.graphics.enable32Bit = true;
   powerManagement.cpuFreqGovernor = "powersave";
 
   services = {
-    upower = {
-      enable = true;
-      noPollBatteries = true;
-    };
-
+    upower.enable = true;
     power-profiles-daemon.enable = true;
   };
 }
