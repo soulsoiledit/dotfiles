@@ -6,11 +6,12 @@
   config = lib.mkIf config.opts.zram.enable {
     zramSwap = {
       enable = true;
-      algorithm = "zstd";
-      memoryPercent = 150;
-      writebackDevice = "/var/swapfile";
+      # fedora defaults
+      memoryPercent = 100;
+      memoryMax = 8589934592; # 8 GiB
     };
 
+    # https://wiki.archlinux.org/title/Zram#Optimizing_swap_on_zram
     boot.kernel.sysctl = {
       "vm.swappiness" = 180;
       "vm.watermark_boost_factor" = 0;
