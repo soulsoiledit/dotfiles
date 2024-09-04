@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
 {
-  options.opts.kanata.enable = lib.mkEnableOption "enable kanata remapping";
+  options.modules.kanata.enable = lib.mkEnableOption "enable kanata remapping";
 
-  config = lib.mkIf config.opts.kanata.enable {
+  config = lib.mkIf config.modules.kanata.enable {
     users.users.user.extraGroups = [ "uinput" ];
 
     services.kanata = {

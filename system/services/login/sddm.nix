@@ -6,12 +6,10 @@
 }:
 
 {
-  options = {
-    opts.greeter.sddm.enable = lib.mkEnableOption "enable sddm greeter";
-  };
+  options.modules.greeter.sddm.enable = lib.mkEnableOption "enable sddm greeter";
 
-  config = lib.mkIf config.opts.greeter.sddm.enable {
-    opts.greeter.tuigreet.enable = lib.mkForce false;
+  config = lib.mkIf config.modules.greeter.sddm.enable {
+    modules.greeter.tuigreet.enable = lib.mkForce false;
 
     environment.systemPackages = with pkgs; [
       rose-pine-cursor

@@ -20,12 +20,10 @@ let
   '';
 in
 {
-  options = {
-    opts.greeter.regreet.enable = lib.mkEnableOption "enable regreet greeter";
-  };
+  options.modules.greeter.regreet.enable = lib.mkEnableOption "enable regreet greeter";
 
-  config = lib.mkIf config.opts.greeter.regreet.enable {
-    opts.greeter.tuigreet.enable = lib.mkForce false;
+  config = lib.mkIf config.modules.greeter.regreet.enable {
+    modules.greeter.tuigreet.enable = lib.mkForce false;
 
     environment.systemPackages = with pkgs; [
       (catppuccin-gtk.override { variant = "mocha"; })

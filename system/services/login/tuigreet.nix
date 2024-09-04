@@ -6,13 +6,11 @@
 }:
 
 {
-  options = {
-    opts.greeter.tuigreet.enable = lib.mkEnableOption "enable tuigreet greeter" // {
-      default = true;
-    };
+  options.modules.greeter.tuigreet.enable = lib.mkEnableOption "enable tuigreet greeter" // {
+    default = true;
   };
 
-  config = lib.mkIf config.opts.greeter.tuigreet.enable {
+  config = lib.mkIf config.modules.greeter.tuigreet.enable {
     services.greetd = {
       enable = true;
       vt = 7;

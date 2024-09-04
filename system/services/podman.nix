@@ -1,12 +1,9 @@
 { lib, config, ... }:
 
 {
-  options = {
-    opts.podman.enable = lib.mkEnableOption "enable podman";
-  };
+  options.modules.podman.enable = lib.mkEnableOption "enable podman";
 
-  config = lib.mkIf config.opts.podman.enable {
-
+  config = lib.mkIf config.modules.podman.enable {
     virtualisation = {
       podman = {
         enable = true;
@@ -15,7 +12,7 @@
       };
     };
 
-    users.users.user.extraGroups = [ 
+    users.users.user.extraGroups = [
       "podman"
       "docker"
     ];

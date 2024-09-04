@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
 {
-  options.opts.zram.enable = lib.mkEnableOption "enable zram compressed swap";
+  options.modules.zram.enable = lib.mkEnableOption "enable zram compressed swap";
 
-  config = lib.mkIf config.opts.zram.enable {
+  config = lib.mkIf config.modules.zram.enable {
     zramSwap = {
       enable = true;
       # fedora defaults

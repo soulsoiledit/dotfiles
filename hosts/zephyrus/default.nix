@@ -5,8 +5,8 @@
 
   networking.hostName = "zephyrus";
 
-  opts = {
-    compositor.hyprland.enable = true;
+  modules = {
+    compositor.niri.enable = true;
 
     zram.enable = true;
     podman.enable = true;
