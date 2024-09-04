@@ -12,9 +12,9 @@
     inputs.niri.homeModules.stylix
   ];
 
-  options.opts.niri.enable = lib.mkEnableOption "enable niri window manager";
+  options.modules.niri.enable = lib.mkEnableOption "enable niri window manager";
 
-  config = lib.mkIf config.opts.niri.enable {
+  config = lib.mkIf config.modules.niri.enable {
     home.packages = with pkgs; [
       libnotify
       grimblast
@@ -99,11 +99,9 @@
           { command = [ "wayland-pipewire-idle-inhibit" ]; }
           {
             command = [
-              "wl-paste"
-              "--primary"
-              "--watch"
-              "cliphist"
-              "store"
+              "sh"
+              "-c"
+              "wl-paste --primary --watch cliphist store"
             ];
           }
           {
@@ -164,6 +162,10 @@
 
         screenshot-path = "~/pictures/screenshots/%F_%Hh%Mm%Ss.png";
 
+        debug = {
+          render-drm-device = "/dev/dri/by-path/pci-0000:07:00.0-render";
+        };
+
         binds = with config.lib.niri.actions; {
           "Mod+Shift+x".action = quit;
 
@@ -171,10 +173,9 @@
           "Mod+Return".action.spawn = "wezterm";
           "Mod+Space".action.spawn = "fuzzel";
           "Mod+B".action.spawn = [
-            "eww"
-            "open"
-            "bar"
-            "--toggle"
+            "sh"
+            "-c"
+            "eww open bar --toggle"
           ];
           "Mod+Shift+L".action.spawn = "swaylock";
           "Mod+P".action.spawn = [
@@ -210,15 +211,14 @@
           "XF86MonBrightnessUp" = {
             allow-when-locked = true;
             action.spawn = [
-              "brightnessctl"
-              "set"
-              "20%+"
+              "brightness_notify"
+              "set 20%+"
             ];
           };
 
           "XF86MonBrightnessDown" = {
             action.spawn = [
-              "brightnessctl"
+              "brightness_notify"
               "set"
               "20%-"
             ];
@@ -230,7 +230,7 @@
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
             action.spawn = [
-              "pamixer"
+              "volume_notify"
               "--increase"
               "5"
             ];
@@ -238,7 +238,7 @@
           "XF86AudioLowerVolume" = {
             allow-when-locked = true;
             action.spawn = [
-              "pamixer"
+              "volume_notify"
               "--decrease"
               "5"
             ];
@@ -246,7 +246,7 @@
           "Shift+XF86AudioRaiseVolume" = {
             allow-when-locked = true;
             action.spawn = [
-              "pamixer"
+              "volume_notify"
               "--increase"
               "1"
             ];
@@ -254,7 +254,7 @@
           "Shift+XF86AudioLowerVolume" = {
             allow-when-locked = true;
             action.spawn = [
-              "pamixer"
+              "volume_notify"
               "--decrease"
               "1"
             ];
@@ -320,6 +320,11 @@
             ];
           };
 
+          "XF86Launch4".action.spawn = "profile_notify";
+
+          # TODO: keyboard rgb
+          # TODO: other laptop keys
+
           # workspaces
           # not static
           "Mod+1".action = focus-workspace 1;
@@ -351,17 +356,6 @@
           "Mod+M".action = set-column-width "-5%";
           "Mod+I".action = set-column-width "+5%";
         };
-        # wayland.windowManager.hyprland = {
-        #   settings = {
-        #     # programs
-        #     "$notify_vol" = ''notify-send -c osd -i audio-volume-medium --hint=int:value:$(pamixer --get-volume) $(pamixer --get-volume)'';
-        #     # TODO: Better notifications for keyboard rgb, volume, mic, and screen backlight
-        #     "$notify_kbd" = ''notify-send -c osd "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
-        #     "$notify_led" = ''notify-send -c osd "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
-        #     # quick script to change power profiles
-        #     "$notify_profile" = "case $(powerprofilesctl get) in 'performance') powerprofilesctl set balanced;; 'balanced') powerprofilesctl set power-saver;; 'power-saver') powerprofilesctl set performance;; esac; notify-send 'Current profile:' '$(powerprofilesctl get)'";
-        #   };
-        # };
       };
     };
   };
