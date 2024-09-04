@@ -1,5 +1,3 @@
-{ pkgs, inputs, ... }:
-
 {
   programs.home-manager.enable = true;
 
@@ -14,15 +12,5 @@
 
   xdg.enable = true;
 
-  home.packages = with pkgs; [
-    vesktop
-    piper
-
-    prismlauncher
-    cubiomes-viewer
-
-    # bottles
-    distrobox
-    clipse
-  ];
+  modules.niri.enable = true;
 }
