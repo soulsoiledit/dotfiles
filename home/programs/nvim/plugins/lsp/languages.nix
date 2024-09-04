@@ -40,13 +40,13 @@
       pylsp = {
         enable = true;
         package = pkgs.python3Packages.python-lsp-server;
-        settings.plugins.ruff.enabled = true;
+        # settings.plugins.ruff.enabled = true;
       };
       # pylyzer.enable = true;
-      ruff.enable = true;
+      # ruff.enable = true;
 
       bashls.enable = true;
-      marksman.enable = true;
+      # marksman.enable = true;
       # ltex.enable = true;
 
       tsserver.enable = true;
@@ -64,7 +64,7 @@
       clangd.enable = true;
     };
 
-    rustaceanvim.enable = true;
+    # rustaceanvim.enable = true;
     nix.enable = true;
     # ltex-extra.enable = true;
   };

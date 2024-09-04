@@ -1,6 +1,5 @@
 (defwindow bar
   :monitor 0
-  :stacking "bottom"
   :exclusive true
   :geometry (geometry
     :width "100%"
@@ -14,7 +13,7 @@
       :space-evenly false
       ;; launcher
       ;; power
-      (workspaces)
+      (niri-workspaces)
     )
 
     (box
@@ -63,7 +62,6 @@
 )
 (defwidget volume []
   (eventbox
-    :class "volume ${volume.mute}"
     :onscroll
     "if [[ {} == up ]];
       then pamixer --increase ${volume_step};
@@ -73,7 +71,12 @@
     :onclick "pamixer --toggle-mute"
     :onmiddleclick "pavucontrol &"
 
-    "${volume.symbol} ${volume.volume}%"
+    (box 
+      :space-evenly false
+      :class "volume ${volume.mute}"
+      "${volume.symbol}"
+      "${volume.volume}%"
+    )
   )
 )
 
@@ -89,7 +92,10 @@
     (eventbox
       :class "battery"
       :tooltip "${battery.remaining} left @ ${round((battery.wattage ?: 0) / 1000000, 1)}W"
-      "${battery.symbol}  ${battery.percentage}%"
+      (box :space-evenly false
+	"${battery.symbol}"
+	"${battery.percentage}%"
+      )
     )
 )
 
@@ -103,36 +109,62 @@
     :class "network ${network.status}"
     :onclick "foot -e nmtui &"
     :tooltip {network.ssid}
-    {network.symbol}
+    (box :space-evenly false
+      {network.symbol}
+    )
   )
 )
 
-(deflisten workspace_list
-  :initial "[1]"
-  "scripts/workspaces.sh list"
-)
-(deflisten workspace_empty
+(defvar workspace_list "[1,2,3,4,5]")
+;; (deflisten niri_workspace_empty
+;;   :initial "{}"
+;;   "scripts/niri.sh empty"
+;; )
+(defpoll niri_workspace_active
   :initial "{}"
-  "scripts/workspaces.sh empty"
+  :interval 50
+  "scripts/niri.sh active"
 )
-(deflisten workspace_active
-  :initial "{}"
-  "scripts/workspaces.sh active"
-)
-(defwidget workspaces []
+(defwidget niri-workspaces []
   (box
     :space-evenly false
     :class "layer workspaces"
     (for ws in workspace_list
       (button
-	:onclick "hyprctl dispatch workspace ${ws}"
-	:class {
-	  ws == workspace_active?.id ?
-	  "active" :
-	  (workspace_empty?.[ws] ?: 0) >= 1 ?
-	  "used" :
-	  ""
-	}
+        :onclick "niri msg action focus-workspace ${ws}"
+        :class {
+          ws == niri_workspace_active?.id ?
+          "active" :
+          ""
+          ;; niri doesn't have a function to poll windows yet
+        }
+      )
+    )
+  )
+)
+
+(deflisten hyprland_workspace_empty
+  :initial "{}"
+  "scripts/hyprland.sh empty"
+)
+(deflisten hyprland_workspace_active
+  :initial "{}"
+  "scripts/hyprland.sh active"
+)
+(defwidget hyprland-workspaces []
+  (box
+    :space-evenly false
+    :class "layer workspaces"
+    (for ws in workspace_list
+      (button
+        :onclick "hyprctl dispatch workspace ${ws}"
+        :class {
+          ws == hyprland_workspace_active?.id ?
+          "active" :
+          (hyprland_workspace_empty?.[ws] ?: 0) >= 1 ?
+          "used" :
+          ""
+        }
       )
     )
   )

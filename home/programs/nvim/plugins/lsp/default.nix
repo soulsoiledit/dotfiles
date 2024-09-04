@@ -1,9 +1,4 @@
 {
-  imports = [
-    ./languages.nix
-    ./lsp-ui.nix
-  ];
-
   programs.nixvim = {
     plugins = {
       lsp = {

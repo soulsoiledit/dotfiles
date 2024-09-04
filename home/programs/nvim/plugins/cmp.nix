@@ -7,10 +7,10 @@
       enable = true;
       settings = {
         sources = [
+          { name = "buffer"; }
+          { name = "path"; }
           { name = "nvim_lsp"; }
           { name = "luasnip"; }
-          { name = "path"; }
-          { name = "buffer"; }
           { name = "calc"; }
         ];
 

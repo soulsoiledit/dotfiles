@@ -15,6 +15,8 @@
           };
           bracketed = { };
           cursorword = { };
+          icons = { };
+          trailspace = { };
 
           pairs = {
             mappings = {

@@ -180,7 +180,9 @@
               "'"
               "t"
             ];
-            run = [ "shell --block 'for file in \"$@\"; do trash-rm \"$(basename \"$file\")\"; done'" ];
+            run = [
+              "shell --interactive --block 'for file in \"$@\"; do trash-rm \"$(basename \"$file\")\"; done'"
+            ];
             desc = "Remove the files from trash";
           }
         ];

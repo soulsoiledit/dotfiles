@@ -12,12 +12,7 @@ empty() {
   do continue; done
 }
 
-list() {
-  seq 1 5 | jq -c --slurp '.'
-}
-
 case "$1" in
 "active") active ;;
 "empty") empty ;;
-"list") list ;;
 esac

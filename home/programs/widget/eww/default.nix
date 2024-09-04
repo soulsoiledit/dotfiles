@@ -9,5 +9,5 @@
   ];
 
   # used for making quick changes
-  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/dotfiles/home/widgets/eww";
+  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/code/dotfiles/home/programs/widget/eww";
 }

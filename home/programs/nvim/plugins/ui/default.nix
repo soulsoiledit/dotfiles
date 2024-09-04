@@ -1,19 +1,13 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./colorscheme.nix
-    ./noice.nix
-    ./todo.nix
-    ./treesitter.nix
-    ./which-key.nix
-  ];
-
   programs.nixvim = {
     extraPlugins = with pkgs.vimPlugins; [ aerial-nvim ];
     plugins = {
-      bufferline.enable = true;
-      lualine.enable = true;
+      # bufferline.enable = true;
+      # lualine.enable = true;
+      mini.modules.tabline = { };
+      mini.modules.statusline = { };
 
       alpha = {
         enable = true;

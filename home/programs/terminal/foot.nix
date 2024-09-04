@@ -4,7 +4,6 @@
 
     settings = {
       main = {
-        font = "monospace:size=10";
         selection-target = "both";
         # pad = "20x20";
       };
