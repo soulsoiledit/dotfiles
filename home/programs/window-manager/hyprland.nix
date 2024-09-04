@@ -161,7 +161,7 @@
           "$mod, p, exec, cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
 
           # power profiles
-          ", XF86Launch4, exec, asusctl profile --next"
+          ", XF86Launch4, exec, $notify_profile"
 
           # notifications
           "$mod ctrl, space, exec, makoctl dismiss --all"
