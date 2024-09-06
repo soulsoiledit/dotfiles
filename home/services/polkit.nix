@@ -6,18 +6,18 @@ in
 {
   config = lib.mkIf enable {
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
+      Unit = {
+        Description = "polkit-gnome-authentication-agent-1";
 
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+        WantedBy = [ "graphical-session.target" ];
+        Wants = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
 
-      serviceConfig = {
+      Service = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
       };
     };
   };
