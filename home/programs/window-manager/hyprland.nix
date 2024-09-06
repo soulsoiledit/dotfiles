@@ -37,7 +37,6 @@
         ];
 
         exec-once = [
-          "${lib.getExe pkgs.wayland-pipewire-idle-inhibit}"
           # disabled currently
           # "firefox"
           # "spotify"

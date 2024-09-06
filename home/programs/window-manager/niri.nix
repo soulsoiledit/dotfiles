@@ -95,7 +95,6 @@
 
         spawn-at-startup = [
           { command = [ "xwayland-satellite" ]; }
-          { command = [ "wayland-pipewire-idle-inhibit" ]; }
           {
             command = [
               "eww"
@@ -103,7 +102,6 @@
               "bar"
             ];
           }
-          { command = [ "xwayland-satellite" ]; }
           # { command = ["firefox"]; }
           # { command = ["spotify"]; }
           # { command = ["vesktop"]; }
