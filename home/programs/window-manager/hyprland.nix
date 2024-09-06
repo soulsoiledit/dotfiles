@@ -9,15 +9,6 @@
   options.modules.hyprland.enable = lib.mkEnableOption "enable hyprland window manager";
 
   config = lib.mkIf config.modules.hyprland.enable {
-    home.packages = with pkgs; [
-      libnotify
-      grimblast
-      wl-clipboard
-      pamixer
-      brightnessctl
-      playerctl
-    ];
-
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;

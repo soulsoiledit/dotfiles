@@ -16,12 +16,7 @@
 
   config = lib.mkIf config.modules.niri.enable {
     home.packages = with pkgs; [
-      libnotify
-      grimblast
-      wl-clipboard
-      pamixer
-      brightnessctl
-      playerctl
+      xwayland-satellite
     ];
 
     programs.niri = {

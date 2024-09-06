@@ -12,6 +12,14 @@
     p7zip
     trash-cli
     xdg-utils
+
+    # service interaction
+    libnotify
+    wl-clipboard
+    pamixer
+    brightnessctl
+    playerctl
+    grimblast
   ];
 
   programs = {
