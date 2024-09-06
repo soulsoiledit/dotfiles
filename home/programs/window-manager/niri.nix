@@ -95,7 +95,6 @@
 
         spawn-at-startup = [
           { command = [ "xwayland-satellite" ]; }
-          { command = [ "wpaperd" ]; }
           { command = [ "wayland-pipewire-idle-inhibit" ]; }
           {
             command = [
