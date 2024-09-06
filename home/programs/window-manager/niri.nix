@@ -99,13 +99,6 @@
           { command = [ "wayland-pipewire-idle-inhibit" ]; }
           {
             command = [
-              "sh"
-              "-c"
-              "wl-paste --primary --watch cliphist store"
-            ];
-          }
-          {
-            command = [
               "eww"
               "open"
               "bar"

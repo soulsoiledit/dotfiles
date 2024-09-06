@@ -45,7 +45,6 @@
           # "vesktop"
           # "steam"
           "eww open bar --toggle"
-          "wl-paste --primary --watch cliphist store"
         ];
 
         general = rec {
