@@ -1,13 +1,9 @@
-{
-  inputs,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   programs.swaylock = {
     enable = true;
-    package = inputs.latest.legacyPackages."x86_64-linux".swaylock-effects;
+    package = pkgs.swaylock-effects;
     settings = {
       clock = true;
       screenshots = true;
