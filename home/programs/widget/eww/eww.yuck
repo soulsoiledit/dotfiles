@@ -122,7 +122,7 @@
 ;; )
 (defpoll niri_workspace_active
   :initial "{}"
-  :interval 50
+  :interval 1000
   "scripts/niri.sh active"
 )
 (defwidget niri-workspaces []
