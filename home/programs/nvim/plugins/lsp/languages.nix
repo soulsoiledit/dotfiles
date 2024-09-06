@@ -40,10 +40,10 @@
       pylsp = {
         enable = true;
         package = pkgs.python3Packages.python-lsp-server;
-        # settings.plugins.ruff.enabled = true;
+        settings.plugins.ruff.enabled = true;
       };
       # pylyzer.enable = true;
-      # ruff.enable = true;
+      ruff.enable = true;
 
       bashls.enable = true;
       # marksman.enable = true;
@@ -51,7 +51,6 @@
 
       tsserver.enable = true;
       cssls.enable = true;
-      eslint.enable = true;
       html.enable = true;
 
       jsonls.enable = true;
