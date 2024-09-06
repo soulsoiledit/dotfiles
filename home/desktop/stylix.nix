@@ -31,8 +31,6 @@
       base0F = "#976DA9";
     };
 
-    # targets.hyprpaper.enable = lib.mkForce false;
-
     cursor = {
       package = pkgs.rose-pine-cursor;
       name = "BreezeX-RosePine-Linux";
