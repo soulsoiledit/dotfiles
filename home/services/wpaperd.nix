@@ -15,14 +15,12 @@
   systemd.user.services.wpaperd = {
     Unit = {
       Description = "wpaperd";
-
-      WantedBy = [ "graphical-session.target" ];
-      Wants = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
       After = [ "graphical-session.target" ];
+      Requisite = [ "graphical-session.target" ];
     };
 
     Service = {
-      Type = "simple";
       ExecStart = "${lib.getExe' config.programs.wpaperd.package "wpaperd"}";
       Restart = "on-failure";
     };
