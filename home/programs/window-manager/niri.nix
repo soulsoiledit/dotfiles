@@ -158,7 +158,10 @@
             "-c"
             "eww open bar --toggle"
           ];
-          "Mod+Shift+L".action.spawn = "swaylock";
+          "Mod+Shift+L".action.spawn = [
+            "loginctl"
+            "lock-session"
+          ];
           "Mod+P".action.spawn = [
             "bash"
             "-c"

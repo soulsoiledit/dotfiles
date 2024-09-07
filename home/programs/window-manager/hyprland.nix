@@ -144,7 +144,7 @@
           "$mod, Return, exec, wezterm"
           "$mod, space, exec, fuzzel"
           "$mod, B, exec, eww open bar --toggle"
-          "$mod shift, l, exec, swaylock"
+          "$mod shift, l, exec, loginctl lock-session"
           "$mod, S, exec, $screenshot"
           "$mod, p, exec, cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
 
