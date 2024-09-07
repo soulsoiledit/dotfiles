@@ -20,7 +20,7 @@ in
     events = [
       {
         event = "lock";
-        command = "${swaylock}";
+        command = "${swaylock} --daemonize";
       }
       {
         event = "before-sleep";
