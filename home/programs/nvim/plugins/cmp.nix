@@ -7,11 +7,23 @@
       enable = true;
       settings = {
         sources = [
-          { name = "buffer"; }
+          {
+            name = "nvim_lsp";
+            priority = 10;
+          }
+          {
+            name = "luasnip";
+            priority = 10;
+          }
+          { name = "latex_symbols"; }
+
+          {
+            name = "buffer";
+            priority = 10;
+          }
           { name = "path"; }
-          { name = "nvim_lsp"; }
-          { name = "luasnip"; }
           { name = "calc"; }
+          { name = "spell"; }
         ];
 
         snippet.expand = # lua
