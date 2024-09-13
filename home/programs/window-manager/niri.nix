@@ -189,9 +189,7 @@
             "cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
           ];
 
-          # TODO: update screenshot command
           "Mod+S".action = screenshot;
-          # // "Mod+S" = { spawn "bash" "-c" "grimblast --freeze copysave area ~/pictures/screenshots/$(date +%F_%Hh%Mm%Ss).png"; }
 
           # notifications
           "Mod+Control+Space".action.spawn = [
