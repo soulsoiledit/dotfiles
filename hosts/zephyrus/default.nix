@@ -1,7 +1,13 @@
-{ inputs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
-  imports = [ ./hardware.nix ] ++ inputs.self.lib.autoimport ../../system;
+  imports = [
+    ./hardware.nix
+  ] ++ inputs.self.lib.autoimport ../../system;
 
   networking.hostName = "zephyrus";
 
@@ -17,7 +23,6 @@
   };
 
   hardware.graphics.enable32Bit = true;
-  powerManagement.cpuFreqGovernor = "powersave";
 
   services = {
     upower.enable = true;
