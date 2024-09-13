@@ -14,12 +14,7 @@
 
     treesitter-context = {
       enable = true;
-      settings.maxLines = 4;
-    };
-
-    treesitter-textobjects = {
-      enable = true;
-      lspInterop.enable = true;
+      settings.max_lines = 3;
     };
 
     ts-autotag.enable = true;
