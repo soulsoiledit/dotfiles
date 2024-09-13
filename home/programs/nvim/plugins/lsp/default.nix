@@ -1,8 +1,18 @@
 {
   programs.nixvim = {
     plugins = {
+      nvim-lightbulb.enable = true;
+
       lsp = {
         enable = true;
+        inlayHints = true;
+
+        onAttach = # lua
+          ''
+            if client.server_capabilities.inlayHintProvider then
+              vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+            end
+          '';
 
         keymaps = {
           diagnostic = { };
