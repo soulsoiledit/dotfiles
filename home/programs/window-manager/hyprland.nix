@@ -19,16 +19,6 @@
       settings = {
         monitor = ", preferred, auto, 2";
 
-        envd = [
-          # scaling
-          "GDK_SCALE,2"
-          "STEAM_FORCE_DESKTOPUI_SCALING,1.5"
-          "NIXOS_OZONE_WL,1"
-
-          # qt theme
-          "QT_QPA_PLATFORMTHEME,${config.qt.platformTheme.name}"
-        ];
-
         exec-once = [
           # disabled currently
           # "firefox"

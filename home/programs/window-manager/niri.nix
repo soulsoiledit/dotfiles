@@ -94,9 +94,6 @@
         };
 
         environment = {
-          # use native wayland when possible
-          NIXOS_OZONE_WL = "1";
-
           # set display for xwayland-satellite
           DISPLAY = ":0";
         };
