@@ -19,6 +19,27 @@
       xwayland-satellite
     ];
 
+    systemd = {
+      # add niri session target
+      user.targets.niri-session = {
+        Unit = {
+          Description = "niri compositor session";
+          Documentation = [ "man:systemd.special(7)" ];
+          BindsTo = [ "graphical-session.target" ];
+          Wants = [ "graphical-session-pre.target" ];
+          After = [ "graphical-session-pre.target" ];
+        };
+      };
+
+      # add tray target so apps startup correctly
+      user.targets.tray = {
+        Unit = {
+          Description = "Home Manager System Tray";
+          Requires = [ "graphical-session-pre.target" ];
+        };
+      };
+    };
+
     programs.niri = {
       enable = true;
       package = pkgs.niri;
