@@ -115,7 +115,8 @@
               "bar"
             ];
           }
-          # { command = ["firefox"]; }
+
+          { command = [ "firefox" ]; }
           # { command = ["spotify"]; }
           # { command = ["vesktop"]; }
           # { command = ["steam"]; }
