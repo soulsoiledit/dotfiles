@@ -62,7 +62,7 @@
         outputs."eDP-2" = {
           scale = 2;
           variable-refresh-rate = true;
-          background-color = "#090b0f";
+          background-color = config.lib.stylix.colors.withHashtag.base00;
         };
         layout = {
           gaps = 4;
@@ -84,10 +84,10 @@
             enable = true;
             width = 1;
             active.gradient = {
-              from = "#239382";
-              to = "#976DA9";
+              from = config.lib.stylix.colors.withHashtag.base0E;
+              to = config.lib.stylix.colors.withHashtag.base0F;
             };
-            inactive.color = "#808080";
+            inactive.color = config.lib.stylix.colors.withHashtag.base03;
           };
 
           border.enable = false;
