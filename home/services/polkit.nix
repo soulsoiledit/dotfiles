@@ -10,15 +10,18 @@ in
 
       Unit = {
         Description = "polkit-gnome-authentication-agent-1";
-        PartOf = [ "graphical-session.target" ];
         After = [ "graphical-session.target" ];
-        Requisite = [ "graphical-session.target" ];
+        Wants = [ "graphical-session.target" ];
       };
 
       Service = {
         Type = "exec";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
       };
     };
   };
