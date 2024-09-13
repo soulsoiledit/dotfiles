@@ -75,5 +75,6 @@
     # ltex-extra.enable = true;
 
     trouble.enable = true;
+    vimtex.enable = true;
   };
 }
