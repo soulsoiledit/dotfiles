@@ -3,17 +3,18 @@
 {
   programs.nixvim = {
     plugins = {
-      # bufferline.enable = true;
-      # lualine.enable = true;
-      mini.modules.tabline = { };
-      mini.modules.statusline = { };
 
+      bufferline.enable = true;
+      lualine.enable = true;
       alpha = {
         enable = true;
-        theme = "theta";
+        theme = "dashboard";
       };
 
       indent-blankline.enable = true;
+      # mini.modules.tabline = { };
+      # mini.modules.statusline = { };
+      # mini.modules.starter = { };
 
       which-key.enable = true;
       rainbow-delimiters.enable = true;
