@@ -7,7 +7,6 @@
         highlight.enable = true;
         incremental_selection.enable = true;
         indent.enable = true;
-        incrementalSelection.enable = true;
       };
 
       nixvimInjections = true;
