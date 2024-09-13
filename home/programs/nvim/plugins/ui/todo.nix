@@ -3,7 +3,7 @@
     enable = true;
     keymaps = {
       todoTelescope = {
-        key = "<leader>ft";
+        key = "<leader>t";
         options = {
           silent = true;
           desc = "todo";

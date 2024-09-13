@@ -8,39 +8,23 @@
       };
 
       keymaps = {
-        "<leader>fs" = {
+        "<leader>s" = {
           action = "live_grep";
           options.desc = "live grep";
         };
-        "<leader>fb" = {
+        "<leader>b" = {
           action = "buffers";
           options.desc = "buffers";
         };
-        "<leader>fr" = {
+        "<leader>r" = {
           action = "oldfiles";
           options.desc = "recent files";
         };
-        "<leader>fc" = {
+        "<leader>c" = {
           action = "commands";
           options.desc = "commands";
         };
-        "<leader>fe" = {
-          action = "command_history";
-          options.desc = "command history";
-        };
-        "<leader>fh" = {
-          action = "help_tags";
-          options.desc = "help";
-        };
-        "<leader>fk" = {
-          action = "keymaps";
-          options.desc = "keymaps";
-        };
-        "<leader>fm" = {
-          action = "marks";
-          options.desc = "marks";
-        };
-        "<leader>fp" = {
+        "<leader>p" = {
           action = "builtin";
           options.desc = "pickers";
         };
@@ -50,7 +34,7 @@
     keymaps = [
       {
         mode = "n";
-        key = "<leader>ff";
+        key = "<leader>f";
         action.__raw = # lua
           ''
             function()
@@ -75,7 +59,7 @@
 
       {
         mode = "n";
-        key = "<leader>fa";
+        key = "<leader>F";
         action.__raw = # lua
           ''
             function()
@@ -92,7 +76,7 @@
 
       {
         mode = "n";
-        key = "<leader>fS";
+        key = "<leader>S";
         action.__raw = # lua
           ''
             function()

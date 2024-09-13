@@ -22,7 +22,7 @@
                 "n"
                 "v"
               ];
-              key = "<leader>la";
+              key = "<leader>l";
               lua = true;
               action = "vim.lsp.buf.code_action";
               options.desc = "code action";
@@ -57,6 +57,13 @@
             }
             {
               mode = [ "n" ];
+              key = "gK";
+              lua = true;
+              action = "vim.lsp.buf.signature_help";
+              options.desc = "signature";
+            }
+            {
+              mode = [ "n" ];
               key = "gD";
               lua = true;
               action = "require('telescope.builtin').lsp_type_definitions";
@@ -78,17 +85,10 @@
             }
             {
               mode = [ "n" ];
-              key = "<leader>ld";
+              key = "<leader>L";
               lua = true;
               action = "require('telescope.builtin').lsp_document_symbols";
               options.desc = "file symbols";
-            }
-            {
-              mode = [ "n" ];
-              key = "<leader>lw";
-              lua = true;
-              action = "require('telescope.builtin').lsp_dynamic_workspace_symbols";
-              options.desc = "project symbols";
             }
           ];
         };
