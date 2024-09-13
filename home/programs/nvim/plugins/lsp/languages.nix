@@ -36,18 +36,25 @@
         installCargo = true;
         installRustc = true;
       };
-
+      #
       pylsp = {
         enable = true;
         package = pkgs.python3Packages.python-lsp-server;
-        settings.plugins.ruff.enabled = true;
       };
-      # pylyzer.enable = true;
+      #     # pylyzer.enable = true;
+      # pyright = {
+      #   enable = true;
+      #   package = pkgs.basedpyright;
+      # };
       ruff.enable = true;
+      ruff-lsp.enable = true;
+
+      ruby-lsp.enable = true;
+      # solargraph.enable = true;
 
       bashls.enable = true;
-      # marksman.enable = true;
-      # ltex.enable = true;
+      texlab.enable = true;
+      marksman.enable = true;
 
       tsserver.enable = true;
       cssls.enable = true;
@@ -58,13 +65,13 @@
       taplo.enable = true;
 
       zls.enable = true;
-      # hls.enable = true;
-      java-language-server.enable = true;
+      hls.enable = true;
+      jdt-language-server.enable = true;
       clangd.enable = true;
     };
 
     # rustaceanvim.enable = true;
-    nix.enable = true;
+    # haskell-tools.enable = true;
     # ltex-extra.enable = true;
   };
 }
