@@ -37,7 +37,7 @@
       size = 24;
     };
 
-    image = ../astro-jelly.jpg;
+    image = ./wallpaper.png;
 
     fonts = {
       serif = {
