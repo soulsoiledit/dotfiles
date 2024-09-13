@@ -14,6 +14,8 @@
       };
 
       indent-blankline.enable = true;
+
+      which-key.enable = true;
       rainbow-delimiters.enable = true;
       nvim-colorizer.enable = true;
     };

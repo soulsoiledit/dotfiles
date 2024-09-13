@@ -1,0 +1,176 @@
+$base00: #111719; // background
+$base01: #1d2325; // status
+$base02: #292f32; // selection
+$base03: #42494c; // comment
+$base04: #899194; // status fg
+$base05: #b7bfc3; // text
+$base06: #cfd7db; // bright
+$base07: #e8f0f4; // brightest
+$base08: #ff5d69; // red
+$base09: #ff6728; // orange
+$base0A: #c59800; // yellow
+$base0B: #00bf54; // green
+$base0C: #00b7c0; // cyan
+$base0D: #21a2ff; // blue
+$base0E: #c474f9; // purple
+$base0F: #fb5c99; // pink
+
+$accent: $base0D;
+
+$radius: 0.5rem;
+$border-style: solid 0.0625rem $base02;
+
+* {
+  // all: unset;
+  font: unset;
+  background: unset;
+  border-radius: unset;
+  border: unset;
+  box-shadow: none;
+  color: unset;
+  margin: unset;
+  padding: unset;
+  min-height: unset;
+  min-width: unset;
+
+  transition: 125ms;
+}
+
+.bar {
+  background: $base00;
+  color: $base05;
+
+  font: 16px "sans-serif";
+
+  margin: 0.25em 0;
+}
+
+.background {
+  border-bottom: solid 0.025em $base01;
+}
+
+.layer {
+  background: $base01;
+  border-radius: $radius;
+  margin: 0 0.25em;
+
+  label {
+    padding: 0 0.25em;
+  }
+}
+
+.hover:hover {
+  background: $base02;
+}
+
+.hovertext:hover {
+  color: $accent;
+}
+
+.volume-muted {
+  color: $base03;
+}
+
+.network {
+  label {
+    padding-right: 0.5em;
+  }
+}
+
+.network-down {
+  color: $base03;
+}
+
+.workspaces {
+  * {
+    margin: 0.625em 0.25em;
+    border-radius: 2em;
+
+    background: $base02;
+    padding: 0 0.75em;
+  }
+
+  *:hover,
+  .used:hover {
+    background: $accent;
+  }
+
+  .active {
+    background: $accent;
+    padding: 0 1.75em;
+  }
+
+  .used {
+    background: $base03;
+    padding: 0 1em;
+  }
+}
+
+.systray {
+  padding: 0 0.125em;
+
+  >widget>image {
+    padding: 0 0.125em;
+  }
+}
+
+tooltip {
+  background: $base01;
+  color: $base05;
+  border-radius: $radius;
+  border: $border-style;
+  font-size: 0.825em;
+}
+
+.popup menu {
+  background: $base01;
+  color: $base05;
+  font-size: 0.75rem;
+
+  padding: 0.5em;
+  border: $border-style;
+  border-radius: $radius;
+
+  menuitem {
+    border-radius: inherit;
+
+    label {
+      padding: 0.375em 0.5em;
+    }
+
+    &:hover {
+      background: $base02;
+    }
+
+    &:disabled {
+      color: $base03;
+    }
+  }
+
+  separator {
+    background: $base02;
+    margin: 0.25em 0;
+    min-height: 0.0625em;
+  }
+
+  check,
+  arrow,
+  radio {
+    min-width: 1.5em;
+    min-height: 1.5em;
+  }
+
+  check {
+    border-radius: 50%;
+    background: $base03;
+
+    &:checked {
+      background: $accent;
+      color: $base00;
+    }
+  }
+
+  arrow {
+    color: $base05;
+  }
+}

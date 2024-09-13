@@ -226,8 +226,7 @@
             allow-when-locked = true;
           };
 
-          # TODO: readd osd
-          # // volume
+          # volume
           "XF86AudioRaiseVolume" = {
             allow-when-locked = true;
             action.spawn = [
