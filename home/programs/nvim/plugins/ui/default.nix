@@ -15,7 +15,6 @@
         theme = "dashboard";
       };
 
-      indent-blankline.enable = true;
       # mini.modules.tabline = { };
       # mini.modules.statusline = { };
       # mini.modules.starter = { };
