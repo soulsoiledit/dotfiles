@@ -73,5 +73,7 @@
     # rustaceanvim.enable = true;
     # haskell-tools.enable = true;
     # ltex-extra.enable = true;
+
+    trouble.enable = true;
   };
 }
