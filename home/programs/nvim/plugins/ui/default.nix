@@ -2,7 +2,6 @@
 
 {
   programs.nixvim = {
-    extraPlugins = with pkgs.vimPlugins; [ aerial-nvim ];
     plugins = {
       # bufferline.enable = true;
       # lualine.enable = true;
