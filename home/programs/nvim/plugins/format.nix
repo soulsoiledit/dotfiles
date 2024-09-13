@@ -2,42 +2,66 @@
 
 {
   programs.nixvim = {
-    extraPackages = with pkgs; [
-      nodePackages.prettier
-      stylua
-      shfmt
+    editorconfig.enable = true;
 
-      google-java-format
-      ormolu
-      clang-tools
-    ];
-
-    # efm-lsp
-    # none-ls
-    plugins.conform-nvim = {
+    plugins.none-ls = {
       enable = true;
 
-      settings = {
-        format_on_save = {
-          lsp_fallback = true;
-          timeout_ms = 500;
+      settings.on_attach = # lua
+        ''
+          function(client, bufnr)
+            if client.supports_method("textDocument/formatting") then
+              vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+              vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                  vim.lsp.buf.format({async = false})
+                end,
+              })
+            end
+          end
+        '';
+
+      sources = {
+        code_actions = {
+          proselint.enable = true;
+          refactoring.enable = true;
+          statix.enable = true;
         };
 
-        formatters_by_ft = {
-          lua = [ "stylua" ];
-          java = [ "google-java-format" ];
-          haskell = [ "ormolu" ];
-          sh = [ "shfmt" ];
+        completion = {
+          spell.enable = true;
+          tags.enable = true;
+        };
 
-          javascript = [ "prettier" ];
-          javascriptreact = [ "prettier" ];
-          typescript = [ "prettier" ];
-          typescriptreact = [ "prettier" ];
-          css = [ "prettier" ];
-          scss = [ "prettier" ];
-          html = [ "prettier" ];
-          json = [ "prettier" ];
-          yaml = [ "prettier" ];
+        diagnostics = {
+          # alex.enable = true;
+          # codespell.enable = true;
+          # deadnix.enable = true;
+          # editorconfig_checker.enable = true;
+          # markdownlint_cli2.enable = true;
+        };
+
+        formatting = {
+          nixfmt.enable = true;
+          nixfmt.package = pkgs.nixfmt-rfc-style;
+
+          stylua.enable = true;
+
+          shfmt.enable = true;
+          # textlint.enable = true;
+          # mdformat.enable = true;
+
+          prettier.enable = true;
+          prettier.disableTsServerFormatter = true;
+
+          google_java_format.enable = true;
+          clang_format.enable = true;
+        };
+
+        hover = {
+          dictionary.enable = true;
         };
       };
     };
