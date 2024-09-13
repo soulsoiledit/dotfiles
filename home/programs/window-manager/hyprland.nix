@@ -9,6 +9,8 @@
   options.modules.hyprland.enable = lib.mkEnableOption "enable hyprland window manager";
 
   config = lib.mkIf config.modules.hyprland.enable {
+    home.packages = [ pkgs.grimblast ];
+
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = true;
@@ -135,7 +137,7 @@
         "$notify_kbd" = ''notify-send -c osd "Current keyboard led brightness" $(asusctl -k | rg ".* (\S+)" -r "\$1")'';
         "$notify_led" = ''notify-send -c osd "Current keyboard led mode:" "$(rg '\s+current_mode: (\S+),$' -r '$1' /etc/asusd/aura.ron)"'';
         # quick script to change power profiles
-        "$notify_profile" = "case $(powerprofilesctl get) in 'performance') powerprofilesctl set balanced;; 'balanced') powerprofilesctl set power-saver;; 'power-saver') powerprofilesctl set performance;; esac; notify-send 'Current profile:' '$(powerprofilesctl get)'";
+        "$notify_profile" = "profile_notify";
 
         bind = [
           "$mod SHIFT, x, exit,"
