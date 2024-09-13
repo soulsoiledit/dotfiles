@@ -13,8 +13,7 @@
       };
 
       notify.enable = true;
+      dressing.enable = true;
     };
-
-    extraPlugins = with pkgs.vimPlugins; [ dressing-nvim ];
   };
 }
