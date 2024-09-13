@@ -1,6 +1,12 @@
 {
   programs.nixvim = {
-    plugins.flash.enable = true;
+    plugins.flash = {
+      enable = true;
+      settings = {
+        jump.nohlsearch = true;
+        modes.search_enabled = true;
+      };
+    };
 
     keymaps = [
       {
