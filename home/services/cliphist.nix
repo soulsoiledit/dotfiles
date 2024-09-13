@@ -13,6 +13,7 @@
     };
 
     Service = {
+      Type = "exec";
       ExecStart = "${lib.getExe' pkgs.wl-clipboard "wl-paste"} --primary --watch cliphist store";
       Restart = "on-failure";
     };

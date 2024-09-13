@@ -21,6 +21,7 @@
     };
 
     Service = {
+      Type = "exec";
       ExecStart = "${lib.getExe' config.programs.wpaperd.package "wpaperd"}";
       Restart = "on-failure";
     };
