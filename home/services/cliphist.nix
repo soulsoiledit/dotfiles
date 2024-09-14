@@ -1,14 +1,36 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+let
+  systemdTarget = config.services.cliphist.systemdTarget;
+in
 {
   services.cliphist.enable = true;
+
+  systemd.user.services.cliphist = {
+    Unit = {
+      After = [ systemdTarget ];
+      Wants = [ systemdTarget ];
+    };
+  };
+
+  systemd.user.services.cliphist-images = {
+    Unit = {
+      After = [ systemdTarget ];
+      Wants = [ systemdTarget ];
+    };
+  };
 
   # copies primary clipboard into cliphist
   systemd.user.services.cliphist-primary = {
     Unit = {
       Description = "wl-copy";
-      After = [ "graphical-session.target" ];
-      Wants = [ "graphical-session.target" ];
+      Wants = [ systemdTarget ];
+      After = [ systemdTarget ];
     };
 
     Service = {
@@ -18,7 +40,7 @@
     };
 
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = [ systemdTarget ];
     };
   };
 }

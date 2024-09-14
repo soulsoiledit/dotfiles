@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   services.wlsunset = {
     enable = true;
@@ -8,6 +10,13 @@
     temperature = {
       day = 6250;
       night = 5500;
+    };
+  };
+
+  systemd.user.services.wlsunset = {
+    Unit = {
+      Wants = [ config.services.wlsunset.systemdTarget ];
+      After = [ config.services.wlsunset.systemdTarget ];
     };
   };
 }

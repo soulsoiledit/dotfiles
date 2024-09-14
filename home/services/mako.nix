@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  systemdTarget = "graphical-session.target";
+in
 {
   services = {
     mako = {
@@ -16,5 +19,12 @@
     # battery notifications
     # batsignal.enable = true;
     poweralertd.enable = true;
+  };
+
+  systemd.user.services.poweralertd = {
+    Unit = {
+      Wants = [ systemdTarget ];
+      After = [ systemdTarget ];
+    };
   };
 }
