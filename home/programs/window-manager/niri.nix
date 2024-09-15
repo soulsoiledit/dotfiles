@@ -61,9 +61,10 @@
 
         outputs."eDP-2" = {
           scale = 2;
-          variable-refresh-rate = true;
           background-color = config.lib.stylix.colors.withHashtag.base00;
+          variable-refresh-rate = true;
         };
+
         layout = {
           gaps = 4;
 
@@ -326,58 +327,17 @@
           # TODO: other laptop keys
 
           # workspaces
-          # not static
-          "Mod+1".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action focus-workspace 1; niri_workspace_update"
-          ];
-          "Mod+2".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action focus-workspace 2; niri_workspace_update"
-          ];
-          "Mod+3".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action focus-workspace 3; niri_workspace_update"
-          ];
-          "Mod+4".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action focus-workspace 4; niri_workspace_update"
-          ];
-          "Mod+5".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action focus-workspace 5; niri_workspace_update"
-          ];
+          "Mod+1".action = focus-workspace 1;
+          "Mod+2".action = focus-workspace 2;
+          "Mod+3".action = focus-workspace 3;
+          "Mod+4".action = focus-workspace 4;
+          "Mod+5".action = focus-workspace 5;
 
-          "Mod+Shift+1".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action move-window-to-workspace 1; niri_workspace_update"
-          ];
-          "Mod+Shift+2".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action move-window-to-workspace 2; niri_workspace_update"
-          ];
-          "Mod+Shift+3".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action move-window-to-workspace 3; niri_workspace_update"
-          ];
-          "Mod+Shift+4".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action move-window-to-workspace 4; niri_workspace_update"
-          ];
-          "Mod+Shift+5".action.spawn = [
-            "sh"
-            "-c"
-            "niri msg action move-window-to-workspace 5; niri_workspace_update"
-          ];
+          "Mod+Shift+1".action = move-window-to-workspace 1;
+          "Mod+Shift+2".action = move-window-to-workspace 2;
+          "Mod+Shift+3".action = move-window-to-workspace 3;
+          "Mod+Shift+4".action = move-window-to-workspace 4;
+          "Mod+Shift+5".action = move-window-to-workspace 5;
 
           "Mod+H".action = focus-workspace-down;
           "Mod+Comma".action = focus-workspace-up;

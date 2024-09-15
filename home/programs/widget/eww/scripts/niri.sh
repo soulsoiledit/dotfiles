@@ -1,13 +1,4 @@
-active() {
-  id=$(bash -c "niri msg workspaces" | rg -o '\* (\d)' -r '$1')
-  jq -n -c --arg id "$id" '{ id: $id }'
-}
-
-empty() {
-  return
-}
-
-case "$1" in
-"active") active ;;
-"empty") empty ;;
-esac
+niri msg --json event-stream | rg "WorkspaceActivated|WorkspacesChanged" --line-buffered | while
+  niri msg --json workspaces | jq -c 'sort_by(.id)'
+  read -r _
+do continue; done

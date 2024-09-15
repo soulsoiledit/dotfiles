@@ -116,14 +116,10 @@
 )
 
 (defvar workspace_list "[1,2,3,4,5]")
-;; (deflisten niri_workspace_empty
-;;   :initial "{}"
-;;   "scripts/niri.sh empty"
-;; )
-(defpoll niri_workspace_active
+
+(deflisten niri_workspace
   :initial "{}"
-  :interval 1000
-  "scripts/niri.sh active"
+  "scripts/niri.sh"
 )
 (defwidget niri-workspaces []
   (box
@@ -133,10 +129,8 @@
       (button
         :onclick "niri msg action focus-workspace ${ws}"
         :class {
-          ws == niri_workspace_active?.id ?
-          "active" :
-          ""
-          ;; niri doesn't have a function to poll windows yet
+          niri_workspace[ws - 1].is_focused ? "active" :
+          (niri_workspace[ws - 1].active_window_id ?: false) != false ? "used" : ""
         }
       )
     )
