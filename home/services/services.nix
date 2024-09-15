@@ -6,6 +6,7 @@ in
     playerctld.enable = true;
     udiskie.enable = true;
     network-manager-applet.enable = true;
+    blueman-applet.enable = true;
   };
 
   systemd.user.services.udiskie = {
@@ -16,6 +17,13 @@ in
   };
 
   systemd.user.services.network-manager-applet = {
+    Unit = {
+      Wants = [ systemdTarget ];
+      After = [ systemdTarget ];
+    };
+  };
+
+  systemd.user.services.blueman-applet = {
     Unit = {
       Wants = [ systemdTarget ];
       After = [ systemdTarget ];
