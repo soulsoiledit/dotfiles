@@ -17,7 +17,7 @@
         adblock
         autoSkipVideo
         hidePodcasts
-        beautifulLyrics
+        # beautifulLyrics
       ];
     };
 }
