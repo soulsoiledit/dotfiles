@@ -1,21 +1,21 @@
-$base00: #111719; // background
-$base01: #1d2325; // status
-$base02: #292f32; // selection
-$base03: #42494c; // comment
-$base04: #899194; // status fg
-$base05: #b7bfc3; // text
-$base06: #cfd7db; // bright
-$base07: #e8f0f4; // brightest
-$base08: #ff5d69; // red
-$base09: #ff6728; // orange
-$base0A: #c59800; // yellow
-$base0B: #00bf54; // green
-$base0C: #00b7c0; // cyan
-$base0D: #21a2ff; // blue
-$base0E: #c474f9; // purple
-$base0F: #fb5c99; // pink
+$base00: #0b0b0b; // background
+$base01: #1c1c1c; // status
+$base02: #2e2e2e; // selection
+$base03: #414141; // comment
+$base04: #717171; // status fg
+$base05: #aeaeae; // text
+$base06: #cecece; // bright
+$base07: #eeeeee; // brightest
+$base08: #fe838f; // red
+$base09: #f88f4f; // orange
+$base0A: #e99b2a; // yellow
+$base0B: #a2bb40; // green
+$base0C: #00cbc3; // cyan
+$base0D: #00c0f5; // blue
+$base0E: #e289db; // purple
+$base0F: #f982aa; // pink
 
-$accent: $base0D;
+$accent: $base0E;
 
 $radius: 0.5rem;
 $border-style: solid 0.0625rem $base02;
@@ -43,10 +43,6 @@ $border-style: solid 0.0625rem $base02;
   font: 16px "sans-serif";
 
   margin: 0.25em 0;
-}
-
-.background {
-  border-bottom: solid 0.025em $base01;
 }
 
 .layer {
