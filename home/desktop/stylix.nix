@@ -25,7 +25,7 @@
       base08 = "#fe838f"; # red
       base09 = "#f88f4f"; # orange
       base0A = "#e99b2a"; # yellow
-      base0B = "#a2bb40"; # green
+      base0B = "#83c25c"; # green
       base0C = "#00cbc3"; # cyan
       base0D = "#00c0f5"; # blue
       base0E = "#e289db"; # purple
