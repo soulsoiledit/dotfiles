@@ -4,26 +4,12 @@
     friendly-snippets.enable = true;
 
     cmp = {
-      enable = true;
       settings = {
         sources = [
-          {
-            name = "nvim_lsp";
-            priority = 10;
-          }
           {
             name = "luasnip";
             priority = 10;
           }
-          { name = "latex_symbols"; }
-
-          {
-            name = "buffer";
-            priority = 10;
-          }
-          { name = "path"; }
-          { name = "calc"; }
-          { name = "spell"; }
         ];
 
         snippet.expand = # lua
@@ -34,20 +20,28 @@
           '';
 
         mapping = {
-          "<C-n>" = ''cmp.mapping.select_next_item()'';
-          "<C-p>" = ''cmp.mapping.select_prev_item()'';
-          "<C-f>" = ''cmp.mapping.scroll_docs(4)'';
-          "<C-b>" = ''cmp.mapping.scroll_docs(-4)'';
-          "<C-Space>" = ''cmp.mapping.complete()'';
-          "<C-e>" = ''cmp.mapping.close()'';
-          "<CR>" = ''cmp.mapping.confirm({ select = true })'';
+          "<CR>" = # lua
+            ''
+              cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  if require("luasnip").expandable() then
+                    require("luasnip").expand()
+                  else
+                    cmp.confirm({ select = true })
+                  end
+                else
+                  fallback()
+                end
+              end)
+            '';
+
           "<Tab>" = # lua
             ''
               cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_next_item()
-                elseif require("luasnip").expand_or_locally_jumpable() then
-                  require("luasnip").expand_or_jump()
+                elseif require("luasnip").locally_jumpable(1) then
+                  require("luasnip").jump(1)
                 else
                   fallback()
                 end

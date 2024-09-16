@@ -30,32 +30,26 @@
             };
         };
 
-        lua-ls.enable = true;
-
         rust-analyzer = {
           enable = true;
           installCargo = true;
           installRustc = true;
         };
-        #
-        pylsp = {
-          enable = true;
-          package = pkgs.python3Packages.python-lsp-server;
-        };
-        #     # pylyzer.enable = true;
-        # pyright = {
-        #   enable = true;
-        #   package = pkgs.basedpyright;
-        # };
+        hls.enable = true;
+
+        pylyzer.enable = true;
         ruff.enable = true;
-        ruff-lsp.enable = true;
-
+        lua-ls.enable = true;
         ruby-lsp.enable = true;
-        # solargraph.enable = true;
 
-        bashls.enable = true;
+        clangd.enable = true;
+        zls.enable = true;
+        jdt-language-server.enable = true;
+
         texlab.enable = true;
         marksman.enable = true;
+
+        bashls.enable = true;
 
         tsserver.enable = true;
         cssls.enable = true;
@@ -64,23 +58,11 @@
         jsonls.enable = true;
         yamlls.enable = true;
         taplo.enable = true;
-
-        zls.enable = true;
-        hls.enable = true;
-        jdt-language-server.enable = true;
-        clangd.enable = true;
       };
 
       # rustaceanvim.enable = true;
       # haskell-tools.enable = true;
       # ltex-extra.enable = true;
-
-      trouble.enable = true;
-      vimtex.enable = true;
-
-      markdown-preview.enable = true;
     };
-
-    extraPlugins = with pkgs.vimPlugins; [ render-markdown ];
   };
 }

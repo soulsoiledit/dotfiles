@@ -1,6 +1,11 @@
 {
   programs.nixvim = {
-    plugins.lazygit.enable = true;
+    plugins = {
+      lazygit.enable = true;
+      mini.modules.diff = {
+        view.style = "sign";
+      };
+    };
 
     keymaps = [
       {
@@ -10,10 +15,7 @@
         ];
         key = "<leader>g";
         action.__raw = "require('lazygit').lazygit";
-        options = {
-          desc = "lazygit";
-          silent = true;
-        };
+        options.desc = "git";
       }
     ];
   };

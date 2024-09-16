@@ -2,6 +2,7 @@
   programs.nixvim = {
     plugins = {
       nvim-lightbulb.enable = true;
+      lsp-lines.enable = true;
 
       lsp = {
         enable = true;

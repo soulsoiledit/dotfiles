@@ -42,7 +42,7 @@
 
     programs.niri = {
       enable = true;
-      package = pkgs.niri;
+      # package = pkgs.niri;
       settings = {
         input = {
           touchpad = {
