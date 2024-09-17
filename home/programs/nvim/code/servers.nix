@@ -51,7 +51,7 @@
 
         bashls.enable = true;
 
-        tsserver.enable = true;
+        ts-ls.enable = true;
         cssls.enable = true;
         html.enable = true;
 
