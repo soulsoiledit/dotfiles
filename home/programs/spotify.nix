@@ -45,9 +45,7 @@
 
       enabledExtensions = with spicePkgs.extensions; [
         adblock
-        autoSkipVideo
-        hidePodcasts
-        # beautifulLyrics
+        keyboardShortcut
       ];
     };
 }
