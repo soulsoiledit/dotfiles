@@ -7,11 +7,6 @@
       nixvimInjections = true;
     };
 
-    # treesitter-context = {
-    #   enable = true;
-    #   settings.max_lines = 3;
-    # };
-    #
     # ts-autotag.enable = true;
     # ts-comments.enable = true;
   };
