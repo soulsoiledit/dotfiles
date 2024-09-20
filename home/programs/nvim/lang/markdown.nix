@@ -5,7 +5,7 @@
     plugins.markdown-preview.enable = true;
 
     extraPlugins = with pkgs.vimPlugins; [
-      render-markdown
+      render-markdown-nvim
     ];
   };
 }
