@@ -8,8 +8,8 @@
       relativenumber = true;
       scrolloff = 4;
 
-      timeoutlen = 250;
       autochdir = true;
+      timeoutlen = 250;
     };
 
     globals = {

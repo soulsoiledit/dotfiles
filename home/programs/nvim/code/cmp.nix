@@ -18,7 +18,6 @@
           }
           { name = "path"; }
           { name = "calc"; }
-          { name = "spell"; }
         ];
 
         mapping = {

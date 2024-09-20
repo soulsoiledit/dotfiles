@@ -26,6 +26,7 @@
             };
 
             completion = {
+              spell.enable = true;
               tags.enable = true;
             };
 
