@@ -50,9 +50,6 @@ in
   };
 
   systemd.user.services.swayidle = {
-    Unit = {
-      Wants = [ config.services.swayidle.systemdTarget ];
-      After = [ config.services.swayidle.systemdTarget ];
-    };
+    Unit.After = [ config.services.swayidle.systemdTarget ];
   };
 }

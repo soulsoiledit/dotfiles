@@ -6,18 +6,14 @@ in
 {
   config = lib.mkIf enable {
     systemd.user.services.polkit-gnome-authentication-agent-1 = {
-      enable = true;
-
       Unit = {
-        Description = "polkit-gnome-authentication-agent-1";
+        Description = "gnome gtk polkit agent";
         After = [ "graphical-session.target" ];
-        Wants = [ "graphical-session.target" ];
+        PartOf = [ "graphical-session.target" ];
       };
 
       Service = {
-        Type = "exec";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
       };
 
       Install = {

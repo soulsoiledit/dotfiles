@@ -8,8 +8,6 @@
     preferXdgDirectories = true;
   };
 
-  systemd.user.startServices = true;
-
   xdg.enable = true;
 
   modules.niri.enable = true;

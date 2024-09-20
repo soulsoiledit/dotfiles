@@ -4,29 +4,21 @@ in
 {
   services = {
     playerctld.enable = true;
+    cliphist.enable = true;
     udiskie.enable = true;
     network-manager-applet.enable = true;
     blueman-applet.enable = true;
   };
 
-  systemd.user.services.udiskie = {
-    Unit = {
-      Wants = [ systemdTarget ];
-      After = [ systemdTarget ];
-    };
-  };
+  systemd.user = {
+    startServices = true;
 
-  systemd.user.services.network-manager-applet = {
-    Unit = {
-      Wants = [ systemdTarget ];
-      After = [ systemdTarget ];
-    };
-  };
-
-  systemd.user.services.blueman-applet = {
-    Unit = {
-      Wants = [ systemdTarget ];
-      After = [ systemdTarget ];
+    services = {
+      udiskie.Unit.After = [ systemdTarget ];
+      cliphist.Unit.After = [ systemdTarget ];
+      cliphist-images.Unit.After = [ systemdTarget ];
+      network-manager-applet.Unit.After = [ systemdTarget ];
+      blueman-applet.Unit.After = [ systemdTarget ];
     };
   };
 }

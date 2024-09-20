@@ -14,9 +14,6 @@
   };
 
   systemd.user.services.wlsunset = {
-    Unit = {
-      Wants = [ config.services.wlsunset.systemdTarget ];
-      After = [ config.services.wlsunset.systemdTarget ];
-    };
+    Unit.After = [ config.services.wlsunset.systemdTarget ];
   };
 }

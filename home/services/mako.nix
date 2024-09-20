@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  systemdTarget = "graphical-session.target";
-in
 {
   services = {
     mako = {
@@ -22,9 +19,6 @@ in
   };
 
   systemd.user.services.poweralertd = {
-    Unit = {
-      Wants = [ systemdTarget ];
-      After = [ systemdTarget ];
-    };
+    Unit.After = [ "graphical-session.target" ];
   };
 }
