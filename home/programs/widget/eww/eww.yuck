@@ -118,7 +118,7 @@
 (defvar workspace_list "[1,2,3,4,5]")
 
 (deflisten niri_workspace
-  :initial "{}"
+  :initial "[]"
   "scripts/niri.sh"
 )
 (defwidget niri-workspaces []
@@ -129,8 +129,8 @@
       (button
         :onclick "niri msg action focus-workspace ${ws}"
         :class {
-          niri_workspace[ws - 1].is_focused ? "active" :
-          (niri_workspace[ws - 1].active_window_id ?: false) != false ? "used" : ""
+          (niri_workspace?.[ws - 1]?.is_focused ?: false) ? "active" :
+          (niri_workspace?.[ws - 1]?.active_window_id ?: false) != false ? "used" : ""
         }
       )
     )
