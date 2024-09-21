@@ -109,13 +109,6 @@
 
         spawn-at-startup = [
           { command = [ "xwayland-satellite" ]; }
-          {
-            command = [
-              "eww"
-              "open"
-              "bar"
-            ];
-          }
 
           { command = [ "firefox" ]; }
           # { command = ["spotify"]; }

@@ -20,12 +20,10 @@
         monitor = ", preferred, auto, 2";
 
         exec-once = [
-          # disabled currently
-          # "firefox"
+          "firefox"
           # "spotify"
           # "vesktop"
           # "steam"
-          "eww open bar --toggle"
         ];
 
         general = rec {
