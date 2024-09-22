@@ -22,6 +22,8 @@
     kanata.enable = true;
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   hardware.graphics.enable32Bit = true;
 
   services = {
