@@ -3,8 +3,8 @@
 {
   programs.wpaperd = {
     enable = true;
-    settings.default = {
-      path = "~/pictures/wallpapers/astro-jelly.jpg";
+    settings.any = {
+      path = lib.mkForce "${config.home.homeDirectory}/pictures/wallpaper.png";
       mode = "center";
       # duration = "4h";
       # sorting = "random";

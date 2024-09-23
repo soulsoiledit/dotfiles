@@ -38,7 +38,7 @@
       size = 24;
     };
 
-    image = ./wallpaper.png;
+    image = config.lib.stylix.pixel "base00";
 
     fonts = {
       serif = {
