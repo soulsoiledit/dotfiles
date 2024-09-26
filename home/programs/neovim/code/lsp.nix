@@ -3,6 +3,7 @@
     plugins = {
       nvim-lightbulb.enable = true;
       lsp-lines.enable = true;
+      otter.enable = true;
 
       lsp = {
         enable = true;
