@@ -5,6 +5,9 @@
   ...
 }:
 
+let
+  ryzenadj = "${lib.getExe pkgs.ryzenadj} --set-coall=0x100020";
+in
 {
   imports = [
     ./hardware.nix
@@ -16,31 +19,14 @@
     compositor.niri.enable = true;
 
     zram.enable = true;
-    podman.enable = true;
-    virt-manager.enable = true;
+    # podman.enable = true;
+    # virt-manager.enable = true;
 
     # used for rebinding laptop keys
     kanata.enable = true;
   };
 
-  hardware.cpu.x86.msr.enable = true;
-  boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
-    resumeDevice = "/dev/disk/by-label/nixos";
-    kernelParams = [ "resume_offset=7262208" ];
-  };
-
-  powerManagement.powerUpCommands = ''
-    ${lib.getExe pkgs.zenstates} --c6-disable
-  '';
-
-  # setting up hibernate
-  swapDevices = [
-    {
-      device = "/var/swapfile";
-      size = 1024 * 18;
-    }
-  ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   hardware.graphics.enable32Bit = true;
 
@@ -48,5 +34,29 @@
     upower.enable = true;
     power-profiles-daemon.enable = true;
     supergfxd.enable = true;
+  };
+
+  # combination of
+  # https://github.com/sammilucia/set-coall-timer
+  # and builtin powerManagement commands
+  powerManagement = {
+    powerUpCommands = ryzenadj;
+    powerDownCommands = ryzenadj;
+  };
+
+  systemd = {
+    services.set-coall = {
+      description = "Override AMD Curve Optimizer";
+      script = ryzenadj;
+    };
+
+    timers.set-coall = {
+      description = "Override AMD Curve Optimizer on startup and every 5 minutes thereafter";
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnBootSec = "30sec";
+        OnUnitActiveSec = "5min";
+      };
+    };
   };
 }
