@@ -52,8 +52,14 @@
         bashls.enable = true;
 
         ts-ls.enable = true;
-        cssls.enable = true;
-        html.enable = true;
+        cssls = {
+          enable = true;
+          extraOptions.init_options.provideFormatter = false;
+        };
+        html = {
+          enable = true;
+          extraOptions.init_options.provideFormatter = false;
+        };
 
         jsonls.enable = true;
         yamlls.enable = true;
