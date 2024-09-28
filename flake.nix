@@ -44,7 +44,6 @@
     stylix = {
       # url = "github:danth/stylix";
       url = "github:soulsoiledit/stylix/mini.base16";
-      # url = "path:/home/soil/code/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
