@@ -1,4 +1,8 @@
+{ pkgs, ... }:
+
 {
+  home.packages = [ pkgs.exiftool ];
+
   programs = {
     zathura.enable = true;
     mpv.enable = true;
@@ -10,183 +14,113 @@
       enable = true;
       enableFishIntegration = true;
 
-      settings = {
-        manager = {
-          sort_dir_first = true;
-        };
-
-        opener = {
-          edit = [
-            {
-              run = ''$EDITOR "$@"'';
-              block = true;
-            }
-          ];
-          open = [
-            {
-              run = ''xdg-open "$@"'';
-              desc = "Open";
-            }
-          ];
-          untar = [
-            {
-              run = ''tar axvf "$1" --one-top-level'';
-              desc = "Extract tarballs";
-            }
-          ];
-          extract = [
-            {
-              run = ''7z -y x "$1" -spe -o\*'';
-              desc = "Extract other archives";
-            }
-          ];
-        };
-
-        # TODO: create/find archive keybind
-        open = {
-          rules =
-            let
-              # generate rules for archive files automatically
-              mkMimeOpeners =
-                mimeList: useList:
-                map (mime: {
-                  mime = "${mime}";
-                  use = useList;
-                }) mimeList;
-
-              archiveFormats = [
-                "application/zip"
-                "application/gzip"
-                "application/x-xz"
-                "application/zstd"
-                "application/x-rar"
-                "application/x-7z-compressed"
-              ];
-
-              editFormats = [
-                "text/*"
-                "inode/x-empty"
-                "application/json"
-                "*/javascript"
-              ];
-
-              openFormats = [
-                "image/*"
-                "video/*"
-                "audio/*"
-              ];
-
-              editRules = mkMimeOpeners editFormats "edit";
-              openRules = mkMimeOpeners openFormats "open";
-              archiveRules = mkMimeOpeners archiveFormats "extract";
-            in
-            editRules
-            ++ openRules
-            ++ archiveRules
-            ++ [
-              {
-                name = "*/";
-                use = [
-                  "edit"
-                  "open"
-                ];
-              }
-
-              {
-                mime = "application/java-archive";
-                use = [
-                  "open"
-                  "extract"
-                ];
-              }
-
-              {
-                mime = "*";
-                use = "open";
-              }
-            ];
+      plugins = {
+        compress = pkgs.fetchFromGitHub {
+          owner = "KKV9";
+          repo = "compress.yazi";
+          rev = "main";
+          hash = "sha256-Yf5R3H8t6cJBMan8FSpK3BDSG5UnGlypKSMOi0ZFqzE=";
         };
       };
 
-      keymap = {
-        manager.append_keymap = [
-          # Goto
-          {
-            on = [
-              "g"
-              "h"
-            ];
-            run = "cd ~";
-            desc = "Go to the home directory";
-          }
+      settings = {
+        manager = {
+          sort_by = "natural";
+          sort_translit = true;
+        };
 
-          {
-            on = [
-              "g"
-              "n"
-            ];
-            run = "cd ~/code/dotfiles/";
-            desc = "Go to the config directory";
-          }
+        preview = {
+          wrap = "yes";
+        };
 
+        open.prepend_rules = [
           {
-            on = [
-              "g"
-              "s"
+            mime = "application/zstd";
+            use = [
+              "extract"
+              "reveal"
             ];
-            run = "cd ~/pictures/screenshots/";
-            desc = "Go to the screenshots directory";
           }
-
           {
-            on = [
-              "g"
-              "m"
+            mime = "application/java-archive";
+            use = [
+              "open"
+              "extract"
+              "reveal"
             ];
-            run = "cd ~/.local/share/PrismLauncher/instances/Main/.minecraft/";
-            desc = "Go to the MC directory";
-          }
-
-          {
-            on = [
-              "g"
-              "r"
-            ];
-            run = "cd ~/.local/share/Trash/files";
-            desc = "Go to the trash directory";
-          }
-
-          {
-            on = [
-              "g"
-              "u"
-            ];
-            run = "cd /run/media/";
-            desc = "Go to the USB directory";
-          }
-
-          {
-            on = [
-              "g"
-              "S"
-            ];
-            run = "cd /nix/store/";
-            desc = "Go to the nix store";
-          }
-
-          # trash
-          {
-            on = [
-              "'"
-              "t"
-            ];
-            run = [
-              "shell --interactive --block 'for file in \"$@\"; do trash-rm \"$(basename \"$file\")\"; done'"
-            ];
-            desc = "Remove the files from trash";
           }
         ];
       };
+
+      keymap.manager.append_keymap = [
+        # goto
+        {
+          on = [
+            "g"
+            "h"
+          ];
+          run = "cd ~";
+          desc = "go to the home directory";
+        }
+        {
+          on = [
+            "g"
+            "n"
+          ];
+          run = "cd ~/code/dotfiles/";
+          desc = "go to the nix config directory";
+        }
+        {
+          on = [
+            "g"
+            "s"
+          ];
+          run = "cd ~/pictures/screenshots/";
+          desc = "Go to the screenshots directory";
+        }
+        {
+          on = [
+            "g"
+            "m"
+          ];
+          run = "cd ~/.local/share/PrismLauncher/instances/Main/.minecraft/";
+          desc = "go to the mc directory";
+        }
+        {
+          on = [
+            "g"
+            "t"
+          ];
+          run = "cd ~/.local/share/Trash/files";
+          desc = "go to the trash directory";
+        }
+        {
+          on = [
+            "g"
+            "u"
+          ];
+          run = "cd /run/media/";
+          desc = "go to the usb directory";
+        }
+        {
+          on = [
+            "g"
+            "a"
+          ];
+          run = "cd /nix/store/";
+          desc = "go to the nix store";
+        }
+
+        # compress
+        {
+          on = [
+            "c"
+            "a"
+          ];
+          run = "plugin compress";
+          desc = "archive selected files";
+        }
+      ];
     };
   };
 }
