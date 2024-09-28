@@ -1,7 +1,10 @@
 { pkgs, ... }:
 
 {
-  home.packages = [ pkgs.exiftool ];
+  home.packages = with pkgs; [
+    exiftool
+    ripdrag
+  ];
 
   programs = {
     zathura.enable = true;
@@ -119,6 +122,16 @@
           ];
           run = "plugin compress";
           desc = "archive selected files";
+        }
+
+        # drag & drop
+        {
+          on = [
+            "c"
+            "o"
+          ];
+          run = ''shell 'ripdrag -x "$@"' --confirm'';
+          desc = "drag and drop";
         }
       ];
     };
