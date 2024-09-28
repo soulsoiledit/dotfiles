@@ -2,18 +2,18 @@
 
 {
   home.packages = with pkgs; [
-    vesktop
-    piper
+    # libreoffice-fresh
+    # inkscape
 
+    vesktop
     steam
     prismlauncher
     cubiomes-viewer
-
-    # bottles
-    distrobox
-    clipse
+    piper
 
     steam-run
     appimage-run
+    distrobox
+    # bottles
   ];
 }
