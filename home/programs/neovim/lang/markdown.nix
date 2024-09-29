@@ -1,11 +1,10 @@
-{ pkgs, ... }:
-
 {
   programs.nixvim = {
-    plugins.markdown-preview.enable = true;
+    plugins = {
+      lsp.servers.marksman.enable = true;
 
-    extraPlugins = with pkgs.vimPlugins; [
-      render-markdown-nvim
-    ];
+      render-markdown.enable = true;
+      markdown-preview.enable = true;
+    };
   };
 }
