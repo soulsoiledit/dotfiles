@@ -46,9 +46,6 @@
         zls.enable = true;
         jdt-language-server.enable = true;
 
-        texlab.enable = true;
-        marksman.enable = true;
-
         bashls.enable = true;
 
         ts-ls.enable = true;
