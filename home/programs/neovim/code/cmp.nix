@@ -21,6 +21,7 @@
         ];
 
         mapping = {
+          "<CR>" = "cmp.mapping.confirm({ select = true })";
           "<C-f>" = ''cmp.mapping.scroll_docs(4)'';
           "<C-b>" = ''cmp.mapping.scroll_docs(-4)'';
           "<C-n>" = ''cmp.mapping.select_next_item()'';
