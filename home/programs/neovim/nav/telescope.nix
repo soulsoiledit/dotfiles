@@ -5,13 +5,10 @@
 
       extensions = {
         fzf-native.enable = true;
+        undo.enable = true;
       };
 
       keymaps = {
-        "<leader>s" = {
-          action = "live_grep";
-          options.desc = "live grep";
-        };
         "<leader>b" = {
           action = "buffers";
           options.desc = "buffers";
@@ -23,6 +20,10 @@
         "<leader>c" = {
           action = "commands";
           options.desc = "commands";
+        };
+        "<leader>u" = {
+          action = "undo";
+          options.desc = "undo";
         };
         "<leader>p" = {
           action = "builtin";
@@ -38,20 +39,23 @@
         action.__raw = # lua
           ''
             function()
-              local opts = {}
-
-              local builtin = require('telescope.builtin')
-              local cwd = vim.fn.getcwd()
-              local is_inside_work_tree = {}
-
-              vim.fn.system("git rev-parse --is-inside-work-tree")
-              is_inside_work_tree[cwd] = vim.v.shell_error == 0
-
-              if is_inside_work_tree[cwd] then
-                builtin.git_files(opts)
-              else
-                builtin.find_files(opts)
+              local function is_git_repo()
+                vim.fn.system("git rev-parse --is-inside-work-tree")
+                return vim.v.shell_error == 0
               end
+
+              local function get_git_root()
+                local dot_git_path = vim.fn.finddir(".git", ".;")
+                return vim.fn.fnamemodify(dot_git_path, ":h")
+              end
+
+              local opts = {}
+              if is_git_repo() then
+                opts = {
+                  cwd = get_git_root(),
+                }
+              end
+              require("telescope.builtin").find_files(opts)
             end
           '';
         options.desc = "files";
@@ -63,15 +67,58 @@
         action.__raw = # lua
           ''
             function()
-              require('telescope.builtin').find_files({
+              local function is_git_repo()
+                vim.fn.system("git rev-parse --is-inside-work-tree")
+                return vim.v.shell_error == 0
+              end
+
+              local function get_git_root()
+                local dot_git_path = vim.fn.finddir(".git", ".;")
+                return vim.fn.fnamemodify(dot_git_path, ":h")
+              end
+
+              local opts = {
                 hidden = true,
                 no_ignore = true
-              })
+              }
+              if is_git_repo() then
+                opts = {
+                  cwd = get_git_root(),
+                }
+              end
+              require("telescope.builtin").find_files(opts)
             end
           '';
-        options = {
-          desc = "all files";
-        };
+        options.desc = "all files";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>s";
+        action.__raw = # lua
+          ''
+            function()
+              local function is_git_repo()
+                vim.fn.system("git rev-parse --is-inside-work-tree")
+                return vim.v.shell_error == 0
+              end
+
+              local function get_git_root()
+                local dot_git_path = vim.fn.finddir(".git", ".;")
+                return vim.fn.fnamemodify(dot_git_path, ":h")
+              end
+
+              local opts = {}
+              if is_git_repo() then
+                opts = {
+                  cwd = get_git_root(),
+                }
+              end
+
+              require("telescope.builtin").live_grep(opts)
+            end
+          '';
+        options.desc = "grep";
       }
 
       {
@@ -86,7 +133,7 @@
             end
           '';
         options = {
-          desc = "current file grep";
+          desc = "grep buffers";
         };
       }
     ];
