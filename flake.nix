@@ -42,8 +42,7 @@
     catppuccin.url = "github:catppuccin/nix";
 
     stylix = {
-      # url = "github:danth/stylix";
-      url = "github:soulsoiledit/stylix/mini.base16";
+      url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
