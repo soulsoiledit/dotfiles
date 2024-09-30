@@ -11,6 +11,7 @@
   stylix = {
     enable = true;
 
+    polarity = "dark";
     base16Scheme = {
       name = "soi";
 
