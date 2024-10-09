@@ -11,7 +11,7 @@
     plugins = {
       lsp.servers = {
         # INFO: remove when nixd has more features
-        nil-ls = {
+        nil_ls = {
           enable = true;
           settings.formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
         };
@@ -30,7 +30,7 @@
             };
         };
 
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = true;
           installRustc = true;
@@ -39,16 +39,16 @@
 
         pylyzer.enable = true;
         ruff.enable = true;
-        lua-ls.enable = true;
-        ruby-lsp.enable = true;
+        lua_ls.enable = true;
+        ruby_lsp.enable = true;
 
         clangd.enable = true;
         zls.enable = true;
-        jdt-language-server.enable = true;
+        jdtls.enable = true;
 
         bashls.enable = true;
 
-        ts-ls.enable = true;
+        ts_ls.enable = true;
         cssls = {
           enable = true;
           extraOptions.init_options.provideFormatter = false;
