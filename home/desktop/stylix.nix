@@ -15,22 +15,22 @@
     base16Scheme = {
       name = "soi";
 
-      base00 = "#0d120f"; # background
-      base01 = "#19241e"; # status
-      base02 = "#2c3831"; # selection
-      base03 = "#3e4b43"; # comment
-      base04 = "#67756d"; # status fg
-      base05 = "#abbab1"; # text
-      base06 = "#c3d2c9"; # bright
-      base07 = "#dcebe2"; # brightest
-      base08 = "#ff8a82"; # red
-      base09 = "#ff8f53"; # orange
-      base0A = "#bfbe00"; # yellow
-      base0B = "#2ed86c"; # green
-      base0C = "#00d1dc"; # cyan
-      base0D = "#69bbff"; # blue
-      base0E = "#c69cff"; # purple
-      base0F = "#ff82b1"; # pink
+      base00 = "#161616"; # background
+      base01 = "#282828"; # status
+      base02 = "#3a3a3a"; # selection
+      base03 = "#555555"; # comment
+      base04 = "#aeaeae"; # status fg
+      base05 = "#cecece"; # text
+      base06 = "#dedede"; # bright
+      base07 = "#eeeeee"; # brightest
+      base08 = "#e69494"; # red
+      base09 = "#e39a78"; # orange
+      base0A = "#c6ab60"; # yellow
+      base0B = "#acb66a"; # green
+      base0C = "#5cc3b0"; # cyan
+      base0D = "#60bbde"; # blue
+      base0E = "#c69bda"; # purple
+      base0F = "#e293ab"; # pink
     };
 
     cursor = {
