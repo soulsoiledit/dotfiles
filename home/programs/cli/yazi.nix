@@ -11,8 +11,6 @@
     mpv.enable = true;
     imv.enable = true;
 
-    # add gui file manager for file opening
-
     yazi = {
       enable = true;
       enableFishIntegration = true;
@@ -130,7 +128,7 @@
             "c"
             "o"
           ];
-          run = ''shell 'ripdrag -x "$@"' --confirm'';
+          run = ''shell 'ripdrag -a -x "$@"' --confirm'';
           desc = "drag and drop";
         }
       ];
