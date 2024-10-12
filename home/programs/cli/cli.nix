@@ -6,14 +6,11 @@
     dua
     du-dust
     duf
-
-    # qol
-    tmux
-    p7zip
     trashy
-    xdg-utils
 
-    # service interaction
+    tmux
+
+    # service control
     libnotify
     wl-clipboard
     pamixer

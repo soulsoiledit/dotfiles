@@ -2,7 +2,10 @@
 
 {
   home.packages = with pkgs; [
+    xdg-utils
     exiftool
+    zip
+    p7zip
     ripdrag
   ];
 
@@ -53,7 +56,7 @@
         ];
       };
 
-      keymap.manager.append_keymap = [
+      keymap.manager.prepend_keymap = [
         # goto
         {
           on = [
