@@ -19,7 +19,6 @@
     pamixer
     brightnessctl
     playerctl
-    grimblast
   ];
 
   programs = {
