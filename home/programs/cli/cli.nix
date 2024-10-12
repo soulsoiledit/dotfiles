@@ -10,7 +10,7 @@
     # qol
     tmux
     p7zip
-    trash-cli
+    trashy
     xdg-utils
 
     # service interaction
