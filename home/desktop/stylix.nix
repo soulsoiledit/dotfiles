@@ -95,12 +95,4 @@
       base0F
       ;
   };
-
-  # TODO: Waiting on https://github.com/danth/stylix/pull/592
-  xdg.configFile."vesktop/themes/stylix-forum.theme.css".text = # css
-    ''
-      .theme-light, .theme-dark {
-          --bg-overlay-chat: #${config.lib.stylix.colors.base00};
-      }
-    '';
 }

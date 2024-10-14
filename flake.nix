@@ -19,10 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wezterm = {
-      url = "github:wez/wezterm/574e0221fa214106352a9f03f0257e9dec9f6176?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    wezterm.url = "github:wez/wezterm?dir=nix";
 
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
