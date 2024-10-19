@@ -35,7 +35,11 @@
           installCargo = true;
           installRustc = true;
         };
-        hls.enable = true;
+
+        hls = {
+          enable = true;
+          installGhc = true;
+        };
 
         pylyzer.enable = true;
         ruff.enable = true;
