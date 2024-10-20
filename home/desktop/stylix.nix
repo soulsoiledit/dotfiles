@@ -72,27 +72,4 @@
   };
 
   xresources.path = "${config.xdg.configHome}/X11/xresources";
-
-  # TODO: Waiting on https://github.com/danth/stylix/pull/536
-  stylix.targets.nixvim.enable = false;
-  programs.nixvim.plugins.mini.modules.base16.palette = {
-    inherit (config.lib.stylix.colors.withHashtag)
-      base00
-      base01
-      base02
-      base03
-      base04
-      base05
-      base06
-      base07
-      base08
-      base09
-      base0A
-      base0B
-      base0C
-      base0D
-      base0E
-      base0F
-      ;
-  };
 }
