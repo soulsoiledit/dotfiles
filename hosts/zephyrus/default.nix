@@ -19,6 +19,12 @@ in
     compositor.niri.enable = true;
 
     zram.enable = true;
+
+
+    swap = {
+      enable = true;
+      size = 20;
+    };
     # podman.enable = true;
     # virt-manager.enable = true;
 
