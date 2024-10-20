@@ -18,15 +18,18 @@ in
   modules = {
     compositor.niri.enable = true;
 
-    zram.enable = true;
-
+    zswap = {
+      enable = true;
+      maxPoolPercent = 50;
+    };
 
     swap = {
       enable = true;
       size = 20;
     };
-    # podman.enable = true;
-    # virt-manager.enable = true;
+
+    podman.enable = true;
+    virt-manager.enable = true;
 
     # used for rebinding laptop keys
     kanata.enable = true;
