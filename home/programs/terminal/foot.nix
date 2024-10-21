@@ -1,11 +1,13 @@
 {
   programs.foot = {
     enable = true;
+    server.enable = true;
 
     settings = {
       main = {
         selection-target = "both";
-        # pad = "20x20";
+        pad = "5x5 center";
+        line-height = "14";
       };
 
       mouse = {
@@ -16,10 +18,8 @@
 
       url = {
         osc8-underline = "always";
-        # label-letters = "sadfjklewcmpgh.";
+        label-letters = "arstneiowfpluyxcdhgm";
       };
     };
   };
-
-  wayland.windowManager.hyprland.settings.exec-once = [ "foot --server" ];
 }
