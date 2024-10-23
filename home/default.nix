@@ -7,5 +7,12 @@
     stateVersion = "24.05";
   };
 
-  modules.niri.enable = true;
+  terminal = "footclient";
+
+  modules = {
+    niri.enable = true;
+
+    foot.enable = true;
+    wezterm.enable = true;
+  };
 }

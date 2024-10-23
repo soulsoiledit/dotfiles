@@ -1,24 +1,32 @@
+{ config, lib, ... }:
+let
+  cfg = config.modules.foot;
+in
 {
-  programs.foot = {
-    enable = true;
-    server.enable = true;
+  options.modules.foot.enable = lib.mkEnableOption "enable foot terminal";
 
-    settings = {
-      main = {
-        selection-target = "both";
-        pad = "5x5 center";
-        line-height = "14";
-      };
+  config = lib.mkIf cfg.enable {
+    programs.foot = {
+      enable = true;
+      server.enable = true;
 
-      mouse = {
-        hide-when-typing = "yes";
-      };
+      settings = {
+        main = {
+          selection-target = "both";
+          pad = "5x5 center";
+          line-height = "14";
+        };
 
-      scrollback.lines = 10000;
+        mouse = {
+          hide-when-typing = "yes";
+        };
 
-      url = {
-        osc8-underline = "always";
-        label-letters = "arstneiowfpluyxcdhgm";
+        scrollback.lines = 10000;
+
+        url = {
+          osc8-underline = "always";
+          label-letters = "arstneiowfpluyxcdhgm";
+        };
       };
     };
   };

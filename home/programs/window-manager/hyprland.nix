@@ -130,7 +130,7 @@
           "$mod SHIFT, x, exit,"
 
           # programs
-          "$mod, Return, exec, wezterm"
+          "$mod, Return, exec, ${config.terminal}"
           "$mod, space, exec, fuzzel"
           "$mod, B, exec, eww open bar --toggle"
           "$mod shift, l, exec, loginctl lock-session"

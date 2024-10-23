@@ -164,7 +164,7 @@
           "Mod+Shift+x".action = quit;
 
           # programs
-          "Mod+Return".action.spawn = "wezterm";
+          "Mod+Return".action.spawn = config.terminal;
           "Mod+Space".action.spawn = "fuzzel";
           "Mod+B".action.spawn = [
             "sh"
