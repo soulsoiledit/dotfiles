@@ -43,23 +43,23 @@
 
     fonts = {
       serif = {
-        package = pkgs.roboto-slab;
-        name = "Roboto Slab";
+        package = pkgs.source-serif;
+        name = "serif";
       };
 
       sansSerif = {
-        package = pkgs.inter;
-        name = "Inter";
+        package = pkgs.source-sans;
+        name = "sans-serif";
       };
 
       monospace = {
-        package = pkgs.maple-mono-NF;
-        name = "Maple Mono NF";
+        package = pkgs.source-code-pro;
+        name = "monospace";
       };
 
       emoji = {
         package = pkgs.twitter-color-emoji;
-        name = "Twitter Color Emoji";
+        name = "emoji";
       };
 
       sizes = {
