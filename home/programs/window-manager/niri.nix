@@ -171,10 +171,7 @@
             "-c"
             "eww open bar --toggle"
           ];
-          "Mod+Shift+L".action.spawn = [
-            "loginctl"
-            "lock-session"
-          ];
+          "Mod+L".action.spawn = "wlogout";
           "Mod+P".action.spawn = [
             "bash"
             "-c"
