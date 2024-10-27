@@ -43,22 +43,22 @@
 
     fonts = {
       serif = {
-        package = pkgs.source-serif;
+        package = pkgs.noto-fonts;
         name = "serif";
       };
 
       sansSerif = {
-        package = pkgs.source-sans;
+        package = pkgs.noto-fonts;
         name = "sans-serif";
       };
 
       monospace = {
-        package = pkgs.source-code-pro;
+        package = pkgs.noto-fonts;
         name = "monospace";
       };
 
       emoji = {
-        package = pkgs.twitter-color-emoji;
+        package = pkgs.noto-fonts-emoji;
         name = "emoji";
       };
 

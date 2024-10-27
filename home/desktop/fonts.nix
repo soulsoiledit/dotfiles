@@ -19,35 +19,46 @@
 
     twitter-color-emoji
 
-    source-sans
-    source-serif
-    source-han-sans
-    source-han-serif
-    source-han-mono
+    noto-fonts
+    noto-fonts-emoji
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
   ];
 
   fonts.fontconfig = {
     enable = true;
-    defaultFonts = {
-      sansSerif = [
-        "Inter"
-        "Source Sans"
-        "Source Han Sans"
-        "Symbols Nerd Font"
-      ];
-      serif = [
-        "Source Serif"
-        "Source Han Serif"
-        "Symbols Nerd Font"
-      ];
-      monospace = [
-        "JetBrainsMono Nerd Font"
-        "Symbols Nerd Font"
-        "Source Han Mono"
-      ];
-      emoji = [
-        "Twitter Color Emoji"
-      ];
-    };
+    defaultFonts =
+      let
+        cjk = variant: [
+          "Noto ${variant} CJK JP"
+          "Noto ${variant} CJK KR"
+          "Noto ${variant} CJK HK"
+          "Noto ${variant} CJK SC"
+          "Noto ${variant} CJK TC"
+        ];
+      in
+      {
+        sansSerif = [
+          "Inter"
+          "Symbols Nerd Font"
+          "Noto Sans"
+        ] ++ cjk "Sans";
+
+        serif = [
+          "Noto Serif"
+          "Symbols Nerd Font"
+        ] ++ cjk "Serif";
+
+        monospace = [
+          "JetBrainsMono Nerd Font"
+          "Symbols Nerd Font"
+          "Noto Sans Mono"
+        ] ++ cjk "Sans Mono";
+
+        emoji = [
+          "Twitter Color Emoji"
+          "Noto Color Emoji"
+        ];
+      };
   };
 }
