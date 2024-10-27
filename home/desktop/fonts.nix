@@ -4,28 +4,26 @@
   home.packages = with pkgs; [
     inter
 
-    roboto
-    noto-fonts
-    noto-fonts-extra
-
-    fantasque-sans-mono
     (pkgs.nerdfonts.override {
       fonts = [
-        "CommitMono"
-        "FantasqueSansMono"
+        # "CommitMono"
+        # "FantasqueSansMono"
         # "Iosevka"
-        # "JetBrainsMono"
+        "JetBrainsMono"
         "NerdFontsSymbolsOnly"
         # "VictorMono"
       ];
     })
-    maple-mono-NF
-    cascadia-code
+    # maple-mono-NF
+    # cascadia-code
 
     twitter-color-emoji
-    noto-fonts-emoji
 
-    noto-fonts-cjk-sans
+    source-sans
+    source-serif
+    source-han-sans
+    source-han-serif
+    source-han-mono
   ];
 
   fonts.fontconfig = {
@@ -33,32 +31,22 @@
     defaultFonts = {
       sansSerif = [
         "Inter"
-        "Noto Sans CJK SC"
-        "Noto Sans CJK JP"
-        "Noto Sans CJK KR"
-        "Noto Sans"
+        "Source Sans"
+        "Source Han Sans"
         "Symbols Nerd Font"
       ];
       serif = [
-        "Roboto Slab"
-        "Noto Serif CJK SC"
-        "Noto Serif CJK JP"
-        "Noto Serif CJK KR"
-        "Noto Serif"
+        "Source Serif"
+        "Source Han Serif"
         "Symbols Nerd Font"
       ];
       monospace = [
-        "Maple Mono NF"
+        "JetBrainsMono Nerd Font"
         "Symbols Nerd Font"
-        "Roboto Mono"
-        "Noto Sans Mono CJK SC"
-        "Noto Sans Mono CJK JP"
-        "Noto Sans Mono CJK KR"
-        "Noto Sans Mono"
+        "Source Han Mono"
       ];
       emoji = [
         "Twitter Color Emoji"
-        "Noto Color Emoji"
       ];
     };
   };
