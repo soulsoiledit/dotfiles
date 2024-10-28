@@ -48,7 +48,11 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = (nixpkgs.legacyPackages.${system}).extend (
+        final: prev: {
+          _7zz = prev._7zz.override { useUasm = true; };
+        }
+      );
     in
     {
       lib = import ./lib inputs;
