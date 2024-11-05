@@ -66,14 +66,7 @@
         };
 
         layout = {
-          gaps = 4;
-
-          struts = {
-            left = 8;
-            right = 8;
-            top = 8;
-            bottom = 8;
-          };
+          gaps = 8;
 
           default-column-width.proportion = 0.5;
           preset-column-widths = [
