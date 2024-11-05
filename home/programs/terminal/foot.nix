@@ -14,7 +14,6 @@ in
         main = {
           selection-target = "both";
           pad = "5x5 center";
-          line-height = "14";
         };
 
         mouse = {

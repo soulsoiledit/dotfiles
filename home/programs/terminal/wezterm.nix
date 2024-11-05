@@ -32,8 +32,6 @@ in
               "Noto Sans Mono",
             },
 
-            line_height = 0.9,
-
             hide_tab_bar_if_only_one_tab = true
           }
         '';
