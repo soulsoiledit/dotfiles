@@ -161,8 +161,6 @@
         screenshot-path = "~/pictures/screenshots/%F_%Hh%Mm%Ss.png";
 
         binds = with config.lib.niri.actions; {
-          "Mod+Shift+x".action = quit;
-
           # programs
           "Mod+Return".action.spawn = config.terminal;
           "Mod+Space".action.spawn = "fuzzel";
