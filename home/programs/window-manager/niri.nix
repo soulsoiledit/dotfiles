@@ -59,7 +59,7 @@
           };
         };
 
-        outputs."eDP-2" = {
+        outputs."BOE 0x0A1D Unknown" = {
           scale = 2;
           background-color = config.lib.stylix.colors.withHashtag.base00;
           variable-refresh-rate = true;
