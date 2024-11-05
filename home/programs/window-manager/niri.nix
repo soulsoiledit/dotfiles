@@ -111,9 +111,9 @@
           { command = [ "xwayland-satellite" ]; }
 
           { command = [ "firefox" ]; }
-          # { command = ["spotify"]; }
-          # { command = ["vesktop"]; }
-          # { command = ["steam"]; }
+          { command = [ "spotify" ]; }
+          { command = [ "vesktop" ]; }
+          { command = [ "steam" ]; }
         ];
 
         hotkey-overlay.skip-at-startup = true;
