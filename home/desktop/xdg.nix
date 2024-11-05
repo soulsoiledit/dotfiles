@@ -12,4 +12,6 @@
       _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="${config.xdg.configHome}"/java'';
     };
   };
+
+  xresources.path = "${config.xdg.configHome}/X11/xresources";
 }
