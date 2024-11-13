@@ -2,11 +2,13 @@
   programs.nixvim = {
     opts = {
       expandtab = true;
-      shiftwidth = 2;
+      tabstop = 2;
       softtabstop = 2;
+      shiftwidth = 2;
 
       relativenumber = true;
       scrolloff = 4;
+      wrap = true;
 
       autochdir = true;
       timeoutlen = 250;
