@@ -4,7 +4,6 @@
       enable = true;
       settings = {
         jump.nohlsearch = true;
-        modes.search_enabled = true;
       };
     };
 
