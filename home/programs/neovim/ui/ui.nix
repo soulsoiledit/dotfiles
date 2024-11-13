@@ -5,8 +5,9 @@
 
     notify = {
       enable = true;
-      render = "wrapped-compact";
       timeout = 2500;
+      render = "wrapped-compact";
+      topDown = false;
     };
 
     noice = {
