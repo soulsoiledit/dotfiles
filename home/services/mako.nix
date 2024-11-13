@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, ... }:
 
 {
   services = {
@@ -10,7 +10,7 @@
       borderRadius = 4;
       layer = "overlay";
 
-      iconPath = "${pkgs.papirus-icon-theme}/share/icons/Papirus-Dark";
+      iconPath = "${config.gtk.iconTheme.package}/share/icons/${config.gtk.iconTheme.name}";
     };
 
     # battery notifications
