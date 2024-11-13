@@ -28,9 +28,6 @@ in
       size = 20;
     };
 
-    podman.enable = true;
-    virt-manager.enable = true;
-
     # used for rebinding laptop keys
     kanata.enable = true;
   };
