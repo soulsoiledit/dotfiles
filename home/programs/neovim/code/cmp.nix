@@ -10,12 +10,9 @@
             name = "nvim_lsp";
             priority = 10;
           }
-          { name = "latex_symbols"; }
 
-          {
-            name = "buffer";
-            priority = 10;
-          }
+          { name = "buffer"; }
+          { name = "latex_symbols"; }
           { name = "path"; }
           { name = "calc"; }
         ];
