@@ -3,7 +3,16 @@
     plugins = {
       which-key.enable = true;
       rainbow-delimiters.enable = true;
-      nvim-colorizer.enable = true;
+      ccc = {
+        enable = true;
+        settings = {
+          lsp = false;
+          highlighter = {
+            auto_enable = true;
+            lsp = false;
+          };
+        };
+      };
 
       mini.modules = {
         indentscope = { };
