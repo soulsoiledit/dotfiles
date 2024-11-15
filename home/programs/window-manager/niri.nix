@@ -133,22 +133,6 @@
             matches = [ { title = "(Firefox|Vesktop|Spotify|Steam)"; } ];
             default-column-width.proportion = 1.0;
           }
-
-          # floating doesn't exist quite yet
-          # /-window-rule {
-          #   match title=r#"^Open File"#
-          #   // float, center, resize
-          # }
-          #
-          # /-window-rule {
-          #   match title="vesktop" app-id="vesktop"
-          # }
-
-          # open games in fullscreen
-          # {
-          #   matches.title = "(steam_app_|Minecraft\*)";
-          #   open-fullscreen = true;
-          # }
         ];
 
         screenshot-path = "~/pictures/screenshots/%F_%Hh%Mm%Ss.png";
@@ -157,26 +141,32 @@
           # programs
           "Mod+Return".action.spawn = config.terminal;
           "Mod+Space".action.spawn = "fuzzel";
+          "Mod+S".action = screenshot;
           "Mod+B".action.spawn = [
-            "sh"
-            "-c"
-            "eww open bar --toggle"
+            "eww"
+            "open"
+            "bar"
+            "--toggle"
           ];
-          "Mod+L".action.spawn = "wlogout";
           "Mod+P".action.spawn = [
             "bash"
             "-c"
             "cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
           ];
-
-          "Mod+S".action = screenshot;
+          "Mod+L" = {
+            allow-when-locked = true;
+            action.spawn = "wlogout";
+          };
 
           # notifications
-          "Mod+Control+Space".action.spawn = [
-            "makoctl"
-            "dismiss"
-            "--all"
-          ];
+          "Mod+Control+Space" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "makoctl"
+              "dismiss"
+              "--all"
+            ];
+          };
           "Mod+Control+D".action.spawn = [
             "makoctl"
             "dismiss"
@@ -200,12 +190,12 @@
           };
 
           "XF86MonBrightnessDown" = {
+            allow-when-locked = true;
             action.spawn = [
               "brightness_notify"
               "set"
               "20%-"
             ];
-            allow-when-locked = true;
           };
 
           # volume
@@ -301,8 +291,10 @@
               "next"
             ];
           };
-
-          "XF86Launch4".action.spawn = "profile_notify";
+          "XF86Launch4" = {
+            allow-when-locked = true;
+            action.spawn = "profile_notify";
+          };
 
           # TODO: keyboard rgb
           # TODO: other laptop keys
