@@ -3,11 +3,11 @@
     nui.enable = true;
     dressing.enable = true;
 
-    notify = {
-      enable = true;
-      timeout = 2500;
-      render = "wrapped-compact";
-      topDown = false;
+    snacks.settings = {
+        notifier = {
+          enable = true;
+        };
+        statuscolumn.enable = true;
     };
 
     noice = {
