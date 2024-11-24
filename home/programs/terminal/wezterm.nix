@@ -14,7 +14,8 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.wezterm = {
-      enable = true;
+      # TODO: reenable after resizing works again
+      # enable = true;
       package = inputs.wezterm.packages.${pkgs.system}.default;
 
       colorSchemes = { };
