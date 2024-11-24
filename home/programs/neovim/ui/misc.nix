@@ -16,7 +16,6 @@
 
       mini.modules = {
         indentscope = { };
-        trailspace = { };
         cursorword = { };
       };
     };

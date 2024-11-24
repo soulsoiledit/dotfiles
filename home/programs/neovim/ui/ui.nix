@@ -4,10 +4,10 @@
     dressing.enable = true;
 
     snacks.settings = {
-        notifier = {
-          enable = true;
-        };
-        statuscolumn.enable = true;
+      notifier = {
+        enable = true;
+      };
+      statuscolumn.enable = true;
     };
 
     noice = {
