@@ -134,12 +134,23 @@
 
           # open with full width
           {
-            matches = [ { title = "(Firefox|Vesktop|Spotify|Steam)"; } ];
+            matches = [ { title = "Firefox|Vesktop|Spotify|Steam"; } ];
             default-column-width.proportion = 1.0;
+          }
+
+          {
+            matches = [
+              {
+                title = "[vV]esktop|Spotify|Steam";
+                at-startup = true;
+              }
+            ];
+
+            open-on-workspace = "2";
           }
         ];
 
-        screenshot-path = "~/pictures/screenshots/%F_%Hh%Mm%Ss.png";
+        screenshot-path = "~/pictures/screenshots/%Y-%m-%d_%H-%M-%S.png";
 
         binds = with config.lib.niri.actions; {
           # programs
