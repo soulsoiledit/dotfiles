@@ -59,6 +59,10 @@
           };
         };
 
+        cursor = {
+          hide-after-inactive-ms = 5000;
+        };
+
         outputs."BOE 0x0A1D Unknown" = {
           scale = 2;
           background-color = config.lib.stylix.colors.withHashtag.base00;
