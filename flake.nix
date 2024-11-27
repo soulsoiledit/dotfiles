@@ -36,11 +36,23 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # desktop stylers
     catppuccin.url = "github:catppuccin/nix";
 
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # vim plugins
+    snacks-nvim = {
+      url = "github:folke/snacks.nvim";
+      flake = false;
+    };
+
+    blink-compat = {
+      url = "github:Saghen/blink.compat";
+      flake = false;
     };
   };
 
@@ -48,11 +60,7 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = (nixpkgs.legacyPackages.${system}).extend (
-        final: prev: {
-          _7zz = prev._7zz.override { useUasm = true; };
-        }
-      );
+      pkgs = nixpkgs.legacyPackages.${system};
     in
     {
       lib = import ./lib inputs;
