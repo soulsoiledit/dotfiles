@@ -4,18 +4,16 @@
   home.packages = with pkgs; [
     inter
 
-    (pkgs.nerdfonts.override {
-      fonts = [
-        # "CommitMono"
-        # "FantasqueSansMono"
-        # "Iosevka"
-        "JetBrainsMono"
-        "NerdFontsSymbolsOnly"
-        # "VictorMono"
-      ];
-    })
+    nerd-fonts.symbols-only
+    # nerd-fonts.commit-mono
+    # nerd-fonts.fantasque-sans-mono
+    # nerd-fonts.iosevka-term
+    # nerd-fonts.jetbrains-mono
+    # nerd-fonts.monaspace
+    # nerd-fonts.victor-mono
+
     # maple-mono-NF
-    # cascadia-code
+    cascadia-code
 
     twitter-color-emoji
 
@@ -50,7 +48,7 @@
         ] ++ cjk "Serif";
 
         monospace = [
-          "JetBrainsMono Nerd Font"
+          "Cascadia Code NF"
           "Symbols Nerd Font"
           "Noto Sans Mono"
         ] ++ cjk "Sans Mono";
