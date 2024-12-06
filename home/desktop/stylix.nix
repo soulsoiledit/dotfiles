@@ -33,32 +33,39 @@
       base0F = "#e293ab"; # pink
     };
 
+    image = config.lib.stylix.pixel "base00";
+
+    iconTheme = {
+      enable = true;
+      package = pkgs.papirus-icon-theme;
+      light = "Papirus-Light";
+      dark = "Papirus-Dark";
+    };
+
     cursor = {
       package = pkgs.rose-pine-cursor;
       name = "BreezeX-RosePine-Linux";
       size = 24;
     };
 
-    image = config.lib.stylix.pixel "base00";
-
     fonts = {
-      serif = {
-        package = pkgs.noto-fonts;
-        name = "serif";
-      };
-
       sansSerif = {
-        package = pkgs.noto-fonts;
+        package = pkgs.hello;
         name = "sans-serif";
       };
 
+      serif = {
+        package = config.stylix.fonts.sansSerif.package;
+        name = "serif";
+      };
+
       monospace = {
-        package = pkgs.noto-fonts;
+        package = config.stylix.fonts.sansSerif.package;
         name = "monospace";
       };
 
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = config.stylix.fonts.sansSerif.package;
         name = "emoji";
       };
 
