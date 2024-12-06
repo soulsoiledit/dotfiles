@@ -17,11 +17,11 @@ $base0F: #c0729c; // pink
 
 $accent: $base0D;
 
-$radius: 0.5rem;
-$border-style: solid 0.0625rem $base02;
+$radius: 6px;
+$border-style: solid 1px $base02;
+$transition-duration: 125ms;
 
 * {
-  // all: unset;
   font: unset;
   background: unset;
   border-radius: unset;
@@ -33,25 +33,26 @@ $border-style: solid 0.0625rem $base02;
   min-height: unset;
   min-width: unset;
 
-  transition: 125ms;
+  transition: $transition-duration;
 }
 
 .bar {
   background: $base00;
+
   color: $base05;
 
   font: 16px "sans-serif";
 
-  margin: 0.25em 0;
+  margin: 4px 0;
 }
 
 .layer {
   background: $base01;
   border-radius: $radius;
-  margin: 0 0.25em;
+  margin: 0 6px;
 
   label {
-    padding: 0 0.25em;
+    padding: 0 4px;
   }
 }
 
@@ -59,18 +60,8 @@ $border-style: solid 0.0625rem $base02;
   background: $base02;
 }
 
-.hovertext:hover {
-  color: $accent;
-}
-
 .volume-muted {
   color: $base03;
-}
-
-.network {
-  label {
-    padding-right: 0.5em;
-  }
 }
 
 .network-down {
@@ -79,11 +70,11 @@ $border-style: solid 0.0625rem $base02;
 
 .workspaces {
   * {
-    margin: 0.625em 0.25em;
-    border-radius: 2em;
+    margin: 10px 4px;
+    border-radius: $radius;
 
     background: $base02;
-    padding: 0 0.625em;
+    padding: 0 8px;
   }
 
   *:hover,
@@ -93,20 +84,20 @@ $border-style: solid 0.0625rem $base02;
 
   .active {
     background: $accent;
-    padding: 0 1.75em;
+    padding: 0 20px;
   }
 
   .used {
     background: $base03;
-    padding: 0 1em;
+    padding: 0 12px;
   }
 }
 
 .systray {
-  padding: 0 0.125em;
+  padding: 0 6px;
 
   > widget > image {
-    padding: 0 0.125em;
+    padding: 0 2px;
   }
 }
 
@@ -115,7 +106,7 @@ tooltip {
   color: $base05;
   border-radius: $radius;
   border: $border-style;
-  font-size: 0.825em;
+  font-size: 0.75rem;
 }
 
 .popup menu {
@@ -123,7 +114,7 @@ tooltip {
   color: $base05;
   font-size: 0.75rem;
 
-  padding: 0.5em;
+  padding: 10px;
   border: $border-style;
   border-radius: $radius;
 
@@ -131,7 +122,7 @@ tooltip {
     border-radius: inherit;
 
     label {
-      padding: 0.375em 0.5em;
+      padding: 4px 8px;
     }
 
     &:hover {
@@ -145,15 +136,15 @@ tooltip {
 
   separator {
     background: $base02;
-    margin: 0.25em 0;
-    min-height: 0.0625em;
+    margin: 2px 0;
+    min-height: 1px;
   }
 
   check,
   arrow,
   radio {
-    min-width: 1.5em;
-    min-height: 1.5em;
+    min-width: 16px;
+    min-height: 16px;
   }
 
   check {
