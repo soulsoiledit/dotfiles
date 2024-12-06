@@ -1,18 +1,12 @@
-{
-  config,
-  inputs,
-  lib,
-  ...
-}:
+{ inputs, lib, ... }:
 
 {
   imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
-  options.opts.catppuccin.enable = lib.mkEnableOption "enable catppuccin styling";
-
-  config = lib.mkIf config.opts.catppuccin.enable {
+  # INFO: reenabling this would require many changes
+  config = lib.mkIf false {
     catppuccin = {
-      enable = true;
+      enable = false;
       flavor = "mocha";
       accent = "mauve";
 
