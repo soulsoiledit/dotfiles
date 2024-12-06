@@ -15,22 +15,22 @@
     base16Scheme = {
       name = "soi";
 
-      base00 = "#161616"; # background
-      base01 = "#282828"; # status
-      base02 = "#3a3a3a"; # selection
-      base03 = "#555555"; # comment
-      base04 = "#aeaeae"; # status fg
-      base05 = "#cecece"; # text
-      base06 = "#dedede"; # bright
+      base00 = "#0b0b0b"; # background
+      base01 = "#1c1c1c"; # status
+      base02 = "#2e2e2e"; # selection
+      base03 = "#414141"; # comment
+      base04 = "#a6a6a6"; # status fg
+      base05 = "#bebebe"; # text
+      base06 = "#d6d6d6"; # bright
       base07 = "#eeeeee"; # brightest
-      base08 = "#e69494"; # red
-      base09 = "#e39a78"; # orange
-      base0A = "#c6ab60"; # yellow
-      base0B = "#acb66a"; # green
-      base0C = "#5cc3b0"; # cyan
-      base0D = "#60bbde"; # blue
-      base0E = "#c69bda"; # purple
-      base0F = "#e293ab"; # pink
+      base08 = "#c87180"; # red
+      base09 = "#c67854"; # orange
+      base0A = "#b08836"; # yellow
+      base0B = "#719e58"; # green
+      base0C = "#24a592"; # cyan
+      base0D = "#2d9dc1"; # blue
+      base0E = "#b177b4"; # purple
+      base0F = "#c0729c"; # pink
     };
 
     image = config.lib.stylix.pixel "base00";
