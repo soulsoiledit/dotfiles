@@ -82,8 +82,8 @@
             enable = true;
             width = 1;
             active.gradient = {
-              from = config.lib.stylix.colors.withHashtag.base0E;
-              to = config.lib.stylix.colors.withHashtag.base0F;
+              from = "#${config.opt.accent}";
+              to = "#${config.opt.gradient}";
             };
             inactive.color = config.lib.stylix.colors.withHashtag.base03;
           };

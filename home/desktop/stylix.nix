@@ -1,79 +1,99 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
 
+with lib;
 {
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
-  stylix = {
-    enable = true;
+  options.opt = {
+    accent = mkOption {
+      type = types.str;
+      description = "primary accent color";
+    };
+    gradient = mkOption {
+      type = types.str;
+      description = "secondary accent color";
+    };
+  };
 
-    polarity = "dark";
-    base16Scheme = {
-      name = "soi";
-
-      base00 = "#0b0b0b"; # background
-      base01 = "#1c1c1c"; # status
-      base02 = "#2e2e2e"; # selection
-      base03 = "#414141"; # comment
-      base04 = "#a6a6a6"; # status fg
-      base05 = "#bebebe"; # text
-      base06 = "#d6d6d6"; # bright
-      base07 = "#eeeeee"; # brightest
-      base08 = "#c87180"; # red
-      base09 = "#c67854"; # orange
-      base0A = "#b08836"; # yellow
-      base0B = "#719e58"; # green
-      base0C = "#24a592"; # cyan
-      base0D = "#2d9dc1"; # blue
-      base0E = "#b177b4"; # purple
-      base0F = "#c0729c"; # pink
+  config = {
+    opt = {
+      accent = config.lib.stylix.colors.base09;
+      gradient = config.lib.stylix.colors.base0A;
     };
 
-    image = config.lib.stylix.pixel "base00";
-
-    iconTheme = {
+    stylix = {
       enable = true;
-      package = pkgs.papirus-icon-theme;
-      light = "Papirus-Light";
-      dark = "Papirus-Dark";
-    };
 
-    cursor = {
-      package = pkgs.rose-pine-cursor;
-      name = "BreezeX-RosePine-Linux";
-      size = 24;
-    };
+      polarity = "dark";
+      base16Scheme = {
+        name = "soi";
 
-    fonts = {
-      sansSerif = {
-        package = pkgs.hello;
-        name = "sans-serif";
+        base00 = "#0b0b0b"; # background
+        base01 = "#1c1c1c"; # status
+        base02 = "#2e2e2e"; # selection
+        base03 = "#414141"; # comment
+        base04 = "#a6a6a6"; # status fg
+        base05 = "#bebebe"; # text
+        base06 = "#d6d6d6"; # bright
+        base07 = "#eeeeee"; # brightest
+        base08 = "#c87180"; # red
+        base09 = "#c67854"; # orange
+        base0A = "#b08836"; # yellow
+        base0B = "#719e58"; # green
+        base0C = "#24a592"; # cyan
+        base0D = "#2d9dc1"; # blue
+        base0E = "#b177b4"; # purple
+        base0F = "#c0729c"; # pink
       };
 
-      serif = {
-        package = config.stylix.fonts.sansSerif.package;
-        name = "serif";
+      image = config.lib.stylix.pixel "base00";
+
+      iconTheme = {
+        enable = true;
+        package = pkgs.papirus-icon-theme;
+        light = "Papirus-Light";
+        dark = "Papirus-Dark";
       };
 
-      monospace = {
-        package = config.stylix.fonts.sansSerif.package;
-        name = "monospace";
+      cursor = {
+        package = pkgs.rose-pine-cursor;
+        name = "BreezeX-RosePine-Linux";
+        size = 24;
       };
 
-      emoji = {
-        package = config.stylix.fonts.sansSerif.package;
-        name = "emoji";
-      };
+      fonts = {
+        sansSerif = {
+          package = pkgs.hello;
+          name = "sans-serif";
+        };
 
-      sizes = {
-        applications = 10;
-        desktop = 10;
-        popups = 10;
-        terminal = 12;
+        serif = {
+          package = config.stylix.fonts.sansSerif.package;
+          name = "serif";
+        };
+
+        monospace = {
+          package = config.stylix.fonts.sansSerif.package;
+          name = "monospace";
+        };
+
+        emoji = {
+          package = config.stylix.fonts.sansSerif.package;
+          name = "emoji";
+        };
+
+        sizes = {
+          applications = 10;
+          desktop = 10;
+          popups = 10;
+          terminal = 12;
+        };
       };
     };
   };

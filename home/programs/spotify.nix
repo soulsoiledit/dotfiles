@@ -19,7 +19,7 @@
       customColorScheme =
         with config.lib.stylix.colors;
         let
-          accent = base0D;
+          accent = config.opt.accent;
         in
         {
           text = base05;

@@ -9,8 +9,8 @@
         primary = base00;
         secondary = base01;
         text = base05;
-        accent = base0D;
-        accent2 = base0F;
+        accent = "#${config.opt.accent}";
+        accent2 = "#${config.opt.gradient}";
       in
       {
         userChrome = # css
