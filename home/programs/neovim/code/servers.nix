@@ -11,10 +11,7 @@
     plugins = {
       lsp.servers = {
         # INFO: remove when nixd has more features
-        nil_ls = {
-          enable = true;
-          settings.formatting.command = [ "${lib.getExe pkgs.nixfmt-rfc-style}" ];
-        };
+        nil_ls.enable = true;
 
         nixd = {
           enable = true;
