@@ -7,17 +7,15 @@
         enable = true;
         settings = {
           lsp = false;
-          highlighter = {
-            auto_enable = true;
-            lsp = false;
-          };
+          highlighter.auto_enable = true;
         };
       };
 
-      mini.modules = {
-        indentscope = { };
-        cursorword = { };
+      snacks.settings.indent = {
+        indent.only_scope = true;
       };
+
+      mini.modules.cursorword = { };
     };
   };
 }
