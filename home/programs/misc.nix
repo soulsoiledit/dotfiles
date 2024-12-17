@@ -6,10 +6,12 @@
     # inkscape
 
     vesktop
+    piper
+
     steam
+
     prismlauncher
     cubiomes-viewer
-    piper
 
     steam-run
     appimage-run

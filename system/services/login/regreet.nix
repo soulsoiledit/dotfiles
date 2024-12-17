@@ -31,7 +31,8 @@ in
       rose-pine-cursor
     ];
 
-    services.greetd.settings.default_session.command = "${dbus-run-session} ${hyprland} --config ${hyprland-conf} &> /dev/null";
+    services.greetd.settings.default_session.command =
+      "${dbus-run-session} ${hyprland} --config ${hyprland-conf} &> /dev/null";
 
     programs.regreet = {
       enable = true;

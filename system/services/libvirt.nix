@@ -1,9 +1,9 @@
 { config, lib, ... }:
 
 {
-  options.modules.virt-manager.enable = lib.mkEnableOption "enable virt-manager";
+  options.modules.libvirt.enable = lib.mkEnableOption "enable virt-manager";
 
-  config = lib.mkIf config.modules.virt-manager.enable {
+  config = lib.mkIf config.modules.libvirt.enable {
     virtualisation = {
       libvirtd = {
         enable = true;
