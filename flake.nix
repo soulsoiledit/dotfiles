@@ -19,8 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wezterm.url = "github:wez/wezterm?dir=nix";
-
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,17 +41,6 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # vim plugins
-    snacks-nvim = {
-      url = "github:folke/snacks.nvim";
-      flake = false;
-    };
-
-    blink-compat = {
-      url = "github:Saghen/blink.compat";
-      flake = false;
-    };
   };
 
   outputs =
@@ -69,10 +56,7 @@
 
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-          };
-
+          specialArgs = { inherit inputs; };
           modules = [ ./hosts/zephyrus ];
         };
       };
@@ -80,11 +64,7 @@
       homeConfigurations = {
         soil = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
-
-          extraSpecialArgs = {
-            inherit inputs;
-          };
-
+          extraSpecialArgs = { inherit inputs; };
           modules = inputs.self.lib.autoimport ./home;
         };
       };
