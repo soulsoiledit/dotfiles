@@ -23,8 +23,8 @@ with lib;
 
   config = {
     opt = {
-      accent = config.lib.stylix.colors.base09;
-      gradient = config.lib.stylix.colors.base0A;
+      accent = config.lib.stylix.colors.base0E;
+      gradient = config.lib.stylix.colors.base09;
     };
 
     stylix = {
@@ -53,6 +53,7 @@ with lib;
       };
 
       image = config.lib.stylix.pixel "base00";
+      imageScalingMode = "center";
 
       iconTheme = {
         enable = true;

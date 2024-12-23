@@ -5,7 +5,6 @@
     enable = true;
     settings.any = {
       path = lib.mkForce "${config.home.homeDirectory}/pictures/wallpaper.png";
-      mode = "center";
       # duration = "4h";
       # sorting = "random";
       transition.fade = { };
