@@ -13,18 +13,16 @@ in
       settings = {
         main = {
           selection-target = "both";
-          pad = "5x5 center";
+          pad = "10x10";
         };
 
-        mouse = {
-          hide-when-typing = "yes";
-        };
+        scrollback.lines = 4096;
 
-        scrollback.lines = 10000;
+        mouse.hide-when-typing = true;
 
         url = {
           osc8-underline = "always";
-          label-letters = "arstneiowfpluyxcdhgm";
+          label-letters = "arstneiodhwfuy";
         };
       };
     };
