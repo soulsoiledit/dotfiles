@@ -3,7 +3,7 @@
 {
   imports = [ inputs.catppuccin.homeManagerModules.catppuccin ];
 
-  # INFO: reenabling this would require many changes
+  # NOTE: reenabling this requires many changes
   config = lib.mkIf false {
     catppuccin = {
       enable = false;

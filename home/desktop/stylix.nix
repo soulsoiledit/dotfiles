@@ -96,6 +96,8 @@ with lib;
           terminal = 12;
         };
       };
+
+      targets.gtk.flatpakSupport.enable = false;
     };
   };
 }
