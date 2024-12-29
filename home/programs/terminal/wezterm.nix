@@ -14,17 +14,6 @@ in
       extraConfig = # lua
         ''
           return {
-            font = wezterm.font_with_fallback {
-              "monospace",
-              "Symbols Nerd Font",
-              "Twitter Color Emoji",
-              "Roboto Mono",
-              "Noto Sans Mono CJK SC",
-              "Noto Sans Mono CJK JP",
-              "Noto Sans Mono CJK KR",
-              "Noto Sans Mono",
-            },
-
             front_end = "WebGpu",
             hide_tab_bar_if_only_one_tab = true
           }
