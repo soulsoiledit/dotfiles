@@ -90,25 +90,10 @@
           ];
         };
 
-        servers = {
-          basedpyright.enable = true;
-          ruff.enable = true;
-          lua_ls.enable = true;
-          ruby_lsp.enable = true;
 
-          clangd.enable = true;
-          zls.enable = true;
-          jdtls.enable = true;
 
-          bashls.enable = true;
 
-          vtsls.enable = true;
-          cssls.enable = true;
-          html.enable = true;
 
-          jsonls.enable = true;
-          yamlls.enable = true;
-          taplo.enable = true;
         };
       };
     };
