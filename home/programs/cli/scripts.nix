@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -16,9 +16,8 @@
 
     (writeShellScriptBin "profile_notify" ''
       case $(powerprofilesctl get) in
-        'performance') powerprofilesctl set balanced;;
         'balanced') powerprofilesctl set power-saver;;
-        'power-saver') powerprofilesctl set performance;;
+        'power-saver') powerprofilesctl set balanced;;
       esac;
       notify-send "  Profile:" "$(powerprofilesctl get)" -h string:x-dunst-stack-tag:profile
     '')
