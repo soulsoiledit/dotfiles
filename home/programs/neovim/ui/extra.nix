@@ -13,7 +13,11 @@
         };
       };
 
-      snacks.settings.indent.enabled = true;
+      snacks.settings.indent = {
+        enabled = true;
+        indent.enabled = false;
+        scope.hl = "Comment";
+      };
 
       mini = {
         luaConfig.pre = "vim.g.minitrailspace_disable = true";
