@@ -1,10 +1,4 @@
-{
-  config,
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 
 let
   cfg = config.modules.wezterm;
@@ -14,9 +8,7 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.wezterm = {
-      # TODO: reenable after resizing works again
-      # enable = true;
-      package = inputs.wezterm.packages.${pkgs.system}.default;
+      enable = true;
 
       colorSchemes = { };
       extraConfig = # lua
@@ -33,6 +25,7 @@ in
               "Noto Sans Mono",
             },
 
+            front_end = "WebGpu",
             hide_tab_bar_if_only_one_tab = true
           }
         '';

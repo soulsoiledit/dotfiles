@@ -148,6 +148,11 @@
 
             open-on-workspace = "2";
           }
+
+          {
+            matches = [ { app-id = ''wezterm''; } ];
+            default-column-width = { };
+          }
         ];
 
         screenshot-path = "~/pictures/screenshots/%Y-%m-%d_%H-%M-%S.png";
