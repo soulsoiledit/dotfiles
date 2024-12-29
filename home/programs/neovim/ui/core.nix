@@ -3,6 +3,7 @@
     # syntax
     treesitter = {
       enable = true;
+      lazyLoad.settings.event = "DeferredUIEnter";
       settings = {
         highlight.enable = true;
         indent.enable = true;
@@ -12,10 +13,14 @@
     # status
     lualine = {
       enable = true;
+      lazyLoad.settings.event = "DeferredUIEnter";
       settings.options.disabled_filetypes = [ "snacks_dashboard" ];
     };
 
-    bufferline.enable = true;
+    bufferline = {
+      enable = true;
+      lazyLoad.settings.event = "DeferredUIEnter";
+    };
 
     # icons
     mini = {
@@ -24,11 +29,24 @@
     };
 
     # vim.ui.select/input
-    dressing.enable = true;
+    dressing = {
+      enable = true;
+      lazyLoad.settings = {
+        event = "DeferredUIEnter";
+        before.__raw = ''
+          function()
+            require("lz.n").trigger_load("telescope.nvim")
+          end
+        '';
+      };
+    };
 
     snacks.settings = {
       # vim.notify
       notifier.enabled = true;
+
+      # statuscolumn
+      statuscolumn.enabled = true;
 
       # start screen
       dashboard = {
@@ -54,6 +72,7 @@
     # general ui
     noice = {
       enable = true;
+      lazyLoad.settings.event = "DeferredUIEnter";
 
       settings = {
         lsp = {

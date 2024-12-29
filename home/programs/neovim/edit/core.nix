@@ -1,5 +1,12 @@
 {
   programs.nixvim.plugins = {
+    lz-n = {
+      enable = true;
+      luaConfig.pre = ''
+        vim.loader.enable()
+      '';
+    };
+
     lastplace.enable = true;
 
     snacks = {

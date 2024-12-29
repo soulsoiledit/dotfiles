@@ -3,19 +3,72 @@
 {
   programs.nixvim = {
     plugins = {
-      friendly-snippets.enable = true;
+      friendly-snippets = {
+        enable = true;
+        autoLoad = false;
+      };
 
-      cmp-dictionary.enable = true;
+      cmp-dictionary = {
+        enable = true;
+        autoLoad = false;
+      };
+
+      lz-n.plugins = [
+        {
+          __unkeyed-1 = "friendly-snippets";
+          lazy = true;
+        }
+        {
+          __unkeyed-1 = "cmp-dictionary";
+          lazy = true;
+          after.__raw = ''
+            function()
+              require("cmp_dictionary").setup({
+                paths = { "${pkgs.scowl}/share/dict/words.txt" },
+              })
+            end
+          '';
+        }
+        {
+          __unkeyed-1 = "blink-ripgrep.nvim";
+          lazy = true;
+        }
+      ];
 
       lsp.capabilities = # lua
         ''
+          require("lz.n").trigger_load("blink.cmp")
           capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
         '';
 
-      blink-compat.enable = true;
+      blink-compat = {
+        enable = true;
+        lazyLoad.settings = {
+          lazy = true;
+          before.__raw = ''
+            function()
+              require("lz.n").trigger_load("cmp-dictionary")
+            end
+          '';
+        };
+      };
 
       blink-cmp = {
         enable = true;
+        lazyLoad.settings = {
+          lazy = true;
+          event = "InsertEnter";
+          before.__raw = ''
+            function()
+              require("lz.n").trigger_load({
+                "blink-ripgrep.nvim",
+                "blink.compat",
+                "friendly-snippets",
+              })
+            end
+          '';
+        };
+
         settings = {
           keymap = {
             preset = "super-tab";
@@ -104,7 +157,10 @@
     };
 
     extraPlugins = [
-      pkgs.vimPlugins.blink-ripgrep-nvim
+      {
+        plugin = pkgs.vimPlugins.blink-ripgrep-nvim;
+        optional = true;
+      }
     ];
   };
 }

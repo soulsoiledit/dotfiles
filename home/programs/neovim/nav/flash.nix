@@ -1,29 +1,35 @@
 {
-  programs.nixvim = {
-    plugins.flash = {
-      enable = true;
-      settings = {
-        jump.nohlsearch = true;
-      };
-    };
+  programs.nixvim.plugins.flash = {
+    enable = true;
+    lazyLoad.settings = {
+      event = "DeferredUIEnter";
+      keys = [
+        {
+          __unkeyed-1 = "s";
+          __unkeyed-2.__raw = ''
+            function()
+              require("flash").jump()
+            end
+          '';
+          mode = [
+            "n"
+            "x"
+            "o"
+          ];
+          desc = "flash search";
+        }
 
-    keymaps = [
-      {
-        mode = [
-          "n"
-          "x"
-          "o"
-        ];
-        key = "s";
-        action.__raw = "function() require('flash').jump() end";
-        options.desc = "flash search";
-      }
-      {
-        mode = "o";
-        key = "r";
-        action.__raw = "function() require('flash').remote() end";
-        options.desc = "flash remote";
-      }
-    ];
+        {
+          __unkeyed-1 = "r";
+          __unkeyed-2.__raw = ''
+            function()
+              require("flash").remote()
+            end
+          '';
+          mode = "o";
+          desc = "flash remote";
+        }
+      ];
+    };
   };
 }

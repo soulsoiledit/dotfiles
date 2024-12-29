@@ -3,12 +3,39 @@
 {
   programs.nixvim = {
     plugins = {
-      nvim-lightbulb.enable = true;
-      lsp-lines.enable = true;
-      otter.enable = true;
+      nvim-lightbulb = {
+        enable = true;
+        lazyLoad.settings.event = "DeferredUIEnter";
+      };
+
+      # formatting
+      lsp-format = {
+        enable = true;
+        lazyLoad.settings.lazy = true;
+      };
+
+      efmls-configs.enable = true;
 
       lsp = {
         enable = true;
+        lazyLoad.settings = {
+          before = # lua
+            ''
+              function()
+                require("lz.n").trigger_load("lsp-format.nvim")
+              end
+            '';
+          event = [
+            "BufNewFile"
+            "BufReadPost"
+          ];
+          before.__raw = ''
+            function()
+              require("lz.n").trigger_load("lsp-format.nvim")
+            end
+          '';
+        };
+
         inlayHints = true;
 
         keymaps = {
@@ -88,12 +115,6 @@
               options.desc = "file symbols";
             }
           ];
-        };
-
-
-
-
-
         };
       };
     };

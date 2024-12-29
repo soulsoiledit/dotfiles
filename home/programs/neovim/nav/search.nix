@@ -1,64 +1,108 @@
+{ pkgs, ... }:
+
 {
   programs.nixvim = {
     plugins = {
       grug-far = {
         enable = true;
+        lazyLoad.settings.cmd = "GrugFar";
       };
 
       telescope = {
         enable = true;
+        enabledExtensions = [ "fzf" ];
 
-        extensions.fzf-native.enable = true;
+        lazyLoad.settings = {
+          lazy = true;
+          before.__raw = ''
+            function()
+              require("lz.n").trigger_load("telescope-fzf-native.nvim")
+            end
+          '';
 
-        keymaps = {
-          "<leader>b" = {
-            options.desc = "buffers";
-            action = "buffers";
-          };
-          "<leader>o" = {
-            options.desc = "recent";
-            action = "oldfiles";
-          };
-          "<leader>l" = {
-            options.desc = "lines";
-            action = "live_grep grep_open_files=true";
-          };
-          "<leader>c" = {
-            options.desc = "commands";
-            action = "commands";
-          };
-          "<leader>p" = {
-            options.desc = "pickers";
-            action = "builtin";
-          };
+          cmd = "Telescope";
+          keys = [
+            # files
+            {
+              __unkeyed-1 = "<leader>f";
+              __unkeyed-2.__raw = ''
+                function()
+                  require("telescope.builtin").find_files(git_cwd())
+                end
+              '';
+              desc = "files";
+            }
+
+            {
+              __unkeyed-1 = "<leader>b";
+              __unkeyed-2 = "<cmd>Telescope buffers<cr>";
+              desc = "buffers";
+            }
+
+            {
+              __unkeyed-1 = "<leader>o";
+              __unkeyed-2 = "<cmd>Telescope oldfiles<cr>";
+              desc = "recent";
+            }
+
+            # grep
+            {
+              __unkeyed-1 = "<leader>s";
+              __unkeyed-2.__raw = ''
+                function()
+                  require("telescope.builtin").live_grep(git_cwd())
+                end
+              '';
+              desc = "grep";
+            }
+
+            {
+              __unkeyed-1 = "<leader>l";
+              __unkeyed-2 = "<cmd>Telescope live_grep grep_open_files=true<cr>";
+              desc = "lines";
+            }
+
+            # nvim
+            {
+              __unkeyed-1 = "<leader>c";
+              __unkeyed-2 = "<cmd>Telescope commands<cr>";
+              desc = "commands";
+            }
+
+            {
+              __unkeyed-1 = "<leader>p";
+              __unkeyed-2 = "<cmd>Telescope builtin<cr>";
+              desc = "pickers";
+            }
+          ];
         };
+      };
+
+      lz-n = {
+        # helper for getting project root
+        luaConfig.pre = ''
+          local function git_cwd()
+            local path = vim.fn.system("git rev-parse --show-toplevel")
+            if vim.v.shell_error == 0 then
+              return { cwd = string.sub(path, 1, -2) }
+            end
+            return { }
+          end
+        '';
+
+        plugins = [
+          {
+            __unkeyed-1 = "telescope-fzf-native.nvim";
+            lazy = true;
+          }
+        ];
       };
     };
 
-    # helper for getting project root
-    extraConfigLuaPre = # lua
-      ''
-        local function git_cwd()
-          local path = vim.fn.system("git rev-parse --show-toplevel")
-          if vim.v.shell_error == 0 then
-            return { cwd = string.sub(path, 1, -2) }
-          end
-          return { }
-        end
-      '';
-
-    keymaps = [
+    extraPlugins = [
       {
-        mode = "n";
-        key = "<leader>f";
-        options.desc = "files";
-        action.__raw = ''function() require("telescope.builtin").find_files(git_cwd()) end'';
-      }
-      {
-        mode = "n";
-        key = "<leader>s";
-        options.desc = "grep";
-        action.__raw = ''function() require("telescope.builtin").live_grep(git_cwd()) end'';
+        plugin = pkgs.vimPlugins.telescope-fzf-native-nvim;
+        optional = true;
       }
     ];
   };
