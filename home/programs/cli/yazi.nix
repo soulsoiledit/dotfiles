@@ -131,7 +131,7 @@
             "c"
             "o"
           ];
-          run = ''shell 'ripdrag -a -x "$@"' --confirm'';
+          run = ''shell 'ripdrag -a -x "$@"' --block'';
           desc = "drag and drop";
         }
       ];
