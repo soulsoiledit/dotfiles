@@ -10,16 +10,7 @@
 
       none-ls = {
         enable = true;
-        sources = {
-          formatting = {
-            prettier.enable = true;
-          };
-
-          completion = {
-            tags.enable = true;
-            spell.enable = true;
-          };
-        };
+        sources.formatting.prettier.enable = true;
       };
     };
   };
