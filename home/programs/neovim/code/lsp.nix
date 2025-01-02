@@ -1,7 +1,18 @@
-{ pkgs, ... }:
+{ config, ... }:
 
 {
   programs.nixvim = {
+    diagnostics = {
+      virtual_text.prefix = "●";
+      severity_sort = true;
+      signs.text = config.lib.nixvim.toRawKeys {
+        "vim.diagnostic.severity.ERROR" = " ";
+        "vim.diagnostic.severity.WARN" = " ";
+        "vim.diagnostic.severity.HINT" = " ";
+        "vim.diagnostic.severity.INFO" = " ";
+      };
+    };
+
     plugins = {
       nvim-lightbulb = {
         enable = true;
@@ -38,83 +49,14 @@
 
         inlayHints = true;
 
-        keymaps = {
-          diagnostic = { };
-          extra = [
-            {
-              mode = [
-                "n"
-                "v"
-              ];
-              key = "<leader>l";
-              lua = true;
-              action = "vim.lsp.buf.code_action";
-              options.desc = "code action";
-            }
-            {
-              mode = [ "n" ];
-              key = "gr";
-              lua = true;
-              action = "vim.lsp.buf.rename";
-              options.desc = "rename";
-            }
-            {
-              mode = [ "n" ];
-              key = "gd";
-              lua = true;
-              action = "require('telescope.builtin').lsp_definitions";
-              options.desc = "definition";
-            }
-            {
-              mode = [ "n" ];
-              key = "gld";
-              lua = true;
-              action = "vim.lsp.buf.declaration";
-              options.desc = "declaration";
-            }
-            {
-              mode = [ "n" ];
-              key = "K";
-              lua = true;
-              action = "vim.lsp.buf.hover";
-              options.desc = "hover";
-            }
-            {
-              mode = [ "n" ];
-              key = "gK";
-              lua = true;
-              action = "vim.lsp.buf.signature_help";
-              options.desc = "signature";
-            }
-            {
-              mode = [ "n" ];
-              key = "gD";
-              lua = true;
-              action = "require('telescope.builtin').lsp_type_definitions";
-              options.desc = "type definition";
-            }
-            {
-              mode = [ "n" ];
-              key = "gI";
-              lua = true;
-              action = "require('telescope.builtin').lsp_implementations";
-              options.desc = "implementation";
-            }
-            {
-              mode = [ "n" ];
-              key = "gR";
-              lua = true;
-              action = "require('telescope.builtin').lsp_references";
-              options.desc = "references";
-            }
-            {
-              mode = [ "n" ];
-              key = "<leader>L";
-              lua = true;
-              action = "require('telescope.builtin').lsp_document_symbols";
-              options.desc = "file symbols";
-            }
-          ];
+        keymaps.lspBuf = {
+          gd = "definition";
+          gD = "declaration";
+          gri = "implementation";
+          grt = "type_definition";
+          grr = "references";
+          grn = "rename";
+          gra = "code_action";
         };
       };
     };
