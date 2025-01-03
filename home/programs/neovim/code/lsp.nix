@@ -25,17 +25,21 @@
         lazyLoad.settings.lazy = true;
       };
 
-      efmls-configs.enable = true;
+      none-ls = {
+        enable = true;
+        lazyLoad.settings = {
+          event = "DeferredUIEnter";
+          before.__raw = ''
+            function()
+              require("lz.n").trigger_load("lsp-format.nvim")
+            end
+          '';
+        };
+      };
 
       lsp = {
         enable = true;
         lazyLoad.settings = {
-          before = # lua
-            ''
-              function()
-                require("lz.n").trigger_load("lsp-format.nvim")
-              end
-            '';
           event = [
             "BufNewFile"
             "BufReadPost"
