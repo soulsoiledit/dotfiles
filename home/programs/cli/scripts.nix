@@ -9,9 +9,16 @@
     '')
 
     (writeShellScriptBin "brightness_notify" ''
-      brightnessctl $@
-      brightness=$(brightnessctl info | rg -o "\d+%")
-      notify-send "󰃠  $brightness" -h int:value:"$brightness" -h string:x-dunst-stack-tag:brightness
+      icon="󰃠"
+      if [ $1 == "kbd" ]; then
+        icon="󰌌"
+        device="-d *kbd*"
+      fi
+      shift
+
+      brightnessctl $device $@
+      perc=$(brightnessctl $device info | rg -o "\d+%")
+      notify-send "$icon  $perc" -h int:value:"$perc" -h string:x-dunst-stack-tag:brightness
     '')
 
     (writeShellScriptBin "profile_notify" ''

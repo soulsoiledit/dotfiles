@@ -213,22 +213,39 @@
             "XF86MonBrightnessUp" = {
               allow-when-locked = true;
               action.spawn = [
-                "brightness_notify"
-                "set 20%+"
+                "sh"
+                "-c"
+                "brightness_notify mon set 20%+"
               ];
             };
 
             "XF86MonBrightnessDown" = {
               allow-when-locked = true;
               action.spawn = [
-                "brightness_notify"
-                "set"
-                "20%-"
+                "sh"
+                "-c"
+                "brightness_notify mon set 20%-"
               ];
             };
 
-          # TODO: keyboard rgb
-          # TODO: other laptop keys
+            "XF86KbdBrightnessUp" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "sh"
+                "-c"
+                "brightness_notify kbd set 1+"
+              ];
+            };
+
+            "XF86KbdBrightnessDown" = {
+              allow-when-locked = true;
+              action.spawn = [
+                "sh"
+                "-c"
+                "brightness_notify kbd set 1-"
+              ];
+            };
+
             # volume
             "XF86AudioRaiseVolume" = {
               allow-when-locked = true;
@@ -326,7 +343,6 @@
               allow-when-locked = true;
               action.spawn = "profile_notify";
             };
-
 
             # workspaces
             "Mod+1".action = focus-workspace 1;
