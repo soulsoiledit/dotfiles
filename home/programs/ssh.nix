@@ -1,7 +1,9 @@
 {
   programs.ssh = {
     enable = true;
-    addKeysToAgent = "confirm";
+    includes = [ "aliases" ];
+    forwardAgent = true;
+    addKeysToAgent = "1h";
     hashKnownHosts = true;
   };
 
