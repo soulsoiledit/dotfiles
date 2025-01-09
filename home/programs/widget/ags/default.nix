@@ -4,7 +4,7 @@
   imports = [ inputs.ags.homeManagerModules.default ];
 
   programs.ags = {
-    enable = true;
+    # enable = true;
     # config = ./ags;
   };
 }

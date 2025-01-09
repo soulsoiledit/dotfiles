@@ -3,8 +3,8 @@
     {
       # clear on escape
       mode = "n";
-      key = "<Esc>";
-      action = "<cmd>noh<CR>";
+      key = "<esc>";
+      action = "<cmd>noh<cr>";
       options.desc = "clear search highlighting";
     }
 

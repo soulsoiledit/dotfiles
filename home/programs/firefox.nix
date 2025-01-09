@@ -10,7 +10,6 @@
         secondary = base01;
         text = base05;
         accent = "#${config.opt.accent}";
-        accent2 = "#${config.opt.gradient}";
       in
       {
         userChrome = # css
@@ -22,7 +21,7 @@
               --toolbar-color: ${text} !important;
               --toolbar-field-background-color: ${secondary} !important;
               --toolbarbutton-icon-fill: ${accent} !important;
-              --toolbarbutton-icon-fill-attention: ${accent2} !important;
+              --toolbarbutton-icon-fill-attention: ${accent} !important;
               --chrome-content-separator-color: ${secondary} !important;
 
               /* tabs */
@@ -49,7 +48,7 @@
               --newtab-text-primary-color: ${text} !important;
               --newtab-background-color-secondary: ${secondary} !important;
               --newtab-primary-action-background: ${accent} !important;
-              
+
               /* about:* pages*/
               --in-content-page-background: ${primary} !important;
               --in-content-page-color: ${text} !important;
@@ -58,7 +57,7 @@
 
             /* new private tab */
             html.private {
-              --in-content-page-background: oklch(from ${accent2} 0.2 c h) !important;
+              --in-content-page-background: oklch(from ${accent} 0.2 c h) !important;
             }
           '';
       };

@@ -14,7 +14,6 @@
     };
 
     # battery notifications
-    # batsignal.enable = true;
     poweralertd.enable = true;
   };
 

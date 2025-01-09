@@ -25,16 +25,14 @@
     fzf.enable = true;
     jq.enable = true;
     zoxide.enable = true;
+    zellij.enable = true;
 
     ripgrep = {
       enable = true;
       arguments = [ "--smart-case" ];
     };
-    zellij.enable = true;
 
     fastfetch.enable = true;
-    hyfetch.enable = true;
-
     cava.enable = true;
 
     direnv = {

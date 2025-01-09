@@ -64,7 +64,7 @@
             "h"
           ];
           run = "cd ~";
-          desc = "go to the home directory";
+          desc = "home";
         }
         {
           on = [
@@ -72,7 +72,7 @@
             "n"
           ];
           run = "cd ~/code/dotfiles/";
-          desc = "go to the nix config directory";
+          desc = "nix config";
         }
         {
           on = [
@@ -80,15 +80,15 @@
             "s"
           ];
           run = "cd ~/pictures/screenshots/";
-          desc = "Go to the screenshots directory";
+          desc = "screenshots";
         }
         {
           on = [
             "g"
             "m"
           ];
-          run = "cd ~/.local/share/PrismLauncher/instances/Main/.minecraft/";
-          desc = "go to the mc directory";
+          run = "cd ~/.local/share/PrismLauncher/instances/";
+          desc = "minecraft";
         }
         {
           on = [
@@ -96,7 +96,7 @@
             "t"
           ];
           run = "cd ~/.local/share/Trash/files";
-          desc = "go to the trash directory";
+          desc = "trash";
         }
         {
           on = [
@@ -104,15 +104,7 @@
             "u"
           ];
           run = "cd /run/media/";
-          desc = "go to the usb directory";
-        }
-        {
-          on = [
-            "g"
-            "a"
-          ];
-          run = "cd /nix/store/";
-          desc = "go to the nix store";
+          desc = "usb";
         }
 
         # compress
@@ -122,7 +114,7 @@
             "a"
           ];
           run = "plugin compress";
-          desc = "archive selected files";
+          desc = "create archive";
         }
 
         # drag & drop

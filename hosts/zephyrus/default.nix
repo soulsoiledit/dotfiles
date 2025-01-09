@@ -46,7 +46,6 @@ in
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
-    supergfxd.enable = true;
   };
 
   # combination of

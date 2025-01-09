@@ -1,4 +1,5 @@
 { config, ... }:
+
 {
   programs.fish = {
     enable = true;
@@ -19,9 +20,6 @@
       nb = "nh os boot";
       hs = "nh home switch";
     };
-
-    functions = { };
-    plugins = [ ];
   };
 
   # prompt

@@ -10,22 +10,13 @@ with lib;
 {
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
-  options.opt = {
-    accent = mkOption {
-      type = types.str;
-      description = "primary accent color";
-    };
-    gradient = mkOption {
-      type = types.str;
-      description = "secondary accent color";
-    };
+  options.opt.accent = mkOption {
+    type = types.str;
+    description = "primary accent color";
   };
 
   config = {
-    opt = {
-      accent = config.lib.stylix.colors.base0E;
-      gradient = config.lib.stylix.colors.base09;
-    };
+    opt.accent = config.lib.stylix.colors.base0D;
 
     stylix = {
       enable = true;
@@ -91,8 +82,6 @@ with lib;
 
         sizes = {
           applications = 10;
-          desktop = 10;
-          popups = 10;
           terminal = 12;
         };
       };

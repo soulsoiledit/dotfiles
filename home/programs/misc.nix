@@ -13,6 +13,7 @@
     prismlauncher
     cubiomes-viewer
 
+    # compat
     steam-run
     appimage-run
     distrobox
