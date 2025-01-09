@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   programs.nixvim = {
@@ -8,29 +8,19 @@
         autoLoad = false;
       };
 
-      cmp-dictionary = {
-        enable = true;
-        autoLoad = false;
-      };
-
       lz-n.plugins = [
         {
           __unkeyed-1 = "friendly-snippets";
           lazy = true;
         }
-        {
-          __unkeyed-1 = "cmp-dictionary";
-          lazy = true;
-          after.__raw = ''
-            function()
-              require("cmp_dictionary").setup({
-                paths = { "${pkgs.scowl}/share/dict/words.txt" },
-              })
-            end
-          '';
-        }
+
         {
           __unkeyed-1 = "blink-ripgrep.nvim";
+          lazy = true;
+        }
+
+        {
+          __unkeyed-1 = "blink-cmp-dictionary";
           lazy = true;
         }
       ];
@@ -41,18 +31,6 @@
           capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
         '';
 
-      blink-compat = {
-        enable = true;
-        lazyLoad.settings = {
-          lazy = true;
-          before.__raw = ''
-            function()
-              require("lz.n").trigger_load("cmp-dictionary")
-            end
-          '';
-        };
-      };
-
       blink-cmp = {
         enable = true;
         lazyLoad.settings = {
@@ -62,7 +40,7 @@
             function()
               require("lz.n").trigger_load({
                 "blink-ripgrep.nvim",
-                "blink.compat",
+                "blink-cmp-dictionary",
                 "friendly-snippets",
               })
             end
@@ -71,23 +49,15 @@
 
         settings = {
           keymap = {
-            preset = "super-tab";
-            "<tab>" = {
-              __unkeyed-1.__raw = ''
-                function(cmp)
-                  if cmp.snippet_active() then
-                    return cmp.accept()
-                  else
-                    return cmp.select_next()
-                  end
-                end
-              '';
-              __unkeyed-2 = "snippet_forward";
-              __unkeyed-3 = "fallback";
-            };
+            preset = "enter";
+            "<tab>" = [
+              "select_next"
+              "snippet_forward"
+              "fallback"
+            ];
             "<s-tab>" = [
               "select_prev"
-              "snippet_forward"
+              "snippet_backward"
               "fallback"
             ];
           };
@@ -102,7 +72,10 @@
 
             keyword.range = "full";
 
-            list.selection = "auto_insert";
+            list.selection = {
+              preselect = false;
+              auto_insert = true;
+            };
 
             menu.draw = {
               columns = [
@@ -141,14 +114,22 @@
               ripgrep = {
                 module = "blink-ripgrep";
                 name = "rg";
+
+                max_items = 32;
                 score_offset = -4;
+
                 opts.max_filesize = "1M";
               };
+
               dictionary = {
-                name = "dictionary";
-                module = "blink.compat.source";
+                module = "blink-cmp-dictionary";
+                name = "dict";
+
+                min_keyword_length = 3;
+                max_items = 16;
                 score_offset = -16;
-                opts.max_number_items = 16;
+
+                opts.dictionary_files = [ "${pkgs.scowl}/share/dict/words.txt" ];
               };
             };
           };
@@ -156,11 +137,24 @@
       };
     };
 
-    extraPlugins = [
+    extraPlugins = with pkgs.vimPlugins; [
       {
-        plugin = pkgs.vimPlugins.blink-ripgrep-nvim;
+        plugin = blink-ripgrep-nvim;
+        optional = true;
+      }
+
+      {
+        plugin = pkgs.vimUtils.buildVimPlugin {
+          pname = "blink-cmp-dictionary";
+          src = inputs.blink-dict;
+          version = inputs.blink-dict.shortRev;
+          dependencies = [ plenary-nvim ];
+        };
         optional = true;
       }
     ];
+
+    # needed for blink-cmp-dictionary
+    extraPackages = [ pkgs.wordnet ];
   };
 }

@@ -41,6 +41,11 @@
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    blink-dict = {
+      url = "github:Kaiser-Yang/blink-cmp-dictionary";
+      flake = false;
+    };
   };
 
   outputs =
