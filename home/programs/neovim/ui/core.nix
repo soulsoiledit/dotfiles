@@ -1,9 +1,40 @@
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+let
+  tsGrammars = config.programs.nixvim.plugins.treesitter.grammarPackages;
+in
+{
   programs.nixvim.plugins = {
     # syntax
     treesitter = {
       enable = true;
       lazyLoad.settings.event = "DeferredUIEnter";
+
+      # from https://github.com/NixOS/nixpkgs/pull/319233
+      # vastly decreases startup time, maybe buggy
+      packageDecorator = lib.mkForce (
+        pkg:
+        pkg.overrideAttrs {
+          passthru.dependencies = lib.singleton (
+            pkgs.runCommandLocal "vimplugin-treesitter-grammars" { } (
+              "mkdir -p $out/parser\n"
+              + (lib.concatMapStringsSep "\n" (
+                grammar:
+                let
+                  name = lib.head (lib.splitString "-" grammar.pname);
+                in
+                "cp ${grammar}/parser $out/parser/${name}.so"
+              ) tsGrammars)
+            )
+          );
+        }
+      );
+
       settings = {
         highlight.enable = true;
         indent.enable = true;
