@@ -3,15 +3,11 @@
     enable = true;
     lazyLoad.settings = {
       event = "DeferredUIEnter";
+      cmd = "TodoTelescope";
       keys = [
         {
           __unkeyed-1 = "<leader>t";
-          __unkeyed-2.__raw = ''
-            function()
-              require("lz.n").trigger_load("telescope.nvim")
-              require("telescope").extensions["todo-comments"].todo(git_cwd())
-            end
-          '';
+          __unkeyed-2 = "<cmd>TodoTelescope<cr>";
           desc = "todo";
         }
       ];

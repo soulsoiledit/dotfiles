@@ -10,7 +10,6 @@
       scrolloff = 4;
       wrap = true;
 
-      autochdir = true;
       timeoutlen = 250;
     };
 

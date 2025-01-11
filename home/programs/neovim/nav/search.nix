@@ -25,11 +25,7 @@
             # files
             {
               __unkeyed-1 = "<leader>f";
-              __unkeyed-2.__raw = ''
-                function()
-                  require("telescope.builtin").find_files(git_cwd())
-                end
-              '';
+              __unkeyed-2 = "<cmd>Telescope find_files<cr>";
               desc = "files";
             }
 
@@ -48,11 +44,7 @@
             # grep
             {
               __unkeyed-1 = "<leader>s";
-              __unkeyed-2.__raw = ''
-                function()
-                  require("telescope.builtin").live_grep(git_cwd())
-                end
-              '';
+              __unkeyed-2 = "<cmd>Telescope live_grep<cr>";
               desc = "grep";
             }
 
@@ -78,25 +70,12 @@
         };
       };
 
-      lz-n = {
-        # helper for getting project root
-        luaConfig.pre = ''
-          local function git_cwd()
-            local path = vim.fn.system("git rev-parse --show-toplevel")
-            if vim.v.shell_error == 0 then
-              return { cwd = string.sub(path, 1, -2) }
-            end
-            return { }
-          end
-        '';
-
-        plugins = [
-          {
-            __unkeyed-1 = "telescope-fzf-native.nvim";
-            lazy = true;
-          }
-        ];
-      };
+      lz-n.plugins = [
+        {
+          __unkeyed-1 = "telescope-fzf-native.nvim";
+          lazy = true;
+        }
+      ];
     };
 
     extraPlugins = [
