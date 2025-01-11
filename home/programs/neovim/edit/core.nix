@@ -23,7 +23,7 @@
       modules = {
         basics = {
           options.extra_ui = true;
-          navigation.windows = true;
+          mappings.windows = true;
         };
 
         misc = { };
