@@ -76,9 +76,6 @@ in
       # vim.notify
       notifier.enabled = true;
 
-      # statuscolumn
-      statuscolumn.enabled = true;
-
       # start screen
       dashboard = {
         enabled = true;
