@@ -6,6 +6,12 @@
       which-key = {
         enable = true;
         lazyLoad.settings.event = "DeferredUIEnter";
+        settings.spec = [
+          {
+            __unkeyed-1 = "<leader>w";
+            proxy = "<c-w>";
+          }
+        ];
       };
 
       lz-n.plugins = [
