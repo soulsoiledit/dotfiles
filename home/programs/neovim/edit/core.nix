@@ -7,10 +7,9 @@
       '';
     };
 
-    lastplace.enable = true;
-
     snacks = {
       enable = true;
+      lazyLoad.settings.lazy = false;
       settings = {
         bigfile.enabled = true;
         quickfile.enabled = true;
@@ -19,10 +18,22 @@
 
     mini = {
       enable = true;
-      modules.basics = {
-        options.extra_ui = true;
-        navigation.windows = true;
+      lazyLoad.settings.lazy = false;
+
+      modules = {
+        basics = {
+          options.extra_ui = true;
+          navigation.windows = true;
+        };
+
+        misc = { };
       };
+
+      # setup misc functions
+      luaConfig.post = ''
+        MiniMisc.setup_termbg_sync()
+        MiniMisc.setup_restore_cursor()
+      '';
     };
   };
 }
