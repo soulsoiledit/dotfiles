@@ -1,5 +1,9 @@
 { config, lib, ... }:
 
+let
+  target = config.wayland.systemd.target;
+  cfg = config.programs.wpaperd;
+in
 {
   programs.wpaperd = {
     enable = true;
@@ -12,18 +16,18 @@
   };
 
   systemd.user.services.wpaperd = {
+    Install.WantedBy = [ target ];
+
     Unit = {
-      Description = "wallpaper setting daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      Description = "wpaperd";
+      PartOf = [ target ];
+      After = [ target ];
     };
 
     Service = {
-      ExecStart = "${lib.getExe' config.programs.wpaperd.package "wpaperd"}";
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
+      ExecStart = "${lib.getExe' cfg.package "wpaperd"}";
+      Restart = "always";
+      RestartSec = "10";
     };
   };
 }

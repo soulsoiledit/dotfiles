@@ -13,11 +13,10 @@
       iconPath = "${config.gtk.iconTheme.package}/share/icons/${config.gtk.iconTheme.name}";
     };
 
-    # battery notifications
     poweralertd.enable = true;
   };
 
   systemd.user.services.poweralertd = {
-    Unit.After = [ "graphical-session.target" ];
+    Unit.After = [ config.wayland.systemd.target ];
   };
 }

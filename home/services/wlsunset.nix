@@ -14,6 +14,6 @@
   };
 
   systemd.user.services.wlsunset = {
-    Unit.After = [ config.services.wlsunset.systemdTarget ];
+    Unit.After = [ config.wayland.systemd.target ];
   };
 }

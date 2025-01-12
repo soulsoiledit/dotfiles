@@ -1,20 +1,26 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
+let
+  target = config.wayland.systemd.target;
+in
 {
   systemd.user.services.eww-daemon = {
+    Install.WantedBy = [ target ];
+
     Unit = {
       Description = "eww daemon";
-      After = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
+      After = [ target ];
+      PartOf = [ target ];
       BindsTo = [ "tray.target" ];
     };
 
     Service = {
       ExecStart = "${lib.getExe pkgs.eww} --no-daemonize daemon";
-    };
-
-    Install = {
-      WantedBy = [ "graphical-session.target" ];
     };
   };
 

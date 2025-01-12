@@ -1,5 +1,7 @@
+{ config, ... }:
+
 let
-  systemdTarget = "graphical-session.target";
+  target = config.wayland.systemd.target;
 in
 {
   services = {
@@ -14,11 +16,11 @@ in
     startServices = true;
 
     services = {
-      udiskie.Unit.After = [ systemdTarget ];
-      cliphist.Unit.After = [ systemdTarget ];
-      cliphist-images.Unit.After = [ systemdTarget ];
-      network-manager-applet.Unit.After = [ systemdTarget ];
-      blueman-applet.Unit.After = [ systemdTarget ];
+      udiskie.Unit.After = [ target ];
+      cliphist.Unit.After = [ target ];
+      cliphist-images.Unit.After = [ target ];
+      network-manager-applet.Unit.After = [ target ];
+      blueman-applet.Unit.After = [ target ];
     };
   };
 }
