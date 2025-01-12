@@ -1,6 +1,7 @@
 { config, lib, ... }:
 
 let
+  home = config.home.homeDirectory;
   target = config.wayland.systemd.target;
   cfg = config.programs.wpaperd;
 in
@@ -8,9 +9,9 @@ in
   programs.wpaperd = {
     enable = true;
     settings.any = {
-      path = lib.mkForce "${config.home.homeDirectory}/pictures/wallpaper.png";
-      # duration = "4h";
-      # sorting = "random";
+      path = lib.mkForce "${home}/pictures/wallpapers";
+      duration = "4h";
+      sorting = "random";
       transition.fade = { };
     };
   };
