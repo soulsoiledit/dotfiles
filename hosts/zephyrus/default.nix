@@ -23,8 +23,6 @@ in
   networking.hostName = "zephyrus";
 
   modules = {
-    compositor.niri.enable = true;
-
     zswap = {
       enable = true;
       maxPoolPercent = 50;
