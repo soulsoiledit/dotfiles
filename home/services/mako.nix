@@ -1,5 +1,8 @@
 { config, ... }:
 
+let
+  icons = config.gtk.iconTheme;
+in
 {
   services = {
     mako = {
@@ -10,7 +13,7 @@
       borderRadius = 4;
       layer = "overlay";
 
-      iconPath = "${config.gtk.iconTheme.package}/share/icons/${config.gtk.iconTheme.name}";
+      iconPath = "${icons.package}/share/icons/${icons.name}";
     };
 
     poweralertd.enable = true;

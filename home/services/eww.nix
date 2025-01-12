@@ -7,6 +7,7 @@
 
 let
   target = config.wayland.systemd.target;
+  ewwService = "eww-daemon.service";
 in
 {
   systemd.user.services.eww-daemon = {
@@ -25,18 +26,16 @@ in
   };
 
   systemd.user.services.eww-bar = {
+    Install.WantedBy = [ ewwService ];
+
     Unit = {
-      Description = "eww status bar";
-      After = [ "eww-daemon.service" ];
-      PartOf = [ "eww-daemon.service" ];
+      Description = "eww bar";
+      After = [ ewwService ];
+      PartOf = [ ewwService ];
     };
 
     Service = {
       ExecStart = "${lib.getExe pkgs.eww} open bar";
-    };
-
-    Install = {
-      WantedBy = [ "eww-daemon.service" ];
     };
   };
 }
