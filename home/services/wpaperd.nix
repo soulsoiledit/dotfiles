@@ -27,6 +27,8 @@ in
 
     Service = {
       ExecStart = "${lib.getExe' cfg.package "wpaperd"}";
+      Restart = "always";
+      RestartSec = "10";
     };
   };
 }

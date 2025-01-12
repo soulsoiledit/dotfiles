@@ -22,7 +22,7 @@ in
 
     Service = {
       ExecStart = "${lib.getExe pkgs.eww} --no-daemonize daemon";
-      Restart = "always";
+      Restart = "on-failure";
       RestartSec = "10";
     };
   };
@@ -38,7 +38,7 @@ in
 
     Service = {
       ExecStart = "${lib.getExe pkgs.eww} open bar";
-      Restart = "always";
+      Restart = "on-failure";
       RestartSec = "10";
     };
   };
