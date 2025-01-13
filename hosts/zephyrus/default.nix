@@ -9,11 +9,6 @@ let
   ryzenadj = "${lib.getExe pkgs.ryzenadj} --set-coall=0x100020";
   modprobe = lib.getExe' pkgs.kmod "modprobe";
   brightnessctl = lib.getExe pkgs.brightnessctl;
-  ryzenadj-kbd = ''
-    ${ryzenadj}
-    ${modprobe} -r hid_asus && ${modprobe} hid_asus
-    ${brightnessctl} -d asus::kbd_backlight s 0
-  '';
 in
 {
   imports = [
@@ -50,8 +45,15 @@ in
   # https://github.com/sammilucia/set-coall-timer
   # and builtin powerManagement commands
   powerManagement = {
-    powerUpCommands = ryzenadj-kbd;
-    powerDownCommands = ryzenadj;
+    powerUpCommands = ''
+      ${ryzenadj}
+      ${modprobe} -r hid_asus && ${modprobe} hid_asus
+      ${brightnessctl} -d *kbd* -r
+    '';
+    powerDownCommands = ''
+      ${ryzenadj}
+      ${brightnessctl} -d *kbd* -s
+    '';
   };
 
   systemd = {
