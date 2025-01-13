@@ -141,6 +141,15 @@
 
           open-on-workspace = "2";
         }
+
+        # float and resize file pickers
+        {
+          matches = [ { title = "^Open Files?$"; } ];
+
+          open-floating = true;
+          default-column-width.proportion = 0.75;
+          default-window-height.proportion = 0.75;
+        }
       ];
 
       screenshot-path = "~/pictures/screenshots/%Y-%m-%d_%H-%M-%S.png";
