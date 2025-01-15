@@ -184,78 +184,18 @@
           "Mod+Space".action.spawn = "fuzzel";
           "Mod+S".action = screenshot;
           "Mod+B".action.spawn = [
-            "eww"
-            "open"
-            "bar"
-            "--toggle"
+            "sh"
+            "-c"
+            "eww open bar --toggle"
           ];
           "Mod+P".action.spawn = [
-            "bash"
+            "sh"
             "-c"
             "cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
           ];
           "Mod+L" = {
             allow-when-locked = true;
             action.spawn = "wlogout";
-          };
-
-          # notifications
-          "Mod+Control+Space" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "makoctl"
-              "dismiss"
-              "--all"
-            ];
-          };
-          "Mod+Control+D".action.spawn = [
-            "makoctl"
-            "dismiss"
-          ];
-          "Mod+Control+Comma".action.spawn = [
-            "makoctl"
-            "restore"
-          ];
-          "Mod+Control+Period".action.spawn = [
-            "makoctl"
-            "invoke"
-          ];
-
-          # brightness
-          "XF86MonBrightnessUp" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify mon set 20%+"
-            ];
-          };
-
-          "XF86MonBrightnessDown" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify mon set 20%-"
-            ];
-          };
-
-          "XF86KbdBrightnessUp" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify kbd set 1+"
-            ];
-          };
-
-          "XF86KbdBrightnessDown" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify kbd set 1-"
-            ];
           };
 
           # volume
@@ -351,6 +291,66 @@
               "next"
             ];
           };
+
+          # brightness
+          "XF86MonBrightnessUp" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "sh"
+              "-c"
+              "brightness_notify mon set 20%+"
+            ];
+          };
+          "XF86MonBrightnessDown" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "sh"
+              "-c"
+              "brightness_notify mon set 20%-"
+            ];
+          };
+
+          # keyboard
+          "XF86KbdBrightnessUp" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "sh"
+              "-c"
+              "brightness_notify kbd set 1+"
+            ];
+          };
+          "XF86KbdBrightnessDown" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "sh"
+              "-c"
+              "brightness_notify kbd set 1-"
+            ];
+          };
+
+          # notifications
+          "Mod+Control+Space" = {
+            allow-when-locked = true;
+            action.spawn = [
+              "makoctl"
+              "dismiss"
+              "--all"
+            ];
+          };
+          "Mod+Control+D".action.spawn = [
+            "makoctl"
+            "dismiss"
+          ];
+          "Mod+Control+Comma".action.spawn = [
+            "makoctl"
+            "restore"
+          ];
+          "Mod+Control+Period".action.spawn = [
+            "makoctl"
+            "invoke"
+          ];
+
+          # profile
           "XF86Launch4" = {
             allow-when-locked = true;
             action.spawn = "profile_notify";
