@@ -54,11 +54,6 @@
               --in-content-page-color: ${text} !important;
               --background-color-box: ${secondary} !important;
             }
-
-            /* new private tab */
-            html.private {
-              --in-content-page-background: oklch(from ${accent} 0.2 c h) !important;
-            }
           '';
       };
   };
