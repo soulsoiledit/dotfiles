@@ -82,7 +82,7 @@ with lib;
 
         sizes = {
           applications = 10;
-          terminal = 12;
+          terminal = 11;
         };
       };
 
