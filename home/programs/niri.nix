@@ -150,6 +150,21 @@
           default-column-width.proportion = 0.75;
           default-window-height.proportion = 0.75;
         }
+
+        {
+          matches = [
+            {
+              app-id = "steam";
+              title = "^notificationtoasts_.*_desktop$";
+            }
+          ];
+
+          default-floating-position = {
+            x = 200;
+            y = 100;
+            relative-to = "bottom-right";
+          };
+        }
       ];
 
       screenshot-path = "~/pictures/screenshots/%Y-%m-%d_%H-%M-%S.png";
