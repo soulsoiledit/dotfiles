@@ -160,8 +160,8 @@
           ];
 
           default-floating-position = {
-            x = 8;
-            y = 8;
+            x = 16;
+            y = 16;
             relative-to = "bottom-right";
           };
         }
