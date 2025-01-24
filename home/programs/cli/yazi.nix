@@ -1,12 +1,13 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   home.packages = with pkgs; [
-    xdg-utils
+    file
     exiftool
-    zip
-    p7zip
     ripdrag
+
+    p7zip
+    zip
   ];
 
   programs = {
@@ -19,12 +20,7 @@
       enableFishIntegration = true;
 
       plugins = {
-        compress = pkgs.fetchFromGitHub {
-          owner = "KKV9";
-          repo = "compress.yazi";
-          rev = "main";
-          hash = "sha256-Yf5R3H8t6cJBMan8FSpK3BDSG5UnGlypKSMOi0ZFqzE=";
-        };
+        compress = inputs.compress-yazi;
       };
 
       settings = {
@@ -38,13 +34,6 @@
         };
 
         open.prepend_rules = [
-          {
-            mime = "application/zstd";
-            use = [
-              "extract"
-              "reveal"
-            ];
-          }
           {
             mime = "application/java-archive";
             use = [

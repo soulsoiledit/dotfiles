@@ -43,6 +43,11 @@
       url = "github:Kaiser-Yang/blink-cmp-dictionary";
       flake = false;
     };
+
+    compress-yazi = {
+      url = "github:KKV9/compress.yazi";
+      flake = false;
+    };
   };
 
   outputs =

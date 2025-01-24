@@ -9,7 +9,6 @@
     trashy
 
     tmux
-    file
 
     # service control
     libnotify
