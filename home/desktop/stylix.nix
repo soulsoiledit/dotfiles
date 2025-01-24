@@ -44,7 +44,7 @@ with lib;
       };
 
       image = config.lib.stylix.pixel "base00";
-      imageScalingMode = "center";
+      imageScalingMode = "fill";
 
       iconTheme = {
         enable = true;
