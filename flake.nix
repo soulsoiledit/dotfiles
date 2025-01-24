@@ -34,9 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # desktop stylers
-    catppuccin.url = "github:catppuccin/nix";
-
     stylix = {
       url = "github:danth/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
