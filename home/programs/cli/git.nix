@@ -1,22 +1,16 @@
 {
   programs.git = {
     enable = true;
+    delta.enable = true;
+
     userName = "soulsoiledit";
     userEmail = "no.sleep410@passinbox.com";
 
-    delta.enable = true;
-
-    # TODO: add keys
+    # INFO: setup and use gpg signing
     signing = null;
 
-    extraConfig = {
-      core.editor = "nvim";
-      init.defaultBranch = "main";
-      config.pull.rebase = true;
-    };
+    extraConfig.init.defaultBranch = "main";
   };
 
-  programs.lazygit = {
-    enable = true;
-  };
+  programs.lazygit.enable = true;
 }
