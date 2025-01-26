@@ -115,7 +115,7 @@
                 module = "blink-ripgrep";
                 name = "rg";
                 max_items = 32;
-                opts.max_filesize = "1M";
+                opts.max_filesize = "128K";
               };
 
               dictionary = {
