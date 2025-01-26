@@ -114,21 +114,15 @@
               ripgrep = {
                 module = "blink-ripgrep";
                 name = "rg";
-
                 max_items = 32;
-                score_offset = -4;
-
                 opts.max_filesize = "1M";
               };
 
               dictionary = {
                 module = "blink-cmp-dictionary";
                 name = "dict";
-
                 min_keyword_length = 3;
                 max_items = 16;
-                score_offset = -16;
-
                 opts.dictionary_files = [ "${pkgs.scowl}/share/dict/words.txt" ];
               };
             };
