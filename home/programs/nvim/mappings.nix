@@ -2,6 +2,13 @@
   programs.nixvim.keymaps = [
     {
       mode = "n";
+      key = "<leader>q";
+      action = "<cmd>q<cr>";
+      options.desc = "quit";
+    }
+
+    {
+      mode = "n";
       key = "<esc>";
       action = "<cmd>noh<cr>";
       options.desc = "clear hlsearch";
