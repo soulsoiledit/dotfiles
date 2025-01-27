@@ -48,8 +48,14 @@
       # vim.notify
       notifier.enabled = true;
 
-      # vim.ui.input/select
+      # vim.ui.input
       input.enabled = true;
+      styles.input = {
+        relative = "cursor";
+        width = 32;
+      };
+
+      # vim.ui.select
       picker.enabled = true;
 
       # start screen
