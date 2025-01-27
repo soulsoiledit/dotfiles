@@ -44,28 +44,19 @@
       modules.icons = { };
     };
 
-    # vim.ui.select/input
-    dressing = {
-      enable = true;
-      lazyLoad.settings = {
-        event = "DeferredUIEnter";
-        before.__raw = ''
-          function()
-            require("lz.n").trigger_load("telescope.nvim")
-          end
-        '';
-      };
-    };
-
     snacks.settings = {
       # vim.notify
       notifier.enabled = true;
+
+      # vim.ui.input/select
+      input.enabled = true;
+      picker.enabled = true;
 
       # start screen
       dashboard = {
         enabled = true;
         preset.header = ''
-           ▐ ▄  ▄· ▄▌ ▄▄▄·  ▌ ▐·▪  • ▌ ▄ ·. 
+           ▐ ▄  ▄· ▄▌ ▄▄▄·  ▌ ▐·▪  • ▌ ▄ ·.
           •█▌▐█▐█▪██▌▐█ ▀█ ▪█·█▌██ ·██ ▐███▪
           ▐█▐▐▌▐█▌▐█▪▄█▀▀█ ▐█▐█•▐█·▐█ ▌▐▌▐█·
           ██▐█▌ ▐█▀·.▐█▪ ▐▌ ███ ▐█▌██ ██▌▐█▌
