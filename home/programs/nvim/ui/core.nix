@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+
   programs.nixvim.plugins = {
     # syntax
     treesitter = {
@@ -101,4 +102,6 @@
       };
     };
   };
+
+  programs.nixvim.highlight.SnacksPicker.link = "Normal";
 }
