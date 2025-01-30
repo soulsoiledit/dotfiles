@@ -18,11 +18,6 @@
           __unkeyed-1 = "blink-ripgrep.nvim";
           lazy = true;
         }
-
-        {
-          __unkeyed-1 = "blink-cmp-dictionary";
-          lazy = true;
-        }
       ];
 
       lsp.capabilities = # lua
@@ -40,7 +35,6 @@
             function()
               require("lz.n").trigger_load({
                 "blink-ripgrep.nvim",
-                "blink-cmp-dictionary",
                 "friendly-snippets",
               })
             end
@@ -107,23 +101,19 @@
               "snippets"
               "buffer"
               "ripgrep"
-              "dictionary"
             ];
 
             providers = {
               ripgrep = {
                 module = "blink-ripgrep";
                 name = "rg";
-                max_items = 32;
-                opts.max_filesize = "128K";
-              };
-
-              dictionary = {
-                module = "blink-cmp-dictionary";
-                name = "dict";
-                min_keyword_length = 3;
-                max_items = 16;
-                opts.dictionary_files = [ "${pkgs.scowl}/share/dict/words.txt" ];
+                max_items = 128;
+                opts = {
+                  max_filesize = "128K";
+                  additional_paths = [
+                    "${pkgs.scowl}/share/dict/words.txt"
+                  ];
+                };
               };
             };
           };
@@ -133,22 +123,9 @@
 
     extraPlugins = with pkgs.vimPlugins; [
       {
-        plugin = blink-ripgrep-nvim;
-        optional = true;
-      }
-
-      {
-        plugin = pkgs.vimUtils.buildVimPlugin {
-          pname = "blink-cmp-dictionary";
-          src = inputs.blink-dict;
-          version = inputs.blink-dict.shortRev;
-          dependencies = [ plenary-nvim ];
-        };
+        plugin = blink-ripgrep-nvim.overrideAttrs { src = inputs.blink-ripgrep; };
         optional = true;
       }
     ];
-
-    # needed for blink-cmp-dictionary
-    extraPackages = [ pkgs.wordnet ];
   };
 }

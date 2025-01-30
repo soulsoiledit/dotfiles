@@ -39,8 +39,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    blink-dict = {
-      url = "github:Kaiser-Yang/blink-cmp-dictionary";
+    blink-ripgrep = {
+      url = "github:mikavilpas/blink-ripgrep.nvim";
       flake = false;
     };
 
