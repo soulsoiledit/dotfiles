@@ -2,7 +2,7 @@
   programs.nixvim.plugins.trouble = {
     enable = true;
     lazyLoad.settings = {
-      cmd = "Trouble";
+      cmd = [ "Trouble" ];
       keys = [
         {
           __unkeyed-1 = "<leader>d";
