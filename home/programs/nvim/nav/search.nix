@@ -1,88 +1,52 @@
-{ pkgs, ... }:
-
 {
-  programs.nixvim = {
-    plugins = {
-      grug-far = {
-        enable = true;
-        lazyLoad.settings.cmd = "GrugFar";
-      };
+  programs.nixvim.plugins = {
+    grug-far = {
+      enable = true;
+      lazyLoad.settings.cmd = "GrugFar";
+    };
 
-      telescope = {
-        enable = true;
-        enabledExtensions = [ "fzf" ];
-
-        lazyLoad.settings = {
-          lazy = true;
-          before.__raw = ''
-            function()
-              require("lz.n").trigger_load("telescope-fzf-native.nvim")
-            end
-          '';
-
-          cmd = "Telescope";
-          keys = [
-            # files
-            {
-              __unkeyed-1 = "<leader>f";
-              __unkeyed-2 = "<cmd>Telescope find_files<cr>";
-              desc = "files";
-            }
-
-            {
-              __unkeyed-1 = "<leader>b";
-              __unkeyed-2 = "<cmd>Telescope buffers<cr>";
-              desc = "buffers";
-            }
-
-            {
-              __unkeyed-1 = "<leader>o";
-              __unkeyed-2 = "<cmd>Telescope oldfiles<cr>";
-              desc = "recent";
-            }
-
-            # grep
-            {
-              __unkeyed-1 = "<leader>s";
-              __unkeyed-2 = "<cmd>Telescope live_grep<cr>";
-              desc = "grep";
-            }
-
-            {
-              __unkeyed-1 = "<leader>l";
-              __unkeyed-2 = "<cmd>Telescope live_grep grep_open_files=true<cr>";
-              desc = "lines";
-            }
-
-            # nvim
-            {
-              __unkeyed-1 = "<leader>c";
-              __unkeyed-2 = "<cmd>Telescope commands<cr>";
-              desc = "commands";
-            }
-
-            {
-              __unkeyed-1 = "<leader>p";
-              __unkeyed-2 = "<cmd>Telescope builtin<cr>";
-              desc = "pickers";
-            }
-          ];
-        };
-      };
-
-      lz-n.plugins = [
+    snacks = {
+      settings.picker.enabled = true;
+      lazyLoad.settings.keys = [
+        # files
         {
-          __unkeyed-1 = "telescope-fzf-native.nvim";
-          lazy = true;
+          __unkeyed-1 = "<leader>f";
+          __unkeyed-2.__raw = ''function() Snacks.picker.smart() end'';
+          desc = "files";
+        }
+
+        # grep
+        {
+          __unkeyed-1 = "<leader>s";
+          __unkeyed-2.__raw = ''function() Snacks.picker.grep() end'';
+          desc = "grep";
+        }
+
+        {
+          __unkeyed-1 = "<leader>l";
+          __unkeyed-2.__raw = ''function() Snacks.picker.grep_buffers() end'';
+          desc = "lines";
+        }
+
+        # nvim
+        {
+          __unkeyed-1 = "<leader>p";
+          __unkeyed-2.__raw = ''function() Snacks.picker() end'';
+          desc = "pickers";
+        }
+
+        {
+          __unkeyed-1 = "<leader>c";
+          __unkeyed-2.__raw = ''function() Snacks.picker.commands() end'';
+          desc = "commands";
+        }
+
+        {
+          __unkeyed-1 = "<leader>h";
+          __unkeyed-2.__raw = ''function() Snacks.picker.help() end'';
+          desc = "help";
         }
       ];
     };
-
-    extraPlugins = [
-      {
-        plugin = pkgs.vimPlugins.telescope-fzf-native-nvim;
-        optional = true;
-      }
-    ];
   };
 }
