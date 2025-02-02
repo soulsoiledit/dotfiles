@@ -14,6 +14,11 @@
       '';
     };
 
+    ts-comments = {
+      enable = true;
+      lazyLoad.settings.event = "DeferredUIEnter";
+    };
+
     snacks = {
       enable = true;
       lazyLoad.settings.lazy = false;
