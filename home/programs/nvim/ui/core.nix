@@ -95,6 +95,7 @@
         };
 
         presets = {
+
           bottom_search = true;
           command_palette = true;
           long_message_to_split = true;
@@ -103,5 +104,9 @@
     };
   };
 
-  programs.nixvim.highlight.SnacksPicker.link = "Normal";
+  programs.nixvim.highlight = {
+    SnacksPicker.link = "Normal";
+    SnacksNormal.link = "Normal";
+    SnacksNormalNC.link = "NormalNC";
+  };
 }

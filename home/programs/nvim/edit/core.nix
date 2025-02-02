@@ -1,5 +1,12 @@
+{ lib, ... }:
+
 {
-  programs.nixvim.plugins = {
+  # define type so lists will be merged
+  options.programs.nixvim.plugins.snacks.lazyLoad.settings.keys = lib.mkOption {
+    type = lib.types.listOf lib.types.attrs;
+  };
+
+  config.programs.nixvim.plugins = {
     lz-n = {
       enable = true;
       luaConfig.pre = ''
