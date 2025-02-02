@@ -5,13 +5,11 @@
     inter
 
     nerd-fonts.symbols-only
-    # nerd-fonts.commit-mono
     # nerd-fonts.fantasque-sans-mono
-    # nerd-fonts.iosevka-term
     # nerd-fonts.jetbrains-mono
-    nerd-fonts.departure-mono
+    # nerd-fonts.departure-mono
 
-    # maple-mono-NF
+    maple-mono-SC-NF
     # cascadia-code
 
     twitter-color-emoji
@@ -47,7 +45,7 @@
         ] ++ cjk "Serif";
 
         monospace = [
-          "DepartureMono Nerd Font"
+          "Maple Mono SC NF"
           "Symbols Nerd Font"
           "Noto Sans Mono"
         ] ++ cjk "Sans Mono";

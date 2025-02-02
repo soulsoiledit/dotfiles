@@ -6,12 +6,11 @@
   ...
 }:
 
-with lib;
 {
   imports = [ inputs.stylix.homeManagerModules.stylix ];
 
-  options.opt.accent = mkOption {
-    type = types.str;
+  options.opt.accent = lib.mkOption {
+    type = lib.types.str;
     description = "primary accent color";
   };
 
@@ -82,7 +81,7 @@ with lib;
 
         sizes = {
           applications = 10;
-          terminal = 11;
+          terminal = 12;
         };
       };
 
