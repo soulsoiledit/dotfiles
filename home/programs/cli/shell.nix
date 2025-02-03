@@ -8,9 +8,6 @@
 
       # use native wayland when possible
       NIXOS_OZONE_WL = 1;
-
-      # set qt style
-      QT_QPA_PLATFORMTHEME = config.qt.platformTheme.name;
     };
 
     sessionPath = [
