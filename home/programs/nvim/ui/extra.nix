@@ -53,7 +53,7 @@
       };
 
       mini = {
-        luaConfig.pre = "vim.g.minitrailspace_disable = true";
+        luaConfig.pre = "vim.b.minitrailspace_disable = true";
         modules = {
           cursorword = { };
           trailspace = { };
@@ -67,7 +67,7 @@
         event = "BufNew";
         callback.__raw = ''
           function(args)
-            vim.g.minitrailspace_disable = false
+            vim.b[args.buf].minitrailspace_disable = false
           end
         '';
       }
