@@ -48,6 +48,11 @@
       url = "github:KKV9/compress.yazi";
       flake = false;
     };
+
+    markview = {
+      url = "github:OXY2DEV/markview.nvim";
+      flake = false;
+    };
   };
 
   outputs =
