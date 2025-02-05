@@ -6,7 +6,6 @@
 }:
 
 let
-  ryzenadj = "${lib.getExe pkgs.ryzenadj} --set-coall=0x100020";
   modprobe = lib.getExe' pkgs.kmod "modprobe";
   brightnessctl = lib.getExe pkgs.brightnessctl;
 in
@@ -28,6 +27,9 @@ in
       size = 20;
     };
 
+    podman.enable = true;
+    libvirt.enable = true;
+
     # used for rebinding laptop keys
     kanata.enable = true;
   };
@@ -41,34 +43,31 @@ in
     power-profiles-daemon.enable = true;
   };
 
-  # combination of
-  # https://github.com/sammilucia/set-coall-timer
-  # and builtin powerManagement commands
   powerManagement = {
     powerUpCommands = ''
-      ${ryzenadj}
       ${modprobe} -r hid_asus && ${modprobe} hid_asus
       ${brightnessctl} -d *kbd* -r
     '';
     powerDownCommands = ''
-      ${ryzenadj}
       ${brightnessctl} -d *kbd* -s
     '';
   };
 
+  # https://github.com/sammilucia/set-coall-timer
   systemd = {
     services.set-coall = {
       description = "Override AMD Curve Optimizer";
-      script = ryzenadj;
+      script = "${lib.getExe pkgs.ryzenadj} --set-coall=0x100020";
     };
 
     timers.set-coall = {
-      description = "Override AMD Curve Optimizer on startup and every 5 minutes thereafter";
-      wantedBy = [ "timers.target" ];
+      description = "Override AMD Curve Optimizer on startup and every 10 minutes thereafter";
       timerConfig = {
-        OnBootSec = "30sec";
-        OnUnitActiveSec = "5min";
+        OnBootSec = "1min";
+        OnUnitActiveSec = "10min";
+        Persistent = true;
       };
+      wantedBy = [ "timers.target" ];
     };
   };
 }
