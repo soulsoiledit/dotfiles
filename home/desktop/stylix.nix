@@ -60,7 +60,7 @@
 
       fonts = {
         sansSerif = {
-          package = pkgs.hello;
+          package = config.stylix.cursor.package;
           name = "sans-serif";
         };
 

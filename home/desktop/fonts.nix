@@ -8,7 +8,6 @@
     # nerd-fonts.fantasque-sans-mono
     # nerd-fonts.jetbrains-mono
     # nerd-fonts.departure-mono
-
     maple-mono-SC-NF
     # cascadia-code
 
