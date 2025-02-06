@@ -3,13 +3,9 @@
 {
   users.users.user = {
     name = "soil";
-
     isNormalUser = true;
     shell = pkgs.fish;
-
-    extraGroups = [
-      "wheel"
-    ];
+    extraGroups = [ "wheel" ];
   };
 
   programs.fish.enable = true;

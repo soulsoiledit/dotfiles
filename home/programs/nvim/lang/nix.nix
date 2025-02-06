@@ -1,5 +1,9 @@
 { lib, pkgs, ... }:
 
+# let
+# getFlake = ''builtins.getFlake "${inputs.self}"'';
+# user = config.home.username;
+# in
 {
   programs.nixvim.plugins = {
     lsp.servers = {
@@ -13,12 +17,7 @@
 
       nixd = {
         enable = true;
-        # settings.options.home.expr =
-        #   let
-        #     getFlake = ''builtins.getFlake "${inputs.self}"'';
-        #     user = config.home.username;
-        #   in
-        #   ''(${getFlake}).homeConfigurations.${user}.options'';
+        # settings.options.home.expr = ''(${getFlake}).homeConfigurations.${user}.options'';
       };
     };
   };

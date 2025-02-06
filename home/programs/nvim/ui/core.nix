@@ -9,7 +9,7 @@
       lazyLoad.settings.event = "DeferredUIEnter";
 
       # NOTE: https://github.com/NixOS/nixpkgs/pull/355680
-      # join parsers into nvim-treesitter
+      # join parsers into nvim-treesitter, can be buggy
       package = pkgs.symlinkJoin {
         name = "nvim-treesitter";
         paths =
@@ -95,7 +95,6 @@
         };
 
         presets = {
-
           bottom_search = true;
           command_palette = true;
           long_message_to_split = true;

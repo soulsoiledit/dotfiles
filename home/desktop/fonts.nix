@@ -1,5 +1,14 @@
 { pkgs, ... }:
 
+let
+  cjk = variant: [
+    "Noto ${variant} CJK HK"
+    "Noto ${variant} CJK JP"
+    "Noto ${variant} CJK KR"
+    "Noto ${variant} CJK SC"
+    "Noto ${variant} CJK TC"
+  ];
+in
 {
   home.packages = with pkgs; [
     inter
@@ -21,38 +30,28 @@
 
   fonts.fontconfig = {
     enable = true;
-    defaultFonts =
-      let
-        cjk = variant: [
-          "Noto ${variant} CJK JP"
-          "Noto ${variant} CJK KR"
-          "Noto ${variant} CJK HK"
-          "Noto ${variant} CJK SC"
-          "Noto ${variant} CJK TC"
-        ];
-      in
-      {
-        sansSerif = [
-          "Inter"
-          "Symbols Nerd Font"
-          "Noto Sans"
-        ] ++ cjk "Sans";
+    defaultFonts = {
+      sansSerif = [
+        "Inter"
+        "Symbols Nerd Font"
+        "Noto Sans"
+      ] ++ cjk "Sans";
 
-        serif = [
-          "Noto Serif"
-          "Symbols Nerd Font"
-        ] ++ cjk "Serif";
+      serif = [
+        "Noto Serif"
+        "Symbols Nerd Font"
+      ] ++ cjk "Serif";
 
-        monospace = [
-          "Maple Mono SC NF"
-          "Symbols Nerd Font"
-          "Noto Sans Mono"
-        ] ++ cjk "Sans Mono";
+      monospace = [
+        "Maple Mono SC NF"
+        "Symbols Nerd Font"
+        "Noto Sans Mono"
+      ] ++ cjk "Sans Mono";
 
-        emoji = [
-          "Twitter Color Emoji"
-          "Noto Color Emoji"
-        ];
-      };
+      emoji = [
+        "Twitter Color Emoji"
+        "Noto Color Emoji"
+      ];
+    };
   };
 }

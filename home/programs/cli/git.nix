@@ -6,8 +6,8 @@
     userName = "soulsoiledit";
     userEmail = "no.sleep410@passinbox.com";
 
-    # INFO: setup and use gpg signing
-    signing = null;
+    # TODO: setup and use gpg signing
+    # signing = null;
 
     extraConfig.init.defaultBranch = "main";
   };

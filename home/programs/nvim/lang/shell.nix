@@ -9,6 +9,6 @@
       };
     };
 
-    extraPackages = with pkgs; [ shfmt ];
+    extraPackages = [ pkgs.shfmt ];
   };
 }

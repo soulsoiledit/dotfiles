@@ -5,36 +5,20 @@
   ...
 }:
 
+let
+  move-column-to-workspace = ws: [
+    "sh"
+    "-c"
+    "niri msg action move-column-to-workspace ${toString ws} && niri msg action focus-workspace-previous"
+  ];
+in
 {
   imports = [
     inputs.niri.homeModules.niri
     inputs.niri.homeModules.stylix
   ];
 
-  home.packages = with pkgs; [
-    xwayland-satellite
-  ];
-
-  systemd = {
-    # add niri session target
-    user.targets.niri-session = {
-      Unit = {
-        Description = "niri compositor session";
-        Documentation = [ "man:systemd.special(7)" ];
-        BindsTo = [ "graphical-session.target" ];
-        Wants = [ "graphical-session-pre.target" ];
-        After = [ "graphical-session-pre.target" ];
-      };
-    };
-
-    # add tray target so apps startup correctly
-    user.targets.tray = {
-      Unit = {
-        Description = "Home Manager System Tray";
-        Requires = [ "graphical-session-pre.target" ];
-      };
-    };
-  };
+  home.packages = [ pkgs.xwayland-satellite ];
 
   programs.niri = {
     enable = true;
@@ -169,223 +153,214 @@
 
       screenshot-path = "~/pictures/screenshots/%Y-%m-%d_%H-%M-%S.png";
 
-      binds =
-        with config.lib.niri.actions;
-        let
-          move-column-to-workspace = ws: [
+      binds = with config.lib.niri.actions; {
+        # programs
+        "Mod+Return".action.spawn = "footclient";
+        "Mod+Space".action.spawn = "fuzzel";
+        "Mod+S".action = screenshot;
+        "Mod+B".action.spawn = [
+          "sh"
+          "-c"
+          "eww open bar --toggle"
+        ];
+        "Mod+P".action.spawn = [
+          "sh"
+          "-c"
+          "cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
+        ];
+        "Mod+L" = {
+          allow-when-locked = true;
+          action.spawn = "wlogout";
+        };
+
+        # volume
+        "XF86AudioRaiseVolume" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "volume_notify"
+            "--increase"
+            "5"
+          ];
+        };
+        "XF86AudioLowerVolume" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "volume_notify"
+            "--decrease"
+            "5"
+          ];
+        };
+        "Shift+XF86AudioRaiseVolume" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "volume_notify"
+            "--increase"
+            "1"
+          ];
+        };
+        "Shift+XF86AudioLowerVolume" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "volume_notify"
+            "--decrease"
+            "1"
+          ];
+        };
+
+        "XF86AudioMute" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "pamixer"
+            "--toggle-mute"
+          ];
+        };
+        "XF86AudioMicMute" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "pamixer"
+            "--default-source"
+            "--toggle-mute"
+          ];
+        };
+
+        # media
+        "XF86AudioPlay" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "playerctl"
+            "play-pause"
+          ];
+        };
+        "XF86AudioPrev" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "playerctl"
+            "previous"
+          ];
+        };
+        "XF86AudioNext" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "playerctl"
+            "next"
+          ];
+        };
+        "Mod+0" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "playerctl"
+            "play-pause"
+          ];
+        };
+        "Mod+Minus" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "playerctl"
+            "previous"
+          ];
+        };
+        "Mod+Equal" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "playerctl"
+            "next"
+          ];
+        };
+
+        # brightness
+        "XF86MonBrightnessUp" = {
+          allow-when-locked = true;
+          action.spawn = [
             "sh"
             "-c"
-            "niri msg action move-column-to-workspace ${toString ws} && niri msg action focus-workspace-previous"
+            "brightness_notify mon set 20%+"
           ];
-        in
-        {
-          # programs
-          "Mod+Return".action.spawn = "footclient";
-          "Mod+Space".action.spawn = "fuzzel";
-          "Mod+S".action = screenshot;
-          "Mod+B".action.spawn = [
+        };
+        "XF86MonBrightnessDown" = {
+          allow-when-locked = true;
+          action.spawn = [
             "sh"
             "-c"
-            "eww open bar --toggle"
+            "brightness_notify mon set 20%-"
           ];
-          "Mod+P".action.spawn = [
+        };
+
+        # keyboard
+        "XF86KbdBrightnessUp" = {
+          allow-when-locked = true;
+          action.spawn = [
             "sh"
             "-c"
-            "cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
+            "brightness_notify kbd set 1+"
           ];
-          "Mod+L" = {
-            allow-when-locked = true;
-            action.spawn = "wlogout";
-          };
+        };
+        "XF86KbdBrightnessDown" = {
+          allow-when-locked = true;
+          action.spawn = [
+            "sh"
+            "-c"
+            "brightness_notify kbd set 1-"
+          ];
+        };
 
-          # volume
-          "XF86AudioRaiseVolume" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "volume_notify"
-              "--increase"
-              "5"
-            ];
-          };
-          "XF86AudioLowerVolume" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "volume_notify"
-              "--decrease"
-              "5"
-            ];
-          };
-          "Shift+XF86AudioRaiseVolume" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "volume_notify"
-              "--increase"
-              "1"
-            ];
-          };
-          "Shift+XF86AudioLowerVolume" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "volume_notify"
-              "--decrease"
-              "1"
-            ];
-          };
-
-          "XF86AudioMute" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "pamixer"
-              "--toggle-mute"
-            ];
-          };
-          "XF86AudioMicMute" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "pamixer"
-              "--default-source"
-              "--toggle-mute"
-            ];
-          };
-
-          # media
-          "XF86AudioPlay" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "play-pause"
-            ];
-          };
-          "XF86AudioPrev" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "previous"
-            ];
-          };
-          "XF86AudioNext" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "next"
-            ];
-          };
-          "Mod+0" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "play-pause"
-            ];
-          };
-          "Mod+Minus" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "previous"
-            ];
-          };
-          "Mod+Equal" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "playerctl"
-              "next"
-            ];
-          };
-
-          # brightness
-          "XF86MonBrightnessUp" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify mon set 20%+"
-            ];
-          };
-          "XF86MonBrightnessDown" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify mon set 20%-"
-            ];
-          };
-
-          # keyboard
-          "XF86KbdBrightnessUp" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify kbd set 1+"
-            ];
-          };
-          "XF86KbdBrightnessDown" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "sh"
-              "-c"
-              "brightness_notify kbd set 1-"
-            ];
-          };
-
-          # notifications
-          "Mod+Control+Space" = {
-            allow-when-locked = true;
-            action.spawn = [
-              "makoctl"
-              "dismiss"
-              "--all"
-            ];
-          };
-          "Mod+Control+D".action.spawn = [
+        # notifications
+        "Mod+Control+Space" = {
+          allow-when-locked = true;
+          action.spawn = [
             "makoctl"
             "dismiss"
+            "--all"
           ];
-          "Mod+Control+Comma".action.spawn = [
-            "makoctl"
-            "restore"
-          ];
-          "Mod+Control+Period".action.spawn = [
-            "makoctl"
-            "invoke"
-          ];
-
-          # profile
-          "XF86Launch4" = {
-            allow-when-locked = true;
-            action.spawn = "profile_notify";
-          };
-
-          # workspaces
-          "Mod+1".action = focus-workspace 1;
-          "Mod+2".action = focus-workspace 2;
-          "Mod+3".action = focus-workspace 3;
-          "Mod+4".action = focus-workspace 4;
-          "Mod+5".action = focus-workspace 5;
-
-          "Mod+Shift+1".action.spawn = move-column-to-workspace 1;
-          "Mod+Shift+2".action.spawn = move-column-to-workspace 2;
-          "Mod+Shift+3".action.spawn = move-column-to-workspace 3;
-          "Mod+Shift+4".action.spawn = move-column-to-workspace 4;
-          "Mod+Shift+5".action.spawn = move-column-to-workspace 5;
-
-          "Mod+H".action = focus-workspace-down;
-          "Mod+Comma".action = focus-workspace-up;
-          "Mod+Tab".action = focus-workspace-previous;
-
-          # windows
-          "Mod+W".action = close-window;
-          "Mod+F".action = switch-preset-column-width;
-
-          "Mod+N".action = focus-column-right-or-first;
-          "Mod+E".action = focus-column-left-or-last;
-
-          "Mod+Shift+N".action = move-column-right;
-          "Mod+Shift+E".action = move-column-left;
-
-          "Mod+M".action = set-column-width "-5%";
-          "Mod+I".action = set-column-width "+5%";
         };
+        "Mod+Control+D".action.spawn = [
+          "makoctl"
+          "dismiss"
+        ];
+        "Mod+Control+Comma".action.spawn = [
+          "makoctl"
+          "restore"
+        ];
+        "Mod+Control+Period".action.spawn = [
+          "makoctl"
+          "invoke"
+        ];
+
+        # profile
+        "XF86Launch4" = {
+          allow-when-locked = true;
+          action.spawn = "profile_notify";
+        };
+
+        # workspaces
+        "Mod+1".action = focus-workspace 1;
+        "Mod+2".action = focus-workspace 2;
+        "Mod+3".action = focus-workspace 3;
+        "Mod+4".action = focus-workspace 4;
+        "Mod+5".action = focus-workspace 5;
+
+        "Mod+Shift+1".action.spawn = move-column-to-workspace 1;
+        "Mod+Shift+2".action.spawn = move-column-to-workspace 2;
+        "Mod+Shift+3".action.spawn = move-column-to-workspace 3;
+        "Mod+Shift+4".action.spawn = move-column-to-workspace 4;
+        "Mod+Shift+5".action.spawn = move-column-to-workspace 5;
+
+        "Mod+H".action = focus-workspace-down;
+        "Mod+Comma".action = focus-workspace-up;
+        "Mod+Tab".action = focus-workspace-previous;
+
+        # windows
+        "Mod+W".action = close-window;
+        "Mod+F".action = switch-preset-column-width;
+
+        "Mod+N".action = focus-column-right-or-first;
+        "Mod+E".action = focus-column-left-or-last;
+
+        "Mod+Shift+N".action = move-column-right;
+        "Mod+Shift+E".action = move-column-left;
+
+        "Mod+M".action = set-column-width "-5%";
+        "Mod+I".action = set-column-width "+5%";
+      };
     };
   };
 }
