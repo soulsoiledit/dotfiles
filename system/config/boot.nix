@@ -19,6 +19,6 @@
     # make boot quieter
     kernelParams = [ "quiet" ];
     initrd.verbose = false;
-    # plymouth.enable = true;
+    plymouth.enable = true;
   };
 }
