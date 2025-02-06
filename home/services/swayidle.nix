@@ -36,13 +36,13 @@ in
       }
 
       {
-        timeout = 600;
-        command = "${loginctl} lock-session";
+        timeout = 360;
+        command = "${niri} msg action power-off-monitors";
       }
 
       {
-        timeout = 720;
-        command = "${niri} msg action power-off-monitors";
+        timeout = 600;
+        command = "${loginctl} lock-session";
       }
 
       {
