@@ -1,7 +1,7 @@
 {
   programs.nixvim.plugins.flash = {
     enable = true;
-    settings.labels = "arstneiodhwfuylpgmcxqzbjvk";
+    settings.labels = "arstneiodhwfpluycxgmqzbjvk";
     lazyLoad.settings = {
       event = "DeferredUIEnter";
       keys = [
