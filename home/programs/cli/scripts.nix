@@ -28,10 +28,5 @@
       esac;
       notify-send "  Profile:" "$(powerprofilesctl get)" -h string:x-dunst-stack-tag:profile
     '')
-
-    (writeShellScriptBin "niri_workspace_update" ''
-      id=$(bash -c "niri msg workspaces" | rg -o '\* (\d)' -r '$1')
-      eww update niri_workspace_active=$(jq -n -c --arg id "$id" '{ id: $id }')
-    '')
   ];
 }
