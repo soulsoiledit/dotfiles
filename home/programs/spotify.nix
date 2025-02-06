@@ -15,7 +15,6 @@
     {
       enable = true;
 
-      theme.sidebarConfig = false;
       customColorScheme =
         with config.lib.stylix.colors;
         let
