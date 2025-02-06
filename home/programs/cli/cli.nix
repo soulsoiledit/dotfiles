@@ -3,36 +3,39 @@
 {
   home.packages = with pkgs; [
     # modern unix replacements
-    dua
     du-dust
+    dua
     duf
     trashy
 
     tmux
 
     # service control
-    libnotify
-    wl-clipboard
-    pamixer
     brightnessctl
+    libnotify
+    pamixer
     playerctl
+    wl-clipboard
   ];
 
   programs = {
     bat.enable = true;
+    cava.enable = true;
+    fastfetch.enable = true;
     fd.enable = true;
     fzf.enable = true;
     jq.enable = true;
-    zoxide.enable = true;
     zellij.enable = true;
+    zoxide.enable = true;
 
-    ripgrep = {
+    btop = {
       enable = true;
-      arguments = [ "--smart-case" ];
+      settings = {
+        proc_tree = true;
+        proc_gradient = false;
+        proc_filter_kernel = true;
+      };
     };
-
-    fastfetch.enable = true;
-    cava.enable = true;
 
     direnv = {
       enable = true;
@@ -43,6 +46,11 @@
       enable = true;
       git = true;
       icons = "always";
+    };
+
+    ripgrep = {
+      enable = true;
+      arguments = [ "--smart-case" ];
     };
   };
 }
