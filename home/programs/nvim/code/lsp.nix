@@ -46,7 +46,10 @@
           ];
           before.__raw = ''
             function()
-              require("lz.n").trigger_load("lsp-format.nvim")
+              require("lz.n").trigger_load({
+                "blink.cmp",
+                "lsp-format.nvim",
+              })
             end
           '';
         };
