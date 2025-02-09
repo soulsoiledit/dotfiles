@@ -25,7 +25,6 @@
     fd.enable = true;
     fzf.enable = true;
     jq.enable = true;
-    zellij.enable = true;
     zoxide.enable = true;
 
     btop = {
@@ -51,6 +50,11 @@
     ripgrep = {
       enable = true;
       arguments = [ "--smart-case" ];
+    };
+
+    zellij = {
+      enable = true;
+      enableFishIntegration = false;
     };
   };
 }
