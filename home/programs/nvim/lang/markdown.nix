@@ -1,6 +1,8 @@
 { inputs, pkgs, ... }:
 
 {
+  programs.nixvim.globals.markdown_recommended_style = false;
+
   programs.nixvim.plugins = {
     lsp.servers.marksman.enable = true;
 
