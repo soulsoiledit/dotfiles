@@ -103,13 +103,7 @@
 
     blink-ripgrep = {
       enable = true;
-      package = pkgs.vimPlugins.blink-ripgrep-nvim.overrideAttrs {
-        src = inputs.blink-ripgrep;
-      };
-      lazyLoad.settings = {
-        __unkeyed-1 = "blink-ripgrep.nvim";
-        lazy = true;
-      };
+      lazyLoad.settings.lazy = true;
     };
 
     lz-n.plugins = [

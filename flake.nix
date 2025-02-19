@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    latest.url = "github:NixOS/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -39,18 +40,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    blink-ripgrep = {
-      url = "github:mikavilpas/blink-ripgrep.nvim";
-      flake = false;
-    };
-
     compress-yazi = {
       url = "github:KKV9/compress.yazi";
-      flake = false;
-    };
-
-    markview = {
-      url = "github:OXY2DEV/markview.nvim";
       flake = false;
     };
   };
@@ -59,7 +50,8 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      latestOverlay = final: prev: { latestPackages = inputs.latest.legacyPackages.${system}; };
+      pkgs = (nixpkgs.legacyPackages.${system}).extend latestOverlay;
     in
     {
       lib = import ./lib inputs;
