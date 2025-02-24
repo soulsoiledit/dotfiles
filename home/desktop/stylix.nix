@@ -42,9 +42,6 @@
         base0F = "#c0729c"; # pink
       };
 
-      image = config.lib.stylix.pixel "base00";
-      imageScalingMode = "fill";
-
       iconTheme = {
         enable = true;
         package = pkgs.papirus-icon-theme;
