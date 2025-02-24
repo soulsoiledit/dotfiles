@@ -139,8 +139,8 @@
   };
 
   programs.nixvim.highlight = {
-    SnacksPicker.link = "Normal";
     SnacksNormal.link = "Normal";
-    SnacksNormalNC.link = "NormalNC";
+    SnacksPicker.link = "Normal";
+    SnacksPickerBorder.link = "Comment";
   };
 }
