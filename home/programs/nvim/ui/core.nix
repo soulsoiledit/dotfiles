@@ -1,7 +1,6 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-
   programs.nixvim.plugins = {
     # syntax
     treesitter = {
@@ -59,16 +58,52 @@
       # vim.ui.select
       picker.enabled = true;
 
-      # start screen
+      # dashboard
       dashboard = {
         enabled = true;
-        preset.header = ''
-           ▐ ▄  ▄· ▄▌ ▄▄▄·  ▌ ▐·▪  • ▌ ▄ ·.
-          •█▌▐█▐█▪██▌▐█ ▀█ ▪█·█▌██ ·██ ▐███▪
-          ▐█▐▐▌▐█▌▐█▪▄█▀▀█ ▐█▐█•▐█·▐█ ▌▐▌▐█·
-          ██▐█▌ ▐█▀·.▐█▪ ▐▌ ███ ▐█▌██ ██▌▐█▌
-          ▀▀ █▪  ▀ •  ▀  ▀ . ▀  ▀▀▀▀▀  █▪▀▀▀
-        '';
+        preset = {
+          header = ''
+             ▐ ▄  ▄· ▄▌ ▄▄▄·  ▌ ▐·▪  • ▌ ▄ ·.
+            •█▌▐█▐█▪██▌▐█ ▀█ ▪█·█▌██ ·██ ▐███▪
+            ▐█▐▐▌▐█▌▐█▪▄█▀▀█ ▐█▐█•▐█·▐█ ▌▐▌▐█·
+            ██▐█▌ ▐█▀·.▐█▪ ▐▌ ███ ▐█▌██ ██▌▐█▌
+            ▀▀ █▪  ▀ •  ▀  ▀ . ▀  ▀▀▀▀▀  █▪▀▀▀
+          '';
+
+          keys = [
+            {
+              icon = " ";
+              key = "f";
+              desc = "Find File";
+              action = ":lua Snacks.picker.pick('smart')";
+            }
+            {
+              icon = " ";
+              key = "s";
+              desc = "Find Text";
+              action = ":lua Snacks.picker.pick('live_grep')";
+            }
+            {
+              icon = " ";
+              key = "n";
+              desc = "New File";
+              action = ":ene | startinsert";
+            }
+            {
+              icon = " ";
+              key = "c";
+              desc = "Config";
+              action = ":lua Snacks.picker.pick('files', { cwd = '${config.home.homeDirectory}/code/dotfiles' })";
+            }
+            {
+              icon = " ";
+              key = "q";
+              desc = "Quit";
+              action = ":qa";
+            }
+          ];
+        };
+
         sections = [
           { section = "header"; }
           {
