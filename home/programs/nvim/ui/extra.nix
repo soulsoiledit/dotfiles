@@ -28,22 +28,21 @@
         }
       ];
 
-      ccc = {
+      colorizer = {
         enable = true;
         lazyLoad.settings.event = "DeferredUIEnter";
-
         settings = {
-          lsp = false;
-          highlighter.auto_enable = true;
+          lazy_load = true;
+          user_commands = true;
+          user_default_options = {
+            css = true;
+            tailwind = "lsp";
+            sass = {
+              enable = true;
+              parsers = [ "css" ];
+            };
+          };
         };
-
-        # rerun auto_enable autocmd
-        luaConfig.post = ''
-          vim.api.nvim_exec_autocmds(
-            "BufEnter",
-            { group = "ccc-highlighter-auto-enable" }
-          )
-        '';
       };
 
       snacks.settings.indent = {
