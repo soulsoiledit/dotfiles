@@ -1,18 +1,32 @@
-{ inputs, pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   programs.nixvim.globals.markdown_recommended_style = false;
+
+  programs.nixvim.autoCmd = [
+    {
+      event = "FileType";
+      pattern = "markdown";
+      callback.__raw = ''
+        function(args)
+          vim.lsp.start({
+            name = "iwes",
+            cmd = { "${lib.getExe' pkgs.iwe "iwes"}" },
+            root_dir = vim.fs.root(args.buf, { ".iwe" }),
+            flags = {
+              debounce_text_changes = 500
+            }
+          })
+        end
+      '';
+    }
+  ];
 
   programs.nixvim.plugins = {
     lsp.servers.marksman.enable = true;
 
     markview = {
       enable = true;
-      package = pkgs.vimPlugins.markview-nvim.overrideAttrs {
-        version = inputs.markview.shortRev;
-        src = inputs.markview;
-      };
-
       lazyLoad.settings = {
         lazy = false;
         # load after colorscheme
