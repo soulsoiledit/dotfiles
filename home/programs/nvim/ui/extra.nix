@@ -36,11 +36,8 @@
           user_commands = true;
           user_default_options = {
             css = true;
+            AARRGGBB = true;
             tailwind = "lsp";
-            sass = {
-              enable = true;
-              parsers = [ "css" ];
-            };
           };
         };
       };
