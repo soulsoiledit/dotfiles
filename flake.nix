@@ -44,13 +44,18 @@
       url = "github:KKV9/compress.yazi";
       flake = false;
     };
+
+    drg-mint.url = "github:trumank/mint";
   };
 
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      latestOverlay = final: prev: { latestPackages = inputs.latest.legacyPackages.${system}; };
+      latestOverlay = final: prev: {
+        latestPackages = inputs.latest.legacyPackages.${system};
+        drg-mint = inputs.drg-mint.packages.${system}.default;
+      };
       pkgs = (nixpkgs.legacyPackages.${system}).extend latestOverlay;
     in
     {

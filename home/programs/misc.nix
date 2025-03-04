@@ -13,5 +13,7 @@
     steam-run
     appimage-run
     distrobox
+
+    drg-mint
   ];
 }
