@@ -18,8 +18,4 @@ in
 
     poweralertd.enable = true;
   };
-
-  systemd.user.services.poweralertd = {
-    Unit.After = [ config.wayland.systemd.target ];
-  };
 }

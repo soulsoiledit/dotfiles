@@ -12,15 +12,8 @@ in
     blueman-applet.enable = true;
   };
 
-  systemd.user = {
-    startServices = true;
-
-    services = {
-      udiskie.Unit.After = [ target ];
-      cliphist.Unit.After = [ target ];
-      cliphist-images.Unit.After = [ target ];
-      network-manager-applet.Unit.After = [ target ];
-      blueman-applet.Unit.After = [ target ];
-    };
+  systemd.user.services = {
+    cliphist.Unit.After = [ target ];
+    cliphist-images.Unit.After = [ target ];
   };
 }

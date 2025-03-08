@@ -1,5 +1,3 @@
-{ config, ... }:
-
 {
   services.wlsunset = {
     enable = true;
@@ -11,9 +9,5 @@
       day = 6250;
       night = 5500;
     };
-  };
-
-  systemd.user.services.wlsunset = {
-    Unit.After = [ config.wayland.systemd.target ];
   };
 }
