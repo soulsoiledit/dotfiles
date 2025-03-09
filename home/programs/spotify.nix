@@ -16,24 +16,30 @@ in
     enable = true;
 
     customColorScheme = with config.lib.stylix.colors; {
-      text = base05;
-      subtext = base05;
       main = base00;
-      main-elevated = base02;
-      highlight = base02;
-      highlight-elevated = base03;
       sidebar = base00;
-      player = base05;
-      card = base04;
+      player = base00;
       shadow = base00;
-      selected-row = base05;
+
+      main-elevated = base01;
+      card = base01;
+      button-disabled = base01;
+
+      selected-row = base02;
+      highlight = base02;
+      highlight-elevated = base02;
+
+      tab-active = base04;
+
+      text = base05;
+      subtext = base04;
+
       button = accent;
       button-active = accent;
-      button-disabled = base04;
-      tab-active = base02;
-      notification = base02;
+
+      notification = accent;
       notification-error = base08;
-      misc = base02;
+      misc = accent;
     };
 
     enabledExtensions = with spicePkgs.extensions; [
