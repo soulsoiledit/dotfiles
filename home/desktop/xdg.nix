@@ -1,7 +1,10 @@
 { config, lib, ... }:
 
 {
-  xdg.enable = true;
+  xdg = {
+    enable = true;
+    portal.config.niri.default = "gtk,gnome";
+  };
 
   home = {
     preferXdgDirectories = true;
