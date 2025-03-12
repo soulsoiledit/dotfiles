@@ -1,4 +1,8 @@
-{ pkgs, inputs, ... }:
+{
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   imports = [ inputs.nix-index-database.hmModules.nix-index ];
@@ -14,9 +18,11 @@
   };
 
   nix = {
-    package = pkgs.nixStable;
+    package = pkgs.nix;
     settings.use-xdg-base-directories = true;
   };
+
+  xdg.configFile."nix/nix.conf".enable = false;
 
   nixpkgs.config.allowUnfree = true;
 }
