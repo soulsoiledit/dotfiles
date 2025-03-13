@@ -35,15 +35,12 @@
 
       settings.markdown.list_items = {
         shift_width.__raw = ''
-          function (buffer, item)
-            local parent_indent = math.max(1, item.indent - vim.bo[buffer].shiftwidth);
-            return (item.indent) * (1 / (parent_indent * 2));
-          end
-        '';
-        marker_minus.add_padding.__raw = ''
-            function (_, item)
-              return item.indent > 1;
-          end
+          function(buffer, item)
+            local shiftwidth = vim.bo[buffer].shiftwidth
+            local prev = math.ceil(item.indent / shiftwidth + 1)
+            local final = math.ceil(item.indent / shiftwidth) * shiftwidth
+            return final / prev
+          end,
         '';
       };
     };
