@@ -24,5 +24,7 @@
 
   xdg.configFile."nix/nix.conf".enable = false;
 
+  # make easier to allow unfree
   nixpkgs.config.allowUnfree = true;
+  home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
 }
