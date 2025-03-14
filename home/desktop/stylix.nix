@@ -82,19 +82,24 @@
         };
       };
 
-      targets.gtk = {
-        flatpakSupport.enable = false;
-        # fix ugly tooltips
-        extraCss = # css
-          ''
-            tooltip * {
-              color: @window_fg_color;
-            }
+      targets = {
+        firefox.enable = false;
+        qt.enable = true;
 
-            tooltip.background {
-              background-color: transparentize(@window_bg_color, 0.2);
-            }
-          '';
+        gtk = {
+          flatpakSupport.enable = false;
+          # fix ugly tooltips
+          extraCss = # css
+            ''
+              tooltip * {
+                color: @window_fg_color;
+              }
+
+              tooltip.background {
+                background-color: transparentize(@window_bg_color, 0.2);
+              }
+            '';
+        };
       };
     };
   };
