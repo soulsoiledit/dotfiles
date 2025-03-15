@@ -6,6 +6,7 @@ in
 {
   services = {
     playerctld.enable = true;
+    easyeffects.enable = true;
     cliphist.enable = true;
     udiskie.enable = true;
     network-manager-applet.enable = true;
