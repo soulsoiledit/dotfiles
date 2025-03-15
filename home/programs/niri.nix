@@ -19,6 +19,9 @@ in
   ];
 
   home.packages = [ pkgs.xwayland-satellite ];
+  xdg.configFile."systemd/user/graphical-session.target.wants/xwayland-satellite.service" = {
+    source = "${pkgs.xwayland-satellite}/share/systemd/user/xwayland-satellite.service";
+  };
 
   programs.niri = {
     enable = true;
@@ -82,8 +85,6 @@ in
       };
 
       spawn-at-startup = [
-        { command = [ "xwayland-satellite" ]; }
-
         { command = [ "firefox" ]; }
         { command = [ "spotify" ]; }
         { command = [ "vesktop" ]; }
