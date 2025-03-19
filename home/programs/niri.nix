@@ -169,10 +169,7 @@ in
           "-c"
           "cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
         ];
-        "Mod+L" = {
-          allow-when-locked = true;
-          action.spawn = "wlogout";
-        };
+        "Mod+L".action.spawn = "wlogout";
 
         # volume
         "XF86AudioRaiseVolume" = {
@@ -191,22 +188,16 @@ in
             "5"
           ];
         };
-        "Shift+XF86AudioRaiseVolume" = {
-          allow-when-locked = true;
-          action.spawn = [
-            "volume_notify"
-            "--increase"
-            "1"
-          ];
-        };
-        "Shift+XF86AudioLowerVolume" = {
-          allow-when-locked = true;
-          action.spawn = [
-            "volume_notify"
-            "--decrease"
-            "1"
-          ];
-        };
+        "Shift+XF86AudioRaiseVolume".action.spawn = [
+          "volume_notify"
+          "--increase"
+          "1"
+        ];
+        "Shift+XF86AudioLowerVolume".action.spawn = [
+          "volume_notify"
+          "--decrease"
+          "1"
+        ];
 
         "XF86AudioMute" = {
           allow-when-locked = true;
@@ -232,20 +223,14 @@ in
             "play-pause"
           ];
         };
-        "XF86AudioPrev" = {
-          allow-when-locked = true;
-          action.spawn = [
-            "playerctl"
-            "previous"
-          ];
-        };
-        "XF86AudioNext" = {
-          allow-when-locked = true;
-          action.spawn = [
-            "playerctl"
-            "next"
-          ];
-        };
+        "XF86AudioPrev".action.spawn = [
+          "playerctl"
+          "previous"
+        ];
+        "XF86AudioNext".action.spawn = [
+          "playerctl"
+          "next"
+        ];
         "Mod+0" = {
           allow-when-locked = true;
           action.spawn = [
@@ -253,20 +238,14 @@ in
             "play-pause"
           ];
         };
-        "Mod+Minus" = {
-          allow-when-locked = true;
-          action.spawn = [
-            "playerctl"
-            "previous"
-          ];
-        };
-        "Mod+Equal" = {
-          allow-when-locked = true;
-          action.spawn = [
-            "playerctl"
-            "next"
-          ];
-        };
+        "Mod+Minus".action.spawn = [
+          "playerctl"
+          "previous"
+        ];
+        "Mod+Equal".action.spawn = [
+          "playerctl"
+          "next"
+        ];
 
         # brightness
         "XF86MonBrightnessUp" = {
@@ -305,14 +284,11 @@ in
         };
 
         # notifications
-        "Mod+Control+Space" = {
-          allow-when-locked = true;
-          action.spawn = [
-            "makoctl"
-            "dismiss"
-            "--all"
-          ];
-        };
+        "Mod+Control+Space".action.spawn = [
+          "makoctl"
+          "dismiss"
+          "--all"
+        ];
         "Mod+Control+D".action.spawn = [
           "makoctl"
           "dismiss"
@@ -327,10 +303,7 @@ in
         ];
 
         # profile
-        "XF86Launch4" = {
-          allow-when-locked = true;
-          action.spawn = "profile_notify";
-        };
+        "XF86Launch4".action.spawn = "profile_notify";
 
         # workspaces
         "Mod+1".action = focus-workspace 1;
