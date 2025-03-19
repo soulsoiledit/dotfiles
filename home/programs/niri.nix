@@ -112,14 +112,14 @@ in
 
         # open with full width
         {
-          matches = [ { title = "Firefox|Vesktop"; } ];
+          matches = [ { app-id = "firefox|vesktop|spotify|steam"; } ];
           default-column-width.proportion = 1.0;
         }
 
         {
           matches = [
             {
-              title = "[vV]esktop|Spotify|Steam";
+              app-id = "vesktop|spotify|steam";
               at-startup = true;
             }
           ];
