@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 with config.lib.stylix.colors.withHashtag;
 let
@@ -8,11 +8,8 @@ let
   accent = "#${config.opt.accent}";
 in
 {
-  home.packages = [ pkgs.firefoxpwa ];
-
   programs.firefox = {
     enable = true;
-    nativeMessagingHosts = [ pkgs.firefoxpwa ];
     profiles.${config.home.username} = {
       settings.toolkit.legacyUserProfileCustomizations.stylesheets = true;
 
