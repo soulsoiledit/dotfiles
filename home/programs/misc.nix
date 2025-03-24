@@ -9,11 +9,13 @@
     steam
     gamescope
     piper
+    drg-mint
 
     steam-run
     appimage-run
-    distrobox
 
-    drg-mint
+    distrobox
+    lilipod
+
   ];
 }

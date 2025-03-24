@@ -28,7 +28,6 @@ in
     };
 
     podman.enable = true;
-    libvirt.enable = true;
 
     # used for rebinding laptop keys
     kanata.enable = true;
