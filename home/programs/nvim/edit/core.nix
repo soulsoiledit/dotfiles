@@ -43,9 +43,8 @@
 
       # setup misc functions
       luaConfig.post = ''
-        MiniMisc.setup_termbg_sync()
         MiniMisc.setup_restore_cursor()
-        MiniMisc.setup_auto_root()
+        MiniMisc.setup_auto_root({".git", ".root"})
       '';
     };
   };
