@@ -33,6 +33,9 @@ in
     kanata.enable = true;
   };
 
+  programs.wireshark.enable = true;
+  users.users.user.extraGroups = [ "wireshark" ];
+
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   hardware.graphics.enable32Bit = true;
