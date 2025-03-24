@@ -35,7 +35,39 @@
 
     bufferline = {
       enable = true;
-      lazyLoad.settings.event = "DeferredUIEnter";
+      settings.options = {
+        tab_size = 14;
+        diagnostics = "nvim_lsp";
+      };
+
+      lazyLoad.settings = {
+        event = "DeferredUIEnter";
+        keys = [
+          {
+            __unkeyed-1 = "<tab>";
+            __unkeyed-2 = "<cmd>BufferLineCycleNext<cr>";
+            desc = "next buffer";
+          }
+
+          {
+            __unkeyed-1 = "<s-tab>";
+            __unkeyed-2 = "<cmd>BufferLineCyclePrev<cr>";
+            desc = "prev buffer";
+          }
+
+          {
+            __unkeyed-1 = "<c-tab>";
+            __unkeyed-2 = "<cmd>BufferLineMoveNext<cr>";
+            desc = "move buffer right";
+          }
+
+          {
+            __unkeyed-1 = "<c-s-tab>";
+            __unkeyed-2 = "<cmd>BufferLineMovePrev<cr>";
+            desc = "move buffer left";
+          }
+        ];
+      };
     };
 
     # icons
