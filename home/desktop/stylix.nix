@@ -89,14 +89,16 @@
         gtk = {
           flatpakSupport.enable = false;
           # fix ugly tooltips
-          extraCss = # css
+          extraCss =
+            with config.lib.stylix.colors;
+            # css
             ''
               tooltip * {
-                color: @window_fg_color;
+                color: #${base05};
               }
 
               tooltip.background {
-                background-color: transparentize(@window_bg_color, 0.2);
+                background-color: rgba(${base00-rgb-r}, ${base00-rgb-b}, ${base00-rgb-g}, 0.8);
               }
             '';
         };
