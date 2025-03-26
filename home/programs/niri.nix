@@ -112,14 +112,14 @@ in
 
         # open with full width
         {
-          matches = [ { app-id = "firefox|vesktop|spotify|steam"; } ];
+          matches = [ { app-id = ''firefox|vesktop|spotify|steam''; } ];
           default-column-width.proportion = 1.0;
         }
 
         {
           matches = [
             {
-              app-id = "vesktop|spotify|steam";
+              app-id = ''vesktop|spotify|steam'';
               at-startup = true;
             }
           ];
@@ -129,7 +129,7 @@ in
 
         # float and resize file pickers
         {
-          matches = [ { title = "^Open Files?$"; } ];
+          matches = [ { title = ''^Open Files?$''; } ];
 
           open-floating = true;
           default-column-width.proportion = 0.75;
@@ -139,15 +139,15 @@ in
         {
           matches = [
             {
-              app-id = "steam";
-              title = "^notificationtoasts_.*_desktop$";
+              app-id = ''steam'';
+              title = ''^notificationtoasts_\d+_desktop$'';
             }
           ];
 
           default-floating-position = {
-            x = 16;
-            y = 16;
-            relative-to = "bottom-right";
+            x = 8;
+            y = 8;
+            relative-to = "top-right";
           };
         }
       ];
