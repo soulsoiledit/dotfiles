@@ -8,6 +8,7 @@
 let
   modprobe = lib.getExe' pkgs.kmod "modprobe";
   brightnessctl = lib.getExe pkgs.brightnessctl;
+  systemctl = lib.getExe' pkgs.systemd "systemctl";
 in
 {
   imports = [
@@ -27,7 +28,7 @@ in
       size = 20;
     };
 
-    podman.enable = true;
+    # podman.enable = true;
 
     # used for rebinding laptop keys
     kanata.enable = true;
@@ -43,16 +44,24 @@ in
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
+    logind = {
+      lidSwitch = "sleep";
+      suspendKey = "sleep";
+    };
   };
 
   powerManagement = {
-    powerUpCommands = ''
-      ${modprobe} -r hid_asus && ${modprobe} hid_asus
-      ${brightnessctl} -d *kbd* -r
-    '';
-    powerDownCommands = ''
-      ${brightnessctl} -d *kbd* -s
-    '';
+    powerUpCommands = # bash
+      ''
+        ${systemctl} start set-coall.service
+        # ${modprobe} -r hid_asus && sleep 2 && ${modprobe} hid_asus
+        # ${brightnessctl} -d *kbd* -r
+      '';
+    powerDownCommands = # bash
+      ''
+        ${systemctl} start set-coall.service
+        # ${brightnessctl} -d *kbd* -s
+      '';
   };
 
   # https://github.com/sammilucia/set-coall-timer

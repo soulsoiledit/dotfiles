@@ -11,9 +11,9 @@
         "keybind" = "l";
       }
       {
-        "label" = "suspend";
-        "action" = "systemctl suspend";
-        "text" = "Suspend";
+        "label" = "sleep";
+        "action" = "systemctl sleep";
+        "text" = "Sleep";
         "keybind" = "s";
       }
       {
@@ -84,7 +84,7 @@
           background-image: image(url("${iconPath}/logout.png"));
         }
 
-        #suspend {
+        #sleep {
           background-image: image(url("${iconPath}/suspend.png"));
         }
 
