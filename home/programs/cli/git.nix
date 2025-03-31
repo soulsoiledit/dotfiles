@@ -3,7 +3,7 @@
     enable = true;
     delta.enable = true;
 
-    userName = "soulsoiledit";
+    userName = "soiledit";
     userEmail = "no.sleep410@passinbox.com";
 
     # TODO: setup and use gpg signing
