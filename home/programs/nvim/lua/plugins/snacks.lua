@@ -28,7 +28,6 @@ return {
       },
 
       dashboard = {
-        enabled = true,
         preset = {
           header = [[
 ⠀⠀⠀⠀⠀⢀⠖⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⢣⠀⠀⠀⠀
@@ -106,6 +105,7 @@ return {
       end,
       desc = "files",
     },
+
     {
       "<leader>s",
       function()
@@ -113,13 +113,15 @@ return {
       end,
       desc = "search",
     },
+
     {
-      "<leader>c",
+      "<leader>r",
       function()
         require("snacks").picker.commands()
       end,
       desc = "commands",
     },
+
     {
       "<leader>p",
       function()

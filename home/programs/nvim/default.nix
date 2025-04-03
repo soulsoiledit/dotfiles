@@ -20,18 +20,16 @@ in
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-
-    extraPackages = with pkgs; [ wl-clipboard ];
 
     plugins =
       with pkgs.vimPlugins;
-      mkOptionalPlug [
+      [ lz-n ]
+      ++ mkOptionalPlug [
         snacks-nvim
         mini-nvim
         mini-base16
-        mini-hues
+        mini-pairs
+        mini-surround
         mini-trailspace
         mini-cursorword
         mini-diff
@@ -64,11 +62,11 @@ in
         markview-nvim
         markdown-preview-nvim
         typst-preview-nvim
-      ]
-      ++ [ lz-n ];
+      ];
   };
 
-  xdg.configFile."nvim".source = mkOutOfStoreSymlink (inputs.self.lib.relative config.flake ./.);
-
-  xdg.dataFile."dict".source = "${pkgs.scowl}/share/dict";
+  xdg = {
+    configFile."nvim".source = mkOutOfStoreSymlink (inputs.self.lib.relative config.flake ./.);
+    dataFile."dict".source = "${pkgs.scowl}/share/dict";
+  };
 }

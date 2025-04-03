@@ -2,7 +2,6 @@ return {
   --TODO: get colors from nix
   {
     "mini.base16",
-    lazy = false,
     after = function()
       require("mini.base16").setup({
         palette = {
@@ -26,15 +25,4 @@ return {
       })
     end
   },
-
-  -- {
-  --   "mini.hues",
-  --   after = function()
-  --     require("mini.hues").setup({
-  --       background = "#0b0b0b",
-  --       foreground = "#bebebe",
-  --     })
-  --   end
-  -- },
-
 }

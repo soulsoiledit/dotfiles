@@ -49,11 +49,14 @@
     vscode-langservers-extracted
     vtsls
     biome
-    nodePackages.prettier
 
     # data
     yaml-language-server
     taplo
+
+    # format
+    efm-langserver
+    nodePackages.prettier
 
     # misc
     ruby-lsp

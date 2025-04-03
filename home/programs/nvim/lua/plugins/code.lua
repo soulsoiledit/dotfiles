@@ -78,7 +78,14 @@ return {
       })
     end,
   },
-
   { "friendly-snippets",  lazy = true },
   { "blink-ripgrep.nvim", lazy = true },
+
+  {
+    "lsp-format.nvim",
+    lazy = true,
+    after = function()
+      require("lsp-format").setup()
+    end,
+  },
 }

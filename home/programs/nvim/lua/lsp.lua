@@ -52,7 +52,6 @@ vim.lsp.enable({
   "fishls",
 
   "iwe",
-  "marksman",
   "texlab",
   "tinymist",
 
@@ -64,6 +63,8 @@ vim.lsp.enable({
   "jsonls",
   "yamlls",
   "taplo",
+
+  "efm",
 
   "rubyls",
   "jdtls",
