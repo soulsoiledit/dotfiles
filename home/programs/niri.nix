@@ -49,7 +49,6 @@ in
       outputs."BOE 0x0A1D Unknown" = {
         scale = 2;
         background-color = config.lib.stylix.colors.withHashtag.base00;
-        variable-refresh-rate = true;
       };
 
       layout = {
@@ -117,13 +116,7 @@ in
         }
 
         {
-          matches = [
-            {
-              app-id = ''vesktop|spotify|steam'';
-              at-startup = true;
-            }
-          ];
-
+          matches = [ { app-id = ''vesktop|spotify|steam''; } ];
           open-on-workspace = "2";
         }
 
@@ -136,6 +129,7 @@ in
           default-window-height.proportion = 0.75;
         }
 
+        # put steam notifs in a reasonable location
         {
           matches = [
             {
