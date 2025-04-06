@@ -1,13 +1,15 @@
 { pkgs, ... }:
 
 let
-  cjk = variant: [
-    "Noto ${variant} CJK HK"
-    "Noto ${variant} CJK JP"
-    "Noto ${variant} CJK KR"
-    "Noto ${variant} CJK SC"
-    "Noto ${variant} CJK TC"
-  ];
+  cjk =
+    variant:
+    map (x: "Noto ${variant} CJK ${x}") [
+      "HK"
+      "JP"
+      "KR"
+      "SC"
+      "TC"
+    ];
 in
 {
   home.packages = with pkgs; [
@@ -41,7 +43,7 @@ in
       monospace = [
         "Maple Mono NF CN"
         "Noto Sans Mono"
-      ];
+      ] ++ cjk "Sans Mono";
 
       emoji = [
         "Twitter Color Emoji"
