@@ -32,10 +32,6 @@
     fish-lsp
     shfmt
 
-    # text
-    iwe
-    marksman
-
     texlab
     tectonic
     texlivePackages.latexindent
@@ -49,11 +45,14 @@
     vscode-langservers-extracted
     vtsls
     biome
-    nodePackages.prettier
 
     # data
     yaml-language-server
     taplo
+
+    # formatting
+    efm-langserver
+    nodePackages.prettier
 
     # misc
     ruby-lsp

@@ -1,6 +1,9 @@
 return {
   {
     "markview.nvim",
+    before = function()
+      require("lz.n").trigger_load("mini.base16")
+    end,
     after = function()
       require("markview").setup({
         markdown = {
@@ -14,10 +17,9 @@ return {
           },
         },
       })
-    end,
-    lazy = false,
-    priority = 40,
-  },
 
-  { "markdown-preview.nvim", ft = "markdown" },
+      vim.api.nvim_set_hl(0, "MarkviewListItemMinus", { link = "MarkviewPalette6Fg" })
+      vim.api.nvim_set_hl(0, "MarkviewListItemStar", { link = "MarkviewPalette2Fg" })
+    end,
+  },
 }

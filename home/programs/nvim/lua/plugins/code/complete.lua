@@ -45,7 +45,6 @@ return {
 
         appearance = {
           nerd_font_variant = "normal",
-          use_nvim_cmp_as_default = true
         },
 
         signature = { enabled = true },
@@ -67,9 +66,7 @@ return {
               max_items = 64,
 
               opts = {
-                additional_paths = {
-                  vim.fs.normalize("~/.local/share/dict/words.txt"),
-                },
+                additional_paths = { blink_rg_dictionary },
                 max_filesize = "128K",
               },
             },

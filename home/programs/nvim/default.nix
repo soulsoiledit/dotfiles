@@ -6,69 +6,42 @@
 }:
 
 with config.lib.file;
-let
-  mkOptionalPlug =
-    pkgs:
-    map (pkg: {
-      plugin = pkg;
-      optional = true;
-    }) pkgs;
-in
+with inputs.self.lib;
 {
   stylix.targets.neovim.enable = false;
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-
-    extraPackages = with pkgs; [ wl-clipboard ];
-
-    plugins =
-      with pkgs.vimPlugins;
-      mkOptionalPlug [
-        snacks-nvim
-        mini-nvim
-        mini-base16
-        mini-hues
-        mini-trailspace
-        mini-cursorword
-        mini-diff
-
-        blink-cmp
-        friendly-snippets
-        blink-ripgrep-nvim
-        lsp-format-nvim
-        none-ls-nvim
-        nvim-lightbulb
-
-        which-key-nvim
-        todo-comments-nvim
-        trouble-nvim
-        grug-far-nvim
-        flash-nvim
-
-        (pkgs.symlinkJoin {
-          name = "nvim-treesitter";
-          paths = [
-            nvim-treesitter
-          ] ++ nvim-treesitter.withAllGrammars.dependencies;
-        })
-        lualine-nvim
-        bufferline-nvim
-        noice-nvim
-        rainbow-delimiters-nvim
-        nvim-colorizer-lua
-
-        markview-nvim
-        markdown-preview-nvim
-        typst-preview-nvim
-      ]
-      ++ [ lz-n ];
   };
 
-  xdg.configFile."nvim".source = mkOutOfStoreSymlink (inputs.self.lib.relative config.flake ./.);
-
-  xdg.dataFile."dict".source = "${pkgs.scowl}/share/dict";
+  xdg.configFile = {
+    "nvim".source = mkOutOfStoreSymlink (relative config.flake ./.);
+    "generated/nvim.lua".text =
+      with config.lib.stylix.colors.withHashtag;
+      # lua
+      ''
+        FLAKE = "${config.flake}"
+        jdtls_dir = "${config.xdg.cacheHome}/jdtls"
+        blink_rg_dictionary = "${pkgs.scowl}/share/dict/wamerican.txt"
+        mini_base16_palette = {
+          base00 = "${base00}",
+          base01 = "${base01}",
+          base02 = "${base02}",
+          base03 = "${base03}",
+          base04 = "${base04}",
+          base05 = "${base05}",
+          base06 = "${base06}",
+          base07 = "${base07}",
+          base08 = "${base08}",
+          base09 = "${base09}",
+          base0A = "${base0A}",
+          base0B = "${base0B}",
+          base0C = "${base0C}",
+          base0D = "${base0D}",
+          base0E = "${base0E}",
+          base0F = "${base0F}",
+        }
+      '';
+  };
 }

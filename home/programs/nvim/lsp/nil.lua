@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
   cmd = { "nil" },
   filetypes = { "nix" },
@@ -5,7 +6,6 @@ return {
   settings = {
     ["nil"] = {
       nix = { flake = { autoArchive = false } },
-      formatting = { command = nil }
     }
-  },
+  }
 }

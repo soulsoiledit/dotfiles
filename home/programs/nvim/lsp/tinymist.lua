@@ -4,6 +4,6 @@ return {
   filetypes = { "typst" },
   settings = {
     exportPdf = "onSave",
-    formatterMode = "typstyle"
+    formatterMode = "typstyle",
   },
 }

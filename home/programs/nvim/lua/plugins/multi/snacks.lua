@@ -1,7 +1,3 @@
-vim.api.nvim_set_hl(0, "SnacksNormal", { link = "Normal" })
-vim.api.nvim_set_hl(0, "SnacksPicker", { link = "Normal" })
-vim.api.nvim_set_hl(0, "SnacksPickerBorder", { link = "Comment" })
-
 return {
   "snacks.nvim",
   lazy = false,
@@ -28,7 +24,6 @@ return {
       },
 
       dashboard = {
-        enabled = true,
         preset = {
           header = [[
 ⠀⠀⠀⠀⠀⢀⠖⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠖⢣⠀⠀⠀⠀
@@ -87,6 +82,10 @@ return {
         sections = { { section = "header" }, { gap = 1, padding = 1, section = "keys" } },
       },
     })
+
+    vim.api.nvim_set_hl(0, "SnacksNormal", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "SnacksPicker", { link = "Normal" })
+    vim.api.nvim_set_hl(0, "SnacksPickerBorder", { link = "Comment" })
   end,
 
   keys = {
@@ -106,6 +105,7 @@ return {
       end,
       desc = "files",
     },
+
     {
       "<leader>s",
       function()
@@ -113,13 +113,15 @@ return {
       end,
       desc = "search",
     },
+
     {
-      "<leader>c",
+      "<leader>r",
       function()
         require("snacks").picker.commands()
       end,
       desc = "commands",
     },
+
     {
       "<leader>p",
       function()
@@ -127,5 +129,5 @@ return {
       end,
       desc = "pickers",
     },
-  }
+  },
 }

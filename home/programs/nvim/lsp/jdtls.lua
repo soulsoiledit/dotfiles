@@ -1,5 +1,3 @@
-local jdtls_dir = os.getenv("XDG_CACHE_HOME") .. "/jdtls"
-
 ---@type vim.lsp.Config
 return {
   cmd = {
