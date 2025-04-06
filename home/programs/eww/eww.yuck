@@ -2,38 +2,41 @@
   :monitor 0
   :exclusive true
   :geometry (geometry
-    :width "100%"
-    :height "5%"
-    :anchor "center top"
+    :width "2%"
+    :height "100%"
+    :anchor "left center"
   )
   (centerbox
-    :orientation "horizontal"
+    :orientation "vertical"
+    :halign "center"
 
     (box
       :space-evenly false
-      ;; launcher
-      ;; power
-      (niri-workspaces)
+      :orientation "v"
+      ;; launcher / power
+      (niri)
     )
 
-    (box
-      :space-evenly false
-      (clock)
-    )
+    (clock)
 
     (box
+      :orientation "vertical"
       :space-evenly false
-      :halign "end"
+      :valign "end"
+      :spacing 12
 
       (eventbox
         :class "layer hover"
         (box
+          :halign "center"
+          :orientation "vertical"
           :space-evenly false
           (volume)
           (network)
           (battery)
         )
       )
+
       (tray)
       ;; settings
       ;; power
@@ -41,13 +44,15 @@
   )
 )
 
-;; add popup with different timezones configured
-(defwidget clock []
-  (eventbox
-    :class "layer clock hover"
-    :tooltip {formattime(EWW_TIME, "%c")}
-    {formattime(EWW_TIME, "%a %b %-d, %-H:%M")}
+(defwindow logout
+  :monitor 0
+  :stacking "overlay"
+  :geometry (geometry
+    :width "25%"
+    :height "25%"
+    :anchor "center"
   )
+  (battery)
 )
 
 ;; current used device (wireless, wired, speaker, onboard)
@@ -56,10 +61,7 @@
 ;; input streams
 ;; microphone toggle
 (defvar volume_step 5)
-(deflisten volume
-  :initial "{}"
-  "scripts/volume.sh"
-)
+(deflisten volume "scripts/volume.sh")
 (defwidget volume []
   (eventbox
     :onscroll
@@ -71,12 +73,10 @@
     :onclick "pamixer --toggle-mute"
     :onmiddleclick "pavucontrol &"
 
-    (box 
-      :space-evenly false
-      :class "volume ${volume.mute}"
-      "${volume.symbol}"
-      "${volume.volume}%"
-    )
+    :halign "center"
+    :class "volume ${volume?.mute}"
+    :tooltip "${volume?.volume}%"
+    "${volume?.symbol ?: ""}"
   )
 )
 
@@ -84,90 +84,102 @@
 ;; cpu usage
 ;; memory usage
 ;; brightness
-(deflisten battery
-  :initial "{}"
-  "scripts/battery.sh"
-)
+(deflisten battery "scripts/battery.sh")
 (defwidget battery []
     (eventbox
       :class "battery"
-      :tooltip "${battery.remaining} left @ ${round((battery.wattage ?: 0) / 1000000, 1)}W"
-      (box :space-evenly false
-	"${battery.symbol}"
-	"${battery.percentage}%"
-      )
+      :halign "center"
+      :tooltip "${battery?.percentage}% ${battery?.remaining} left @ ${round((battery?.wattage ?: 0) / 1000000, 1)}W"
+      "${battery?.symbol ?: false}"
     )
 )
 
 ;; vpn status
-(deflisten network
-  :initial "{}"
-  "scripts/network.sh"
-)
+(deflisten network "scripts/network.sh")
 (defwidget network []
   (eventbox
-    :class "network ${network.status}"
+    :class "network ${network?.status}"
     :onclick "foot -e nmtui &"
-    :tooltip {network.ssid}
-    (box :space-evenly false
-      {network.symbol}
-    )
+    :tooltip {network?.ssid}
+    :halign "center"
+    {network?.symbol ?: ""}
   )
 )
 
-(defvar workspace_list "[1,2,3,4,5]")
+;; (defwidget launcher
+;; idk
+;; )
 
-(deflisten niri_workspace
-  :initial "[]"
-  "scripts/niri.sh"
-)
-(defwidget niri-workspaces []
+;; (defwidget logout
+;; idk
+;; )
+
+(deflisten niri "scripts/niri.sh")
+;; workspaces
+;; currently active
+;; has window open
+;; empty
+;; only display >5 as needed
+(defwidget niri []
   (box
+    :orientation "v"
+    :halign "center"
     :space-evenly false
-    :class "layer workspaces"
-    (for ws in workspace_list
+    :class "workspaces"
+    (for i in {[1,2,3,4,5,6,7,8,9,10]}
       (button
-        :onclick "niri msg action focus-workspace ${ws}"
+        :onclick "niri msg action focus-workspace ${i}"
+        :visible { 
+          (niri?.[i -1]?.is_focused ?: false) != false
+          || (niri?.[i -1]?.active_window_id ?: false) != false 
+          || (niri?.[i -1]?.name ?: false) != false 
+        }
         :class {
-          (niri_workspace?.[ws - 1]?.is_focused ?: false) ? "active" :
-          (niri_workspace?.[ws - 1]?.active_window_id ?: false) != false ? "used" : ""
+          (niri?.[i -1]?.is_focused ?: false) 
+            ? "active" 
+            : ((niri?.[i -1]?.active_window_id ?: false) != false 
+              ? "used" 
+              : "")
         }
       )
     )
   )
 )
 
-(deflisten hyprland_workspace_empty
-  :initial "{}"
-  "scripts/hyprland.sh empty"
-)
-(deflisten hyprland_workspace_active
-  :initial "{}"
-  "scripts/hyprland.sh active"
-)
-(defwidget hyprland-workspaces []
-  (box
-    :space-evenly false
-    :class "layer workspaces"
-    (for ws in workspace_list
-      (button
-        :onclick "hyprctl dispatch workspace ${ws}"
-        :class {
-          ws == hyprland_workspace_active?.id ?
-          "active" :
-          (hyprland_workspace_empty?.[ws] ?: 0) >= 1 ?
-          "used" :
-          ""
-        }
+;; (defwidget windows []
+;; active on current workspace
+;; )
+
+(defwidget clock []
+;; add popup with different timezones configured
+;; add calendar popup
+  (eventbox
+    :class "layer hover"
+    :tooltip {formattime(EWW_TIME, "%c")}
+    (box
+      :class "clock"
+      :orientation "v"
+      :space-evenly false
+      (label :justify "center"
+        :text {formattime(EWW_TIME, "%-m%n%-d")}
+      )
+      (label :class "grayed" :text "-")
+      (label :justify "center"
+        :text {formattime(EWW_TIME, "%-H%n%M")}
       )
     )
   )
 )
 
 (defwidget tray []
-  (systray
-    :class "layer systray"
-    :icon-size 16
+  (eventbox
+    :class "layer hover"
+    (systray
+      :orientation "v"
+      :halign "center"
+      :class "systray"
+      :icon-size 18
+    )
   )
 )
 

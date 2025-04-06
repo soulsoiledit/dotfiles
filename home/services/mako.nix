@@ -9,7 +9,7 @@ in
       enable = true;
       defaultTimeout = 5000;
 
-      width = 250;
+      width = 240;
       borderRadius = 4;
       layer = "overlay";
 

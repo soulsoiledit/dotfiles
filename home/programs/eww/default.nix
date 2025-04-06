@@ -1,15 +1,27 @@
 {
   config,
-  lib,
   pkgs,
+  inputs,
+  lib,
   ...
 }:
 
+with config.lib.file;
 let
   target = config.wayland.systemd.target;
+  ewwCmd = "${lib.getExe' pkgs.eww "eww"} --no-daemonize";
   ewwService = "eww-daemon.service";
 in
 {
+  home.packages = with pkgs; [
+    eww
+    acpi
+    pavucontrol
+  ];
+
+  # used for making quick changes
+  xdg.configFile."eww".source = mkOutOfStoreSymlink (inputs.self.lib.relative config.flake ./.);
+
   systemd.user.services.eww-daemon = {
     Install.WantedBy = [ target ];
 
@@ -21,7 +33,7 @@ in
     };
 
     Service = {
-      ExecStart = "${lib.getExe pkgs.eww} --no-daemonize daemon";
+      ExecStart = "${ewwCmd} daemon";
       Restart = "on-failure";
       RestartSec = "10";
     };
@@ -37,7 +49,7 @@ in
     };
 
     Service = {
-      ExecStart = "${lib.getExe pkgs.eww} open bar";
+      ExecStart = "${ewwCmd} open bar";
       Restart = "on-failure";
       RestartSec = "10";
     };

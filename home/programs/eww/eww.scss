@@ -38,25 +38,30 @@ $transition-duration: 125ms;
 
 .bar {
   background: $base00;
-
   color: $base05;
+  font: 18px "sans-serif";
+  margin: 2px;
+  min-width: 1em;
+}
 
-  font: 16px "sans-serif";
-
-  margin: 4px 0;
+.logout {
+  background: $base00;
+  border: 2px solid $base01;
+  color: $base05;
+  font: 18px "sans-serif";
+  margin: 2px;
 }
 
 .layer {
   border-radius: $radius;
-  margin: 0 6px;
-
-  label {
-    padding: 0 4px;
-  }
 }
 
 .hover:hover {
   background: $base02;
+}
+
+.grayed {
+  color: $base03;
 }
 
 .volume-muted {
@@ -69,11 +74,12 @@ $transition-duration: 125ms;
 
 .workspaces {
   * {
-    margin: 10px 4px;
-    border-radius: $radius;
+    margin: 2px 0px;
+    min-width: 16px;
+    min-height: 16px;
+    border-radius: 8px;
 
-    background: $base02;
-    padding: 0 8px;
+    background: $base01;
   }
 
   *:hover,
@@ -83,20 +89,18 @@ $transition-duration: 125ms;
 
   .active {
     background: $accent;
-    padding: 0 20px;
+    min-height: 2em;
   }
 
   .used {
-    background: $base03;
-    padding: 0 12px;
+    background: $base02;
+    min-height: 1.5em;
   }
 }
 
 .systray {
-  padding: 0 6px;
-
   > widget > image {
-    padding: 0 2px;
+    padding: 2px 0px;
   }
 }
 
