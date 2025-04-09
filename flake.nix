@@ -13,6 +13,7 @@
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.xwayland-satellite-unstable.url = "github:Supreeeme/xwayland-satellite/force_unscaled";
     };
 
     spicetify-nix = {
@@ -50,6 +51,7 @@
       latestOverlay = final: prev: {
         latestPackages = inputs.latest.legacyPackages.${system};
         drg-mint = inputs.drg-mint.packages.${system}.default;
+        xwayland-satellite = inputs.niri.packages.${system}.xwayland-satellite-unstable;
       };
       pkgs = (nixpkgs.legacyPackages.${system}).extend latestOverlay;
     in

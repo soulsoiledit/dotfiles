@@ -83,8 +83,8 @@
       };
 
       targets = {
-        firefox.enable = false;
         qt.enable = true;
+        firefox.enable = false;
 
         gtk = {
           flatpakSupport.enable = false;
@@ -98,7 +98,7 @@
               }
 
               tooltip.background {
-                background-color: rgba(${base00-rgb-r}, ${base00-rgb-b}, ${base00-rgb-g}, 0.8);
+                background-color: rgba(${base00-rgb-r}, ${base00-rgb-b}, ${base00-rgb-g}, 0.9);
               }
             '';
         };

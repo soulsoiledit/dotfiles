@@ -7,7 +7,6 @@
     prismlauncher
 
     steam
-    gamescope
     piper
     drg-mint
 

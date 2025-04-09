@@ -18,11 +18,6 @@ in
     inputs.niri.homeModules.stylix
   ];
 
-  home.packages = [ pkgs.xwayland-satellite ];
-  xdg.configFile."systemd/user/graphical-session.target.wants/xwayland-satellite.service" = {
-    source = "${pkgs.xwayland-satellite}/share/systemd/user/xwayland-satellite.service";
-  };
-
   programs.niri = {
     enable = true;
     package = pkgs.niri;
@@ -68,11 +63,6 @@ in
         };
 
         border.enable = false;
-      };
-
-      environment = {
-        # set display for xwayland-satellite
-        DISPLAY = ":0";
       };
 
       workspaces = {
