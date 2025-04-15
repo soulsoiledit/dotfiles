@@ -115,6 +115,16 @@
           run = ''shell 'ripdrag -a -x "$@"' --block'';
           desc = "drag and drop";
         }
+
+        {
+          on = "z";
+          run = "plugin zoxide";
+        }
+
+        {
+          on = "Z";
+          run = "plugin fzf";
+        }
       ];
     };
   };
