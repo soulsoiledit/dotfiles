@@ -16,9 +16,9 @@
       g = "lazygit";
       a = "7z";
 
-      ns = "nh os switch";
-      nb = "nh os boot";
-      hs = "nh home switch";
+      ns = "nh os switch --ask";
+      nb = "nh os boot --ask";
+      hs = "nh home switch --ask";
     };
   };
 
