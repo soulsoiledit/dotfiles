@@ -15,6 +15,10 @@ in
 
       userChrome = # css
         ''
+          html {
+            min-width: 0 !important;
+          }
+
           :root {
             /* toolbar */
             --toolbar-bgcolor: ${primary} !important;
