@@ -28,7 +28,7 @@ in
       size = 20;
     };
 
-    # podman.enable = true;
+    libvirt.enable = true;
 
     # used for rebinding laptop keys
     kanata.enable = true;
@@ -44,23 +44,19 @@ in
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
-    logind = {
-      lidSwitch = "sleep";
-      suspendKey = "sleep";
-    };
   };
 
   powerManagement = {
     powerUpCommands = # bash
       ''
-        ${systemctl} start set-coall.service
-        # ${modprobe} -r hid_asus && sleep 2 && ${modprobe} hid_asus
-        # ${brightnessctl} -d *kbd* -r
+        # ${systemctl} start set-coall.service
+        ${modprobe} --all hid_asus
+        ${brightnessctl} --device asus::kbd_backlight --restore
       '';
     powerDownCommands = # bash
       ''
-        ${systemctl} start set-coall.service
-        # ${brightnessctl} -d *kbd* -s
+        ${brightnessctl} --device asus::kbd_backlight --save
+        ${modprobe} -all --remove hid_asus
       '';
   };
 
