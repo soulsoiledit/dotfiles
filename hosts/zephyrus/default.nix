@@ -49,14 +49,13 @@ in
   powerManagement = {
     powerUpCommands = # bash
       ''
-        # ${systemctl} start set-coall.service
-        ${modprobe} --all hid_asus
+        ${modprobe} hid_asus
+        ${brightnessctl} --device asus::kbd_backlight --save
         ${brightnessctl} --device asus::kbd_backlight --restore
       '';
     powerDownCommands = # bash
       ''
-        ${brightnessctl} --device asus::kbd_backlight --save
-        ${modprobe} -all --remove hid_asus
+        ${modprobe} --remove hid_asus
       '';
   };
 
