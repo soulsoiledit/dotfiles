@@ -131,7 +131,7 @@ in
           default-floating-position = {
             x = 8;
             y = 8;
-            relative-to = "top-right";
+            relative-to = "bottom-right";
           };
         }
       ];
