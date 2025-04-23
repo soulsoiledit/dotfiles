@@ -74,9 +74,9 @@
     :onmiddleclick "pavucontrol &"
 
     :halign "center"
-    :class "volume ${volume?.mute}"
-    :tooltip "${volume?.volume}%"
-    "${volume?.symbol ?: ""}"
+    :class "volume ${volume?.mute ?: "volume-unmuted"}"
+    :tooltip "${volume?.volume ?: "?"}%"
+    "${volume?.symbol ?: ""}"
   )
 )
 
