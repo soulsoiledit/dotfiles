@@ -73,6 +73,11 @@ return {
           },
         },
       })
+
+      vim.api.nvim_set_hl(0, 'BlinkCmpLabelMatch', {
+        fg = mini_base16_palette.base0D,
+        bold = true
+      })
     end,
   },
 
