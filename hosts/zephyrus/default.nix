@@ -8,7 +8,6 @@
 let
   modprobe = lib.getExe' pkgs.kmod "modprobe";
   brightnessctl = lib.getExe pkgs.brightnessctl;
-  systemctl = lib.getExe' pkgs.systemd "systemctl";
 in
 {
   imports = [
@@ -18,16 +17,6 @@ in
   networking.hostName = "zephyrus";
 
   modules = {
-    zswap = {
-      enable = true;
-      maxPoolPercent = 50;
-    };
-
-    swap = {
-      enable = true;
-      size = 20;
-    };
-
     libvirt.enable = true;
 
     # used for rebinding laptop keys
@@ -36,15 +25,20 @@ in
 
   programs.wireshark.enable = true;
   users.users.user.extraGroups = [ "wireshark" ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   hardware.graphics.enable32Bit = true;
 
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
   };
+
+  # zswap & hibernation
+  swapDevices = [
+    {
+      device = "/var/swapfile";
+      size = 20 * 1024;
+    }
+  ];
 
   powerManagement = {
     powerUpCommands = # bash
