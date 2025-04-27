@@ -6,6 +6,15 @@ return {
         palette = mini_base16_palette,
       })
 
+      vim.api.nvim_set_hl(0, "Search", {
+        bg = mini_base16_palette.base0D,
+        fg = mini_base16_palette.base01
+      })
+      vim.api.nvim_set_hl(0, "CurSearch", {
+        bg = mini_base16_palette.base0F,
+        fg = mini_base16_palette.base01
+      })
+
       vim.api.nvim_set_hl(0, "markdownH1", { fg = mini_base16_palette.base08 })
       vim.api.nvim_set_hl(0, "markdownH2", { fg = mini_base16_palette.base09 })
       vim.api.nvim_set_hl(0, "markdownH3", { fg = mini_base16_palette.base0A })
