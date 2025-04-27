@@ -18,7 +18,7 @@
 
       ns = "nh os switch --ask";
       nb = "nh os boot --ask";
-      nup = "nix flake update --flake $FLAKE";
+      nup = "nix flake update --flake $NH_FLAKE";
       hs = "nh home switch --ask";
     };
   };

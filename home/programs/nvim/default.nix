@@ -21,7 +21,7 @@ with inputs.self.lib;
       with config.lib.stylix.colors.withHashtag;
       # lua
       ''
-        FLAKE = "${config.flake}"
+        NH_FLAKE = "${config.flake}"
         jdtls_dir = "${config.xdg.cacheHome}/jdtls"
         blink_rg_dictionary = "${pkgs.scowl}/share/dict/wamerican.txt"
         mini_base16_palette = {
