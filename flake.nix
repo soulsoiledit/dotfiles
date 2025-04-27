@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    latest.url = "github:NixOS/nixpkgs";
+    # latest.url = "github:NixOS/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -47,12 +47,12 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      latestOverlay = final: prev: {
-        latestPackages = inputs.latest.legacyPackages.${system};
+      overlay = final: prev: {
+        # latestPackages = inputs.latest.legacyPackages.${system};
         drg-mint = inputs.drg-mint.packages.${system}.default;
         xwayland-satellite = inputs.niri.packages.${system}.xwayland-satellite-unstable;
       };
-      pkgs = (nixpkgs.legacyPackages.${system}).extend latestOverlay;
+      pkgs = (nixpkgs.legacyPackages.${system}).extend overlay;
     in
     {
       lib = import ./lib inputs;
