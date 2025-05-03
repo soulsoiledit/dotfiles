@@ -35,11 +35,6 @@
       flake = false;
     };
 
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     drg-mint.url = "github:trumank/mint";
   };
 
