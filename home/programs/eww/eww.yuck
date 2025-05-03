@@ -1,11 +1,11 @@
 (defwindow bar
   :monitor 0
   :exclusive true
-  :geometry (geometry
+  :geometry
+  (geometry
     :width "2%"
     :height "100%"
-    :anchor "left center"
-  )
+    :anchor "left center")
   (centerbox
     :orientation "vertical"
     :halign "center"
@@ -13,9 +13,9 @@
     (box
       :space-evenly false
       :orientation "v"
+
       ;; launcher / power
-      (niri)
-    )
+      (niri))
 
     (clock)
 
@@ -33,27 +33,23 @@
           :space-evenly false
           (volume)
           (network)
-          (battery)
-        )
-      )
+          (battery)))
 
       (tray)
+
       ;; settings
       ;; power
-    )
-  )
-)
+    )))
 
 (defwindow logout
   :monitor 0
   :stacking "overlay"
-  :geometry (geometry
+  :geometry
+  (geometry
     :width "25%"
     :height "25%"
-    :anchor "center"
-  )
-  (battery)
-)
+    :anchor "center")
+  (battery))
 
 ;; current used device (wireless, wired, speaker, onboard)
 ;; popup
@@ -62,49 +58,41 @@
 ;; microphone toggle
 (defvar volume_step 5)
 (deflisten volume "scripts/volume.sh")
-(defwidget volume []
+(defwidget volume [ ]
   (eventbox
-    :onscroll
-    "if [[ {} == up ]];
+    :onscroll "if [[ {} == up ]];
       then pamixer --increase ${volume_step};
       else pamixer --decrease ${volume_step};
       fi;
       "
     :onclick "pamixer --toggle-mute"
     :onmiddleclick "pavucontrol &"
-
     :halign "center"
     :class "volume ${volume?.mute ?: "volume-unmuted"}"
     :tooltip "${volume?.volume ?: "?"}%"
-    "${volume?.symbol ?: ""}"
-  )
-)
+    "${volume?.symbol ?: ""}"))
 
 ;; power profiles
 ;; cpu usage
 ;; memory usage
 ;; brightness
 (deflisten battery "scripts/battery.sh")
-(defwidget battery []
-    (eventbox
-      :class "battery"
-      :halign "center"
-      :tooltip "${battery?.percentage}% ${battery?.remaining} left @ ${round((battery?.wattage ?: 0) / 1000000, 1)}W"
-      "${battery?.symbol ?: false}"
-    )
-)
+(defwidget battery [ ]
+  (eventbox
+    :class "battery"
+    :halign "center"
+    :tooltip "${battery?.percentage}% ${battery?.remaining} left @ ${round((battery?.wattage ?: 0) / 1000000,1)}W"
+    "${battery?.symbol ?: false}"))
 
 ;; vpn status
 (deflisten network "scripts/network.sh")
-(defwidget network []
+(defwidget network [ ]
   (eventbox
     :class "network ${network?.status}"
     :onclick "foot -e nmtui &"
-    :tooltip {network?.ssid}
+    :tooltip { network?.ssid }
     :halign "center"
-    {network?.symbol ?: ""}
-  )
-)
+    { network?.symbol ?: "" }))
 
 ;; (defwidget launcher
 ;; idk
@@ -115,166 +103,182 @@
 ;; )
 
 (deflisten niri "scripts/niri.sh")
+
 ;; workspaces
 ;; currently active
 ;; has window open
 ;; empty
 ;; only display >5 as needed
-(defwidget niri []
+(defwidget niri [ ]
   (box
     :orientation "v"
     :halign "center"
     :space-evenly false
     :class "workspaces"
-    (for i in {[1,2,3,4,5,6,7,8,9,10]}
+    (for i in { [1,2,3,4,5,6,7,8,9,10] }
       (button
         :onclick "niri msg action focus-workspace ${i}"
-        :visible { 
-          (niri?.[i -1]?.is_focused ?: false) != false
-          || (niri?.[i -1]?.active_window_id ?: false) != false 
-          || (niri?.[i -1]?.name ?: false) != false 
+        :visible {
+          (niri?.[i - 1]?.is_focused ?: false) != false||(niri?.[i - 1]?.active_window_id ?: false) != false||(niri?.[i - 1]?.name ?: false) != false
         }
         :class {
-          (niri?.[i -1]?.is_focused ?: false) 
-            ? "active" 
-            : ((niri?.[i -1]?.active_window_id ?: false) != false 
-              ? "used" 
-              : "")
-        }
-      )
-    )
-  )
-)
+          (niri?.[i - 1]?.is_focused ?: false)
+          ? "active"
+          : ((niri?.[i - 1]?.active_window_id ?: false) != false
+          ? "used"
+          : "")
+        }))))
 
 ;; (defwidget windows []
 ;; active on current workspace
 ;; )
 
-(defwidget clock []
-;; add popup with different timezones configured
-;; add calendar popup
+(defwidget clock [ ]
+  ;; add popup with different timezones configured
+  ;; add calendar popup
   (eventbox
     :class "layer hover"
-    :tooltip {formattime(EWW_TIME, "%c")}
+    :tooltip { formattime(EWW_TIME,"%c") }
     (box
       :class "clock"
       :orientation "v"
       :space-evenly false
-      (label :justify "center"
-        :text {formattime(EWW_TIME, "%-m%n%-d")}
-      )
-      (label :class "grayed" :text "-")
-      (label :justify "center"
-        :text {formattime(EWW_TIME, "%-H%n%M")}
-      )
-    )
-  )
-)
+      (label
+        :justify "center"
+        :text { formattime(EWW_TIME,"%-m%n%-d") })
+      (label
+        :class "grayed"
+        :text "-")
+      (label
+        :justify "center"
+        :text { formattime(EWW_TIME,"%-H%n%M") }))))
 
-(defwidget tray []
+(defwidget tray [ ]
   (eventbox
     :class "layer hover"
     (systray
       :orientation "v"
       :halign "center"
       :class "systray"
-      :icon-size 18
-    )
-  )
-)
+      :icon-size 18)))
 
-;; (defwidget system []
-;;   (button :onmiddleclick "foot -e btop &"
-;;     (box :space-evenly false :class "button"
+;; (defwidget system [ ]
+;;   (button
+;;     :onmiddleclick "foot -e btop &"
+;;     (box
+;;       :space-evenly false
+;;       :class "button"
 ;;       (battery)
+;;
 ;;       ;; (memory)
 ;;       ;; (temperature)
 ;;       ;; (cpu)
-;;     )
-;;   )
-;; )
+;;     )))
 ;;
+;; (defpoll memory
+;;   :initial "{}"
+;;   :interval "10s"
+;;   "scripts/memory.sh")
+;; (defwidget memory [ ]
+;;   (box
+;;     :space-evenly false
+;;     :class "memory""󰍛 "
+;;     (label
+;;       :class "small_text"
+;;       :text "${round(memory.used_percentage ?: 0,0)}% ")))
 ;;
-;; (defpoll memory :initial "{}" :interval "10s" "scripts/memory.sh")
-;; (defwidget memory []
-;;   (box :space-evenly false :class "memory"
-;;     "󰍛 "
-;;     (label :class "small_text" :text "${round(memory.used_percentage ?: 0, 0)}% ")
-;;   )
-;; )
+;; (defpoll temperature
+;;   :initial ""
+;;   :interval "1m"
+;;   "scripts/temperature.sh")
+;; (defwidget temperature [ ]
+;;   (box
+;;     :space-evenly false
+;;     :class "temperature""󰔏 "
+;;     (label
+;;       :class "small_text"
+;;       :text "${temperature}° ")))
 ;;
-;; (defpoll temperature :initial "" :interval "1m" "scripts/temperature.sh")
-;; (defwidget temperature []
-;;   (box :space-evenly false :class "temperature"
-;;     "󰔏 "
-;;     (label :class "small_text" :text "${temperature}° ")
-;;   )
-;; )
+;; (defpoll cpu
+;;   :initial "{}"
+;;   :interval "1m"
+;;   "scripts/cpu.sh")
+;; (defwidget cpu [ ]
+;;   (box
+;;     :space-evenly false
+;;     :class "cpu""󰘚 "
+;;     (label
+;;       :class "small_text"
+;;       :text "${round(100 - (cpu.cpu_percentage ?: 99),0)}% ")))
 ;;
-;; (defpoll cpu :initial "{}" :interval "1m" "scripts/cpu.sh")
-;; (defwidget cpu []
-;;   (box :space-evenly false :class "cpu"
-;;     "󰘚 "
-;;     (label :class "small_text"
-;;       :text "${round(100 - (cpu.cpu_percentage ?: 99), 0)}% "
-;;     )
-;;   )
-;; )
+;; ;; TODO: add actual power menu....
+;; ;;
+;; (defwidget power_menu [ ]
+;;   (button
+;;     :onclick "fuzzel &"
+;;     :class "button power"
+;;     "󰐥"))
 ;;
-;; TODO: add actual power menu....
+;; (defwidget launcher [ ]
+;;   (button
+;;     :onclick "fuzzel &"
+;;     :class "button launcher"
+;;     ""))
 ;;
-;; (defwidget power_menu []
-;;   (button :onclick "fuzzel &" :class "button power" "󰐥")
-;; )
-;;
-;; (defwidget launcher []
-;;   (button :onclick "fuzzel &" :class "button launcher" "")
-;; )
-;;
-;; (defwidget user []
-;;   (box :space-evenly false :class "button"
+;; (defwidget user [ ]
+;;   (box
+;;     :space-evenly false
+;;     :class "button"
 ;;     (network)
+;;
 ;;     ;; (brightness)
 ;;     ;; (weather)
-;;   )
-;; )
+;;   ))
 ;;
-;;
-;;
-;; (deflisten brightness :initial "{}" "scripts/brightness.sh")
-;; (defwidget brightness []
-;;   (eventbox :class "brightness"
-;;     :onscroll
-;;     "if [[ {} == up ]];
+;; (deflisten brightness
+;;   :initial "{}"
+;;   "scripts/brightness.sh")
+;; (defwidget brightness [ ]
+;;   (eventbox
+;;     :class "brightness"
+;;     :onscroll "if [[ {} == up ]];
 ;;       then brightnessctl set 20%+;
 ;;       else brightnessctl set 20%-;
 ;;       fi;
 ;;       "
-;;     "${brightness.symbol} "
-;;   )
-;; )
+;;     "${brightness.symbol} "))
 ;;
-;; (defpoll weather :initial "{}" :interval "1h" "scripts/weather.sh")
-;; (defwidget weather []
+;; (defpoll weather
+;;   :initial "{}"
+;;   :interval "1h"
+;;   "scripts/weather.sh")
+;; (defwidget weather [ ]
 ;;   (button
 ;;     :class "weather"
-;;     :tooltip {weather.tooltip}
+;;     :tooltip { weather.tooltip }
 ;;     :onmiddleclick "xdg-open 'https://weather.com/weather/today/' &"
-;;     "${weather.symbol ?: "󰼯"} "
-;;   )
-;; )
+;;     "${weather.symbol ?: "󰼯"} "))
 ;;
-;; (deflisten mpris-status :initial "{}" "scripts/mpris.sh status")
-;; (deflisten mpris-metadata :initial "{}" "scripts/mpris.sh metadata")
-;; (defwidget mpris []
-;;   (tooltip :class "button"
-;;     "${mpris-metadata.title}\\n${mpris-metadata.artist} - ${mpris-metadata.album}"
-;;     (box :space-evenly false :class "mpris"
-;;       (button :onclick "playerctl previous" "󰙣")
-;;       (button :onclick "playerctl play-pause" {mpris-status.symbol ?: "󰐌"})
-;;       (button :onclick "playerctl next" "󰙡")
-;;     )
-;;   )
-;; )
-;;
-
+;; (deflisten mpris-status
+;;   :initial "{}"
+;;   "scripts/mpris.sh status")
+;; (deflisten mpris-metadata
+;;   :initial "{}"
+;;   "scripts/mpris.sh metadata")
+;; (defwidget mpris [ ]
+;;   (tooltip
+;;     :class "button""${mpris-metadata.title}\\n${mpris-metadata.artist} - ${mpris-metadata.album}"
+;;     (box
+;;       :space-evenly false
+;;       :class "mpris"
+;;       (button
+;;         :onclick "playerctl previous"
+;;         "󰙣")
+;;       (button
+;;         :onclick "playerctl play-pause"
+;;         {
+;;           mpris-status.symbol ?: "󰐌"
+;;         })
+;;       (button
+;;         :onclick "playerctl next"
+;;         "󰙡"))))
