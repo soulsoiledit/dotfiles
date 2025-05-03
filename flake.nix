@@ -36,6 +36,11 @@
     };
 
     drg-mint.url = "github:trumank/mint";
+
+    topiary-yuck = {
+      url = "github:dod-101/topiary-yuck";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -46,6 +51,7 @@
         # latestPackages = inputs.latest.legacyPackages.${system};
         drg-mint = inputs.drg-mint.packages.${system}.default;
         xwayland-satellite = inputs.niri.packages.${system}.xwayland-satellite-unstable;
+        topiary-yuck = inputs.topiary-yuck.packages.${system}.default;
       };
       pkgs = (nixpkgs.legacyPackages.${system}).extend overlay;
     in
