@@ -1,20 +1,14 @@
 { config, lib, ... }:
 
+let
+  cfg = config.virtualisation.libvirtd;
+in
 {
-  options.modules.libvirt.enable = lib.mkEnableOption "enable virt-manager";
-
-  config = lib.mkIf config.modules.libvirt.enable {
-    virtualisation = {
-      libvirtd = {
-        enable = true;
-
-        # don't start previously running vms automatically
-        onBoot = "ignore";
-      };
-    };
-
-    users.users.user.extraGroups = [ "libvirtd" ];
-
-    programs.virt-manager.enable = true;
+  virtualisation.libvirtd = {
+    # don't start previously running vms automatically
+    onBoot = "ignore";
   };
+
+  users.users.default.extraGroups = lib.mkIf cfg.enable [ "libvirtd" ];
+  programs.virt-manager.enable = lib.mkIf cfg.enable true;
 }

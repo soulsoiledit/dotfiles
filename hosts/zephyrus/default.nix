@@ -15,30 +15,31 @@ in
   ] ++ inputs.self.lib.autoimport ../../system;
 
   networking.hostName = "zephyrus";
-
-  modules = {
-    libvirt.enable = true;
-
-    # used for rebinding laptop keys
-    kanata.enable = true;
-  };
-
-  programs.wireshark.enable = true;
-  users.users.user.extraGroups = [ "wireshark" ];
   hardware.graphics.enable32Bit = true;
 
-  services = {
-    upower.enable = true;
-    power-profiles-daemon.enable = true;
-  };
-
-  # zswap & hibernation
   swapDevices = [
     {
       device = "/var/swapfile";
       size = 20 * 1024;
     }
   ];
+
+  services = {
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+
+    kanata = {
+      enable = true;
+      keyboards.default.devices = [
+        "/dev/input/by-id/usb-ASUSTeK_Computer_Inc._N-KEY_Device-if02-event-kbd"
+      ];
+    };
+  };
+
+  virtualisation.libvirtd.enable = true;
+
+  programs.wireshark.enable = true;
+  users.users.user.extraGroups = [ "wireshark" ];
 
   powerManagement = {
     powerUpCommands = # bash

@@ -3,7 +3,7 @@
 {
   programs.nh = {
     enable = true;
-    flake = "${config.users.users.user.home}/code/dotfiles";
+    flake = "${config.users.users.default.home}/code/dotfiles";
 
     clean = {
       enable = true;
