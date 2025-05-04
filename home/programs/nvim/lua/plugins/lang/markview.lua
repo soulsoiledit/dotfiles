@@ -20,6 +20,8 @@ return {
 
       vim.api.nvim_set_hl(0, "MarkviewListItemMinus", { link = "MarkviewPalette6Fg" })
       vim.api.nvim_set_hl(0, "MarkviewListItemStar", { link = "MarkviewPalette2Fg" })
+
+      require("lz.n").trigger_load("nvim-treesitter")
     end,
   },
 }
