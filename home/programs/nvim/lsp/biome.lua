@@ -4,7 +4,7 @@ return {
     "biome",
     "lsp-proxy",
     "--config-path",
-    "/home/soil/.config/biome.json"
+    biome_config,
   },
   filetypes = {
     "css",

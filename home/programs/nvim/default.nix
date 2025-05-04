@@ -26,6 +26,7 @@ in
       ''
         FLAKE = "${flake}"
         jdtls_dir = "${config.xdg.cacheHome}/jdtls"
+        biome_config = "${config.xdg.configHome}/biome.json"
         blink_rg_dictionary = "${pkgs.scowl}/share/dict/wamerican.txt"
         mini_base16_palette = {
           base00 = "${base00}",
