@@ -8,7 +8,7 @@ return {
       options = {
         home = {
           expr =
-              '(builtins.getFlake "' .. NH_FLAKE .. '").homeConfigurations.soil.options',
+              '(builtins.getFlake "' .. FLAKE .. '").homeConfigurations.soil.options',
         },
       },
       formatting = {

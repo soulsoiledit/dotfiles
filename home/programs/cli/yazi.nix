@@ -1,4 +1,9 @@
-{ pkgs, inputs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -50,17 +55,9 @@
         {
           on = [
             "g"
-            "h"
-          ];
-          run = "cd ~";
-          desc = "home";
-        }
-        {
-          on = [
-            "g"
             "n"
           ];
-          run = "cd ~/code/dotfiles/";
+          run = "cd ${config.programs.nh.flake}";
           desc = "nix config";
         }
         {

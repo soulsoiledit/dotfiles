@@ -7,6 +7,9 @@
 
 with config.lib.file;
 with inputs.self.lib;
+let
+  flake = config.programs.nh.flake;
+in
 {
   stylix.targets.neovim.enable = false;
 
@@ -16,12 +19,12 @@ with inputs.self.lib;
   };
 
   xdg.configFile = {
-    "nvim".source = mkOutOfStoreSymlink (relative config.flake ./.);
+    "nvim".source = mkOutOfStoreSymlink (relative flake ./.);
     "generated/nvim.lua".text =
       with config.lib.stylix.colors.withHashtag;
       # lua
       ''
-        NH_FLAKE = "${config.flake}"
+        FLAKE = "${flake}"
         jdtls_dir = "${config.xdg.cacheHome}/jdtls"
         blink_rg_dictionary = "${pkgs.scowl}/share/dict/wamerican.txt"
         mini_base16_palette = {

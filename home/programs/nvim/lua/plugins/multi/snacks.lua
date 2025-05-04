@@ -69,7 +69,7 @@ return {
               icon = " ",
               key = "c",
               desc = "Config",
-              action = ":lua Snacks.picker.pick('files', { cwd = '" .. NH_FLAKE .. "' })",
+              action = ":lua Snacks.picker.pick('files', { cwd = '" .. FLAKE .. "' })",
             },
             {
               icon = " ",

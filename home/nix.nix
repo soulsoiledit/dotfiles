@@ -1,10 +1,15 @@
 {
+  config,
   inputs,
   pkgs,
   ...
 }:
 
 {
+  # make easier to allow unfree
+  nixpkgs.config.allowUnfree = true;
+  home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
+
   imports = [ inputs.nix-index-database.hmModules.nix-index ];
 
   home.packages = with pkgs; [
@@ -13,7 +18,11 @@
   ];
 
   programs = {
-    nix-index.enable = true;
+    nh = {
+      enable = true;
+      flake = "${config.xdg.configHome}/flake";
+    };
+
     nix-index-database.comma.enable = true;
   };
 
@@ -23,8 +32,4 @@
   };
 
   xdg.configFile."nix/nix.conf".enable = false;
-
-  # make easier to allow unfree
-  nixpkgs.config.allowUnfree = true;
-  home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
 }

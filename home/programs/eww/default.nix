@@ -7,6 +7,7 @@
 }:
 
 with config.lib.file;
+with inputs.self.lib;
 let
   target = config.wayland.systemd.target;
   ewwCmd = "${lib.getExe' pkgs.eww "eww"} --no-daemonize";
@@ -20,7 +21,7 @@ in
   ];
 
   # used for making quick changes
-  xdg.configFile."eww".source = mkOutOfStoreSymlink (inputs.self.lib.relative config.flake ./.);
+  xdg.configFile."eww".source = mkOutOfStoreSymlink (relative config.programs.nh.flake ./.);
 
   systemd.user.services.eww-daemon = {
     Install.WantedBy = [ target ];

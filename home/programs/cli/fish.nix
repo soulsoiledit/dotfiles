@@ -18,11 +18,10 @@
 
       ns = "nh os switch --ask";
       nb = "nh os boot --ask";
-      nup = "nix flake update --flake $NH_FLAKE";
+      nup = "nix flake update --flake ${config.programs.nh.flake}";
       hs = "nh home switch --ask";
     };
   };
 
-  # prompt
   programs.starship.enable = true;
 }
