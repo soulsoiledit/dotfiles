@@ -12,20 +12,4 @@ return {
       })
     end,
   },
-
-  {
-    "mini.cursorword",
-    event = "DeferredUIEnter",
-    after = function()
-      require("mini.cursorword").setup()
-    end,
-  },
-
-  {
-    "mini.trailspace",
-    event = "DeferredUIEnter",
-    after = function()
-      require("mini.trailspace").setup()
-    end
-  },
 }

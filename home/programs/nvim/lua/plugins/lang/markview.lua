@@ -1,9 +1,7 @@
 return {
   {
     "markview.nvim",
-    before = function()
-      require("lz.n").trigger_load("mini.base16")
-    end,
+    priority = 45,
     after = function()
       require("markview").setup({
         markdown = {

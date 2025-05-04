@@ -16,9 +16,6 @@ in
       # multi
       snacks-nvim
       mini-nvim
-      mini-base16
-      mini-pairs
-      mini-surround
 
       # code
       blink-cmp
@@ -26,7 +23,6 @@ in
       friendly-snippets
       ts-comments-nvim
       lsp-format-nvim
-      mini-diff
 
       # nav
       todo-comments-nvim
@@ -49,8 +45,6 @@ in
       nvim-colorizer-lua
 
       nvim-lightbulb
-      mini-cursorword
-      mini-trailspace
 
       # lang
       markview-nvim
