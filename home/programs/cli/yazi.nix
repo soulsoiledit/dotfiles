@@ -29,15 +29,8 @@
       };
 
       settings = {
-        manager = {
-          sort_by = "natural";
-          sort_translit = true;
-        };
-
-        preview = {
-          wrap = "yes";
-        };
-
+        manager.sort_by = "natural";
+        preview.wrap = "yes";
         open.prepend_rules = [
           {
             mime = "application/java-archive";
@@ -60,36 +53,31 @@
           run = "cd ${config.programs.nh.flake}";
           desc = "nix config";
         }
-        {
-          on = [
-            "g"
-            "s"
-          ];
-          run = "cd ~/pictures/screenshots/";
-          desc = "screenshots";
-        }
+
         {
           on = [
             "g"
             "m"
           ];
-          run = "cd ~/.local/share/PrismLauncher/instances/";
+          run = "cd $XDG_DATA_HOME/PrismLauncher/instances/";
           desc = "minecraft";
         }
+
         {
           on = [
             "g"
             "t"
           ];
-          run = "cd ~/.local/share/Trash/files";
+          run = "cd $XDG_DATA_HOME/Trash/files";
           desc = "trash";
         }
+
         {
           on = [
             "g"
             "u"
           ];
-          run = "cd /run/media/";
+          run = "cd /run/media/$USER";
           desc = "usb";
         }
 
@@ -113,6 +101,7 @@
           desc = "drag and drop";
         }
 
+        # reverse upstream changes
         {
           on = "z";
           run = "plugin zoxide";
