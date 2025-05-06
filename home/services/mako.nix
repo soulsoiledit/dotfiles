@@ -7,13 +7,15 @@ in
   services = {
     mako = {
       enable = true;
-      defaultTimeout = 5000;
+      settings = {
+        default-timeout = 5000;
 
-      width = 240;
-      borderRadius = 4;
-      layer = "overlay";
+        width = 240;
+        border-radius = 4;
+        layer = "overlay";
 
-      iconPath = "${iconTheme.package}/share/icons/${iconTheme.name}";
+        icon-path = "${iconTheme.package}/share/icons/${iconTheme.name}";
+      };
     };
 
     poweralertd.enable = true;
