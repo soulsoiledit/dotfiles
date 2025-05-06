@@ -10,6 +10,7 @@ let
   xwl-sat = pkgs.xwayland-satellite;
   service = "xwayland-satellite.service";
   xrdb = lib.getExe pkgs.xorg.xrdb;
+  display = ":0";
 in
 {
   home.packages = with pkgs; [
@@ -23,7 +24,7 @@ in
 
   # set display for xwayland-satellite
   programs.niri.settings = {
-    environment.DISPLAY = ":0";
+    environment.DISPLAY = display;
   };
 
   xresources.properties = {
@@ -40,7 +41,7 @@ in
     };
 
     Service = {
-      Environment = [ "DISPLAY=:0" ];
+      Environment = [ ''DISPLAY=${display}'' ];
       ExecStart = "${xrdb} merge ${config.xresources.path}";
       Restart = "on-failure";
       RestartSec = "5";
