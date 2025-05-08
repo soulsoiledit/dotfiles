@@ -19,7 +19,7 @@ in
   };
 
   xdg.configFile = {
-    "nvim".source = mkOutOfStoreSymlink (relative flake ./.);
+    "nvim".source = mkOutOfStoreSymlink (flake + "/home/programs/nvim");
     "generated/nvim.lua".text =
       with config.lib.stylix.colors.withHashtag;
       # lua
