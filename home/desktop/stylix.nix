@@ -56,25 +56,10 @@
       };
 
       fonts = {
-        sansSerif = {
-          package = config.stylix.cursor.package;
-          name = "sans-serif";
-        };
-
-        serif = {
-          package = config.stylix.fonts.sansSerif.package;
-          name = "serif";
-        };
-
-        monospace = {
-          package = config.stylix.fonts.sansSerif.package;
-          name = "monospace";
-        };
-
-        emoji = {
-          package = config.stylix.fonts.sansSerif.package;
-          name = "emoji";
-        };
+        sansSerif.name = "sans-serif";
+        serif.name = "serif";
+        monospace.name = "monospace";
+        emoji.name = "emoji";
 
         sizes = {
           applications = 10;
