@@ -16,6 +16,5 @@
     distrobox
     lilipod
 
-    wireshark
   ];
 }

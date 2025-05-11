@@ -38,9 +38,6 @@ in
 
   virtualisation.libvirtd.enable = true;
 
-  programs.wireshark.enable = true;
-  users.users.default.extraGroups = [ "wireshark" ];
-
   powerManagement = {
     powerUpCommands = # bash
       ''
