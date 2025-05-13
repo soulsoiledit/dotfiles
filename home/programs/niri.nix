@@ -106,6 +106,16 @@ in
         }
 
         {
+          matches = [
+            {
+              app-id = ''firefox'';
+              at-startup = true;
+            }
+          ];
+          open-on-workspace = "1";
+        }
+
+        {
           matches = [ { app-id = ''vesktop|spotify|steam''; } ];
           open-on-workspace = "2";
         }
