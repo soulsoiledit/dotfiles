@@ -5,10 +5,6 @@
   ...
 }:
 
-let
-  modprobe = lib.getExe' pkgs.kmod "modprobe";
-  brightnessctl = lib.getExe pkgs.brightnessctl;
-in
 {
   imports = [
     ./hardware.nix
@@ -19,10 +15,15 @@ in
   networking.hostName = "zephyrus";
   time.timeZone = "US/Central";
 
+  fileSystems = {
+    "/".options = [ "compress=zstd" ];
+    "/home".options = [ "compress=zstd" ];
+  };
+
   swapDevices = [
     {
       device = "/var/swapfile";
-      size = 20 * 1024;
+      size = 4 * 1024;
     }
   ];
 
@@ -41,19 +42,6 @@ in
   };
 
   virtualisation.libvirtd.enable = true;
-
-  powerManagement = {
-    powerUpCommands = # bash
-      ''
-        ${modprobe} hid_asus
-        ${brightnessctl} --device asus::kbd_backlight --save
-        ${brightnessctl} --device asus::kbd_backlight --restore
-      '';
-    powerDownCommands = # bash
-      ''
-        ${modprobe} --remove hid_asus
-      '';
-  };
 
   # https://github.com/sammilucia/set-coall-timer
   systemd = {
