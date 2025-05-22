@@ -7,7 +7,7 @@
 }:
 
 {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [ inputs.stylix.homeModules.stylix ];
 
   options.opt.accent = lib.mkOption {
     type = lib.types.str;
