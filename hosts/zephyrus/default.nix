@@ -14,8 +14,10 @@ in
     ./hardware.nix
   ] ++ inputs.self.lib.autoimport ../../system;
 
+  system.stateVersion = "24.05";
+
   networking.hostName = "zephyrus";
-  hardware.graphics.enable32Bit = true;
+  time.timeZone = "US/Central";
 
   swapDevices = [
     {
@@ -23,6 +25,8 @@ in
       size = 20 * 1024;
     }
   ];
+
+  hardware.graphics.enable32Bit = true;
 
   services = {
     upower.enable = true;
