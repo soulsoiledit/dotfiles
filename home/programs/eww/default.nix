@@ -19,7 +19,7 @@ in
 
   home.packages = with pkgs; [
     acpi
-    pavucontrol
+    pwvucontrol
   ];
 
   xdg.configFile."eww".source = mkOutOfStoreSymlink (flake + "/home/programs/eww");
