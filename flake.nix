@@ -35,7 +35,7 @@
       flake = false;
     };
 
-    drg-mint.url = "github:trumank/mint";
+    drg-mint.url = "github:trumank/mint/7d399fc311752617dfa3eb21ee7d856a1f804517";
 
     topiary-yuck = {
       url = "github:dod-101/topiary-yuck";
