@@ -1,5 +1,9 @@
 { config, lib, ... }:
 
+let
+  configHome = config.xdg.configHome;
+  dataHome = config.xdg.dataHome;
+in
 {
   xdg = {
     enable = true;
@@ -10,18 +14,18 @@
     preferXdgDirectories = true;
 
     sessionVariables = {
-      CARGO_HOME = "${config.xdg.dataHome}/cargo";
-      RUSTUP_HOME = "${config.xdg.dataHome}/rustup";
-      _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="${config.xdg.configHome}"/java'';
+      CARGO_HOME = "${dataHome}/cargo";
+      RUSTUP_HOME = "${dataHome}/rustup";
+      _JAVA_OPTIONS = ''-Djava.util.prefs.userRoot="${configHome}"/java'';
     };
   };
 
-  gtk.gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+  gtk.gtk2.configLocation = "${configHome}/gtk-2.0/gtkrc";
 
   home.file = {
     ".icons/${config.home.pointerCursor.name}".enable = lib.mkForce false;
     ".icons/default/index.theme".enable = lib.mkForce false;
   };
 
-  xresources.path = "${config.xdg.configHome}/X11/xresources";
+  xresources.path = "${configHome}/X11/xresources";
 }
