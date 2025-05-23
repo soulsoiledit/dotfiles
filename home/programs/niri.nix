@@ -6,17 +6,19 @@
 }:
 
 let
+  radius = 4.0;
   move-column-to-workspace = ws: [
-    "sh"
-    "-c"
-    "niri msg action move-column-to-workspace ${toString ws} && niri msg action focus-workspace-previous"
+    "niri"
+    "msg"
+    "action"
+    "move-column-to-workspace"
+    (toString ws)
+    "--focus"
+    "false"
   ];
 in
 {
-  imports = [
-    inputs.niri.homeModules.niri
-    inputs.niri.homeModules.stylix
-  ];
+  imports = [ inputs.niri.homeModules.niri ];
 
   programs.niri = {
     enable = true;
@@ -43,7 +45,7 @@ in
 
       outputs."BOE 0x0A1D Unknown" = {
         scale = 2;
-        background-color = config.lib.stylix.colors.withHashtag.base00;
+        background-color = "transparent";
       };
 
       layout = {
@@ -83,19 +85,22 @@ in
       hotkey-overlay.skip-at-startup = true;
       prefer-no-csd = true;
 
+      layer-rules = [
+        {
+          matches = [ { namespace = ''wpaperd-.*''; } ];
+          place-within-backdrop = true;
+        }
+      ];
+
       window-rules = [
         # add rounded corner
         {
-          geometry-corner-radius =
-            let
-              radius = 4.0;
-            in
-            {
-              top-left = radius;
-              top-right = radius;
-              bottom-left = radius;
-              bottom-right = radius;
-            };
+          geometry-corner-radius = {
+            top-left = radius;
+            top-right = radius;
+            bottom-left = radius;
+            bottom-right = radius;
+          };
           clip-to-geometry = true;
         }
 
@@ -148,11 +153,13 @@ in
 
       screenshot-path = "~/pictures/screenshots/%Y-%m-%d_%H-%M-%S.png";
 
+      gestures.hot-corners.enable = false;
+
       binds = with config.lib.niri.actions; {
         # programs
         "Mod+Return".action.spawn = "footclient";
         "Mod+Space".action.spawn = "fuzzel";
-        "Mod+S".action = screenshot;
+        "Mod+S".action = screenshot { show-pointer = false; };
         "Mod+B".action.spawn = [
           "sh"
           "-c"
