@@ -22,11 +22,11 @@ return {
         mappings = {
           add = "gsa",
           delete = "gsd",
-          find = "",
-          find_left = "",
-          highlight = "",
-          replace = "gsc",
-          update_n_lines = "",
+          find = "gsf",
+          find_left = "gsF",
+          highlight = "gsh",
+          replace = "gsr",
+          update_n_lines = "gsn",
         },
       })
 
