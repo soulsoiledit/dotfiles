@@ -41,7 +41,7 @@
     };
   };
 
-  virtualisation.libvirtd.enable = true;
+  # virtualisation.libvirtd.enable = true;
 
   # https://github.com/sammilucia/set-coall-timer
   systemd = {

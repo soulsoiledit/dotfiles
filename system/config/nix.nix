@@ -18,6 +18,4 @@
       options = "--delete-older-than 14d";
     };
   };
-
-  # nixpkgs.config.allowUnfree = true;
 }
