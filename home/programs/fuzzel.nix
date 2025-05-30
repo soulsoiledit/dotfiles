@@ -1,21 +1,18 @@
+{ config, ... }:
+
 {
   programs.fuzzel = {
     enable = true;
     settings = {
       main = {
-        prompt = "\"❯ \"";
-        icon-theme = "Papirus-Dark";
-        terminal = "foot -e";
+        prompt = ''"❯ "'';
 
-        width = 30;
-        horizontal-pad = 20;
         lines = 8;
-        line-height = 25;
-      };
+        icon-theme = config.gtk.iconTheme.name;
+        horizontal-pad = 20;
+        line-height = 32;
 
-      border = {
-        width = 1;
-        radius = 15;
+        cache = config.xdg.stateHome + "/fuzzel";
       };
     };
   };
