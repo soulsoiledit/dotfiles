@@ -1,16 +1,13 @@
 { lib, pkgs, ... }:
 
-let
-  tuigreet = lib.getExe pkgs.greetd.tuigreet;
-in
 {
   services.greetd = {
     enable = true;
     vt = 7;
     settings = {
       default_session = {
-        command = lib.strings.concatStringsSep " " [
-          tuigreet
+        command = builtins.concatStringsSep " " [
+          (lib.getExe pkgs.greetd.tuigreet)
           "--time"
           "--remember"
           "--remember-user-session"
