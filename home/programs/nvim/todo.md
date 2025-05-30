@@ -1,5 +1,0 @@
-- after/
-- plugin/
-- lua/
-- ftplugin/
-- lsp/
