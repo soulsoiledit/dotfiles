@@ -19,4 +19,6 @@
       };
     };
   };
+
+  home.sessionVariables.TERMINAL = "footclient";
 }
