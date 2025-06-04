@@ -5,10 +5,7 @@ let
   dataHome = config.xdg.dataHome;
 in
 {
-  xdg = {
-    enable = true;
-    portal.config.niri.default = "gtk,gnome";
-  };
+  xdg.enable = true;
 
   home = {
     preferXdgDirectories = true;

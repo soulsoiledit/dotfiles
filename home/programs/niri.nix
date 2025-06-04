@@ -20,6 +20,8 @@ in
 {
   imports = [ inputs.niri.homeModules.niri ];
 
+  xdg.portal.config.niri.default = "gtk,gnome";
+
   programs.niri = {
     enable = true;
     package = pkgs.niri;
