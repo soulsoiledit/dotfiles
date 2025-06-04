@@ -60,7 +60,7 @@ in
         focus-ring = {
           enable = true;
           width = 1;
-          active.color = "#${config.opt.accent}";
+          active.color = "#${config.accent}";
           inactive.color = config.lib.stylix.colors.withHashtag.base03;
         };
 

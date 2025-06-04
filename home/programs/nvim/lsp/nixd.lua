@@ -11,9 +11,7 @@ return {
               '(builtins.getFlake "' .. FLAKE .. '").homeConfigurations.soil.options',
         },
       },
-      formatting = {
-        command = { "nixfmt" }
-      },
+      formatting = { command = { "nixfmt" } },
     },
   },
 }

@@ -1,35 +1,43 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
 
 {
-  # make easier to allow unfree
-  nixpkgs.config.allowUnfree = true;
-  home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
   imports = [ inputs.nix-index-db.hmModules.nix-index ];
 
+  options.flake = lib.mkOption {
+    type = lib.types.str;
+    description = "nix flake location";
+  };
 
-  home.packages = with pkgs; [
-    nix-tree
-    nix-output-monitor
-  ];
+  config = {
+    # make easier to allow unfree
+    nixpkgs.config.allowUnfree = true;
+    home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
 
-  programs = {
-    nh = {
-      enable = true;
-      flake = "${config.xdg.configHome}/flake";
+    home.packages = with pkgs; [
+      nix-tree
+      nix-output-monitor
+    ];
+
+    programs = {
+      nh = {
+        enable = true;
+        flake = config.flake;
+      };
+
+      nix-index-database.comma.enable = true;
     };
 
-    nix-index-database.comma.enable = true;
-  };
+    nix = {
+      package = pkgs.nix;
+      settings.use-xdg-base-directories = true;
+    };
 
-  nix = {
-    package = pkgs.nix;
-    settings.use-xdg-base-directories = true;
+    xdg.configFile."nix/nix.conf".enable = false;
   };
-
-  xdg.configFile."nix/nix.conf".enable = false;
 }

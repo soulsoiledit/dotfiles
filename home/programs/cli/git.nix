@@ -6,7 +6,6 @@
     userName = "soiledit";
     userEmail = "no.sleep410@passinbox.com";
 
-    # TODO: setup and use gpg signing
     # signing = null;
 
     extraConfig.init.defaultBranch = "main";

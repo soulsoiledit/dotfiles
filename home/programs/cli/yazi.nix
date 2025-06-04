@@ -50,7 +50,7 @@
             "g"
             "n"
           ];
-          run = "cd ${config.programs.nh.flake}";
+          run = "cd ${config.flake}";
           desc = "nix config";
         }
 

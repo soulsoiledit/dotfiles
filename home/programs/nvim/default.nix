@@ -1,15 +1,5 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
-with config.lib.file;
-with inputs.self.lib;
-let
-  flake = config.programs.nh.flake;
-in
 {
   stylix.targets.neovim.enable = false;
 
@@ -19,12 +9,12 @@ in
   };
 
   xdg.configFile = {
-    "nvim".source = mkOutOfStoreSymlink (flake + "/home/programs/nvim");
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink (config.flake + "/home/programs/nvim");
     "generated/nvim.lua".text =
       with config.lib.stylix.colors.withHashtag;
       # lua
       ''
-        FLAKE = "${flake}"
+        FLAKE = "${config.flake}"
         jdtls_dir = "${config.xdg.cacheHome}/jdtls"
         biome_config = "${config.xdg.configHome}/biome.json"
         blink_rg_dictionary = "${pkgs.scowl}/share/dict/wamerican.txt"

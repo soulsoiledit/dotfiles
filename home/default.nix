@@ -1,3 +1,5 @@
+{ config, ... }:
+
 {
   programs.home-manager.enable = true;
 
@@ -7,5 +9,7 @@
     stateVersion = "25.11";
   };
 
-  # TODO: gpg keysigning and ssh
+  flake = "${config.xdg.configHome}/flake";
+
+  # TODO: gpg for ssh and git signing
 }
