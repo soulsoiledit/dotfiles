@@ -4,7 +4,7 @@ return {
     event = "DeferredUIEnter",
     after = function()
       require("flash").setup({
-        labels = "arstneiodhwfpluycxgmqzbjvk"
+        labels = "arstneiodhwfuy"
       })
     end,
     keys = {
