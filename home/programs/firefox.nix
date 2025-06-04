@@ -5,7 +5,7 @@ let
   primary = base00;
   secondary = base01;
   text = base05;
-  accent = "#${config.opt.accent}";
+  accent = "#${config.accent}";
 in
 {
   programs.firefox = {

@@ -9,13 +9,13 @@
 {
   imports = [ inputs.stylix.homeModules.stylix ];
 
-  options.opt.accent = lib.mkOption {
+  options.accent = lib.mkOption {
     type = lib.types.str;
     description = "primary accent color";
   };
 
   config = {
-    opt.accent = config.lib.stylix.colors.base0D;
+    accent = config.lib.stylix.colors.base0D;
 
     stylix = {
       enable = true;

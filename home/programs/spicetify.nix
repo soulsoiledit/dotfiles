@@ -8,7 +8,7 @@
 
 let
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-  accent = config.opt.accent;
+  accent = config.accent;
 in
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
