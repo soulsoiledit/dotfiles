@@ -168,7 +168,8 @@ in
         "Mod+P".action.spawn = [
           "sh"
           "-c"
-          "cliphist list | fuzzel -d --tabs 2 | cliphist decode | wl-copy"
+          # disables cache for fuzzel dmenu
+          "cliphist list | fuzzel --dmenu --with-nth 2 --cache /dev/null | cliphist decode | wl-copy"
         ];
         "Mod+L".action.spawn = "wlogout";
 
