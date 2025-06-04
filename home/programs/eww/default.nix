@@ -13,10 +13,7 @@ in
 {
   programs.eww.enable = true;
 
-  home.packages = with pkgs; [
-    acpi
-    pwvucontrol
-  ];
+  home.packages = [ pkgs.acpi ];
 
   xdg.configFile."eww".source =
     config.lib.file.mkOutOfStoreSymlink config.flake + "/home/programs/eww";
@@ -28,8 +25,6 @@ in
       Unit = {
         Description = "eww daemon";
         After = [ target ];
-        PartOf = [ target ];
-        BindsTo = [ "tray.target" ];
       };
 
       Service = {
@@ -45,7 +40,6 @@ in
       Unit = {
         Description = "eww bar";
         After = [ ewwService ];
-        PartOf = [ ewwService ];
       };
 
       Service = {

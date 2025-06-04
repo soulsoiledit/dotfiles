@@ -8,8 +8,6 @@
     duf
     trashy
 
-    tmux
-
     # service control
     brightnessctl
     libnotify
@@ -25,6 +23,7 @@
     fd.enable = true;
     fzf.enable = true;
     jq.enable = true;
+    tmux.enable = true;
     zoxide.enable = true;
 
     btop = {

@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  mkLazyPlugs = map (pkg: {
-    plugin = pkg;
+  mkLazyPlugs = map (plug: {
+    plugin = plug;
     optional = true;
   });
 in
@@ -31,9 +31,9 @@ in
       # ui
       (pkgs.symlinkJoin {
         name = "nvim-treesitter";
-        paths = [
+        paths = nvim-treesitter.withAllGrammars.dependencies ++ [
           nvim-treesitter
-        ] ++ nvim-treesitter.withAllGrammars.dependencies;
+        ];
       })
       lualine-nvim
       bufferline-nvim

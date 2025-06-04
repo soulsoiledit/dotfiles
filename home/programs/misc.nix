@@ -2,12 +2,13 @@
 
 {
   home.packages = with pkgs; [
+    pwvucontrol
+
     vesktop
-
-    prismlauncher
-
     steam
     piper
+
+    prismlauncher
     drg-mint
 
     steam-run
@@ -15,6 +16,6 @@
 
     distrobox
     lilipod
-
+    flatpak
   ];
 }
