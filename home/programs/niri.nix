@@ -104,12 +104,6 @@ in
           clip-to-geometry = true;
         }
 
-        # open with full width
-        {
-          matches = [ { app-id = ''firefox|vesktop|spotify|steam''; } ];
-          default-column-width.proportion = 1.0;
-        }
-
         {
           matches = [
             {
@@ -121,8 +115,19 @@ in
         }
 
         {
-          matches = [ { app-id = ''vesktop|spotify|steam''; } ];
+          matches = [
+            {
+              app-id = ''vesktop|spotify|steam'';
+              at-startup = true;
+            }
+          ];
           open-on-workspace = "2";
+        }
+
+        # open with full width
+        {
+          matches = [ { app-id = ''firefox|vesktop|spotify|steam''; } ];
+          default-column-width.proportion = 1.0;
         }
 
         # float and resize file pickers
