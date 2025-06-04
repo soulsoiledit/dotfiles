@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
@@ -15,7 +16,7 @@ in
   programs.spicetify = {
     enable = true;
 
-    colorScheme = pkgs.lib.mkForce "custom";
+    colorScheme = lib.mkForce "custom";
     customColorScheme = with config.lib.stylix.colors; {
       main = base00;
       sidebar = base00;
