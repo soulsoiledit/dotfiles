@@ -2,11 +2,6 @@
 
 {
   home.packages = with pkgs; [
-    (writeShellScriptBin "volume_notify" ''
-      pamixer $@
-      volume=$(pamixer --get-volume)
-    '')
-
     (writeShellScriptBin "brightness_notify" ''
       icon="󰃠"
       if [ $1 == "kbd" ]; then

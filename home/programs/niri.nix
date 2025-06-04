@@ -1,21 +1,18 @@
 {
   config,
   inputs,
+  lib,
   pkgs,
   ...
 }:
 
 let
   radius = 4.0;
-  move-column-to-workspace = ws: [
-    "niri"
-    "msg"
-    "action"
-    "move-column-to-workspace"
-    (toString ws)
-    "--focus"
-    "false"
-  ];
+
+  split' = str: (lib.strings.splitString " " str);
+  move-column-to-workspace =
+    ws: split' "niri msg action move-column-to-workspace ${toString ws} --focus false";
+  volume = v: split' "wpctl set-volume @DEFAULT_AUDIO_SINK@ ${v} -l 1.0";
 in
 {
   imports = [ inputs.niri.homeModules.niri ];
@@ -160,11 +157,7 @@ in
         "Mod+Return".action.spawn = "footclient";
         "Mod+Space".action.spawn = "fuzzel";
         "Mod+S".action = screenshot { show-pointer = false; };
-        "Mod+B".action.spawn = [
-          "sh"
-          "-c"
-          "eww open bar --toggle"
-        ];
+        "Mod+B".action.spawn = split' "eww open bar --toggle";
         "Mod+P".action.spawn = [
           "sh"
           "-c"
@@ -176,133 +169,70 @@ in
         # volume
         "XF86AudioRaiseVolume" = {
           allow-when-locked = true;
-          action.spawn = [
-            "volume_notify"
-            "--increase"
-            "5"
-          ];
+          action.spawn = volume "5%+";
         };
+
         "XF86AudioLowerVolume" = {
           allow-when-locked = true;
-          action.spawn = [
-            "volume_notify"
-            "--decrease"
-            "5"
-          ];
+          action.spawn = volume "5%-";
         };
-        "Shift+XF86AudioRaiseVolume".action.spawn = [
-          "volume_notify"
-          "--increase"
-          "1"
-        ];
-        "Shift+XF86AudioLowerVolume".action.spawn = [
-          "volume_notify"
-          "--decrease"
-          "1"
-        ];
+
+        "Shift+XF86AudioRaiseVolume".action.spawn = volume "1%+";
+        "Shift+XF86AudioLowerVolume".action.spawn = volume "1%-";
 
         "XF86AudioMute" = {
           allow-when-locked = true;
-          action.spawn = [
-            "pamixer"
-            "--toggle-mute"
-          ];
+          action.spawn = split' "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
         };
+
         "XF86AudioMicMute" = {
           allow-when-locked = true;
-          action.spawn = [
-            "pamixer"
-            "--default-source"
-            "--toggle-mute"
-          ];
+          action.spawn = split' "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
         };
 
         # media
         "XF86AudioPlay" = {
           allow-when-locked = true;
-          action.spawn = [
-            "playerctl"
-            "play-pause"
-          ];
+          action.spawn = split' "playerctl play-pause";
         };
-        "XF86AudioPrev".action.spawn = [
-          "playerctl"
-          "previous"
-        ];
-        "XF86AudioNext".action.spawn = [
-          "playerctl"
-          "next"
-        ];
+
+        "XF86AudioPrev".action.spawn = split' "playerctl previous";
+        "XF86AudioNext".action.spawn = split' "playerctl next";
+
         "Mod+0" = {
           allow-when-locked = true;
-          action.spawn = [
-            "playerctl"
-            "play-pause"
-          ];
+          action.spawn = split' "playerctl play-pause";
         };
-        "Mod+Minus".action.spawn = [
-          "playerctl"
-          "previous"
-        ];
-        "Mod+Equal".action.spawn = [
-          "playerctl"
-          "next"
-        ];
+
+        "Mod+Minus".action.spawn = split' "playerctl previous";
+        "Mod+Equal".action.spawn = split' "playerctl next";
 
         # brightness
         "XF86MonBrightnessUp" = {
           allow-when-locked = true;
-          action.spawn = [
-            "sh"
-            "-c"
-            "brightness_notify mon set 20%+"
-          ];
+          action.spawn = split' "brightness_notify mon set 20%+";
         };
+
         "XF86MonBrightnessDown" = {
           allow-when-locked = true;
-          action.spawn = [
-            "sh"
-            "-c"
-            "brightness_notify mon set 20%-"
-          ];
+          action.spawn = split' "brightness_notify mon set 20%-";
         };
 
         # keyboard
         "XF86KbdBrightnessUp" = {
           allow-when-locked = true;
-          action.spawn = [
-            "sh"
-            "-c"
-            "brightness_notify kbd set 1+"
-          ];
+          action.spawn = split' "brightness_notify kbd set 1+";
         };
         "XF86KbdBrightnessDown" = {
           allow-when-locked = true;
-          action.spawn = [
-            "sh"
-            "-c"
-            "brightness_notify kbd set 1-"
-          ];
+          action.spawn = split' "brightness_notify kbd set 1-";
         };
 
         # notifications
-        "Mod+Control+Space".action.spawn = [
-          "makoctl"
-          "dismiss"
-          "--all"
-        ];
-        "Mod+Control+D".action.spawn = [
-          "makoctl"
-          "dismiss"
-        ];
-        "Mod+Control+Comma".action.spawn = [
-          "makoctl"
-          "restore"
-        ];
-        "Mod+Control+Period".action.spawn = [
-          "makoctl"
-          "invoke"
-        ];
+        "Mod+Control+Space".action.spawn = split' "makoctl dismiss --all";
+        "Mod+Control+D".action.spawn = split' "makoctl dismiss";
+        "Mod+Control+Comma".action.spawn = split' "makoctl restore";
+        "Mod+Control+Period".action.spawn = split' "makoctl invoke";
 
         # profile
         "XF86Launch4".action.spawn = "profile_notify";
