@@ -11,7 +11,6 @@
     # service control
     brightnessctl
     libnotify
-    pamixer
     playerctl
     wl-clipboard
   ];

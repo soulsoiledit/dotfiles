@@ -67,7 +67,7 @@
       "
     :onclick "pamixer --toggle-mute"
     :halign "center"
-    :class "volume ${volume?.mute ?: "volume-unmuted"}"
+    :class "volume ${volume?.mute ?: false ? "volume-muted" : "volume-unmuted"}"
     :tooltip "${volume?.volume ?: "?"}%"
     "${volume?.symbol ?: ""}"))
 

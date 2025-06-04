@@ -5,7 +5,6 @@
     (writeShellScriptBin "volume_notify" ''
       pamixer $@
       volume=$(pamixer --get-volume)
-      notify-send "  $volume%" -h int:value:"$volume" -h string:x-dunst-stack-tag:volume
     '')
 
     (writeShellScriptBin "brightness_notify" ''
