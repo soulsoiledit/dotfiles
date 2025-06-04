@@ -47,14 +47,15 @@
     { nixpkgs, hm, ... }@inputs:
     let
       system = "x86_64-linux";
-      overlay = final: prev: {
-        # latestPackages = inputs.latest.legacyPackages.${system};
-        drg-mint = inputs.drg-mint.packages.${system}.default;
-        xwayland-satellite = inputs.niri.packages.${system}.xwayland-satellite-unstable;
-        topiary-yuck = inputs.topiary-yuck.packages.${system}.default;
-      };
-      pkgs = (nixpkgs.legacyPackages.${system}).extend overlay;
 
+      pkgs = (nixpkgs.legacyPackages.${system}).extend (
+        final: prev: {
+          # latestPackages = inputs.latest.legacyPackages.${system};
+          drg-mint = inputs.drg-mint.packages.${system}.default;
+          xwayland-satellite = inputs.niri.packages.${system}.xwayland-satellite-unstable;
+          topiary-yuck = inputs.topiary-yuck.packages.${system}.default;
+        }
+      );
 
       autoimport = with pkgs.lib.fileset; path: toList (fileFilter (file: file.hasExt "nix") path);
     in
