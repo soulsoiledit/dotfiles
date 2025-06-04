@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # latest.url = "github:NixOS/nixpkgs";
 
-    home-manager = {
+    hm = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-index-database = {
+    nix-index-db = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -44,7 +44,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }@inputs:
+    { nixpkgs, hm, ... }@inputs:
     let
       system = "x86_64-linux";
       overlay = final: prev: {
@@ -70,7 +70,7 @@
       };
 
       homeConfigurations = {
-        soil = home-manager.lib.homeManagerConfiguration {
+        soil = hm.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
           modules = autoimport ./home;

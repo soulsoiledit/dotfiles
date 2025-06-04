@@ -9,8 +9,8 @@
   # make easier to allow unfree
   nixpkgs.config.allowUnfree = true;
   home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
+  imports = [ inputs.nix-index-db.hmModules.nix-index ];
 
-  imports = [ inputs.nix-index-database.hmModules.nix-index ];
 
   home.packages = with pkgs; [
     nix-tree
