@@ -1,14 +1,11 @@
 { config, ... }:
 
-let
-  home = config.home.homeDirectory;
-in
 {
   services.wpaperd = {
     enable = true;
     settings.any = {
-      path = "${home}/pictures/wallpapers";
-      duration = "4h";
+      path = "${config.home.homeDirectory}/pictures/wallpapers";
+      duration = "2h";
       sorting = "random";
       transition.fade = { };
     };
