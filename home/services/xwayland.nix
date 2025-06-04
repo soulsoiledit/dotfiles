@@ -14,6 +14,7 @@ in
 
   # set DISPLAY
   programs.niri.settings.environment.DISPLAY = ":0";
+  systemd.user.settings.Manager.DefaultEnvironment.DISPLAY = ":0";
 
   # copy service
   xdg.configFile."systemd/user/${target}.wants/${service}".source =
@@ -30,6 +31,7 @@ in
     Install.WantedBy = lib.mkForce [ service ];
     Unit = {
       After = [ service ];
+      Before = [ "xdg-desktop-autostart.target" ];
     };
   };
 }

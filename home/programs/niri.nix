@@ -77,13 +77,6 @@ in
         "5" = { };
       };
 
-      spawn-at-startup = [
-        { command = [ "firefox" ]; }
-        { command = [ "spotify" ]; }
-        { command = [ "vesktop" ]; }
-        { command = [ "steam" ]; }
-      ];
-
       hotkey-overlay.skip-at-startup = true;
       prefer-no-csd = true;
 
