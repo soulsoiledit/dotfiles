@@ -29,7 +29,7 @@
       };
 
       settings = {
-        manager.sort_by = "natural";
+        mgr.sort_by = "natural";
         preview.wrap = "yes";
         open.prepend_rules = [
           {
@@ -43,7 +43,7 @@
         ];
       };
 
-      keymap.manager.prepend_keymap = [
+      keymap.mgr.prepend_keymap = [
         # goto
         {
           on = [
