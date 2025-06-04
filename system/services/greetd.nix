@@ -6,7 +6,7 @@
     vt = 7;
     settings = {
       default_session = {
-        command = builtins.concatStringsSep " " [
+        command = lib.strings.concatStringsSep " " [
           (lib.getExe pkgs.greetd.tuigreet)
           "--time"
           "--remember"
