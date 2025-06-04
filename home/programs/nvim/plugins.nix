@@ -1,18 +1,16 @@
 { pkgs, ... }:
 
 let
-  mkOptionalPlug =
-    pkgs:
-    map (pkg: {
-      plugin = pkg;
-      optional = true;
-    }) pkgs;
+  mkLazyPlugs = map (pkg: {
+    plugin = pkg;
+    optional = true;
+  });
 in
 {
   programs.neovim.plugins =
     with pkgs.vimPlugins;
     [ lz-n ]
-    ++ mkOptionalPlug [
+    ++ mkLazyPlugs [
       # multi
       snacks-nvim
       mini-nvim
@@ -43,7 +41,6 @@ in
       which-key-nvim
       rainbow-delimiters-nvim
       nvim-colorizer-lua
-
       nvim-lightbulb
 
       # lang
