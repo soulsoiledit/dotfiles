@@ -15,7 +15,7 @@
 
       url = {
         osc8-underline = "always";
-        label-letters = "arstneiodhwfpluycxgmqzbjvk";
+        label-letters = "arstneiodhwfuy";
       };
     };
   };
