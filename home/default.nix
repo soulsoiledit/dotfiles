@@ -4,7 +4,7 @@
   home = {
     username = "soil";
     homeDirectory = "/home/soil";
-    stateVersion = "24.05";
+    stateVersion = "25.11";
   };
 
   # TODO: gpg keysigning and ssh
