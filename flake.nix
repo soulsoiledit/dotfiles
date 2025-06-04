@@ -31,7 +31,7 @@
     };
 
     compress-yazi = {
-      url = "github:Ev357/compress.yazi";
+      url = "github:KKV9/compress.yazi";
       flake = false;
     };
 
