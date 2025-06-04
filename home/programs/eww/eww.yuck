@@ -60,12 +60,12 @@
 (deflisten volume "scripts/volume.sh")
 (defwidget volume [ ]
   (eventbox
-    :onscroll "if [[ {} == up ]];
-      then pamixer --increase ${volume_step};
-      else pamixer --decrease ${volume_step};
-      fi;
-      "
-    :onclick "pamixer --toggle-mute"
+    :onscroll "if [[ {} == up ]]; then
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ ${volume_step}%+ -l 1.0;
+      else
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ ${volume_step}%- -l 1.0;
+      fi"
+    :onclick "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" ;
     :halign "center"
     :class "volume ${volume?.mute ?: false ? "volume-muted" : "volume-unmuted"}"
     :tooltip "${volume?.volume ?: "?"}%"
