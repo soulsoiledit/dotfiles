@@ -22,24 +22,22 @@
 
       polarity = "dark";
       base16Scheme = {
-        name = "soi";
-
-        base00 = "#0b0b0b"; # background
-        base01 = "#1c1c1c"; # status
-        base02 = "#2e2e2e"; # selection
-        base03 = "#414141"; # comment
-        base04 = "#a6a6a6"; # status fg
+        base00 = "#101010"; # background
+        base01 = "#191919"; # status
+        base02 = "#232323"; # selection
+        base03 = "#373737"; # comment
+        base04 = "#aeaeae"; # status fg
         base05 = "#bebebe"; # text
-        base06 = "#d6d6d6"; # bright
+        base06 = "#dedede"; # bright
         base07 = "#eeeeee"; # brightest
-        base08 = "#c87180"; # red
-        base09 = "#c67854"; # orange
-        base0A = "#b08836"; # yellow
-        base0B = "#719e58"; # green
-        base0C = "#24a592"; # cyan
-        base0D = "#2d9dc1"; # blue
-        base0E = "#b177b4"; # purple
-        base0F = "#c0729c"; # pink
+        base08 = "#c4757b"; # red
+        base09 = "#bc804d"; # orange
+        base0A = "#a78c41"; # yellow
+        base0B = "#6e9e63"; # green
+        base0C = "#38a391"; # cyan
+        base0D = "#5197c6"; # blue
+        base0E = "#9981c3"; # purple
+        base0F = "#bb769d"; # pink
       };
 
       iconTheme = {
@@ -75,15 +73,17 @@
           flatpakSupport.enable = false;
           # fix ugly tooltips
           extraCss =
-            with config.lib.stylix.colors;
+            let
+              inherit (config.lib.stylix) colors;
+            in
             # css
             ''
               tooltip * {
-                color: #${base05};
+                color: #${colors.base05};
               }
 
               tooltip.background {
-                background-color: rgba(${base00-rgb-r}, ${base00-rgb-b}, ${base00-rgb-g}, 0.9);
+                background-color: rgba(${colors.base00-rgb-r}, ${colors.base00-rgb-b}, ${colors.base00-rgb-g}, 0.9);
               }
             '';
         };
