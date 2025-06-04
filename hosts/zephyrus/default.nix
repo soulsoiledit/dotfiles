@@ -1,14 +1,7 @@
-{
-  inputs,
-  lib,
-  pkgs,
-  ...
-}:
+{ lib, pkgs, ... }:
 
 {
-  imports = [
-    ./hardware.nix
-  ] ++ inputs.self.lib.autoimport ../../system;
+  imports = [ ./hardware.nix ];
 
   system.stateVersion = "24.05";
 

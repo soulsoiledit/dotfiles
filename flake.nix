@@ -54,16 +54,18 @@
         topiary-yuck = inputs.topiary-yuck.packages.${system}.default;
       };
       pkgs = (nixpkgs.legacyPackages.${system}).extend overlay;
+
+
+      autoimport = with pkgs.lib.fileset; path: toList (fileFilter (file: file.hasExt "nix") path);
     in
     {
-      lib = import ./lib inputs;
-
       formatter.${system} = pkgs.nixfmt-rfc-style;
 
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
+          inherit pkgs;
           specialArgs = { inherit inputs; };
-          modules = [ ./hosts/zephyrus ];
+          modules = autoimport ./system ++ [ ./hosts/zephyrus ];
         };
       };
 
@@ -71,7 +73,7 @@
         soil = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = { inherit inputs; };
-          modules = inputs.self.lib.autoimport ./home;
+          modules = autoimport ./home;
         };
       };
     };
