@@ -13,7 +13,5 @@
     };
 
     initrd.systemd.enable = true;
-
-    plymouth.enable = true;
   };
 }
