@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -9,7 +9,7 @@
     piper
 
     prismlauncher
-    drg-mint
+    inputs.drg-mint.packages.${pkgs.system}.default
 
     steam-run
     appimage-run

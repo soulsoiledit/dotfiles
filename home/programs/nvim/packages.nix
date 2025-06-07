@@ -53,7 +53,7 @@
     # formatting
     efm-langserver
     nodePackages.prettier
-    topiary-yuck
+    inputs.topiary-yuck.packages.${pkgs.system}.default
 
     # misc
     ruby-lsp
