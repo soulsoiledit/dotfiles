@@ -19,10 +19,7 @@
     nixpkgs.config.allowUnfree = true;
     home.sessionVariables.NIXPKGS_ALLOW_UNFREE = 1;
 
-    home.packages = with pkgs; [
-      nix-tree
-      nix-output-monitor
-    ];
+    home.packages = [ pkgs.nix-tree ];
 
     programs = {
       nh = {
