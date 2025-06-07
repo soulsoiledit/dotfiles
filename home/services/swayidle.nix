@@ -8,7 +8,7 @@
 let
   swaylock = lib.getExe pkgs.swaylock-effects;
   loginctl = lib.getExe' pkgs.systemd "loginctl";
-  niri = lib.getExe' config.programs.niri.package "niri";
+  niri = lib.getExe pkgs.niri;
   brightnessctl = lib.getExe pkgs.brightnessctl;
   systemctl = lib.getExe' pkgs.systemd "systemctl";
 in

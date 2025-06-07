@@ -13,7 +13,6 @@ in
   home.packages = [ pkgs.xwayland-satellite ];
 
   # set DISPLAY
-  programs.niri.settings.environment.DISPLAY = ":0";
   systemd.user.settings.Manager.DefaultEnvironment.DISPLAY = ":0";
 
   # copy service
