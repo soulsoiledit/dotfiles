@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   programs.neovim.extraPackages = with pkgs; [
@@ -20,7 +20,7 @@
     cargo
     rustfmt
 
-    haskell-language-server
+    # haskell-language-server
     ghc
     ormolu
     haskellPackages.cabal-gild
