@@ -56,7 +56,7 @@ in
         }
 
         window {
-          background-color: rgba(${base00-rgb-r}, ${base00-rgb-b}, ${base00-rgb-g}, 0.5);
+          background-color: rgba(0, 0, 0, 0.5);
         }
 
         button {
