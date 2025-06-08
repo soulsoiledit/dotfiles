@@ -1,5 +1,9 @@
 { config, ... }:
 
+let
+  wlogout = config.programs.wlogout.package;
+  icon = name: ''image(url("${wlogout}/share/wlogout/icons/${name}.png"))'';
+in
 {
   programs.wlogout = {
     enable = true;
@@ -44,9 +48,6 @@
 
     style =
       with config.lib.stylix.colors;
-      let
-        iconPath = config.programs.wlogout.package + "/share/wlogout/icons";
-      in
       # css
       ''
         * {
@@ -77,27 +78,27 @@
         }
 
         #lock {
-          background-image: image(url("${iconPath}/lock.png"));
+          background-image: ${icon "lock"};
         }
 
         #logout {
-          background-image: image(url("${iconPath}/logout.png"));
+          background-image: ${icon "logout"};
         }
 
         #sleep {
-          background-image: image(url("${iconPath}/suspend.png"));
+          background-image: ${icon "suspend"};
         }
 
         #hibernate {
-          background-image: image(url("${iconPath}/hibernate.png"));
+          background-image: ${icon "hibernate"};
         }
 
         #shutdown {
-          background-image: image(url("${iconPath}/shutdown.png"));
+          background-image: ${icon "shutdown"};
         }
 
         #reboot {
-          background-image: image(url("${iconPath}/reboot.png"));
+          background-image: ${icon "reboot"};
         }
       '';
   };
