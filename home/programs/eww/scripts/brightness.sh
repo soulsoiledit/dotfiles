@@ -1,15 +1,18 @@
-brightness() {
-  # brightness percentage
-  brightness=$(brightnessctl info | rg -o '(\d+)%' -r '$1')
+# TODO: add kbd brightness monitoring
+udevadm monitor -u | rg --line-buffered backlight | while
+  out=$(brightnessctl info -m)
 
-  # brightness level
-  symbols=('󰽤' '' '' '' '' '󰃠')
-  symbol=${symbols[(((10#$brightness * 6 - 1) / 100))]}
+  if [[ "$out" =~ ([0-9]*)\% ]]; then
+    perc=$((10#${BASH_REMATCH[1]}))
 
-  jq -n -c --arg symbol "$symbol" '{symbol: $symbol}'
-}
+    symbols=('󰽤' '' '' '' '' '󰃠')
+    symbol=${symbols[((($perc * 6 - 1) / 100))]}
 
-brightness
-udevadm monitor -u | rg --line-buffered "backlight" | while read -r _; do
-  brightness
+    notify-send "$symbol  $perc%" -h int:value:"$perc" -h string:x-canonical-private-synchronous:brightness
+    jq -n -c --arg symbol "$symbol" '{symbol: $symbol}'
+  fi
+
+  read -r _
+do
+  true
 done

@@ -32,6 +32,7 @@
           :orientation "vertical"
           :space-evenly false
           (volume)
+          (brightness)
           (network)
           (battery)))
 
@@ -74,7 +75,6 @@
 ;; power profiles
 ;; cpu usage
 ;; memory usage
-;; brightness
 (deflisten battery "scripts/battery.sh")
 (defwidget battery [ ]
   (eventbox
@@ -233,18 +233,19 @@
 ;;     ;; (weather)
 ;;   ))
 ;;
-;; (deflisten brightness
-;;   :initial "{}"
-;;   "scripts/brightness.sh")
-;; (defwidget brightness [ ]
-;;   (eventbox
-;;     :class "brightness"
-;;     :onscroll "if [[ {} == up ]];
-;;       then brightnessctl set 20%+;
-;;       else brightnessctl set 20%-;
-;;       fi;
-;;       "
-;;     "${brightness.symbol} "))
+
+;; brightness
+(deflisten brightness :initial "{}" "scripts/brightness.sh")
+(defwidget brightness []
+  (eventbox
+    :visible false
+    :class "brightness"
+    :onscroll "if [[ {} == up ]];
+      then brightnessctl set 20%+;
+      else brightnessctl set 20%-;
+      fi;
+      "
+    "${brightness.symbol} "))
 ;;
 ;; (defpoll weather
 ;;   :initial "{}"
