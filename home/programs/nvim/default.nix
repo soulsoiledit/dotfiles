@@ -14,6 +14,7 @@
       with config.lib.stylix.colors.withHashtag;
       # lua
       ''
+        USER = "${config.home.username}"
         FLAKE = "${config.flake}"
         jdtls_dir = "${config.xdg.cacheHome}/jdtls"
         biome_config = "${config.xdg.configHome}/biome.json"

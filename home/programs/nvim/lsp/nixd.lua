@@ -7,8 +7,7 @@ return {
     nixd = {
       options = {
         home = {
-          expr =
-              '(builtins.getFlake "' .. FLAKE .. '").homeConfigurations.soil.options',
+          expr = string.format('(builtins.getFlake "%s").homeConfigurations.%s.options', FLAKE, USER)
         },
       },
       formatting = { command = { "nixfmt" } },
