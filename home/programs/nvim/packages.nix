@@ -61,8 +61,4 @@
     kotlin-language-server
     clang-tools
   ];
-
-  xdg.configFile."biome.json".source = pkgs.writers.writeJSON "biome.json" {
-    formatter.indentStyle = "space";
-  };
 }

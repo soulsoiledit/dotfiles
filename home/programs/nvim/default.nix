@@ -17,7 +17,11 @@
         USER = "${config.home.username}"
         FLAKE = "${config.flake}"
         jdtls_dir = "${config.xdg.cacheHome}/jdtls"
-        biome_config = "${config.xdg.configHome}/biome.json"
+        biome_config = "${
+          pkgs.writers.writeJSON "biome.json" {
+            formatter.indentStyle = "space";
+          }
+        }"
         blink_rg_dictionary = "${pkgs.scowl}/share/dict/wamerican.txt"
         mini_base16_palette = {
           base00 = "${base00}",
