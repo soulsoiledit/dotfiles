@@ -10,7 +10,10 @@ let
 
   # adds quotes around each word
   spawn = str: ''spawn "${builtins.replaceStrings [ " " ] [ ''" "'' ] str}"'';
+
   volume = v: spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ ${v} -l 1.0";
+  brightness = b: spawn "brightnessctl set ${b}";
+  brightness' = d: b: spawn "brightnessctl -d *${d}* set ${b}";
 in
 lib.mkIf enable {
   home.packages = [ pkgs.niri ];
@@ -128,12 +131,12 @@ lib.mkIf enable {
         Mod+Equal { ${spawn "playerctl next"}; }
 
         // brightness
-        XF86MonBrightnessUp allow-when-locked=true { ${spawn "brightness_notify mon set 20%+"}; }
-        XF86MonBrightnessDown allow-when-locked=true { ${spawn "brightness_notify mon set 20%-"}; }
+        XF86MonBrightnessUp allow-when-locked=true { ${brightness "20%+"}; }
+        XF86MonBrightnessDown allow-when-locked=true { ${brightness "20%-"}; }
 
         // keyboard
-        XF86KbdBrightnessUp allow-when-locked=true { ${spawn "brightness_notify kbd set 1+"}; }
-        XF86KbdBrightnessDown allow-when-locked=true { ${spawn "brightness_notify kbd set 1-"}; }
+        XF86KbdBrightnessUp allow-when-locked=true { ${brightness' "kbd" "1+"}; }
+        XF86KbdBrightnessDown allow-when-locked=true { ${brightness' "kbd" "1-"}; }
 
         // notifications
         Mod+Control+Space { ${spawn "makoctl dismiss --all"}; }
