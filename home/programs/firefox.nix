@@ -1,10 +1,12 @@
 { config, ... }:
 
-with config.lib.stylix.colors.withHashtag;
 let
-  primary = base00;
-  secondary = base01;
-  text = base05;
+  colors = config.lib.stylix.colors.withHashtag;
+
+  primary = colors.base00;
+  secondary = colors.base01;
+  selected = colors.base02;
+  text = colors.base05;
   accent = "#${config.accent}";
 in
 {
@@ -30,7 +32,7 @@ in
             --chrome-content-separator-color: ${secondary} !important;
 
             /* tabs */
-            --tab-selected-bgcolor: ${secondary} !important;
+            --tab-selected-bgcolor: ${selected} !important;
             --tab-loading-fill: ${accent} !important;
             --tabs-navbar-separator-style: none !important;
 

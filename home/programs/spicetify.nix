@@ -7,7 +7,15 @@
 }:
 
 let
+  inherit (config.lib.stylix) colors;
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
+
+  bg = colors.base00;
+  layer = colors.base01;
+  sel = colors.base02;
+  gray = colors.base04;
+  fg = colors.base05;
+
   accent = config.accent;
 in
 {
@@ -17,36 +25,38 @@ in
     enable = true;
 
     colorScheme = lib.mkForce "custom";
-    customColorScheme = with config.lib.stylix.colors; {
-      main = base00;
-      sidebar = base00;
-      player = base00;
-      shadow = base00;
+    customColorScheme = {
+      main = bg;
+      sidebar = bg;
+      player = bg;
+      shadow = bg;
 
-      main-elevated = base01;
-      card = base01;
-      button-disabled = base01;
+      main-elevated = layer;
+      card = layer;
+      button-disabled = layer;
 
-      selected-row = base02;
-      highlight = base02;
-      highlight-elevated = base02;
+      selected-row = sel;
+      highlight = sel;
+      highlight-elevated = sel;
 
-      tab-active = base04;
+      tab-active = gray;
 
-      text = base05;
-      subtext = base04;
+      text = fg;
+      subtext = gray;
 
       button = accent;
       button-active = accent;
 
       notification = accent;
-      notification-error = base08;
+      notification-error = colors.red;
       misc = accent;
     };
 
-    enabledExtensions = with spicePkgs.extensions; [
-      adblock
-      keyboardShortcut
-    ];
+    enabledExtensions = builtins.attrValues {
+      inherit (spicePkgs.extensions)
+        adblock
+        keyboardShortcut
+        ;
+    };
   };
 }

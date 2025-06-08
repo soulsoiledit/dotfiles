@@ -1,6 +1,7 @@
 { config, ... }:
 
 let
+  inherit (config.lib.stylix.colors.withHashtag) base00 base01 base05;
   wlogout = config.programs.wlogout.package;
   icon = name: ''image(url("${wlogout}/share/wlogout/icons/${name}.png"))'';
 in
@@ -47,7 +48,6 @@ in
     ];
 
     style =
-      with config.lib.stylix.colors;
       # css
       ''
         * {
@@ -61,10 +61,10 @@ in
 
         button {
           border-radius: 0;
-          border-color: ${withHashtag.base01};
-          text-decoration-color: ${withHashtag.base05};
-          color: ${withHashtag.base05};
-          background-color: ${withHashtag.base00};
+          border-color: ${base01};
+          text-decoration-color: ${base05};
+          color: ${base05};
+          background-color: ${base00};
           border-style: solid;
           border-width: 1px;
           background-repeat: no-repeat;
@@ -73,7 +73,7 @@ in
         }
 
         button:active, button:hover {
-          background-color: ${withHashtag.base01};
+          background-color: ${base01};
           outline-style: none;
         }
 
