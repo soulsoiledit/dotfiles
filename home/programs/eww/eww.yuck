@@ -82,8 +82,8 @@
   (eventbox
     :class "battery"
     :halign "center"
-    :tooltip "${battery?.percentage}% ${battery?.remaining} left @ ${round((battery?.wattage ?: 0) / 1000000,1)}W"
-    "${battery?.symbol ?: false}"))
+    :tooltip "${battery?.percentage}% (${battery?.time_remaining}) at ${round((battery?.rate ?: 0) / 1000000,1)}W"
+    "${battery?.symbol ?: "󰂑"}"))
 
 ;; vpn status
 (deflisten network "scripts/network.sh")

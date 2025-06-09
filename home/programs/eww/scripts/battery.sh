@@ -1,27 +1,32 @@
-upower -m | grep --line-buffered 'battery_BAT.' | while
-  acpi_output=$(acpi -b | rg -v 'unav')
-  state=$(echo "$acpi_output" | rg -o ': (.*?),' -r '$1')
-  percentage=$(echo "$acpi_output" | rg -o '(\d+)%' -r '$1')
-  remaining=$(echo "$acpi_output" | rg -o ' (\d+:\d+)' -r '$1')
-  wattage=$(cat /sys/class/power_supply/BAT0/power_now)
+id=0
+upower -m /org/freedesktop/UPower/device/battery_BAT$id | while
+  if [[ $(acpi -b) =~ Battery.$id:.([[:alpha:]]*),.([[:digit:]]*)%,.([[:digit:]:]*) ]]; then
+    status=${BASH_REMATCH[1]}
+    percentage=${BASH_REMATCH[2]}
+    time_remaining=${BASH_REMATCH[3]}
+  fi
 
-  if [ "$state" == "Full" ] || [ "$state" == "Not charging" ]; then
+  rate=$(</sys/class/power_supply/BAT$id/power_now)
+
+  if [[ $percentage -ge 98 ]]; then
     symbol="󰁹"
-  elif [ "$state" == "Discharging" ]; then
-    symbols=('󰂎' '󱊡' '󱊢' '󱊣')
-    symbol=${symbols[(((10#$percentage * 4 - 1) / 100))]}
-  elif [ "$state" == "Charging" ]; then
-    symbols=('󰢟' '󱊤' '󱊥' '󱊦')
-    symbol=${symbols[(((10#$percentage * 4 - 1) / 100))]}
+  else
+    if [[ $status == "Charging" ]]; then
+      symbols=("󰢟" "󱊤" "󱊥" "󱊦")
+    elif [[ $status == "Discharging" ]]; then
+      symbols=("󰂎" "󱊡" "󱊢" "󱊣")
+    fi
+
+    symbol=${symbols[(((percentage * 4 - 1) / 100))]}
   fi
 
   jq -n -c \
-    --arg state "$state" \
-    --arg perc "$percentage" \
-    --arg remaining "$remaining" \
-    --arg wattage "$wattage" \
+    --arg status "$status" \
+    --argjson percentage "$percentage" \
+    --arg time_remaining "$time_remaining" \
+    --argjson rate "$rate" \
     --arg symbol "$symbol" \
-    '{state, $state, percentage: $perc, remaining: $remaining, wattage: $wattage, symbol: $symbol}'
+    '{status, $status, percentage: $percentage, time_remaining: $time_remaining, rate: $rate, symbol: $symbol}'
 
   read -r _
 do continue; done
