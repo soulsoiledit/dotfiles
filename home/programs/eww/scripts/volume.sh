@@ -1,6 +1,4 @@
-pw-mon | rg --line-buffered '\*.*params:' | while
-  read -r _
-do
+pw-mon | grep --line-buffered "\*.*params:" | while read -r _; do
   out=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
 
   # get volume

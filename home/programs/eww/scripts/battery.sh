@@ -1,4 +1,4 @@
-upower -m | rg --line-buffered 'battery_BAT.' | while
+upower -m | grep --line-buffered 'battery_BAT.' | while
   acpi_output=$(acpi -b | rg -v 'unav')
   state=$(echo "$acpi_output" | rg -o ': (.*?),' -r '$1')
   percentage=$(echo "$acpi_output" | rg -o '(\d+)%' -r '$1')

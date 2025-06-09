@@ -1,9 +1,13 @@
 # TODO: add kbd brightness monitoring
-udevadm monitor -u | rg --line-buffered backlight | while read -r _; do
-  out=$(brightnessctl info -m)
+udevadm monitor -u | while read -r line; do
+  if ! [[ $line =~ backlight ]]; then
+    continue
+  fi
 
-  if [[ "$out" =~ ([0-9]*)\% ]]; then
-    perc=$((10#${BASH_REMATCH[1]}))
+  brightness=$(brightnessctl info -m)
+
+  if [[ $brightness =~ ([[:digit:]]*)% ]]; then
+    perc=${BASH_REMATCH[1]}
 
     symbols=('󰽤' '' '' '' '' '󰃠')
     symbol=${symbols[((($perc * 6 - 1) / 100))]}
