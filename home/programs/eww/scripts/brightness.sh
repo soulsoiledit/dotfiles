@@ -1,5 +1,5 @@
 # TODO: add kbd brightness monitoring
-udevadm monitor -u | rg --line-buffered backlight | while
+udevadm monitor -u | rg --line-buffered backlight | while read -r _; do
   out=$(brightnessctl info -m)
 
   if [[ "$out" =~ ([0-9]*)\% ]]; then
@@ -11,8 +11,4 @@ udevadm monitor -u | rg --line-buffered backlight | while
     notify-send "$symbol  $perc%" -h int:value:"$perc" -h string:x-canonical-private-synchronous:brightness
     jq -n -c --arg symbol "$symbol" '{symbol: $symbol}'
   fi
-
-  read -r _
-do
-  true
 done

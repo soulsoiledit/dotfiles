@@ -32,11 +32,13 @@
           :orientation "vertical"
           :space-evenly false
           (volume)
-          (brightness)
           (network)
-          (battery)))
+          (battery)
+          ;; (weather)
+        ))
 
       (tray)
+      (hidden)
 
       ;; settings
       ;; power
@@ -160,13 +162,20 @@
       :class "systray"
       :icon-size 18)))
 
+;; hidden
+(deflisten brightness "scripts/brightness.sh")
+(deflisten profile "scripts/profile.sh")
+(defwidget hidden [ ]
+  (button
+    :visible false
+    "${brightness.symbol} ${profile}"))
+
 ;; (defwidget system [ ]
 ;;   (button
 ;;     :onmiddleclick "foot -e btop &"
 ;;     (box
 ;;       :space-evenly false
 ;;       :class "button"
-;;       (battery)
 ;;
 ;;       ;; (memory)
 ;;       ;; (temperature)
@@ -227,25 +236,17 @@
 ;;   (box
 ;;     :space-evenly false
 ;;     :class "button"
-;;     (network)
-;;
-;;     ;; (brightness)
-;;     ;; (weather)
 ;;   ))
 ;;
-
-;; brightness
-(deflisten brightness :initial "{}" "scripts/brightness.sh")
-(defwidget brightness []
-  (eventbox
-    :visible false
-    :class "brightness"
-    :onscroll "if [[ {} == up ]];
-      then brightnessctl set 20%+;
-      else brightnessctl set 20%-;
-      fi;
-      "
-    "${brightness.symbol} "))
+;; (defwidget brightness []
+;;   (eventbox
+;;     :class "brightness"
+;;     :onscroll "if [[ {} == up ]];
+;;       then brightnessctl set 20%+;
+;;       else brightnessctl set 20%-;
+;;       fi;
+;;       "
+;;     "${brightness.symbol} "))
 ;;
 ;; (defpoll weather
 ;;   :initial "{}"
