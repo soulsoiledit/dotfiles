@@ -14,6 +14,13 @@ let
   volume = v: spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ ${v} -l 1.0";
   brightness = b: spawn "brightnessctl set ${b}";
   brightness' = d: b: spawn "brightnessctl -d *${d}* set ${b}";
+  profile-switch = pkgs.writers.writeDash "profile-switch" ''
+    if test "$(powerprofilesctl get)" = "balanced"; then
+      powerprofilesctl set power-saver
+    else
+      powerprofilesctl set balanced
+    fi
+  '';
 in
 lib.mkIf enable {
   home.packages = [ pkgs.niri ];
@@ -145,7 +152,7 @@ lib.mkIf enable {
         Mod+Control+Period { ${spawn "makoctl invoke"}; }
 
         // profile
-        XF86Launch4 { spawn "profile_notify"; }
+        XF86Launch4 { spawn "${profile-switch}"; }
       }
 
       layer-rule {
