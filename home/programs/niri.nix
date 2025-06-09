@@ -28,10 +28,7 @@ lib.mkIf enable {
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.niri = {
-      default = "gtk";
-      "org.freedesktop.impl.portal.Inhibit" = "none";
-    };
+    config.niri.default = "gtk";
   };
 
   xdg.configFile."niri/config.kdl".text = # kdl

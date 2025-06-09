@@ -51,4 +51,19 @@ in
       }
     ];
   };
+
+  systemd.user.services.wayland-pipewire-idle-inhibit = {
+    Unit = {
+      Description = "Inhibit Wayland idling when media is played through pipewire";
+      Documentation = "https://github.com/rafaelrc7/wayland-pipewire-idle-inhibit";
+    };
+
+    Install.WantedBy = [ config.wayland.systemd.target ];
+
+    Service = {
+      ExecStart = "${lib.getExe pkgs.wayland-pipewire-idle-inhibit}";
+      Restart = "always";
+      RestartSec = 10;
+    };
+  };
 }
