@@ -66,7 +66,7 @@ lib.mkIf enable {
       cursor { hide-after-inactive-ms 5000; }
 
       environment { DISPLAY ":0"; }
-      screenshot-path "${config.home.homeDirectory}/pictures/screenshots/%Y-%m-%d_%H-%M-%S.png"
+      screenshot-path "${config.xdg.cacheHome}/screenshots/%Y-%m-%d_%H-%M-%S.png"
 
       workspace "1"
       workspace "2"
