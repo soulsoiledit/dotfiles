@@ -22,6 +22,7 @@
 
   hardware.graphics.enable32Bit = true;
 
+  programs.niri.enable = true;
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
