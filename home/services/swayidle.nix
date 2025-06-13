@@ -11,6 +11,19 @@ let
   niri = lib.getExe pkgs.niri;
   brightnessctl = lib.getExe pkgs.brightnessctl;
   systemctl = lib.getExe' pkgs.systemd "systemctl";
+
+  gtklock-blur = pkgs.writeShellApplication {
+    name = "gtklock-blur";
+    runtimeInputs = with pkgs; [
+      vips
+      gtklock
+      wpaperd
+    ];
+    text = ''
+      vips gaussblur "$(wpaperctl get-wallpaper eDP-2)" /tmp/gtklock.jpg 16
+      gtklock -d -b /tmp/gtklock.jpg
+    '';
+  };
 in
 {
   services.swayidle = {

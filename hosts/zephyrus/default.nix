@@ -23,6 +23,8 @@
   hardware.graphics.enable32Bit = true;
 
   programs.niri.enable = true;
+  security.pam.services.gtklock = { };
+
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
