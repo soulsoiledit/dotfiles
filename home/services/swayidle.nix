@@ -6,7 +6,6 @@
 }:
 
 let
-  swaylock = lib.getExe pkgs.swaylock-effects;
   loginctl = lib.getExe' pkgs.systemd "loginctl";
   niri = lib.getExe pkgs.niri;
   brightnessctl = lib.getExe pkgs.brightnessctl;
@@ -32,7 +31,7 @@ in
     events = [
       {
         event = "lock";
-        command = "${swaylock} --daemonize";
+        command = "${lib.getExe gtklock-blur}";
       }
 
       {
