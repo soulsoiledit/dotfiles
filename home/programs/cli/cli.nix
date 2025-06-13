@@ -22,6 +22,7 @@
     fd.enable = true;
     fzf.enable = true;
     jq.enable = true;
+    television.enable = true;
     tmux.enable = true;
     zoxide.enable = true;
 
