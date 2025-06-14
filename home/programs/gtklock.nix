@@ -26,7 +26,7 @@ in
       ''
         * {
           font-family: sans-serif;
-          transition: 60ms;
+          transition: 125ms;
         }
 
         window {
@@ -50,20 +50,15 @@ in
         #time-box,
         #input-label,
         #error-label {
-          text-shadow: 1px 1px 4px black;
+          text-shadow: 0 0 0.25em black;
         }
 
         #error-label {
           color: #e94646;
         }
 
-        #unlock-button {
+        #unlock-button:not(:disabled) {
           color: ${base00};
-        }
-
-        #unlock-button:disabled {
-          background-color: ${base00};
-          color: #${config.accent};
         }
       '';
   };
