@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   services.wpaperd = {
@@ -8,6 +13,9 @@
       duration = "2h";
       sorting = "random";
       transition.fade = { };
+      exec = pkgs.writeShellScript "blur-wallpaper" ''
+        ${lib.getExe pkgs.vips} gaussblur $2 ${config.xdg.cacheHome}/lockscreen.jpg 16
+      '';
     };
   };
 }
