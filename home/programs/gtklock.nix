@@ -10,20 +10,7 @@ let
 in
 {
   systemd.user.services.lockscreen = {
-    Service.ExecStart = lib.getExe (
-      pkgs.writeShellApplication {
-        name = "gtklock-blur";
-        runtimeInputs = with pkgs; [
-          vips
-          gtklock
-          wpaperd
-        ];
-        text = ''
-          vips gaussblur "$(wpaperctl get-wallpaper eDP-2)" /tmp/gtklock.jpg 16
-          gtklock -b /tmp/gtklock.jpg
-        '';
-      }
-    );
+    Service.ExecStart = lib.getExe pkgs.gtklock;
   };
 
   xdg.configFile = {
@@ -43,6 +30,7 @@ in
         }
 
         window {
+          background-image: url("${config.xdg.cacheHome}/lockscreen.jpg");
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
