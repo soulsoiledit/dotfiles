@@ -67,6 +67,8 @@
 
       targets = {
         qt.enable = true;
+        fontconfig.enable = false;
+
         firefox.enable = false;
 
         gtk = {

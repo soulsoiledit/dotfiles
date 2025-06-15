@@ -14,11 +14,10 @@ in
 {
   home.packages = with pkgs; [
     inter
-
-    nerd-fonts.symbols-only
-    maple-mono.NF-CN
-
+    maple-mono.NL-NF-CN-unhinted
+    ibm-plex
     twitter-color-emoji
+    nerd-fonts.symbols-only
 
     noto-fonts
     noto-fonts-emoji
@@ -31,19 +30,20 @@ in
     defaultFonts = {
       sansSerif = [
         "Inter"
-        "Symbols Nerd Font"
         "Noto Sans"
+        "Symbols Nerd Font"
       ] ++ cjk "Sans";
 
+      monospace = [
+        "Maple Mono NL NF CN"
+        "Noto Sans Mono"
+      ] ++ cjk "Sans Mono";
+
       serif = [
+        "IBM Plex Serif"
         "Noto Serif"
         "Symbols Nerd Font"
       ] ++ cjk "Serif";
-
-      monospace = [
-        "Maple Mono NF CN"
-        "Noto Sans Mono"
-      ] ++ cjk "Sans Mono";
 
       emoji = [
         "Twitter Color Emoji"
