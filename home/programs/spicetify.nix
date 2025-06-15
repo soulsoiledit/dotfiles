@@ -1,55 +1,59 @@
 {
   config,
   inputs,
-  lib,
   pkgs,
   ...
 }:
 
 let
-  inherit (config.lib.stylix) colors;
+  inherit (config.lib.stylix.colors)
+    base00
+    base01
+    base02
+    base04
+    base05
+
+    red
+    brown
+    ;
+  inherit (config) accent;
+
   spicePkgs = inputs.spicetify-nix.legacyPackages.${pkgs.system};
-
-  bg = colors.base00;
-  layer = colors.base01;
-  sel = colors.base02;
-  gray = colors.base04;
-  fg = colors.base05;
-
-  accent = config.accent;
 in
 {
   imports = [ inputs.spicetify-nix.homeManagerModules.default ];
 
+  stylix.targets.spicetify.enable = false;
+
   programs.spicetify = {
     enable = true;
 
-    colorScheme = lib.mkForce "custom";
+    colorScheme = "custom";
     customColorScheme = {
-      main = bg;
-      sidebar = bg;
-      player = bg;
-      shadow = bg;
+      main = base00;
+      sidebar = base00;
+      player = base00;
 
-      main-elevated = layer;
-      card = layer;
-      button-disabled = layer;
+      text = base05;
+      subtext = base04;
 
-      selected-row = sel;
-      highlight = sel;
-      highlight-elevated = sel;
+      main-elevated = base01;
+      highlight = base01;
+      card = base01;
 
-      tab-active = gray;
-
-      text = fg;
-      subtext = gray;
+      selected-row = base04;
+      highlight-elevated = base02;
+      tab-active = base02;
+      shadow = base00;
 
       button = accent;
       button-active = accent;
+      button-disabled = base02;
 
       notification = accent;
-      notification-error = colors.red;
-      misc = accent;
+      notification-error = red;
+
+      misc = brown;
     };
 
     enabledExtensions = builtins.attrValues {
