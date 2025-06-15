@@ -4,7 +4,6 @@
   home.packages = with pkgs; [
     pwvucontrol
 
-    vesktop
     steam
     piper
 

@@ -9,7 +9,7 @@ in
     enable = true;
     entries = map getDesktop [
       config.programs.firefox.finalPackage
-      pkgs.vesktop
+      config.programs.vesktop.package
       config.programs.spicetify.spicedSpotify
       pkgs.steam
     ];
