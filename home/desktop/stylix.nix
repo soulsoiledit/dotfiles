@@ -70,6 +70,9 @@
         fontconfig.enable = false;
 
         firefox.enable = false;
+        neovim.enable = false;
+        spicetify.enable = false;
+        vesktop.enable = false;
 
         gtk = {
           flatpakSupport.enable = false;
