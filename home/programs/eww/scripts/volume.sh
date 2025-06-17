@@ -10,20 +10,21 @@ pw-mon -N | while read -r line; do
     continue
   fi
 
+  # record previous output
   prev=$volume
 
   # get volume
-  [[ "$volume" =~ ([0-9])\.([0-9]{2}) ]]
+  [[ "$volume" =~ ([0-9])\.([0-9]{2})(.\[MUTED\])? ]]
   volume=$((10#${BASH_REMATCH[1]}${BASH_REMATCH[2]}))
 
   # get muted status & assign symbols
-  if [[ $volume =~ MUTED ]]; then
+  if [[ -n ${BASH_REMATCH[3]} ]]; then
     mute=true
     symbol=''
   else
     mute=false
     symbols=("" "" "")
-    symbol=${symbols[(((10#$volume * 3 - 1) / 100))]}
+    symbol=${symbols[((($volume * 3 - 1) / 100))]}
   fi
 
   # send progress notification
