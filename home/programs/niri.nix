@@ -27,8 +27,10 @@ lib.mkIf enable {
 
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-    config.niri.default = "gtk";
+    config.niri.default = "gtk,gnome";
+    extraPortals = builtins.attrValues {
+      inherit (pkgs) xdg-desktop-portal-gtk xdg-desktop-portal-gnome;
+    };
   };
 
   xdg.configFile."niri/config.kdl".text = # kdl
