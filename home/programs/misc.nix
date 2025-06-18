@@ -9,12 +9,12 @@
 
     prismlauncher
     inputs.drg-mint.packages.${pkgs.system}.default
+    olympus
 
     steam-run
     appimage-run
 
     distrobox
     lilipod
-    flatpak
   ];
 }
