@@ -16,7 +16,6 @@
   ];
 
   programs = {
-    zathura.enable = true;
     mpv.enable = true;
     imv.enable = true;
 
