@@ -20,17 +20,15 @@
     }
   ];
 
+  boot.kernelParams = [
+    "zswap.max_pool_percent=50"
+    "pcie_aspm.policy=powersupersave"
+  ];
+
   hardware.graphics.enable32Bit = true;
 
   programs.niri.enable = true;
   security.pam.services.gtklock = { };
-
-  powerManagement = {
-    powerUpCommands = # sh
-      ''
-        echo 80 > /sys/class/power_supply/BAT0/charge_control_end_threshold
-      '';
-  };
 
   services = {
     upower.enable = true;
@@ -45,6 +43,18 @@
   };
 
   # virtualisation.libvirtd.enable = true;
+
+  powerManagement = {
+    powerDownCommands = # sh
+      ''
+        rfkill block all
+      '';
+    powerUpCommands = # sh
+      ''
+        echo 80 > /sys/class/power_supply/BAT0/charge_control_end_threshold
+        rfkill unblock all
+      '';
+  };
 
   # https://github.com/sammilucia/set-coall-timer
   systemd = {
