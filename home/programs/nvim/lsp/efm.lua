@@ -15,7 +15,6 @@ return {
   cmd = { "efm-langserver" },
   filetypes = {
     "markdown",
-    "html",
     "scss",
     "less",
     "yaml",
@@ -26,7 +25,6 @@ return {
   settings = {
     languages = {
       markdown = { prettier },
-      html = { prettier },
       scss = { prettier },
       less = { prettier },
       yaml = { prettier },

@@ -7,6 +7,7 @@ return {
     biome_config,
   },
   filetypes = {
+    "html",
     "css",
     "graphql",
     "json", "jsonc",
