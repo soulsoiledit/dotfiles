@@ -66,15 +66,6 @@
         {
           on = [
             "g"
-            "t"
-          ];
-          run = "cd $XDG_DATA_HOME/Trash/files";
-          desc = "trash";
-        }
-
-        {
-          on = [
-            "g"
             "u"
           ];
           run = "cd /run/media/$USER";
