@@ -21,25 +21,12 @@
 
     yazi = {
       enable = true;
-      enableFishIntegration = true;
 
-      plugins = {
-        compress = inputs.compress-yazi;
-      };
+      plugins.compress = inputs.compress-yazi;
 
       settings = {
         mgr.sort_by = "natural";
         preview.wrap = "yes";
-        open.prepend_rules = [
-          {
-            mime = "application/java-archive";
-            use = [
-              "open"
-              "extract"
-              "reveal"
-            ];
-          }
-        ];
       };
 
       keymap.mgr.prepend_keymap = [
