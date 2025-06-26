@@ -47,17 +47,10 @@ in
 
   # virtualisation.libvirtd.enable = true;
 
-  powerManagement = {
-    powerDownCommands = # sh
-      ''
-        ${rfkill} block all
-      '';
-    powerUpCommands = # sh
-      ''
-        echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold
-        ${rfkill} unblock all
-      '';
-  };
+  powerManagement.powerUpCommands = # sh
+    ''
+      echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold
+    '';
 
   # https://github.com/sammilucia/set-coall-timer
   systemd = {
