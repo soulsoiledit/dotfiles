@@ -1,5 +1,8 @@
 { lib, pkgs, ... }:
 
+let
+  rfkill = lib.getExe' pkgs.util-linux "rfkill";
+in
 {
   imports = [ ./hardware.nix ];
 
@@ -47,12 +50,12 @@
   powerManagement = {
     powerDownCommands = # sh
       ''
-        rfkill block all
+        ${rfkill} block all
       '';
     powerUpCommands = # sh
       ''
-        echo 80 > /sys/class/power_supply/BAT0/charge_control_end_threshold
-        rfkill unblock all
+        echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold
+        ${rfkill} unblock all
       '';
   };
 
