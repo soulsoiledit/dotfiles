@@ -2,6 +2,9 @@
 
 {
   programs.neovim.extraPackages = with pkgs; [
+    # deps
+    gcc
+
     # vim
     lua-language-server
 
