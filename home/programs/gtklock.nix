@@ -30,7 +30,7 @@ in
         }
 
         window {
-          background-image: url("${config.xdg.cacheHome}/lockscreen.jpg");
+          background-image: url("${config.xdg.stateHome}/lockscreen.jpg");
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;

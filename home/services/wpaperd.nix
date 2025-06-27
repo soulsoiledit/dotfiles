@@ -14,7 +14,7 @@
       sorting = "random";
       transition.fade = { };
       exec = pkgs.writeShellScript "blur-wallpaper" ''
-        ${lib.getExe pkgs.vips} gaussblur $2 ${config.xdg.cacheHome}/lockscreen.jpg 16
+        ${lib.getExe pkgs.vips} gaussblur $2 ${config.xdg.stateHome}/lockscreen.jpg 16
       '';
     };
   };
