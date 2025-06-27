@@ -1,8 +1,5 @@
 { lib, pkgs, ... }:
 
-let
-  rfkill = lib.getExe' pkgs.util-linux "rfkill";
-in
 {
   imports = [ ./hardware.nix ];
 
@@ -47,10 +44,9 @@ in
 
   # virtualisation.libvirtd.enable = true;
 
-  powerManagement.powerUpCommands = # sh
-    ''
-      echo 60 > /sys/class/power_supply/BAT0/charge_control_end_threshold
-    '';
+  services.udev.extraRules = ''
+    ACTION=="add", KERNEL=="asus-nb-wmi", RUN+="${pkgs.runtimeShell} -c 'echo 60 > /sys/class/power_supply/BAT?/charge_control_end_threshold'"
+  '';
 
   # https://github.com/sammilucia/set-coall-timer
   systemd = {
