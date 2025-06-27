@@ -8,7 +8,6 @@
 let
   loginctl = lib.getExe' pkgs.systemd "loginctl";
   niri = lib.getExe pkgs.niri;
-  brightnessctl = lib.getExe pkgs.brightnessctl;
   systemctl = lib.getExe' pkgs.systemd "systemctl";
 in
 {
@@ -29,23 +28,18 @@ in
 
     timeouts = [
       {
-        timeout = 300;
-        command = "${brightnessctl} -s; ${brightnessctl} set 0%";
-        resumeCommand = "${brightnessctl} -r";
-      }
-
-      {
-        timeout = 360;
+        timeout = 5 * 60;
         command = "${niri} msg action power-off-monitors";
+        resumeCommand = "${niri} msg action power-on-monitors";
       }
 
       {
-        timeout = 600;
+        timeout = 10 * 60;
         command = "${loginctl} lock-session";
       }
 
       {
-        timeout = 1800;
+        timeout = 20 * 60;
         command = "${systemctl} suspend";
       }
     ];
