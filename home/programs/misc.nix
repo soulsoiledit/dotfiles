@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -8,7 +8,6 @@
     piper
 
     prismlauncher
-    inputs.drg-mint.packages.${pkgs.system}.default
     olympus
 
     steam-run
