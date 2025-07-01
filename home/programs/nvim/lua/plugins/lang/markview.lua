@@ -1,6 +1,7 @@
 return {
   {
     "markview.nvim",
+    lazy = false,
     priority = 45,
     after = function()
       require("markview").setup({
@@ -14,6 +15,8 @@ return {
             end,
           },
         },
+
+        experimental = { check_rtp_message = false, },
       })
 
       vim.api.nvim_set_hl(0, "MarkviewListItemMinus", { link = "MarkviewPalette6Fg" })
