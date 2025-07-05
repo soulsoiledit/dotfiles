@@ -193,8 +193,13 @@ lib.mkIf enable {
       }
 
       window-rule {
+        match app-id=r#"steam_app_\d+"#
+        open-fullscreen true
+      }
+
+      window-rule {
         match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
-        default-floating-position relative-to="bottom-right" x=8 y=8
+        default-floating-position x=8 y=8 relative-to="bottom-right"
       }
     '';
 }
