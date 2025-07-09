@@ -1,5 +1,6 @@
-dbus-monitor --system path=/org/freedesktop/UPower/PowerProfiles --profile | while read -r line; do
+dbus-monitor --profile --system path=/org/freedesktop/UPower/PowerProfiles | while read -r line; do
   if [[ $line =~ PropertiesChanged ]]; then
-    notify-send "  Profile:" "$(powerprofilesctl get)" -h string:x-canonical-private-synchronous:volume
+    current=$(powerprofilesctl get)
+    notify-send "  Profile:" "$current" -h string:x-canonical-private-synchronous:profile
   fi
 done

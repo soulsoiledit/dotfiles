@@ -1,10 +1,7 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim.extraPackages = with pkgs; [
-    # deps
-    gcc
-
     # vim
     lua-language-server
 
@@ -56,7 +53,6 @@
     # formatting
     efm-langserver
     nodePackages.prettier
-    inputs.topiary-yuck.packages.${pkgs.system}.default
 
     # misc
     ruby-lsp

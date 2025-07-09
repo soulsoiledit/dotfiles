@@ -1,35 +1,41 @@
-prev=
-pw-mon -N | while read -r line; do
-  if ! [[ $line =~ \*[[:blank:]]*params: ]]; then
+previous=
+pw-mon | while read -r line; do
+  # ignore this check if it's the first iteration
+  # check if the output doesn't have an indicator for modified volume
+  if [[ $previous && ! $line =~ \*[[:blank:]]*params: ]]; then
     continue
   fi
 
-  volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
-
-  if [[ $volume == "$prev" ]]; then
+  out=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+  if [[ $out == "$previous" ]]; then
     continue
   fi
+  previous=$out
 
-  # record previous output
-  prev=$volume
+  # parse the volume
+  [[ "$out" =~ ([0-9])\.([0-9]{2})(.\[MUTED\])? ]]
+  percentage=$((10#${BASH_REMATCH[1]}${BASH_REMATCH[2]}))
 
-  # get volume
-  [[ "$volume" =~ ([0-9])\.([0-9]{2})(.\[MUTED\])? ]]
-  volume=$((10#${BASH_REMATCH[1]}${BASH_REMATCH[2]}))
-
-  # get muted status & assign symbols
+  # parse the muted status & assign symbols
   if [[ -n ${BASH_REMATCH[3]} ]]; then
-    mute=true
+    muted=true
     symbol=''
   else
-    mute=false
+    muted=false
     symbols=("" "" "")
-    symbol=${symbols[((($volume * 3 - 1) / 100))]}
+    symbol=${symbols[((($percentage * 3 - 1) / 100))]}
   fi
 
-  # send progress notification
-  notify-send "$symbol  $volume%" -h int:value:"$volume" -h string:x-canonical-private-synchronous:volume
+  # don't send a notification on the first iteration
+  if [[ $previous ]]; then
+    notify-send "$symbol  $percentage%" \
+      -h int:value:"$percentage" \
+      -h string:x-canonical-private-synchronous:volume
+  fi
 
-  # output json for eww
-  jq -nc --argjson volume "$volume" --argjson mute "$mute" --arg symbol "$symbol" '{volume: $volume, mute: $mute, symbol: $symbol}'
+  jq -nc \
+    --arg symbol "$symbol" \
+    --arg percentage "$percentage" \
+    --arg muted "$muted" \
+    '{symbol: $symbol, percentage: $percentage, muted: $muted}'
 done

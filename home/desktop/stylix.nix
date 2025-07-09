@@ -23,9 +23,9 @@
       polarity = "dark";
       base16Scheme = {
         base00 = "#101010"; # background
-        base01 = "#191919"; # status
-        base02 = "#232323"; # selection
-        base03 = "#373737"; # comment
+        base01 = "#1a1a1a"; # status
+        base02 = "#242424"; # selection
+        base03 = "#393939"; # comment
         base04 = "#aeaeae"; # status fg
         base05 = "#bebebe"; # text
         base06 = "#dedede"; # bright

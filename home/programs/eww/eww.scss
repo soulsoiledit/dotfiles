@@ -1,166 +1,59 @@
-$base00: #101010; // background
-$base01: #181818; // status
-$base02: #202020; // selection
-$base03: #404040; // comment
-$base04: #aeaeae; // status fg
-$base05: #bebebe; // text
-$base06: #dedede; // bright
-$base07: #eeeeee; // brightest
-$base08: #c4757b; // red
-$base09: #bc804d; // orange
-$base0A: #a78c41; // yellow
-$base0B: #6e9e63; // green
-$base0C: #38a391; // cyan
-$base0D: #5197c6; // blue
-$base0E: #9981c3; // purple
-$base0F: #bb769d; // pink
-
-$accent: $base0D;
-
-$radius: 6px;
-$border-style: solid 1px $base02;
-$transition-duration: 125ms;
+$bg0: #{"@window_bg_color"};
+$bg1: #{"@card_bg_color"};
+$bg2: #{"@scrollbar_outline_color"};
+$fg: #{"@window_fg_color"};
+$accent: #{"@blue_1"};
+$warning: #{"@red_1"};
 
 * {
-  font: unset;
-  background: unset;
-  border-radius: unset;
-  border: unset;
-  box-shadow: none;
-  color: unset;
-  margin: unset;
-  padding: unset;
-  min-height: unset;
-  min-width: unset;
-
-  transition: $transition-duration;
+  transition: 125ms;
 }
 
 .bar {
-  background: $base00;
-  color: $base05;
-  font: 18px "sans-serif";
-  margin: 2px;
-  min-width: 1em;
+  background: $bg0;
+  color: $fg;
+  font: 18px sans-serif;
+  margin: 0.5rem 0;
 }
 
-.logout {
-  background: $base00;
-  border: 2px solid $base01;
-  color: $base05;
-  font: 18px "sans-serif";
-  margin: 2px;
-}
-
-.layer {
-  border-radius: $radius;
-}
-
-.hover:hover {
-  background: $base02;
-}
-
-.grayed {
-  color: $base03;
-}
-
-.volume-muted {
-  color: $base03;
-}
-
-.network-down {
-  color: $base03;
-}
-
-.workspaces {
+.niri {
   * {
-    margin: 2px 0px;
-    min-width: 16px;
-    min-height: 16px;
-    border-radius: 8px;
+    padding: unset;
+    margin: 0.125rem 0px;
 
-    background: $base01;
+    min-width: 1.25rem;
+    min-height: 1.25rem;
+    border-radius: 1.25rem;
+    background: $bg1;
   }
 
-  *:hover,
-  .used:hover {
-    background: $accent;
-  }
-
-  .active {
-    background: $accent;
-    min-height: 2em;
-  }
-
-  .used {
-    background: $base02;
+  .has-window {
+    background: $bg2;
     min-height: 1.5em;
   }
-}
 
-.systray {
-  > widget > image {
-    padding: 2px 0px;
+  .focused {
+    background: $accent;
+    min-height: 2.25em;
+  }
+
+  *:hover {
+    background: $accent;
   }
 }
 
-tooltip {
-  background: $base01;
-  color: $base05;
-  border-radius: $radius;
-  border: $border-style;
-  font-size: 0.75rem;
+.muted {
+  color: $bg2;
+}
+
+.warning {
+  color: $warning;
 }
 
 .popup menu {
-  background: $base01;
-  color: $base05;
   font-size: 0.75rem;
+}
 
-  padding: 10px;
-  border: $border-style;
-  border-radius: $radius;
-
-  menuitem {
-    border-radius: inherit;
-
-    label {
-      padding: 4px 8px;
-    }
-
-    &:hover {
-      background: $base02;
-    }
-
-    &:disabled {
-      color: $base03;
-    }
-  }
-
-  separator {
-    background: $base02;
-    margin: 2px 0;
-    min-height: 1px;
-  }
-
-  check,
-  arrow,
-  radio {
-    min-width: 16px;
-    min-height: 16px;
-  }
-
-  check {
-    border-radius: 50%;
-    background: $base03;
-
-    &:checked {
-      background: $accent;
-      color: $base00;
-    }
-  }
-
-  arrow {
-    color: $base05;
-  }
+tooltip {
+  font-size: 0.875rem;
 }

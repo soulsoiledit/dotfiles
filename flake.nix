@@ -18,11 +18,6 @@
 
     compress-yazi.url = "github:KKV9/compress.yazi";
     compress-yazi.flake = false;
-
-    drg-mint.url = "github:trumank/mint/7d399fc311752617dfa3eb21ee7d856a1f804517";
-
-    topiary-yuck.url = "github:dod-101/topiary-yuck";
-    topiary-yuck.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

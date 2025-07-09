@@ -4,12 +4,6 @@ local prettier = {
   rootMarkers = { ".prettierrc", "package.json" },
 }
 
-local topiary_yuck = {
-  formatCommand = "topiary-yuck format --tolerate-parsing-errors --language yuck <'${INPUT}'",
-  formatStdin = false,
-  rootMarkers = { "eww.yuck", "eww.scss" }
-}
-
 ---@type vim.lsp.Config
 return {
   cmd = { "efm-langserver" },
@@ -18,8 +12,6 @@ return {
     "scss",
     "less",
     "yaml",
-
-    "yuck",
   },
   init_options = { documentFormatting = true },
   settings = {
@@ -28,8 +20,6 @@ return {
       scss = { prettier },
       less = { prettier },
       yaml = { prettier },
-
-      yuck = { topiary_yuck },
     }
   }
 }
