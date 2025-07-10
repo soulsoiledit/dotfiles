@@ -3,7 +3,6 @@
 {
   services = {
     cliphist.enable = true;
-    easyeffects.enable = true;
     playerctld.enable = true;
 
     network-manager-applet.enable = true;
