@@ -6,10 +6,10 @@
 }:
 
 let
-  enable = true;
+  inherit (lib.strings) concatMapStringsSep splitString;
 
   # adds quotes around each word
-  spawn = str: ''spawn "${builtins.replaceStrings [ " " ] [ ''" "'' ] str}"'';
+  spawn = cmd: concatMapStringsSep " " (s: "\"${s}\"") (splitString " " "spawn ${cmd}");
 
   volume = v: spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ ${v} -l 1.0";
   brightness = b: spawn "brightnessctl set ${b}";
@@ -22,7 +22,7 @@ let
     fi
   '';
 in
-lib.mkIf enable {
+{
   home.packages = [ pkgs.niri ];
 
   xdg.portal = {
