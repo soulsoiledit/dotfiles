@@ -19,10 +19,11 @@ in
 
   gtk.gtk2.configLocation = "${configHome}/gtk-2.0/gtkrc";
 
-  home.file = {
-    ".icons/${config.home.pointerCursor.name}".enable = lib.mkForce false;
-    ".icons/default/index.theme".enable = lib.mkForce false;
-  };
+  home.pointerCursor.dotIcons.enable = false;
+
+  xdg.configFile."pulse/client.conf".text = ''
+    cookie-file = ${configHome}/pulse/cookie
+  '';
 
   xresources.path = "${configHome}/X11/xresources";
 }
