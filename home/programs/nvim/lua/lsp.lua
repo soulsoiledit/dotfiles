@@ -14,14 +14,8 @@ vim.diagnostic.config({
 vim.lsp.config('*', {
   root_markers = { ".git" },
   on_attach = function(client, bufnr)
-    -- disable logging until we want it
-    local debug = false
-    if debug then
-      vim.lsp.set_log_level(vim.log.levels.DEBUG)
-      vim.lsp.log.set_format_func(vim.inspect)
-    else
-      vim.lsp.set_log_level(vim.log.levels.OFF)
-    end
+    vim.lsp.set_log_level(vim.log.levels.OFF)
+    vim.lsp.log.set_format_func(vim.inspect)
 
     vim.lsp.inlay_hint.enable()
 

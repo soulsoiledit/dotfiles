@@ -3,8 +3,6 @@ return {
   cmd = {
     "biome",
     "lsp-proxy",
-    "--config-path",
-    biome_config,
   },
   filetypes = {
     "html",
@@ -16,4 +14,9 @@ return {
     "astro", "svelte", "vue",
   },
   root_markers = { ".git", "biome.json" },
+  settings = {
+    biome = {
+      configurationPath = biome_config,
+    }
+  }
 }
