@@ -3,9 +3,6 @@ return {
   lazy = false,
   after = function()
     require("snacks").setup({
-      bigfile = {},
-      quickfile = {},
-
       lazygit = {},
       picker = {},
 
