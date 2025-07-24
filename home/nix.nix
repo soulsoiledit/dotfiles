@@ -7,7 +7,7 @@
 }:
 
 {
-  imports = [ inputs.nix-index-database.hmModules.nix-index ];
+  imports = [ inputs.nix-index-database.homeModules.nix-index ];
 
   options.flake = lib.mkOption {
     type = lib.types.str;
