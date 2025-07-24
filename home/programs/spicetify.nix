@@ -54,11 +54,6 @@ in
       misc = brown;
     };
 
-    enabledExtensions = builtins.attrValues {
-      inherit (spicePkgs.extensions)
-        adblock
-        keyboardShortcut
-        ;
-    };
+    enabledExtensions = [ spicePkgs.extensions.adblock ];
   };
 }
