@@ -5,8 +5,6 @@
     pwvucontrol
 
     steam
-    piper
-
     prismlauncher
     olympus
 
