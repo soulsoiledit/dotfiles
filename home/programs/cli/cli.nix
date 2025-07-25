@@ -2,13 +2,11 @@
 
 {
   home.packages = with pkgs; [
-    # modern unix replacements
     du-dust
     dua
     duf
     trashy
 
-    # service control
     brightnessctl
     libnotify
     playerctl
@@ -17,13 +15,12 @@
 
   programs = {
     bat.enable = true;
-    cava.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
     fzf.enable = true;
     jq.enable = true;
-    tmux.enable = true;
     zoxide.enable = true;
+    zellij.enable = true;
 
     television.enable = true;
     television.enableFishIntegration = false;
@@ -51,11 +48,6 @@
     ripgrep = {
       enable = true;
       arguments = [ "--smart-case" ];
-    };
-
-    zellij = {
-      enable = true;
-      enableFishIntegration = false;
     };
   };
 }

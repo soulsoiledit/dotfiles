@@ -9,9 +9,5 @@
     olympus
 
     steam-run
-    appimage-run
-
-    distrobox
-    lilipod
   ];
 }

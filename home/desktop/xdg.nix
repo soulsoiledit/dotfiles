@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
   configHome = config.xdg.configHome;
