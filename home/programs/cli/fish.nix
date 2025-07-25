@@ -14,7 +14,6 @@
       e = config.home.sessionVariables.EDITOR;
       f = config.programs.yazi.shellWrapperName;
       g = "lazygit";
-      a = "7z";
 
       ns = "nh os switch --ask";
       nb = "nh os boot --ask";

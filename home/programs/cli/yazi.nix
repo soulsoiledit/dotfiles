@@ -6,21 +6,19 @@
 }:
 
 {
-  home.packages = with pkgs; [
-    file
-    exiftool
-    ripdrag
-
-    p7zip
-    zip
-  ];
-
   programs = {
     mpv.enable = true;
     imv.enable = true;
 
     yazi = {
       enable = true;
+      package = pkgs.yazi.override {
+        extraPackages = with pkgs; [
+          exiftool
+          mediainfo
+          ripdrag
+        ];
+      };
 
       plugins.compress = inputs.compress-yazi;
 
