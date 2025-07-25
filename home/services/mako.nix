@@ -11,6 +11,7 @@ in
         default-timeout = 5000;
 
         width = 240;
+        border-size = 1;
         border-radius = 4;
         layer = "overlay";
 
