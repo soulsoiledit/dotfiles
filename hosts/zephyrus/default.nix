@@ -21,7 +21,6 @@
   ];
 
   boot.kernelParams = [
-    "zswap.max_pool_percent=50"
     "pcie_aspm.policy=powersupersave"
   ];
 
