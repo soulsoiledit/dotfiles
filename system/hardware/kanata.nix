@@ -1,8 +1,3 @@
-{ config, lib, ... }:
-
-let
-  cfg = config.services.kanata;
-in
 {
   services.kanata.keyboards.default.config = # scheme
     ''
@@ -35,6 +30,4 @@ in
         lctl lmet lalt spc _ rctl
       )
     '';
-
-  users.users.default.extraGroups = lib.mkIf cfg.enable [ "uinput" ];
 }
