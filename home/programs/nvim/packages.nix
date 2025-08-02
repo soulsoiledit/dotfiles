@@ -21,9 +21,9 @@
     rustfmt
 
     # haskell-language-server
-    ghc
-    ormolu
-    haskellPackages.cabal-gild
+    # ghc
+    # ormolu
+    # haskellPackages.cabal-gild
 
     zls
 
