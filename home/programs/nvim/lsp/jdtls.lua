@@ -8,5 +8,11 @@ return {
     jdtls_dir .. "/workspace",
   },
   filetypes = { "java" },
-  root_markers = { ".git", "gradle", },
+  root_markers = {
+    ".git",
+    "settings.gradle.kts",
+    "settings.gradle",
+    "build.gradle.kts",
+    "build.gradle",
+  },
 }
