@@ -4,11 +4,12 @@
   programs.neovim.extraPackages = with pkgs; [
     # vim
     lua-language-server
+    emmylua-ls
 
     # nix
     nil
     nixd
-    nixfmt-rfc-style
+    nixfmt
 
     # python
     basedpyright
