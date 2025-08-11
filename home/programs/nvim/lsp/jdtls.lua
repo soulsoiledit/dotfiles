@@ -1,3 +1,4 @@
+local jdtls_dir = vim.fs.normalize("$XDG_CACHE_HOME/jdtls")
 ---@type vim.lsp.Config
 return {
   cmd = {

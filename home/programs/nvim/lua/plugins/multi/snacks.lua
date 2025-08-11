@@ -63,12 +63,6 @@ return {
               action = ":ene | startinsert",
             },
             {
-              icon = " ",
-              key = "c",
-              desc = "Config",
-              action = ":lua Snacks.picker.pick('files', { cwd = '" .. FLAKE .. "' })",
-            },
-            {
               icon = " ",
               key = "q",
               desc = "Quit",

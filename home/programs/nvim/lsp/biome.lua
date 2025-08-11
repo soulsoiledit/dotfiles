@@ -16,7 +16,7 @@ return {
   root_markers = { ".git", "biome.json" },
   settings = {
     biome = {
-      configurationPath = biome_config,
+      configurationPath = vim.fs.normalize("$XDG_CONFIG_HOME/biome/config.json"),
     }
   }
 }

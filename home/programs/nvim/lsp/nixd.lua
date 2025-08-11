@@ -7,7 +7,7 @@ return {
     nixd = {
       options = {
         home = {
-          expr = string.format('(builtins.getFlake "%s").homeConfigurations.%s.options', FLAKE, USER)
+          expr = vim.fn.expand("(builtins.getFlake (builtins.toString ./.)).homeConfigurations.$USER.options")
         },
       },
       formatting = { command = { "nixfmt" } },

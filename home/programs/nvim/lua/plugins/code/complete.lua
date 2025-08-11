@@ -68,7 +68,7 @@ return {
               opts = {
                 backend = {
                   ripgrep = {
-                    additional_paths = { blink_rg_dictionary },
+                    additional_paths = { vim.fs.normalize("$XDG_DATA_HOME/dict/words") },
                     max_filesize = "128K",
                   }
                 }
