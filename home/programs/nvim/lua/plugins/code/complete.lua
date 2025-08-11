@@ -66,8 +66,12 @@ return {
               max_items = 64,
 
               opts = {
-                additional_paths = { blink_rg_dictionary },
-                max_filesize = "128K",
+                backend = {
+                  ripgrep = {
+                    additional_paths = { blink_rg_dictionary },
+                    max_filesize = "128K",
+                  }
+                }
               },
             },
           },
