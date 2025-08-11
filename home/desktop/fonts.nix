@@ -32,18 +32,21 @@ in
         "Inter"
         "Noto Sans"
         "Symbols Nerd Font"
-      ] ++ cjk "Sans";
+      ]
+      ++ cjk "Sans";
 
       monospace = [
         "Maple Mono NL NF CN"
         "Noto Sans Mono"
-      ] ++ cjk "Sans Mono";
+      ]
+      ++ cjk "Sans Mono";
 
       serif = [
         "IBM Plex Serif"
         "Noto Serif"
         "Symbols Nerd Font"
-      ] ++ cjk "Serif";
+      ]
+      ++ cjk "Serif";
 
       emoji = [
         "Twitter Color Emoji"
