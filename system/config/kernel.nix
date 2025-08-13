@@ -3,9 +3,9 @@
 {
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelParams = [
-      "zswap.enabled=1"
-      "zswap.shrinker_enabled=1"
-    ];
+    kernel.sysfs.module.zswap.parameters = {
+      enabled = 1;
+      shrinker_enabled = 1;
+    };
   };
 }
