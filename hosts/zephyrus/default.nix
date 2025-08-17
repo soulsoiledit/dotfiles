@@ -43,7 +43,7 @@
 
   # set charge limit
   services.udev.extraRules = ''
-    ACTION=="add", KERNEL=="asus-nb-wmi", RUN+="${pkgs.runtimeShell} -c 'echo 60 > /sys/class/power_supply/BAT?/charge_control_end_threshold'"
+    ACTION=="add", KERNEL=="asus-nb-wmi", RUN+="${pkgs.runtimeShell} -c 'echo 80 > /sys/class/power_supply/BAT?/charge_control_end_threshold'"
   '';
 
   # https://github.com/sammilucia/set-coall-timer
