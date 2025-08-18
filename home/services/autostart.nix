@@ -9,9 +9,9 @@ in
     enable = true;
     entries = map getDesktop [
       config.programs.firefox.finalPackage
-      config.programs.vesktop.package
-      config.programs.spicetify.spicedSpotify
-      pkgs.steam
+      # config.programs.vesktop.package
+      # config.programs.spicetify.spicedSpotify
+      # pkgs.steam
     ];
   };
 }
