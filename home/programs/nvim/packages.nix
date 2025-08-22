@@ -3,7 +3,6 @@
 {
   programs.neovim.extraPackages = with pkgs; [
     # vim
-    lua-language-server
     emmylua-ls
     stylua
 
