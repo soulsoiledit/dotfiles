@@ -8,15 +8,21 @@ return {
     "html",
     "css",
     "graphql",
-    "json", "jsonc",
-    "javascript", "javascriptreact",
-    "typescript", "typescript.tsx", "typescriptreact",
-    "astro", "svelte", "vue",
+    "json",
+    "jsonc",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescript.tsx",
+    "typescriptreact",
+    "astro",
+    "svelte",
+    "vue",
   },
   root_markers = { ".git", "biome.json" },
   settings = {
     biome = {
       configurationPath = vim.fs.normalize("$XDG_CONFIG_HOME/biome/config.json"),
-    }
-  }
+    },
+  },
 }

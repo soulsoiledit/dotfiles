@@ -2,5 +2,5 @@
 return {
   cmd = { "ruby-lsp" },
   filetypes = { "ruby", "eruby" },
-  root_markers = { ".git", "Gemfile" }
+  root_markers = { ".git", "Gemfile" },
 }

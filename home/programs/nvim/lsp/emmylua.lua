@@ -6,17 +6,17 @@ return {
     ".git",
     ".luarc.json",
     ".emmyrc.json",
-    ".luacheckrc"
+    ".luacheckrc",
   },
   settings = {
     Lua = {
-      runtime = { version = "LuaJIT", },
+      runtime = { version = "LuaJIT" },
       workspace = {
-        library = { vim.env.VIMRUNTIME, },
+        library = { vim.env.VIMRUNTIME },
       },
       semanticTokens = {
         enable = false,
       },
     },
-  }
+  },
 }

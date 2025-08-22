@@ -6,6 +6,6 @@ return {
     ".git",
     "pyproject.toml",
     "ruff.toml",
-    ".ruff.toml"
+    ".ruff.toml",
   },
 }

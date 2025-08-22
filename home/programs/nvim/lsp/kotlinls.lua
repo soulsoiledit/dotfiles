@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-  cmd = { "kotlin-language-server", },
+  cmd = { "kotlin-language-server" },
   filetypes = { "kotlin" },
-  root_markers = { ".git", "gradle", },
+  root_markers = { ".git", "gradle" },
 }

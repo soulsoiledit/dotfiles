@@ -6,13 +6,13 @@ return {
     ".git",
     "requirements.txt",
     "pyproject.toml",
-    "pyrightconfig.json"
+    "pyrightconfig.json",
   },
   settings = {
     basedpyright = {
       analysis = {
         autoSearchPaths = true,
-      }
-    }
-  }
+      },
+    },
+  },
 }

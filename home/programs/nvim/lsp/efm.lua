@@ -20,6 +20,6 @@ return {
       scss = { prettier },
       less = { prettier },
       yaml = { prettier },
-    }
-  }
+    },
+  },
 }

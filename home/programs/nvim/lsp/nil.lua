@@ -5,5 +5,5 @@ return {
   root_markers = { ".git", "flake.nix" },
   init_options = {
     nix = { flake = { autoArchive = false } },
-  }
+  },
 }

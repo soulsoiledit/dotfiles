@@ -1,10 +1,10 @@
 ---@type vim.lsp.Config
 return {
   cmd = { "yaml-language-server", "--stdio" },
-  filetypes = { "yaml", },
+  filetypes = { "yaml" },
   settings = {
     redhat = {
-      telemetry = { enabled = false }
+      telemetry = { enabled = false },
     },
   },
 }

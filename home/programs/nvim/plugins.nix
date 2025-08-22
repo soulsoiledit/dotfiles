@@ -1,7 +1,12 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  mkLazyPlugs = map (plug: {
+  mkOptPlugs = map (plug: {
     plugin = plug;
     optional = true;
   });
@@ -9,12 +14,27 @@ in
 {
   programs.neovim.plugins =
     with pkgs.vimPlugins;
-    [ lz-n ]
-    ++ mkLazyPlugs [
-      # multi
+    [
       snacks-nvim
       mini-nvim
+      markview-nvim
 
+      # colorscheme palette
+      (pkgs.writeTextFile {
+        name = "nixpalette";
+        destination = "/lua/nixpalette.lua";
+        text =
+          # lua
+          ''
+            return {
+              ${lib.concatMapAttrsStringSep ",\n  " (
+                key: value: ''${key} = "${value}"''
+              ) config.stylix.base16Scheme}
+            }
+          '';
+      })
+    ]
+    ++ mkOptPlugs [
       # code
       blink-cmp
       blink-ripgrep-nvim
@@ -44,8 +64,6 @@ in
       nvim-lightbulb
 
       # lang
-      markview-nvim
-      markdown-preview-nvim
       typst-preview-nvim
     ];
 }

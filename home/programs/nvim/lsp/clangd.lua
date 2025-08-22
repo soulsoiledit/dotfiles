@@ -7,7 +7,7 @@ return {
     "objc",
     "objcpp",
     "cuda",
-    "proto"
+    "proto",
   },
   root_markers = {
     ".git",

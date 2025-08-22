@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -13,16 +12,6 @@
 
   xdg.configFile = {
     "nvim".source = config.lib.file.mkOutOfStoreSymlink (config.flake + "/home/programs/nvim");
-
-    "generated/nvim.lua".text =
-      # lua
-      ''
-        mini_base16_palette = {
-          ${lib.concatMapAttrsStringSep ",\n  " (
-            key: value: ''${key} = "${value}"''
-          ) config.stylix.base16Scheme}
-        }
-      '';
 
     "biome/config.json".text = builtins.toJSON {
       formatter.indentStyle = "space";
