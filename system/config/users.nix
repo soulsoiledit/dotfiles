@@ -9,4 +9,9 @@
   };
 
   programs.fish.enable = true;
+
+  environment.localBinInPath = true;
+  security.sudo.extraConfig = ''
+    Defaults pwfeedback
+  '';
 }
