@@ -5,6 +5,7 @@
     # vim
     lua-language-server
     emmylua-ls
+    stylua
 
     # nix
     nil
