@@ -27,6 +27,5 @@ lsp.enable(lsps)
 
 lsp.inlay_hint.enable()
 
-keymap("n", "gd", lsp.buf.definition, { desc = "go to definition" })
-
+keymap("n", "gd", "<C-]>", { desc = "go to definition" })
 keymap("n", "gD", lsp.buf.declaration, { desc = "go to declaration" })
