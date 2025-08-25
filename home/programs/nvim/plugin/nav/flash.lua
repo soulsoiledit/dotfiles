@@ -1,5 +1,5 @@
 later(function()
-  vim.cmd("packadd flash.nvim")
+  vim.cmd.packadd("flash.nvim")
   require("flash").setup({
     labels = "arstneiodhwfuy",
   })

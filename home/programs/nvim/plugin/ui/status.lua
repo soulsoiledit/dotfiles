@@ -1,5 +1,5 @@
 later(function()
-  vim.cmd("packadd lualine.nvim")
+  vim.cmd.packadd("lualine.nvim")
 
   local auto = require("lualine.themes.auto")
   auto.normal.a.bg = nixpalette.base0D
@@ -11,7 +11,7 @@ later(function()
     },
   })
 
-  vim.cmd("packadd bufferline.nvim")
+  vim.cmd.packadd("bufferline.nvim")
   local bufferline = require("bufferline")
   bufferline.setup({
     options = {

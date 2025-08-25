@@ -1,5 +1,5 @@
 later(function()
-  vim.cmd("packadd trouble.nvim")
+  vim.cmd.packadd("trouble.nvim")
   require("trouble").setup()
 
   keymap("n", "<leader>d", function()

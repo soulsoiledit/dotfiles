@@ -1,5 +1,5 @@
 later(function()
-  vim.cmd("packadd nvim-colorizer.lua")
+  vim.cmd.packadd("nvim-colorizer.lua")
   require("colorizer").setup({
     lazy_load = true,
     user_commands = true,

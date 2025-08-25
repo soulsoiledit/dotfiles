@@ -1,5 +1,5 @@
 later(function()
-  vim.cmd("packadd noice.nvim")
+  vim.cmd.packadd("noice.nvim")
   require("noice").setup({
     lsp = {
       override = {
