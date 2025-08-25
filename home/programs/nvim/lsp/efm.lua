@@ -13,6 +13,7 @@ return {
     "less",
     "yaml",
   },
+  root_markers = { ".git" },
   init_options = { documentFormatting = true },
   settings = {
     languages = {
