@@ -19,15 +19,15 @@
       :valign "end"
       :space-evenly false
       :spacing 2
-      ;; always
+      ; always
       (volume)
       (battery)
 
-      ;; auto
+      ; auto
       (memory)
       (temperature)
 
-      ;; never
+      ; never
       (brightness)
       (profile)
 
@@ -42,7 +42,7 @@
     :orientation "v"
     :space-evenly false
     :class "niri"
-    ;; workaround to get workspace transitions
+    ; workaround to get workspace transitions
     (for i in { [0,1,2,3,4] }
       (button
         :halign "center"

@@ -39,7 +39,6 @@ in
       blink-cmp
       blink-ripgrep-nvim
       friendly-snippets
-      ts-comments-nvim
       lsp-format-nvim
 
       # nav
