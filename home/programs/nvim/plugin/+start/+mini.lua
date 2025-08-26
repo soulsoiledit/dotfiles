@@ -58,8 +58,16 @@ later(function()
     },
   })
 
+  local trailspace = require("mini.trailspace")
+  trailspace.setup()
+  autocmd("BufWritePre", {
+    callback = function(_ev)
+      trailspace.trim()
+      trailspace.trim_last_lines()
+    end,
+  })
+
   require("mini.cursorword").setup()
-  require("mini.trailspace").setup()
   require("mini.diff").setup({
     view = { style = "sign" },
   })

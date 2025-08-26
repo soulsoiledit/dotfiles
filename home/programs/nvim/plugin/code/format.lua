@@ -1,4 +1,4 @@
-vim.api.nvim_create_autocmd("LspAttach", {
+autocmd("LspAttach", {
   callback = function(ev)
     vim.cmd.packadd("lsp-format.nvim")
     require("lsp-format").setup()
