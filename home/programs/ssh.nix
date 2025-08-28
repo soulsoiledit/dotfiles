@@ -1,10 +1,13 @@
 {
   programs.ssh = {
     enable = true;
+    enableDefaultConfig = false;
     includes = [ "aliases" ];
-    forwardAgent = true;
-    addKeysToAgent = "1h";
-    hashKnownHosts = true;
+    matchBlocks."*" = {
+      addKeysToAgent = "1h";
+      hashKnownHosts = true;
+      serverAliveInterval = 15;
+    };
   };
 
   services.ssh-agent.enable = true;
