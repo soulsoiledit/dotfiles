@@ -2,7 +2,7 @@
 
 {
   programs.neovim.extraPackages = with pkgs; [
-    # vim
+    # lua
     emmylua-ls
     stylua
 

@@ -19,4 +19,6 @@
   };
 
   xdg.dataFile."dict/words".source = "${pkgs.scowl}/share/dict/wamerican.txt";
+
+  home.sessionVariables.MANPAGER = "nvim +Man!";
 }
