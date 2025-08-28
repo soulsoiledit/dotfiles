@@ -1,20 +1,20 @@
 { config, pkgs, ... }:
 
 {
-  programs = {
-    mpv.enable = true;
-    imv.enable = true;
-  };
+  programs.mpv.enable = true;
+  programs.imv.enable = true;
 
   programs.yazi = {
     enable = true;
     package = pkgs.yazi.override {
-      extraPackages = with pkgs; [
-        exiftool
-        mediainfo
-        ripdrag
-        ouch
-      ];
+      extraPackages = builtins.attrValues {
+        inherit (pkgs)
+          exiftool
+          mediainfo
+          ripdrag
+          ouch
+          ;
+      };
     };
 
     plugins.ouch = pkgs.yaziPlugins.ouch;

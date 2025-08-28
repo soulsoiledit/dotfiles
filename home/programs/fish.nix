@@ -3,12 +3,7 @@
 {
   programs.fish = {
     enable = true;
-
-    interactiveShellInit = # fish
-      ''
-        set fish_greeting
-      '';
-
+    interactiveShellInit = "set fish_greeting";
     shellAbbrs = {
       s = "sudo";
       e = config.home.sessionVariables.EDITOR;
