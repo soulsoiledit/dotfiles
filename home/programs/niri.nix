@@ -32,9 +32,10 @@ in
       "org.freedesktop.impl.portal.ScreenCast" = "gnome";
       "org.freedesktop.impl.portal.Screenshot" = "gnome";
     };
-    extraPortals = builtins.attrValues {
-      inherit (pkgs) xdg-desktop-portal-gtk xdg-desktop-portal-gnome;
-    };
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
   };
 
   xdg.configFile."niri/config.kdl".text = # kdl

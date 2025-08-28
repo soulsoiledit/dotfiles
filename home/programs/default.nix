@@ -2,6 +2,12 @@
 
 {
   home.packages = with pkgs; [
+    pwvucontrol
+
+    steam
+    prismlauncher
+    olympus
+
     du-dust
     dua
     duf
@@ -15,10 +21,12 @@
 
   programs = {
     bat.enable = true;
+    eza.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
     fzf.enable = true;
     jq.enable = true;
+    ripgrep.enable = true;
     zoxide.enable = true;
     zellij.enable = true;
 
@@ -37,17 +45,6 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-    };
-
-    eza = {
-      enable = true;
-      git = true;
-      icons = "always";
-    };
-
-    ripgrep = {
-      enable = true;
-      arguments = [ "--smart-case" ];
     };
   };
 }
