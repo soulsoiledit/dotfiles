@@ -8,4 +8,12 @@ return {
     "ruff.toml",
     ".ruff.toml",
   },
+  init_options = {
+    settings = {
+      configurationPreference = "filesystemFirst",
+      configuration = {
+        ["indent-width"] = 2,
+      },
+    },
+  },
 }
