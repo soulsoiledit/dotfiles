@@ -132,6 +132,7 @@ in
       clang-tools
       jdt-language-server
       kotlin-language-server
+      kdePackages.qtdeclarative
       ruby-lsp
       zls
     ];
