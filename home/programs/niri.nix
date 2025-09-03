@@ -30,14 +30,10 @@ in
 
   xdg.portal = {
     enable = true;
-    config.niri = {
-      default = "gtk,gnome";
-      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-      "org.freedesktop.impl.portal.Screenshot" = "gnome";
-    };
+    configPackages = [ pkgs.niri ];
     extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
       pkgs.xdg-desktop-portal-gnome
+      pkgs.xdg-desktop-portal-gtk
     ];
   };
 
