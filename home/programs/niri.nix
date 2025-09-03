@@ -1,19 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
-  inherit (lib.strings) concatMapStringsSep splitString;
-
-  # adds quotes around each word
-  spawn = cmd: concatMapStringsSep " " (s: "\"${s}\"") (splitString " " "spawn ${cmd}");
-
-  volume = v: spawn "wpctl set-volume @DEFAULT_AUDIO_SINK@ ${v} -l 1.0";
-  brightness = b: spawn "brightnessctl set ${b}";
-  brightness' = d: b: spawn "brightnessctl -d *${d}* set ${b}";
+  volume = v: ''spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ ${v} -l 1.0"'';
   profile-switch = pkgs.writers.writeDash "profile-switch" ''
     if test "$(powerprofilesctl get)" = "balanced"; then
       powerprofilesctl set power-saver
@@ -114,11 +102,11 @@ in
         Mod+Return { spawn "footclient"; }
         Mod+Space { spawn "fuzzel"; }
 
-        Mod+B { ${spawn "eww open bar --toggle"}; }
+        Mod+B { spawn-sh "eww open bar --toggle"; }
         Mod+S { screenshot show-pointer=false; }
         Mod+L { spawn "wlogout"; }
         // disables cache for fuzzel dmenu
-        Mod+P { spawn "sh" "-c" "cliphist list | fuzzel --dmenu --with-nth 2 --cache /dev/null | cliphist decode | wl-copy"; }
+        Mod+P { spawn-sh "cliphist list | fuzzel --dmenu --with-nth 2 --cache /dev/null | cliphist decode | wl-copy"; }
 
         // volume
         XF86AudioRaiseVolume allow-when-locked=true { ${volume "5%+"}; }
@@ -127,31 +115,31 @@ in
         Shift+XF86AudioRaiseVolume { ${volume "1%+"}; }
         Shift+XF86AudioLowerVolume { ${volume "1%-"}; }
 
-        XF86AudioMute allow-when-locked=true { ${spawn "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"}; }
-        XF86AudioMicMute allow-when-locked=true { ${spawn "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"}; }
+        XF86AudioMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+        XF86AudioMicMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
         // media
-        XF86AudioPlay allow-when-locked=true { ${spawn "playerctl play-pause"}; }
-        XF86AudioPrev { ${spawn "playerctl previous"}; }
-        XF86AudioNext { ${spawn "playerctl next"}; }
+        XF86AudioPlay allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+        XF86AudioPrev { spawn-sh "playerctl previous"; }
+        XF86AudioNext { spawn-sh "playerctl next"; }
 
-        Mod+0 allow-when-locked=true { ${spawn "playerctl play-pause"}; }
-        Mod+Minus { ${spawn "playerctl previous"}; }
-        Mod+Equal { ${spawn "playerctl next"}; }
+        Mod+0 allow-when-locked=true { spawn-sh "playerctl play-pause"; }
+        Mod+Minus { spawn-sh "playerctl previous"; }
+        Mod+Equal { spawn-sh "playerctl next"; }
 
         // brightness
-        XF86MonBrightnessUp allow-when-locked=true { ${brightness "20%+"}; }
-        XF86MonBrightnessDown allow-when-locked=true { ${brightness "20%-"}; }
+        XF86MonBrightnessUp allow-when-locked=true { spawn-sh "brightnessctl set 20%+"; }
+        XF86MonBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl set 20%-"; }
 
         // keyboard
-        XF86KbdBrightnessUp allow-when-locked=true { ${brightness' "kbd" "1+"}; }
-        XF86KbdBrightnessDown allow-when-locked=true { ${brightness' "kbd" "1-"}; }
+        XF86KbdBrightnessUp allow-when-locked=true { spawn-sh "brightnessctl -d *kbd* set 1+"; }
+        XF86KbdBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl -d *kbd* set 1-"; }
 
         // notifications
-        Mod+Control+Space { ${spawn "makoctl dismiss --all"}; }
-        Mod+Control+D { ${spawn "makoctl dismiss"}; }
-        Mod+Control+Comma { ${spawn "makoctl restore"}; }
-        Mod+Control+Period { ${spawn "makoctl invoke"}; }
+        Mod+Control+Space { spawn-sh "makoctl dismiss --all"; }
+        Mod+Control+D { spawn-sh "makoctl dismiss"; }
+        Mod+Control+Comma { spawn-sh "makoctl restore"; }
+        Mod+Control+Period { spawn-sh "makoctl invoke"; }
 
         // profile
         XF86Launch4 { spawn "${profile-switch}"; }
