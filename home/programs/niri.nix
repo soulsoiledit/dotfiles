@@ -23,7 +23,10 @@ let
   '';
 in
 {
-  home.packages = [ pkgs.niri ];
+  home.packages = [
+    pkgs.niri
+    pkgs.xwayland-satellite
+  ];
 
   xdg.portal = {
     enable = true;
@@ -72,7 +75,6 @@ in
       prefer-no-csd
       cursor { hide-after-inactive-ms 5000; }
 
-      environment { DISPLAY ":0"; }
       screenshot-path "${config.xdg.cacheHome}/screenshots/%Y-%m-%d_%H-%M-%S.png"
 
       workspace "1"
