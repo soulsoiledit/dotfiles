@@ -9,9 +9,12 @@ let
   inherit (config.lib.stylix.colors.withHashtag) base00 base05;
 in
 {
-  systemd.user.services.lockscreen = {
-    Service.ExecStart = lib.getExe pkgs.gtklock;
-  };
+  services.swayidle.events = [
+    {
+      event = "lock";
+      command = "${lib.getExe' pkgs.procps "pidof"} gktlock || ${lib.getExe pkgs.gtklock} --daemonize";
+    }
+  ];
 
   xdg.configFile = {
     "gtklock/config.ini".text =

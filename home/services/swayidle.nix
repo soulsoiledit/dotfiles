@@ -11,11 +11,6 @@ in
 
     events = [
       {
-        event = "lock";
-        command = "${systemctl} --user start lockscreen.service";
-      }
-
-      {
         event = "before-sleep";
         command = "${loginctl} lock-session";
       }
