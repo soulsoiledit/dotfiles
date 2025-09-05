@@ -1,8 +1,8 @@
 { config, ... }:
 
 let
-  configHome = config.xdg.configHome;
-  dataHome = config.xdg.dataHome;
+  inherit (config.home) homeDirectory;
+  inherit (config.xdg) configHome dataHome;
 in
 {
   xdg.enable = true;
@@ -24,6 +24,18 @@ in
   xdg.configFile."pulse/client.conf".text = ''
     cookie-file = ${configHome}/pulse/cookie
   '';
+
+  xdg.userDirs = {
+    enable = true;
+    desktop = "${homeDirectory}";
+    documents = "${homeDirectory}";
+    download = "${homeDirectory}";
+    music = "${homeDirectory}/music";
+    pictures = "${homeDirectory}/pictures";
+    publicShare = "${homeDirectory}";
+    templates = "${homeDirectory}";
+    videos = "${homeDirectory}/videos";
+  };
 
   xresources.path = "${configHome}/X11/xresources";
 }
