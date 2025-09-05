@@ -67,7 +67,7 @@
 (defwidget volume []
   (label
     :class {volume?.muted ?: false ? "muted" : ""}
-    :tooltip "${volume?.percentage}%"
+    :tooltip "${volume?.device}: ${volume?.percentage}%"
     :text {volume?.symbol ?: ""}
   )
 )
