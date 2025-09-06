@@ -14,18 +14,37 @@ vim.diagnostic.config({
   },
 })
 
-lsp.set_log_level(vim.log.levels.OFF)
+vim.cmd.packadd("nvim-lspconfig")
+
+lsp.enable({
+  "nil_ls",
+  "emmylua_ls",
+
+  "rust_analyzer",
+  "hls",
+
+  "html",
+  "cssls",
+  "vtsls",
+  "biome",
+  "efm",
+
+  "pyrefly",
+  "ruff",
+
+  "bashls",
+  "fish_lsp",
+
+  "tinymist",
+
+  "clangd",
+  "jdtls",
+  "qmlls",
+})
+
+lsp.set_log_level(vim.log.levels.DEBUG)
 lsp.log.set_format_func(vim.inspect)
-
--- add all enabled lsps
-local lsps = {}
-for _, file in pairs(vim.api.nvim_get_runtime_file("lsp/*lua", true)) do
-  table.insert(lsps, vim.fn.fnamemodify(file, ":t:r"))
-end
-
-lsp.enable(lsps)
-
-lsp.inlay_hint.enable()
+lsp.inlay_hint.enable(true)
 
 keymap("n", "gd", "<C-]>", { desc = "go to definition" })
 keymap("n", "gD", lsp.buf.declaration, { desc = "go to declaration" })

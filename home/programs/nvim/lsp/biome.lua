@@ -1,25 +1,10 @@
 ---@type vim.lsp.Config
 return {
-  cmd = {
-    "biome",
-    "lsp-proxy",
-  },
-  filetypes = {
-    "html",
-    "css",
-    "graphql",
-    "json",
-    "jsonc",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescript.tsx",
-    "typescriptreact",
-    "astro",
-    "svelte",
-    "vue",
-  },
-  root_markers = { ".git", "biome.json" },
+  -- allow biome lsp-proxy to attach to standalone files
+  workspace_required = false,
+  root_dir = false,
+  root_markers = { { "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock" }, ".git" },
+
   settings = {
     biome = {
       configurationPath = vim.fs.normalize("$XDG_CONFIG_HOME/biome/config.json"),

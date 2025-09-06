@@ -6,21 +6,19 @@ local prettier = {
 
 ---@type vim.lsp.Config
 return {
-  cmd = { "efm-langserver" },
   filetypes = {
     "markdown",
-    "scss",
+    "html",
     "less",
-    "yaml",
+    "scss",
   },
-  root_markers = { ".git" },
   init_options = { documentFormatting = true },
   settings = {
     languages = {
       markdown = { prettier },
-      scss = { prettier },
+      html = { prettier },
       less = { prettier },
-      yaml = { prettier },
+      scss = { prettier },
     },
   },
 }

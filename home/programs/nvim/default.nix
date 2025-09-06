@@ -55,6 +55,7 @@ in
         blink-cmp
         blink-ripgrep-nvim
         friendly-snippets
+        nvim-lspconfig
         lsp-format-nvim
 
         # nav
@@ -83,23 +84,11 @@ in
       ];
 
     extraPackages = with pkgs; [
-      emmylua-ls
-      stylua
-
-      bash-language-server
-      fish-lsp
-      shfmt
-
       nil
-      nixd
       nixfmt
 
-      basedpyright
-      ruff
-
-      vscode-langservers-extracted
-      vtsls
-      biome
+      emmylua-ls
+      stylua
 
       rust-analyzer
       rustc
@@ -109,32 +98,28 @@ in
       # haskell-language-server
       # ghc
       # ormolu
-      # haskellPackages.cabal-gild
+      # haskellPackages.cabal-fmt
+
+      vscode-langservers-extracted
+      vtsls
+      biome
+      efm-langserver
+      nodePackages.prettier
+
+      pyrefly
+      ruff
+
+      bash-language-server
+      fish-lsp
+      shfmt
 
       tinymist
       typst
       typstyle
 
-      texlab
-      tectonic
-      texlivePackages.latexindent
-      zathura
-
-      # data
-      yaml-language-server
-      taplo
-
-      # formatting
-      efm-langserver
-      nodePackages.prettier
-
-      # misc
       clang-tools
       jdt-language-server
-      kotlin-language-server
       kdePackages.qtdeclarative
-      ruby-lsp
-      zls
     ];
   };
 }
