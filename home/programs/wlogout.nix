@@ -29,7 +29,7 @@ in
       }
       {
         "label" = "logout";
-        "action" = "loginctl terminate-user $USER";
+        "action" = "niri msg action quit --skip-confirmation";
         "text" = "Logout";
         "keybind" = "e";
       }
