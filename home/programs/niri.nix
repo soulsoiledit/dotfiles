@@ -110,7 +110,6 @@ in
 
         Mod+B { spawn-sh "eww open bar --toggle"; }
         Mod+S { screenshot show-pointer=false; }
-        Mod+L { spawn "wlogout"; }
         // disables cache for fuzzel dmenu
         Mod+P { spawn-sh "cliphist list | fuzzel --dmenu --with-nth 2 --cache /dev/null | cliphist decode | wl-copy"; }
 
