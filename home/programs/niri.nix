@@ -89,6 +89,15 @@ in
         Mod+Shift+4 { move-column-to-workspace focus=false 4; }
         Mod+Shift+5 { move-column-to-workspace focus=false 5; }
 
+        Mod+l { focus-workspace-down; }
+        Mod+u { focus-workspace-up; }
+
+        Mod+Shift+l { move-workspace-down; }
+        Mod+Shift+u { move-workspace-up; }
+
+        Mod+Control+l { move-column-to-workspace-down; }
+        Mod+Control+u { move-column-to-workspace-up; }
+
         Mod+Tab { focus-workspace-previous; }
 
         // windows
