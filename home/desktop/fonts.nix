@@ -12,6 +12,8 @@ let
     ];
 in
 {
+  stylix.targets.fontconfig.enable = false;
+
   home.packages = with pkgs; [
     inter
     maple-mono.NL-NF-CN-unhinted

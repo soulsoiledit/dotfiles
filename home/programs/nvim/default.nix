@@ -12,6 +12,10 @@ let
   });
 in
 {
+  stylix.targets.neovim.enable = false;
+
+  home.sessionVariables.MANPAGER = "nvim +Man!";
+
   xdg = {
     configFile = {
       "nvim".source = config.lib.file.mkOutOfStoreSymlink (config.flake + "/home/programs/nvim");
@@ -21,8 +25,6 @@ in
     };
     dataFile."dict/words".source = "${pkgs.scowl}/share/dict/wamerican.txt";
   };
-
-  home.sessionVariables.MANPAGER = "nvim +Man!";
 
   programs.neovim = {
     enable = true;
@@ -59,10 +61,10 @@ in
         lsp-format-nvim
 
         # nav
+        flash-nvim
         todo-comments-nvim
         trouble-nvim
         grug-far-nvim
-        flash-nvim
 
         # ui
         (pkgs.symlinkJoin {

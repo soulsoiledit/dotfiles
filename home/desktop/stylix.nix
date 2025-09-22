@@ -67,11 +67,6 @@
 
       targets = {
         qt.enable = true;
-        fontconfig.enable = false;
-
-        firefox.enable = false;
-        neovim.enable = false;
-        vesktop.enable = false;
 
         gtk = {
           flatpakSupport.enable = false;
