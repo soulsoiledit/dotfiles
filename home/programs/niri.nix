@@ -175,12 +175,12 @@ in
       }
 
       window-rule {
-        match app-id="vesktop|Spotify|steam" at-startup=true
+        match app-id="vesktop|steam" at-startup=true
         open-on-workspace "2"
       }
 
       window-rule {
-        match app-id="firefox|vesktop|Spotify|steam"
+        match app-id="firefox|vesktop|steam"
         default-column-width {
           proportion 1.0
         }
