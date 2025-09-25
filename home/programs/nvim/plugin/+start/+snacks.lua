@@ -1,7 +1,13 @@
 local snacks = require("snacks")
 snacks.setup({
-  lazygit = {},
   picker = {},
+  lazygit = {
+    theme = {
+      activeBorderColor = { fg = "Title" },
+      inactiveBorderColor = { fg = "Comment" },
+      searchingActiveBorderColor = { fg = "StatusLine" },
+    },
+  },
 
   notifier = {},
   indent = {
