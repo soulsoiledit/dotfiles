@@ -16,7 +16,7 @@ in
 
   home.packages = with pkgs; [
     inter
-    maple-mono.NL-NF-CN-unhinted
+    maple-mono.NL-NF-CN
     ibm-plex
     twitter-color-emoji
     nerd-fonts.symbols-only

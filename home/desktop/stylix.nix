@@ -22,22 +22,22 @@
 
       polarity = "dark";
       base16Scheme = {
-        base00 = "#101010"; # background
-        base01 = "#1a1a1a"; # status
-        base02 = "#242424"; # selection
-        base03 = "#393939"; # comment
-        base04 = "#aeaeae"; # status fg
-        base05 = "#bebebe"; # text
-        base06 = "#dedede"; # bright
-        base07 = "#eeeeee"; # brightest
-        base08 = "#c4757b"; # red
-        base09 = "#bc804d"; # orange
-        base0A = "#a78c41"; # yellow
-        base0B = "#6e9e63"; # green
-        base0C = "#38a391"; # cyan
-        base0D = "#5197c6"; # blue
-        base0E = "#9981c3"; # purple
-        base0F = "#bb769d"; # pink
+        base00 = "#0f0c10"; # background
+        base01 = "#1b181c"; # status
+        base02 = "#282429"; # selection
+        base03 = "#353136"; # comment
+        base04 = "#8f8a90"; # status fg
+        base05 = "#c1bcc2"; # text
+        base06 = "#e1dce2"; # bright
+        base07 = "#f2ecf3"; # brightest
+        base08 = "#c17273"; # red
+        base09 = "#b97d4a"; # orange
+        base0A = "#a4893e"; # yellow
+        base0B = "#5d9d6b"; # green
+        base0C = "#279ea4"; # cyan
+        base0D = "#4796c0"; # blue
+        base0E = "#a778b2"; # purple
+        base0F = "#be728a"; # hotpink
       };
 
       icons = {
