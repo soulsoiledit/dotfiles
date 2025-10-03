@@ -10,17 +10,13 @@ upower -m /org/freedesktop/UPower/device/battery_BAT"$id" | while read -r _; do
 
   rate=$(</sys/class/power_supply/BAT"$id"/power_now)
 
-  if [[ $percentage -ge 98 ]]; then
-    symbol="󰁹"
-  else
-    if [[ $status == "Charging" ]]; then
-      symbols=("󰢟" "󱊤" "󱊥" "󱊦")
-    elif [[ $status == "Discharging" ]]; then
-      symbols=("󰂎" "󱊡" "󱊢" "󱊣")
-    fi
-
-    symbol=${symbols[(((percentage * 4 - 1) / 100))]}
+  if [[ $status == "Charging" ]]; then
+    symbols=("󰢟" "󰢜" "󰂆" "󰂇" "󰂈" "󰢝" "󰂉" "󰢞" "󰂊" "󰂋" "󰂄")
+  elif [[ $status == "Discharging" ]]; then
+    symbols=("󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹")
   fi
+
+  symbol=${symbols[(((percentage * 10) / 98))]}
 
   jq -n -c \
     --arg symbol "$symbol" \
