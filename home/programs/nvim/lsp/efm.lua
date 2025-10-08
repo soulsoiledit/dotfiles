@@ -1,5 +1,5 @@
 local prettier = {
-  formatCommand = "prettier --stdin-filepath '${INPUT}'",
+  formatCommand = "prettier --stdin-filepath '${INPUT}' ${--tab-width:tabSize} ${--use-tabs:!insertSpaces} ${--range-start:charStart} ${--range-end:charEnd}",
   formatStdin = true,
   rootMarkers = { ".prettierrc", "package.json" },
 }
