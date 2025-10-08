@@ -42,7 +42,7 @@ lsp.enable({
   "qmlls",
 })
 
-lsp.set_log_level(vim.log.levels.DEBUG)
+lsp.set_log_level(vim.log.levels.OFF)
 lsp.log.set_format_func(vim.inspect)
 lsp.inlay_hint.enable(true)
 
