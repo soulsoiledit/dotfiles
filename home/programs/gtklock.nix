@@ -12,7 +12,7 @@ in
   services.swayidle.events = [
     {
       event = "lock";
-      command = "${lib.getExe' pkgs.procps "pidof"} gktlock || ${lib.getExe pkgs.gtklock} --daemonize";
+      command = "${lib.getExe pkgs.flock} -n -e $PID $XDG_RUNTIME_DIR/gtklock-$WAYLAND_DISPLAY.lock ${lib.getExe pkgs.gtklock} -d";
     }
   ];
 
