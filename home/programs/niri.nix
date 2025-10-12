@@ -44,10 +44,10 @@ in
 
       output "eDP-2" {
         scale 2
-        background-color "transparent"
       }
 
       layout {
+        background-color "transparent"
         gaps 8
         default-column-width { proportion 0.5; }
         preset-column-widths {
