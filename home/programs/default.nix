@@ -47,6 +47,4 @@
       nix-direnv.enable = true;
     };
   };
-
-  home.sessionVariables.ELECTRON_OZONE_PLATFORM_HINT = "auto";
 }
