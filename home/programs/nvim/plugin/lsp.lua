@@ -1,18 +1,20 @@
 local severity = vim.diagnostic.severity
 local lsp = vim.lsp
 
-vim.diagnostic.config({
-  severity_sort = true,
-  virtual_lines = { current_line = true },
-  signs = {
-    text = {
-      [severity.ERROR] = "",
-      [severity.WARN] = "",
-      [severity.INFO] = "",
-      [severity.HINT] = "󰌵",
+later(function()
+  vim.diagnostic.config({
+    severity_sort = true,
+    virtual_lines = { current_line = true },
+    signs = {
+      text = {
+        [severity.ERROR] = "",
+        [severity.WARN] = "",
+        [severity.INFO] = "",
+        [severity.HINT] = "󰌵",
+      },
     },
-  },
-})
+  })
+end)
 
 vim.cmd.packadd("nvim-lspconfig")
 
