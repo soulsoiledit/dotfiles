@@ -8,7 +8,6 @@ local prettier = {
 return {
   filetypes = {
     "markdown",
-    "html",
     "less",
     "scss",
   },
@@ -16,7 +15,6 @@ return {
   settings = {
     languages = {
       markdown = { prettier },
-      html = { prettier },
       less = { prettier },
       scss = { prettier },
     },

@@ -21,6 +21,7 @@ in
       "nvim".source = config.lib.file.mkOutOfStoreSymlink (config.flake + "/home/programs/nvim");
       "biome/config.json".text = builtins.toJSON {
         formatter.indentStyle = "space";
+        html.formatter.enabled = true;
       };
     };
     dataFile."dict/words".source = "${pkgs.scowl}/share/dict/wamerican.txt";
