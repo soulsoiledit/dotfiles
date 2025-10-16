@@ -1,7 +1,5 @@
-local severity = vim.diagnostic.severity
-local lsp = vim.lsp
-
 later(function()
+  local severity = vim.diagnostic.severity
   vim.diagnostic.config({
     severity_sort = true,
     virtual_lines = { current_line = true },
@@ -16,37 +14,40 @@ later(function()
   })
 end)
 
-vim.cmd.packadd("nvim-lspconfig")
+now_if_args(function()
+  vim.cmd.packadd("nvim-lspconfig")
 
-lsp.enable({
-  "nil_ls",
-  "emmylua_ls",
+  vim.lsp.set_log_level(vim.log.levels.OFF)
+  vim.lsp.log.set_format_func(vim.inspect)
 
-  "rust_analyzer",
-  "hls",
+  vim.lsp.enable({
+    "nil_ls",
+    "emmylua_ls",
 
-  "html",
-  "cssls",
-  "vtsls",
-  "biome",
-  "efm",
+    "rust_analyzer",
+    "hls",
 
-  "pyrefly",
-  "ruff",
+    "html",
+    "cssls",
+    "vtsls",
+    "biome",
+    "efm",
 
-  "bashls",
-  "fish_lsp",
+    "pyrefly",
+    "ruff",
 
-  "tinymist",
+    "bashls",
+    "fish_lsp",
 
-  "clangd",
-  "jdtls",
-  "qmlls",
-})
+    "tinymist",
 
-lsp.set_log_level(vim.log.levels.OFF)
-lsp.log.set_format_func(vim.inspect)
-lsp.inlay_hint.enable(true)
+    "clangd",
+    "jdtls",
+    "qmlls",
+  })
 
-keymap("n", "gd", "<C-]>", { desc = "go to definition" })
-keymap("n", "gD", lsp.buf.declaration, { desc = "go to declaration" })
+  vim.lsp.inlay_hint.enable(true)
+
+  vim.keymap.set("n", "gd", "<C-]>", { desc = "definition" })
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "declaration" })
+end)

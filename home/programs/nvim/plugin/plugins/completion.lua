@@ -6,24 +6,16 @@ later(function()
   require("blink-cmp").setup({
     keymap = {
       preset = "enter",
-      ["<tab>"] = { "select_next", "snippet_forward", "fallback" },
-      ["<s-tab>"] = { "select_prev", "snippet_backward", "fallback" },
+      ["<tab>"] = { "snippet_forward", "select_next", "fallback" },
+      ["<s-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
     },
 
     completion = {
       keyword = { range = "full" },
-
-      list = {
-        selection = {
-          preselect = false,
-          auto_insert = true,
-        },
-      },
+      list = { selection = { preselect = false } },
 
       menu = {
         draw = {
-          treesitter = { "lsp" },
-
           columns = {
             { "label", "label_description", gap = 1 },
             { "kind_icon", "source_name" },
@@ -37,28 +29,16 @@ later(function()
       },
     },
 
-    appearance = {
-      nerd_font_variant = "normal",
-    },
+    appearance = { nerd_font_variant = "normal" },
 
     signature = { enabled = true },
 
     sources = {
-      default = {
-        "lsp",
-        "path",
-        "snippets",
-        "buffer",
-        "ripgrep",
-      },
-
+      default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
       providers = {
         ripgrep = {
           module = "blink-ripgrep",
           name = "rg",
-          score_offset = -5,
-          max_items = 64,
-
           opts = {
             backend = {
               ripgrep = {
@@ -72,7 +52,7 @@ later(function()
     },
   })
 
-  hl(0, "BlinkCmpLabelMatch", {
+  vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", {
     fg = nixpalette.base0D,
     bold = true,
   })

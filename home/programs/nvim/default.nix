@@ -64,7 +64,6 @@ in
         # nav
         flash-nvim
         todo-comments-nvim
-        trouble-nvim
         grug-far-nvim
 
         # ui

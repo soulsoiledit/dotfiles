@@ -10,10 +10,8 @@ return {
           program = "stylua",
           args = {
             "-",
-            "--stdin-filepath",
-            "${file}",
-            "--indent-type",
-            "${use_tabs?Tabs:Spaces}",
+            "--stdin-filepath=${file}",
+            "--indent-type=${use_tabs?Tabs:Spaces}",
             "--indent-width=${indent_size}",
           },
         },
