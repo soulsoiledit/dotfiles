@@ -1,15 +1,21 @@
 {
-  programs.git = {
-    enable = true;
-    delta.enable = true;
+  programs = {
+    git = {
+      enable = true;
+      settings = {
+        user.name = "soiledit";
+        user.email = "no.sleep410@passinbox.com";
+        init.defaultBranch = "main";
+      };
 
-    userName = "soiledit";
-    userEmail = "no.sleep410@passinbox.com";
+      # signing = null;
+    };
 
-    # signing = null;
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
 
-    extraConfig.init.defaultBranch = "main";
+    lazygit.enable = true;
   };
-
-  programs.lazygit.enable = true;
 }
