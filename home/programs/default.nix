@@ -17,9 +17,16 @@
     libnotify
     playerctl
     wl-clipboard
+
+    libreoffice-fresh
   ];
 
   programs = {
+    obs-studio = {
+      enable = true;
+      plugins = [ pkgs.obs-studio-plugins.obs-pipewire-audio-capture ];
+    };
+
     bat.enable = true;
     eza.enable = true;
     fastfetch.enable = true;
