@@ -5,7 +5,14 @@
     pwvucontrol
 
     steam
-    prismlauncher
+    (prismlauncher.override (prev: {
+      jdks = [
+        prev.jdk8
+        prev.jdk17
+        prev.jdk21
+        jdk25
+      ];
+    }))
     olympus
 
     du-dust
