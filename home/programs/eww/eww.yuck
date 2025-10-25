@@ -25,7 +25,7 @@
 
       ; auto
       (memory)
-      (temperature)
+      ; (temperature)
 
       ; never
       (brightness)
@@ -80,9 +80,11 @@
   )
 )
 
+; thermal_zone0 is my working cpu temperature monitor
+(defpoll temperature :interval "1s" "cat /sys/class/thermal/thermal_zone0/temp")
 (defwidget temperature []
   (label
-    :visible { EWW_TEMPS.ACPITZ_TEMP1 >= 90 }
+    :visible { temperature / 1000 >= 70 }
     :class "warning"
     :text ""
   )
