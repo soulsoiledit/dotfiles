@@ -92,16 +92,6 @@ in
       emmylua-ls
       stylua
 
-      rust-analyzer
-      rustc
-      cargo
-      rustfmt
-
-      # haskell-language-server
-      # ghc
-      # ormolu
-      # haskellPackages.cabal-fmt
-
       vscode-langservers-extracted
       vtsls
       biome
@@ -120,7 +110,6 @@ in
       typstyle
 
       clang-tools
-      jdt-language-server
       kdePackages.qtdeclarative
     ];
   };
