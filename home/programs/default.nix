@@ -15,9 +15,9 @@
     }))
     olympus
 
-    du-dust
     dua
     duf
+    dust
     trashy
 
     brightnessctl
