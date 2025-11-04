@@ -1,9 +1,5 @@
 { lib, pkgs, ... }:
 
-let
-  brightnessctl = lib.getExe pkgs.brightnessctl;
-  modprobe = lib.getExe' pkgs.kmod "modprobe";
-in
 {
   imports = [ ./hardware.nix ];
 
@@ -60,11 +56,4 @@ in
       wantedBy = [ "timers.target" ];
     };
   };
-
-  powerManagement.powerUpCommands = ''
-    ${brightnessctl} --save --device "*kbd*"
-    ${modprobe} -r hid_asus
-    ${modprobe} hid_asus
-    ${brightnessctl} --restore --device "*kbd*"
-  '';
 }
