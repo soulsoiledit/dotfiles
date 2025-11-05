@@ -115,12 +115,10 @@ in
 
         // programs
         Mod+Return { spawn "footclient"; }
-        Mod+Space { spawn "fuzzel"; }
+        Mod+Space { spawn-sh "vicinae open"; }
 
         Mod+B { spawn-sh "eww open bar --toggle"; }
         Mod+S { screenshot show-pointer=false; }
-        // disables cache for fuzzel dmenu
-        Mod+P { spawn-sh "cliphist list | fuzzel --dmenu --with-nth 2 --cache /dev/null | cliphist decode | wl-copy"; }
 
         // volume
         XF86AudioRaiseVolume allow-when-locked=true { ${volume "5%+"}; }
