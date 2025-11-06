@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   getDesktop' = pkg: name: "${pkg}/share/applications/${name}.desktop";
@@ -9,8 +9,7 @@ in
     enable = true;
     entries = map getDesktop [
       config.programs.firefox.finalPackage
-      # config.programs.vesktop.package
-      # pkgs.steam
+      config.programs.vesktop.package
     ];
   };
 }
