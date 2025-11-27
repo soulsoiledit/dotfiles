@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   inherit (config.lib.stylix.colors) withHashtag;
@@ -38,8 +38,4 @@ in
       };
     };
   };
-
-  xdg.dataFile."vicinae/themes/stylix.toml".source = (
-    (pkgs.formats.toml { }).generate "vicinae-stylix-theme" config.programs.vicinae.themes.stylix
-  );
 }
