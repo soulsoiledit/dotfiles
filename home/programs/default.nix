@@ -26,6 +26,7 @@
     wl-clipboard
 
     libreoffice-fresh
+    kdePackages.kdenlive
   ];
 
   programs = {
