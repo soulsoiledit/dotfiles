@@ -9,12 +9,7 @@ in
   services.swayidle = {
     enable = true;
 
-    events = [
-      {
-        event = "before-sleep";
-        command = "${loginctl} lock-session";
-      }
-    ];
+    events."before-sleep" = "${loginctl} lock-session";
 
     timeouts = [
       {

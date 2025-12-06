@@ -9,12 +9,8 @@ let
   inherit (config.lib.stylix.colors.withHashtag) base00 base05;
 in
 {
-  services.swayidle.events = [
-    {
-      event = "lock";
-      command = "${lib.getExe pkgs.flock} -n -e $PID $XDG_RUNTIME_DIR/gtklock-$WAYLAND_DISPLAY.lock ${lib.getExe pkgs.gtklock} -d";
-    }
-  ];
+  services.swayidle.events."lock" =
+    "${lib.getExe pkgs.flock} -n -e $PID $XDG_RUNTIME_DIR/gtklock-$WAYLAND_DISPLAY.lock ${lib.getExe pkgs.gtklock} -d";
 
   xdg.configFile = {
     "gtklock/config.ini".text =
