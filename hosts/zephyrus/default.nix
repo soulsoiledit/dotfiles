@@ -25,8 +25,6 @@
   programs.niri.enable = true;
   security.pam.services.gtklock = { };
 
-  virtualisation.podman.enable = true;
-
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
