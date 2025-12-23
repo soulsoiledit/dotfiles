@@ -19,6 +19,4 @@
       };
     };
   };
-
-  home.sessionVariables.TERMINAL = "footclient";
 }

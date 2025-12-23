@@ -114,7 +114,7 @@ in
         Mod+I { set-column-width "+10%"; }
 
         // programs
-        Mod+Return { spawn "footclient"; }
+        Mod+Return { spawn "xdg-terminal-exec"; }
         Mod+Space { spawn-sh "vicinae open"; }
 
         Mod+B { spawn-sh "eww open bar --toggle"; }
