@@ -77,7 +77,7 @@ in
         bufferline-nvim
         noice-nvim
         which-key-nvim
-        rainbow-delimiters-nvim
+        blink-pairs
         nvim-colorizer-lua
         nvim-lightbulb
 

@@ -5,7 +5,20 @@ now(function()
 end)
 
 later(function()
-  vim.cmd.packadd("rainbow-delimiters.nvim")
+  vim.cmd.packadd("blink.pairs")
+  require("blink.pairs").setup({
+    highlights = {
+      groups = {
+        "RainbowDelimiterRed",
+        "RainbowDelimiterOrange",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterGreen",
+        "RainbowDelimiterCyan",
+        "RainbowDelimiterBlue",
+        "RainbowDelimiterViolet",
+      },
+    },
+  })
 end)
 
 now_if_args(function()

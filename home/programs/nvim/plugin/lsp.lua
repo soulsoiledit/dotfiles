@@ -42,7 +42,6 @@ now_if_args(function()
     "tinymist",
 
     "clangd",
-    "jdtls",
     "qmlls",
   })
 

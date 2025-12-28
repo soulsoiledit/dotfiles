@@ -35,12 +35,6 @@ now(function()
 end)
 
 later(function()
-  require("mini.pairs").setup({
-    modes = { command = true },
-  })
-end)
-
-later(function()
   local trailspace = require("mini.trailspace")
   trailspace.setup()
   vim.api.nvim_create_autocmd("BufWritePre", {
