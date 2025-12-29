@@ -11,7 +11,6 @@
   fileSystems = {
     "/".options = [ "compress=zstd" ];
     "/home".options = [ "compress=zstd" ];
-    "/boot".options = [ "umask=0077" ];
   };
 
   swapDevices = [
