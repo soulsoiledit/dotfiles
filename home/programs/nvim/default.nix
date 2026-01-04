@@ -67,12 +67,13 @@ in
         grug-far-nvim
 
         # ui
-        (pkgs.symlinkJoin {
-          name = "nvim-treesitter";
-          paths = nvim-treesitter.withAllGrammars.dependencies ++ [
-            nvim-treesitter
-          ];
-        })
+        nvim-treesitter.withAllGrammars
+        # (pkgs.symlinkJoin {
+        #   name = "nvim-treesitter";
+        #   paths = nvim-treesitter.withAllGrammars.dependencies ++ [
+        #     nvim-treesitter
+        #   ];
+        # })
         lualine-nvim
         bufferline-nvim
         noice-nvim

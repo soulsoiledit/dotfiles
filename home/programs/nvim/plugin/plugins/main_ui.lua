@@ -2,12 +2,10 @@ local nmap = function(lhs, rhs, desc)
   vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
 
-now_if_args(function()
+later(function()
   vim.cmd.packadd("nvim-treesitter")
-  require("nvim-treesitter.configs").setup({
-    highlight = { enable = true },
-    indent = { enable = true },
-  })
+  vim.treesitter.start()
+  vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 end)
 
 later(function()
