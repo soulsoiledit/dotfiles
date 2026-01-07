@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   programs.mpv.enable = true;
@@ -84,5 +89,35 @@
         run = "plugin fzf";
       }
     ];
+
+    theme =
+      let
+        inherit (config.lib.stylix.colors) withHashtag;
+        mkFg = fg: { inherit fg; };
+        mkBg = bg: { inherit bg; };
+        mkBoth = fg: bg: { inherit fg bg; };
+      in
+      {
+        indicator.current = mkBg withHashtag.base02 // {
+          bold = true;
+        };
+        indicator.preview = mkBg withHashtag.base02 // {
+          bold = true;
+        };
+
+        cmp = {
+          border = mkFg withHashtag.blue;
+          active = mkBoth withHashtag.magenta withHashtag.base03;
+          inactive = mkFg withHashtag.base05;
+        };
+
+        filetype.rules = lib.mkBefore [
+          {
+            url = "*/";
+            fg = withHashtag.blue;
+            bold = config.stylix.targets.yazi.boldDirectory;
+          }
+        ];
+      };
   };
 }
