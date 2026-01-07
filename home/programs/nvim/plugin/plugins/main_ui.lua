@@ -2,10 +2,21 @@ local nmap = function(lhs, rhs, desc)
   vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
 
-later(function()
+now_if_args(function()
   vim.cmd.packadd("nvim-treesitter")
-  vim.treesitter.start()
-  vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  local treesitter = vim.api.nvim_create_augroup("treesitter.setup", {})
+  vim.api.nvim_create_autocmd("FileType", {
+    group = treesitter,
+    callback = function(event)
+      local buf, filetype = event.buf, event.match
+      local language = vim.treesitter.language.get_lang(filetype) or filetype
+      if not vim.treesitter.language.add(language) then
+        return
+      end
+      vim.treesitter.start(buf, language)
+      vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+    end,
+  })
 end)
 
 later(function()
