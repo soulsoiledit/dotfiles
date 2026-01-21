@@ -55,4 +55,7 @@
       wantedBy = [ "timers.target" ];
     };
   };
+
+  virtualisation.virtualbox.host.enable = true;
+  users.users.default.extraGroups = [ "vboxusers" ];
 }
