@@ -16,8 +16,6 @@ in
     };
   };
 
-  gtk.gtk2.configLocation = "${configHome}/gtk-2.0/gtkrc";
-
   home.pointerCursor.dotIcons.enable = false;
 
   xdg.configFile."pulse/client.conf".text = ''
