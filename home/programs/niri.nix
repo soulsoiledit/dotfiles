@@ -57,7 +57,7 @@ in
         border { off; }
         focus-ring {
           width 1
-          active-color "#${config.accent}"
+          active-color "${config.lib.stylix.colors.withHashtag.${config.accent}}"
         }
       }
 

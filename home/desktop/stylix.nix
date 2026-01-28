@@ -15,7 +15,7 @@
   };
 
   config = {
-    accent = config.lib.stylix.colors.base0D;
+    accent = "base0F";
 
     stylix = {
       enable = true;
