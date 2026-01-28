@@ -74,9 +74,13 @@
           extraCss =
             let
               inherit (config.lib.stylix) colors;
+              accent = colors.${config.accent};
             in
             # css
             ''
+              @define-color accent_color #${accent};
+              @define-color accent_bg_color #${accent};
+
               tooltip * {
                 color: #${colors.base05};
               }
