@@ -41,15 +41,15 @@
   # prevent apu freezes
   systemd = {
     services.set-coall = {
-      description = "Override AMD Curve Optimizer";
+      description = "Overvolt 80-120mV";
       script = "${lib.getExe pkgs.ryzenadj} --set-coall=0x100020";
     };
 
     timers.set-coall = {
-      description = "Override AMD Curve Optimizer on startup and every 10 minutes thereafter";
+      description = "Overvolt 80-120mV periodically";
       timerConfig = {
-        OnBootSec = "1min";
-        OnUnitActiveSec = "10min";
+        OnActiveSec = "0s";
+        OnUnitActiveSec = "10m";
         Persistent = true;
       };
       wantedBy = [ "timers.target" ];
