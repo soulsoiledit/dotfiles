@@ -1,6 +1,6 @@
 vim.loader.enable()
 
-nixpalette = require("nixpalette")
+nix = require("nixconfig")
 
 MiniDeps = require("mini.deps")
 MiniDeps.setup()

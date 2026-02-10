@@ -53,7 +53,7 @@ later(function()
   })
 
   vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", {
-    fg = nixpalette.base0D,
+    fg = nix.palette.base0D,
     bold = true,
   })
 end)

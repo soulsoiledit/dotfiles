@@ -40,8 +40,8 @@ end)
 later(function()
   vim.cmd.packadd("lualine.nvim")
   local auto = require("lualine.themes.auto")
-  auto.normal.a.bg = nixpalette.base0D
-  auto.normal.b.fg = nixpalette.base0D
+  auto.normal.a.bg = nix.palette.base0D
+  auto.normal.b.fg = nix.palette.base0D
   require("lualine").setup({
     options = {
       theme = auto,

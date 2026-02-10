@@ -1,17 +1,17 @@
 now(function()
   require("mini.base16").setup({
-    palette = nixpalette,
+    palette = nix.palette,
   })
 
-  vim.api.nvim_set_hl(0, "Search", { bg = nixpalette.base0D, fg = nixpalette.base01 })
-  vim.api.nvim_set_hl(0, "CurSearch", { bg = nixpalette.base0F, fg = nixpalette.base01 })
+  vim.api.nvim_set_hl(0, "Search", { bg = nix.palette.base0D, fg = nix.palette.base01 })
+  vim.api.nvim_set_hl(0, "CurSearch", { bg = nix.palette.base0F, fg = nix.palette.base01 })
 
-  vim.api.nvim_set_hl(0, "markdownH1", { fg = nixpalette.base08 })
-  vim.api.nvim_set_hl(0, "markdownH2", { fg = nixpalette.base09 })
-  vim.api.nvim_set_hl(0, "markdownH3", { fg = nixpalette.base0A })
-  vim.api.nvim_set_hl(0, "markdownH4", { fg = nixpalette.base0B })
-  vim.api.nvim_set_hl(0, "markdownH5", { fg = nixpalette.base0C })
-  vim.api.nvim_set_hl(0, "markdownH6", { fg = nixpalette.base0D })
+  vim.api.nvim_set_hl(0, "markdownH1", { fg = nix.palette.base08 })
+  vim.api.nvim_set_hl(0, "markdownH2", { fg = nix.palette.base09 })
+  vim.api.nvim_set_hl(0, "markdownH3", { fg = nix.palette.base0A })
+  vim.api.nvim_set_hl(0, "markdownH4", { fg = nix.palette.base0B })
+  vim.api.nvim_set_hl(0, "markdownH5", { fg = nix.palette.base0C })
+  vim.api.nvim_set_hl(0, "markdownH6", { fg = nix.palette.base0D })
 end)
 
 now(function()

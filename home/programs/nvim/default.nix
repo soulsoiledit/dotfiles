@@ -40,15 +40,17 @@ in
 
         # colorscheme palette
         (pkgs.writeTextFile {
-          name = "nixpalette";
-          destination = "/lua/nixpalette.lua";
+          name = "nixconfig";
+          destination = "/lua/nixconfig.lua";
           text =
             # lua
             ''
               return {
-                ${lib.concatMapAttrsStringSep ",\n  " (
-                  key: value: ''${key} = "${value}"''
-                ) config.stylix.base16Scheme}
+                palette = {
+                  ${lib.concatMapAttrsStringSep ",\n  " (
+                    key: value: ''${key} = "${value}"''
+                  ) config.stylix.base16Scheme}
+                }
               }
             '';
         })
