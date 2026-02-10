@@ -21,7 +21,7 @@ now_if_args(function()
   vim.lsp.log.set_format_func(vim.inspect)
 
   vim.lsp.enable({
-    "nil_ls",
+    "nixd",
     "emmylua_ls",
 
     "rust_analyzer",

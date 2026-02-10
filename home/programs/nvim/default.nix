@@ -46,6 +46,8 @@ in
             # lua
             ''
               return {
+                flake_dir = "${config.flake}",
+                user = "${config.home.username}",
                 palette = {
                   ${lib.concatMapAttrsStringSep ",\n  " (
                     key: value: ''${key} = "${value}"''
@@ -89,7 +91,7 @@ in
       ];
 
     extraPackages = with pkgs; [
-      nil
+      nixd
       nixfmt
 
       emmylua-ls
