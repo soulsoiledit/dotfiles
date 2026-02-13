@@ -32,9 +32,7 @@
 
     nix = {
       package = pkgs.nix;
-      settings.use-xdg-base-directories = true;
+      assumeXdg = true;
     };
-
-    xdg.configFile."nix/nix.conf".enable = false;
   };
 }
