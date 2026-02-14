@@ -14,6 +14,13 @@ pw-mon -o | while read -r line; do
 
     # get sink volume and mute status
     volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+
+    # continue if pipewire isn't quite ready
+    if [[ ! $volume ]]; then
+      continue
+    fi
+
+    # split into percentage and mute
     [[ $volume =~ ([[:digit:]]).([[:digit:]]{2}).?\[?(MUTED)?\]? ]]
     percentage=$((10#${BASH_REMATCH[1]}${BASH_REMATCH[2]}))
     muted=${BASH_REMATCH[3]}
