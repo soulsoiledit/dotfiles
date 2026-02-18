@@ -20,6 +20,7 @@
 
     libreoffice-fresh
     kdePackages.kdenlive
+    losslesscut-bin
   ];
 
   programs = {
