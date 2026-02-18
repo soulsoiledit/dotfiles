@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }:
@@ -11,6 +10,7 @@
 
   programs.yazi = {
     enable = true;
+    shellWrapperName = "y";
     package = pkgs.yazi.override {
       extraPackages = builtins.attrValues {
         inherit (pkgs)
