@@ -15,29 +15,29 @@
   };
 
   config = {
-    accent = "base0F";
+    accent = "base0B";
 
     stylix = {
       enable = true;
 
       polarity = "dark";
       base16Scheme = {
-        base00 = "#0f0c10"; # background
-        base01 = "#1b181c"; # status
-        base02 = "#282429"; # selection
-        base03 = "#353136"; # comment
-        base04 = "#8f8a90"; # status fg
-        base05 = "#c1bcc2"; # text
-        base06 = "#e1dce2"; # bright
-        base07 = "#f2ecf3"; # brightest
-        base08 = "#c17273"; # red
-        base09 = "#b97d4a"; # orange
-        base0A = "#a4893e"; # yellow
-        base0B = "#5d9d6b"; # green
-        base0C = "#279ea4"; # cyan
-        base0D = "#4796c0"; # blue
-        base0E = "#a778b2"; # purple
-        base0F = "#be728a"; # hotpink
+        base00 = "#000000"; # background
+        base01 = "#121212"; # status
+        base02 = "#1f1f1f"; # selection
+        base03 = "#484848"; # comment
+        base04 = "#8f8f8f"; # status fg
+        base05 = "#aeaeae"; # text
+        base06 = "#cecece"; # bright
+        base07 = "#eeeeee"; # brightest
+        base08 = "#b97d7a"; # red
+        base09 = "#b68169"; # orange
+        base0A = "#a18d59"; # yellow
+        base0B = "#7b9a6b"; # green
+        base0C = "#579e91"; # cyan
+        base0D = "#5999b2"; # blue
+        base0E = "#a181af"; # purple
+        base0F = "#b47c91"; # hotpink
       };
 
       icons = {
