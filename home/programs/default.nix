@@ -10,7 +10,6 @@
 
     dua
     duf
-    dust
     trashy
 
     brightnessctl
@@ -33,14 +32,11 @@
     eza.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
-    fzf.enable = true;
     jq.enable = true;
     ripgrep.enable = true;
+    television.enable = true;
     zoxide.enable = true;
     zellij.enable = true;
-
-    television.enable = true;
-    television.enableFishIntegration = false;
 
     btop = {
       enable = true;
