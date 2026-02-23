@@ -23,6 +23,7 @@
   hardware.graphics.enable32Bit = true;
 
   programs.niri.enable = true;
+  programs.niri.useNautilus = false;
   security.pam.services.gtklock = { };
 
   services = {
