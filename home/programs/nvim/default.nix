@@ -72,12 +72,6 @@ in
 
         # ui
         nvim-treesitter.withAllGrammars
-        # (pkgs.symlinkJoin {
-        #   name = "nvim-treesitter";
-        #   paths = nvim-treesitter.withAllGrammars.dependencies ++ [
-        #     nvim-treesitter
-        #   ];
-        # })
         lualine-nvim
         bufferline-nvim
         noice-nvim
