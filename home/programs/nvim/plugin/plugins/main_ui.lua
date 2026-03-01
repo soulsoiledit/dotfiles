@@ -39,12 +39,21 @@ end)
 
 later(function()
   vim.cmd.packadd("lualine.nvim")
-  local auto = require("lualine.themes.auto")
-  auto.normal.a.bg = nix.palette.base0D
-  auto.normal.b.fg = nix.palette.base0D
   require("lualine").setup({
     options = {
-      theme = auto,
+      theme = {
+        normal = {
+          a = { bg = nix.palette.base0D, fg = nix.palette.base00, gui = "bold" },
+          b = { bg = nix.palette.base02, fg = nix.palette.base04 },
+          c = { bg = nix.palette.base01, fg = nix.palette.base04 },
+        },
+        insert = { a = { bg = nix.palette.base0B, fg = nix.palette.base00, gui = "bold" } },
+        replace = { a = { bg = nix.palette.base08, fg = nix.palette.base00, gui = "bold" } },
+        visual = { a = { bg = nix.palette.base0E, fg = nix.palette.base00, gui = "bold" } },
+        command = { a = { bg = nix.palette.base0F, fg = nix.palette.base00, gui = "bold" } },
+        terminal = { a = { bg = nix.palette.base0F, fg = nix.palette.base00, gui = "bold" } },
+        inactive = { a = { bg = nix.palette.base03, fg = nix.palette.base00, gui = "bold" } },
+      },
       disabled_filetypes = { "snacks_dashboard" },
     },
   })
