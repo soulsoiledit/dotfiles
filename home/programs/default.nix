@@ -29,7 +29,6 @@
     };
 
     bat.enable = true;
-    eza.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
     jq.enable = true;
@@ -45,6 +44,11 @@
         proc_gradient = false;
         proc_filter_kernel = true;
       };
+    };
+
+    eza = {
+      enable = true;
+      icons = "auto";
     };
 
     direnv = {
