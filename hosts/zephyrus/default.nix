@@ -57,6 +57,11 @@
     };
   };
 
-  virtualisation.virtualbox.host.enable = true;
+  # kernelPackages = pkgs.linuxPackages_6_18;
+  virtualisation = {
+    podman.enable = true;
+    libvirtd.enable = true;
+    # virtualbox.host.enable = true;
+  };
   users.users.default.extraGroups = [ "vboxusers" ];
 }
