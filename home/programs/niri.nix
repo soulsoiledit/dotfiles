@@ -160,7 +160,7 @@ in
       }
 
       window-rule {
-        match title="^Open Files?$"
+        match title="^[Oo]pen [Ff]iles?.*$"
         default-column-width {
           proportion 0.75
         }
