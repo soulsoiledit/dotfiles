@@ -27,9 +27,7 @@ in
         }
       }
 
-      output "eDP-2" {
-        scale 2
-      }
+      output "eDP-2" { scale 2; }
 
       layout {
         background-color "transparent"
@@ -160,23 +158,19 @@ in
       }
 
       window-rule {
-        match title="^[Oo]pen [Ff]iles?.*$"
-        default-column-width {
-          proportion 0.75
-        }
-        default-window-height {
-          proportion 0.75
-        }
-        open-floating true
+        match is-floating=true
+        match title="[fF]ile"
+        default-column-width { proportion 0.75; }
+        default-window-height { proportion 0.75; }
       }
 
       window-rule {
-        match app-id=r#"steam_app_\d+"#
+        match app-id="steam_app_\\d+"
         open-fullscreen true
       }
 
       window-rule {
-        match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+        match app-id="steam" title="^notificationtoasts_\\d+_desktop$"
         default-floating-position x=8 y=8 relative-to="bottom-right"
       }
     '';
