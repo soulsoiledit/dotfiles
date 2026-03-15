@@ -1,3 +1,7 @@
+-- search for biome.json or biome.jsonc in current or parent directories
+local project_files = vim.fs.find({ "biome.json", "biome.jsonc" }, { upward = true, stop = "~" })
+local has_project_config = #project_files > 0
+
 ---@type vim.lsp.Config
 return {
   -- allow biome lsp-proxy to attach to standalone files
@@ -7,7 +11,11 @@ return {
 
   settings = {
     biome = {
-      configurationPath = vim.fs.normalize("$XDG_CONFIG_HOME/biome/config.json"),
+      -- do not configure if project already has configuration
+      inlineConfig = has_project_config and {} or {
+        formatter = { indentStyle = "space" },
+        html = { formatter = { enabled = true } },
+      },
     },
   },
 }

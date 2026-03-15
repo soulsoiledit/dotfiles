@@ -16,15 +16,9 @@ in
 
   home.sessionVariables.MANPAGER = "nvim +Man!";
 
-  xdg = {
-    configFile = {
-      "nvim".source = config.lib.file.mkOutOfStoreSymlink (config.flake + "/home/programs/nvim");
-      "biome/config.json".text = builtins.toJSON {
-        formatter.indentStyle = "space";
-        html.formatter.enabled = true;
-      };
-    };
-  };
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink (
+    config.flake + "/home/programs/nvim"
+  );
 
   programs.neovim = {
     enable = true;
