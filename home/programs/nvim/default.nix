@@ -24,7 +24,6 @@ in
         html.formatter.enabled = true;
       };
     };
-    dataFile."dict/words".source = "${pkgs.scowl}/share/dict/wamerican.txt";
   };
 
   programs.neovim = {
@@ -48,6 +47,7 @@ in
               return {
                 flake_dir = "${config.flake}",
                 user = "${config.home.username}",
+                dictionary = "${pkgs.scowl}/share/dict/wamerican.txt";
                 palette = {
                   ${lib.concatMapAttrsStringSep ",\n  " (
                     key: value: ''${key} = "${value}"''

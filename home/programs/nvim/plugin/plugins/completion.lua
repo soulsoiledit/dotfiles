@@ -39,10 +39,11 @@ later(function()
         ripgrep = {
           module = "blink-ripgrep",
           name = "rg",
+          score_offset = -6,
           opts = {
             backend = {
               ripgrep = {
-                additional_paths = { vim.fs.normalize("$XDG_DATA_HOME/dict/words") },
+                additional_paths = { nix.dictionary },
                 max_filesize = "128K",
               },
             },
