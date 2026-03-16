@@ -1,4 +1,4 @@
-now(function()
+safely("now", function()
   require("mini.base16").setup({
     palette = nix.palette,
   })
@@ -14,27 +14,25 @@ now(function()
   vim.api.nvim_set_hl(0, "markdownH6", { fg = nix.palette.base0D })
 end)
 
-now(function()
+safely("now", function()
   require("mini.basics").setup({
     mappings = { windows = true },
     options = { extra_ui = true },
   })
 end)
 
-now_if_args(function()
-  local misc = require("mini.misc")
-  misc.setup()
+safely_if_args("now", "later", function()
   misc.setup_restore_cursor()
   misc.setup_auto_root({ ".git", ".root" })
 end)
 
-now(function()
+safely("now", function()
   require("mini.icons").setup()
-  later(require("mini.icons").mock_nvim_web_devicons)
-  later(require("mini.icons").tweak_lsp_kind)
+  safely("later", require("mini.icons").mock_nvim_web_devicons)
+  safely("later", require("mini.icons").tweak_lsp_kind)
 end)
 
-later(function()
+safely("event:UIEnter", function()
   local trailspace = require("mini.trailspace")
   trailspace.setup()
   vim.api.nvim_create_autocmd("BufWritePre", {
@@ -45,7 +43,7 @@ later(function()
   })
 end)
 
-later(function()
+safely("event:UIEnter", function()
   require("mini.diff").setup({
     view = { style = "sign" },
   })

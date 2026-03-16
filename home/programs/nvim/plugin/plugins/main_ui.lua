@@ -2,7 +2,7 @@ local nmap = function(lhs, rhs, desc)
   vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
 
-now_if_args(function()
+safely_if_args("now", "later", function()
   vim.cmd.packadd("nvim-treesitter")
   local treesitter = vim.api.nvim_create_augroup("treesitter.setup", {})
   vim.api.nvim_create_autocmd("FileType", {
@@ -19,7 +19,7 @@ now_if_args(function()
   })
 end)
 
-later(function()
+safely("event:UIEnter", function()
   vim.cmd.packadd("noice.nvim")
   require("noice").setup({
     lsp = {
@@ -37,7 +37,7 @@ later(function()
   })
 end)
 
-later(function()
+safely("event:UIEnter", function()
   vim.cmd.packadd("lualine.nvim")
   require("lualine").setup({
     options = {
@@ -59,7 +59,7 @@ later(function()
   })
 end)
 
-later(function()
+safely("event:UIEnter", function()
   vim.cmd.packadd("bufferline.nvim")
   local bufferline = require("bufferline")
   bufferline.setup({

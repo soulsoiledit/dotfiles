@@ -1,4 +1,4 @@
-now(function()
+safely("now", function()
   local snacks = require("snacks")
   snacks.setup({
     picker = {},

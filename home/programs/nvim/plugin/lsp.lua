@@ -1,4 +1,4 @@
-later(function()
+safely("event:UIEnter", function()
   local severity = vim.diagnostic.severity
   vim.diagnostic.config({
     severity_sort = true,
@@ -14,7 +14,7 @@ later(function()
   })
 end)
 
-now_if_args(function()
+safely_if_args("now", "event:BufEnter", function()
   vim.cmd.packadd("nvim-lspconfig")
 
   vim.lsp.set_log_level(vim.log.levels.OFF)

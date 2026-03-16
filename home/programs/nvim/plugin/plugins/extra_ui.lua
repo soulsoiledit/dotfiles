@@ -1,10 +1,10 @@
-now(function()
+safely("now", function()
   require("markview").setup()
   vim.api.nvim_set_hl(0, "MarkviewListItemMinus", { link = "MarkviewPalette6Fg" })
   vim.api.nvim_set_hl(0, "MarkviewListItemStar", { link = "MarkviewPalette2Fg" })
 end)
 
-later(function()
+safely("event:UIEnter", function()
   vim.cmd.packadd("blink.pairs")
   require("blink.pairs").setup({
     highlights = {
@@ -21,7 +21,7 @@ later(function()
   })
 end)
 
-now_if_args(function()
+safely("event:UIEnter", function()
   vim.cmd.packadd("nvim-colorizer.lua")
   require("colorizer").setup({
     lazy_load = true,
@@ -32,7 +32,7 @@ now_if_args(function()
   })
 end)
 
-later(function()
+safely("event:LSPAttach", function()
   vim.cmd.packadd("nvim-lightbulb")
   require("nvim-lightbulb").setup({
     autocmd = { enabled = true },
@@ -43,7 +43,7 @@ later(function()
   })
 end)
 
-later(function()
+safely("event:UIEnter", function()
   vim.cmd.packadd("which-key.nvim")
   require("which-key").setup({
     win = { height = { min = 5, max = 10 } },
