@@ -58,8 +58,8 @@ in
 
       gestures { hot-corners { off; }; }
 
-      // workspaces
       binds {
+        // workspaces
         Mod+1 { focus-workspace 1; }
         Mod+2 { focus-workspace 2; }
         Mod+3 { focus-workspace 3; }
@@ -152,21 +152,13 @@ in
 
       window-rule {
         match app-id="firefox|vesktop|steam"
-        default-column-width {
-          proportion 1.0
-        }
+        default-column-width { proportion 1.0; }
       }
 
       window-rule {
-        match is-floating=true
-        match title="[fF]ile"
+        match is-floating=true title="[fF]ile"
         default-column-width { proportion 0.75; }
         default-window-height { proportion 0.75; }
-      }
-
-      window-rule {
-        match app-id="steam_app_\\d+"
-        open-fullscreen true
       }
 
       window-rule {
