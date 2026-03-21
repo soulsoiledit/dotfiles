@@ -6,6 +6,7 @@ vim.o.timeoutlen = 250
 vim.o.expandtab = true
 vim.o.shiftwidth = 2
 vim.o.shiftround = true
+vim.o.tabstop = 4
 
 vim.o.wrap = true
 vim.o.scrolloff = 4
