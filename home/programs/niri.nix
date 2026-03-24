@@ -156,7 +156,7 @@ in
       }
 
       window-rule {
-        match is-floating=true title="[fF]ile"
+        match app-id="xdg-desktop-portal"
         default-column-width { proportion 0.75; }
         default-window-height { proportion 0.75; }
       }
