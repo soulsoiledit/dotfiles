@@ -66,7 +66,6 @@ in
 
         # ui
         nvim-treesitter.withAllGrammars
-        lualine-nvim
         bufferline-nvim
         noice-nvim
         which-key-nvim

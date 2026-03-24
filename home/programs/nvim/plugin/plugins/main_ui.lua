@@ -38,34 +38,22 @@ safely("event:UIEnter", function()
 end)
 
 safely("event:UIEnter", function()
-  vim.cmd.packadd("lualine.nvim")
-  require("lualine").setup({
-    options = {
-      theme = {
-        normal = {
-          a = { bg = nix.palette.base0D, fg = nix.palette.base00, gui = "bold" },
-          b = { bg = nix.palette.base02, fg = nix.palette.base04 },
-          c = { bg = nix.palette.base01, fg = nix.palette.base04 },
-        },
-        insert = { a = { bg = nix.palette.base0B, fg = nix.palette.base00, gui = "bold" } },
-        replace = { a = { bg = nix.palette.base08, fg = nix.palette.base00, gui = "bold" } },
-        visual = { a = { bg = nix.palette.base0E, fg = nix.palette.base00, gui = "bold" } },
-        command = { a = { bg = nix.palette.base0F, fg = nix.palette.base00, gui = "bold" } },
-        terminal = { a = { bg = nix.palette.base0F, fg = nix.palette.base00, gui = "bold" } },
-        inactive = { a = { bg = nix.palette.base03, fg = nix.palette.base00, gui = "bold" } },
-      },
-      disabled_filetypes = { "snacks_dashboard" },
-    },
-  })
-end)
+  vim.o.laststatus = 0
 
-safely("event:UIEnter", function()
   vim.cmd.packadd("bufferline.nvim")
   local bufferline = require("bufferline")
   bufferline.setup({
     options = {
       tab_size = 4,
       diagnostics = "nvim_lsp",
+      custom_areas = {
+        right = function()
+          local mode = vim.api.nvim_get_mode()
+          return {
+            { text = mode.mode },
+          }
+        end,
+      },
     },
   })
 
