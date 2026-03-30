@@ -16,9 +16,10 @@ in
 
   home.sessionVariables.MANPAGER = "nvim +Man!";
 
-  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink (
-    config.flake + "/home/programs/nvim"
-  );
+  xdg.configFile = {
+    "nvim/init.lua".enable = false;
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/programs/nvim";
+  };
 
   programs.neovim = {
     enable = true;
@@ -30,6 +31,13 @@ in
         snacks-nvim
         mini-nvim
         markview-nvim
+
+        # home-manager generated init.lua
+        (pkgs.writeTextFile {
+          name = "hm-init";
+          destination = "/lua/hm-init.lua";
+          text = config.programs.neovim.initLua;
+        })
 
         # colorscheme palette
         (pkgs.writeTextFile {
