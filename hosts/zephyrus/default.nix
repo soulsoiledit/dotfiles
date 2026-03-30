@@ -57,11 +57,16 @@
     };
   };
 
-  # kernelPackages = pkgs.linuxPackages_6_18;
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
     # virtualbox.host.enable = true;
   };
+
+  systemd.oomd = {
+    enableSystemSlice = true;
+    enableUserSlices = true;
+  };
+
   users.users.default.extraGroups = [ "vboxusers" ];
 }
