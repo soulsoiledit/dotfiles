@@ -18,6 +18,7 @@ in
 
     userDirs = {
       enable = true;
+      setSessionVariables = false;
       desktop = "${homeDirectory}";
       documents = "${homeDirectory}";
       download = "${homeDirectory}";
