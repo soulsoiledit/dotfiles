@@ -10,22 +10,20 @@ let
 in
 {
   xdg.enable = true;
+  home.preferXdgDirectories = true;
 
-  home = {
-    preferXdgDirectories = true;
+  home.sessionVariables = {
+    CARGO_HOME = "${dataHome}/cargo";
+    RUSTUP_HOME = "${dataHome}/rustup";
 
-    sessionVariables = {
-      CARGO_HOME = "${dataHome}/cargo";
-      RUSTUP_HOME = "${dataHome}/rustup";
+    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
+    GRADLE_USER_HOME = "${dataHome}/gradle";
 
-      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=${configHome}/java";
-      GRADLE_USER_HOME = "${dataHome}/gradle";
-
-      NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
-    };
+    NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
   };
 
   home.pointerCursor.dotIcons.enable = false;
+  xresources.path = "${configHome}/X11/xresources";
 
   xdg.configFile = {
     "npm/npmrc".text = ''
@@ -39,6 +37,4 @@ in
       cookie-file = ${configHome}/pulse/cookie
     '';
   };
-
-  xresources.path = "${configHome}/X11/xresources";
 }

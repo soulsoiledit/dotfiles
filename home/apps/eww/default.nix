@@ -15,8 +15,7 @@ in
 
   home.packages = [ pkgs.acpi ];
 
-  xdg.configFile."eww".source =
-    config.lib.file.mkOutOfStoreSymlink config.flake + "/home/programs/eww";
+  xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/apps/eww";
 
   systemd.user.services = {
     eww-daemon = {

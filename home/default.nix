@@ -1,15 +1,22 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
-  programs.home-manager.enable = true;
-
-  home = {
-    username = "soil";
-    homeDirectory = "/home/soil";
-    stateVersion = "25.11";
+  options.flake = lib.mkOption {
+    type = lib.types.str;
+    description = "nix flake location";
   };
 
-  flake = "${config.xdg.configHome}/flake";
+  config = {
+    programs.home-manager.enable = true;
 
-  # TODO: gpg for ssh and git signing
+    home = {
+      username = "soil";
+      homeDirectory = "/home/soil";
+      stateVersion = "25.11";
+    };
+
+    flake = "${config.xdg.configHome}/flake";
+
+    # TODO: gpg for ssh and git signing
+  };
 }

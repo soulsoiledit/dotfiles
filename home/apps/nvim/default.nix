@@ -18,7 +18,7 @@ in
 
   xdg.configFile = {
     "nvim/init.lua".enable = false;
-    "nvim".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/programs/nvim";
+    "nvim".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/apps/nvim";
   };
 
   programs.neovim = {
