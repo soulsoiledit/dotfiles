@@ -10,6 +10,7 @@
 
     dua
     duf
+    jaq
     trashy
 
     brightnessctl
