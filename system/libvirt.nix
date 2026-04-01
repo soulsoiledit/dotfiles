@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   cfg = config.virtualisation.libvirtd;
@@ -7,6 +12,7 @@ in
   virtualisation.libvirtd = {
     # don't start previously running vms automatically
     onBoot = "ignore";
+    qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
   };
 
   users.users.default.extraGroups = lib.mkIf cfg.enable [ "libvirtd" ];

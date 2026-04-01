@@ -60,7 +60,6 @@
   virtualisation = {
     podman.enable = true;
     libvirtd.enable = true;
-    # virtualbox.host.enable = true;
   };
 
   systemd.oomd = {
