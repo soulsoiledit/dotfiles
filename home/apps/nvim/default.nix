@@ -96,7 +96,7 @@ in
       vtsls
       biome
       efm-langserver
-      nodePackages.prettier
+      prettier
 
       pyrefly
       ruff
