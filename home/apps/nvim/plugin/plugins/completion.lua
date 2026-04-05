@@ -13,23 +13,9 @@ safely("event:InsertEnter,CmdlineEnter", function()
     completion = {
       keyword = { range = "full" },
       list = { selection = { preselect = false } },
-
-      menu = {
-        draw = {
-          columns = {
-            { "label", "label_description", gap = 1 },
-            { "kind_icon", "source_name" },
-          },
-        },
-      },
-
-      documentation = {
-        auto_show = true,
-        auto_show_delay_ms = 500,
-      },
+      menu = { draw = { align_to = "kind_icon" } },
+      documentation = { auto_show = true },
     },
-
-    appearance = { nerd_font_variant = "normal" },
 
     signature = { enabled = true },
 
@@ -56,5 +42,6 @@ safely("event:InsertEnter,CmdlineEnter", function()
   vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", {
     fg = nix.palette.base0D,
     bold = true,
+    update = true,
   })
 end)

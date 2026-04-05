@@ -1,7 +1,3 @@
-local nmap = function(lhs, rhs, desc)
-  vim.keymap.set("n", lhs, rhs, { desc = desc })
-end
-
 safely_if_args("now", "later", function()
   vim.cmd.packadd("nvim-treesitter")
   local treesitter = vim.api.nvim_create_augroup("treesitter.setup", {})
@@ -38,8 +34,6 @@ safely("event:UIEnter", function()
 end)
 
 safely("event:UIEnter", function()
-  vim.o.laststatus = 0
-
   vim.cmd.packadd("bufferline.nvim")
   local bufferline = require("bufferline")
   bufferline.setup({

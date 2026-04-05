@@ -3,8 +3,8 @@ safely("now", function()
     palette = nix.palette,
   })
 
-  vim.api.nvim_set_hl(0, "Search", { bg = nix.palette.base0D, fg = nix.palette.base01 })
-  vim.api.nvim_set_hl(0, "CurSearch", { bg = nix.palette.base0F, fg = nix.palette.base01 })
+  vim.api.nvim_set_hl(0, "Search", { bg = nix.palette.base0D, update = true })
+  vim.api.nvim_set_hl(0, "CurSearch", { bg = nix.palette.base0F, update = true })
 
   vim.api.nvim_set_hl(0, "markdownH1", { fg = nix.palette.base08 })
   vim.api.nvim_set_hl(0, "markdownH2", { fg = nix.palette.base09 })
@@ -16,20 +16,18 @@ end)
 
 safely("now", function()
   require("mini.basics").setup({
-    mappings = { windows = true },
     options = { extra_ui = true },
   })
 end)
 
 safely_if_args("now", "later", function()
   misc.setup_restore_cursor()
-  misc.setup_auto_root({ ".git", ".root" })
+  misc.setup_auto_root()
 end)
 
 safely("now", function()
   require("mini.icons").setup()
   safely("later", require("mini.icons").mock_nvim_web_devicons)
-  safely("later", require("mini.icons").tweak_lsp_kind)
 end)
 
 safely("event:UIEnter", function()

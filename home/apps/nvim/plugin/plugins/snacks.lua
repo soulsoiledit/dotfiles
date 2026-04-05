@@ -89,10 +89,6 @@ safely("now", function()
   vim.api.nvim_set_hl(0, "SnacksPicker", { link = "Normal" })
   vim.api.nvim_set_hl(0, "SnacksPickerBorder", { link = "Comment" })
 
-  local nmap = function(lhs, rhs, desc)
-    vim.keymap.set("n", lhs, rhs, { desc = desc })
-  end
-
   nmap("<leader>g", snacks.lazygit.open, "git")
   nmap("<leader>f", snacks.picker.smart, "files")
   nmap("<leader>s", snacks.picker.grep, "search")

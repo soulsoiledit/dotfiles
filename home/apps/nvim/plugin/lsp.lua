@@ -17,7 +17,7 @@ end)
 safely_if_args("now", "event:BufEnter", function()
   vim.cmd.packadd("nvim-lspconfig")
 
-  vim.lsp.set_log_level(vim.log.levels.OFF)
+  vim.lsp.log.set_level(vim.log.levels.OFF)
   vim.lsp.log.set_format_func(vim.inspect)
 
   vim.lsp.enable({
@@ -48,6 +48,6 @@ safely_if_args("now", "event:BufEnter", function()
 
   vim.lsp.inlay_hint.enable(true)
 
-  vim.keymap.set("n", "gd", "<C-]>", { desc = "definition" })
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "declaration" })
+  nmap("gd", "<c-]>", "definition")
+  nmap("gD", vim.lsp.buf.declaration, "declaration")
 end)
