@@ -62,10 +62,5 @@
     libvirtd.enable = true;
   };
 
-  systemd.oomd = {
-    enableSystemSlice = true;
-    enableUserSlices = true;
-  };
-
   users.users.default.extraGroups = [ "vboxusers" ];
 }
