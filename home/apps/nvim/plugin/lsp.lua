@@ -14,7 +14,7 @@ safely("event:UIEnter", function()
   })
 end)
 
-safely_if_args("now", "event:BufEnter", function()
+safely_if_args("now", "later", function()
   vim.cmd.packadd("nvim-lspconfig")
 
   vim.lsp.log.set_level(vim.log.levels.OFF)
@@ -45,7 +45,20 @@ safely_if_args("now", "event:BufEnter", function()
     "metals",
     "qmlls",
   })
+end)
 
-  vim.lsp.inlay_hint.enable(true)
+safely_if_args("now", "later", function()
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+      local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
+      if client:supports_method("textDocument/inlayHint") then
+        vim.lsp.inlay_hint.enable(true)
+      end
+
+      vim.cmd.packadd("lsp-format.nvim")
+      require("lsp-format").setup()
+      require("lsp-format").on_attach(client, args.buf)
+    end,
+  })
 end)
