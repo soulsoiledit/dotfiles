@@ -48,6 +48,4 @@ safely_if_args("now", "event:BufEnter", function()
 
   vim.lsp.inlay_hint.enable(true)
 
-  nmap("gd", "<c-]>", "definition")
-  nmap("gD", vim.lsp.buf.declaration, "declaration")
 end)
