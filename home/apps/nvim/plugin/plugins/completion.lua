@@ -40,7 +40,7 @@ safely("event:InsertEnter,CmdlineEnter", function()
   })
 
   vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", {
-    fg = nix.palette.base0D,
+    fg = nix.palette.base0E,
     bold = true,
     update = true,
   })

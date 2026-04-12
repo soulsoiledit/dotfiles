@@ -34,6 +34,8 @@ in
         mini-nvim
         markview-nvim
 
+        nvim-colorizer-lua
+
         # home-manager generated init.lua
         (pkgs.writeTextFile {
           name = "hm-init";
@@ -79,7 +81,6 @@ in
         noice-nvim
         which-key-nvim
         blink-pairs
-        nvim-colorizer-lua
         nvim-lightbulb
 
         # lang

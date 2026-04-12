@@ -21,13 +21,16 @@ safely("event:UIEnter", function()
   })
 end)
 
-safely("event:UIEnter", function()
-  vim.cmd.packadd("nvim-colorizer.lua")
+safely("later", function()
   require("colorizer").setup({
-    lazy_load = true,
-    user_default_options = {
-      AARRGGBB = true,
-      css = true,
+    options = {
+      parsers = {
+        css = true,
+        tailwind = {
+          enable = true,
+          lsp = { enable = false },
+        },
+      },
     },
   })
 end)
