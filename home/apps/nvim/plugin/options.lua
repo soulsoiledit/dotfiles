@@ -16,3 +16,5 @@ vim.o.sidescrolloff = 8
 vim.o.foldmethod = "indent"
 -- open all folds at the start
 vim.o.foldlevelstart = 99
+
+vim.o.nrformats = "blank"
