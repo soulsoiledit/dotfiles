@@ -34,7 +34,9 @@ in
         mini-nvim
         markview-nvim
 
+        # ui
         nvim-colorizer-lua
+        blink-pairs
 
         # home-manager generated init.lua
         (pkgs.writeTextFile {
@@ -80,7 +82,6 @@ in
         bufferline-nvim
         noice-nvim
         which-key-nvim
-        blink-pairs
         nvim-lightbulb
 
         # lang

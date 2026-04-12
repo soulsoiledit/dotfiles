@@ -4,8 +4,7 @@ safely("now", function()
   vim.api.nvim_set_hl(0, "MarkviewListItemStar", { link = "MarkviewPalette2Fg" })
 end)
 
-safely("event:UIEnter", function()
-  vim.cmd.packadd("blink.pairs")
+safely("later", function()
   require("blink.pairs").setup({
     highlights = {
       groups = {
