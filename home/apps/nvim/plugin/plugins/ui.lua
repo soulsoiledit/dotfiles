@@ -1,3 +1,9 @@
+safely("now", function()
+  require("markview").setup()
+  vim.api.nvim_set_hl(0, "MarkviewListItemMinus", { link = "MarkviewPalette6Fg" })
+  vim.api.nvim_set_hl(0, "MarkviewListItemStar", { link = "MarkviewPalette2Fg" })
+end)
+
 safely_if_args("now", "later", function()
   vim.cmd.packadd("nvim-treesitter")
   local treesitter = vim.api.nvim_create_augroup("treesitter.setup", {})
@@ -32,7 +38,7 @@ safely("later", function()
   end
 end)
 
-safely("event:UIEnter", function()
+safely("later", function()
   vim.cmd.packadd("bufferline.nvim")
   local bufferline = require("bufferline")
   bufferline.setup({
@@ -62,4 +68,59 @@ safely("event:UIEnter", function()
   nmap("<c-s-tab>", function()
     bufferline.move(-1)
   end, "move buffer left")
+end)
+
+safely("later", function()
+  require("blink.pairs").setup({
+    highlights = {
+      groups = {
+        "RainbowDelimiterRed",
+        "RainbowDelimiterOrange",
+        "RainbowDelimiterYellow",
+        "RainbowDelimiterGreen",
+        "RainbowDelimiterCyan",
+        "RainbowDelimiterBlue",
+        "RainbowDelimiterViolet",
+      },
+    },
+  })
+end)
+
+safely("later", function()
+  require("colorizer").setup({
+    options = {
+      parsers = {
+        css = true,
+        tailwind = {
+          enable = true,
+          lsp = { enable = false },
+        },
+      },
+    },
+  })
+end)
+
+safely("later", function()
+  require("nvim-lightbulb").setup({
+    autocmd = { enabled = true },
+    sign = {
+      text = "",
+      lens_text = "",
+    },
+  })
+end)
+
+safely("later", function()
+  vim.cmd.packadd("which-key.nvim")
+  require("which-key").setup({
+    win = { height = { min = 5, max = 10 } },
+    spec = {
+      { "gr", group = "refactor" },
+      { "gra", desc = "code action" },
+      { "gri", desc = "implementation" },
+      { "grn", desc = "rename" },
+      { "grr", desc = "reference" },
+      { "grt", desc = "type definition" },
+    },
+  })
 end)
