@@ -8,11 +8,6 @@ safely("event:UIEnter", function()
 end)
 
 safely("event:UIEnter", function()
-  vim.cmd.packadd("grug-far.nvim")
-  require("grug-far").setup()
-end)
-
-safely("event:UIEnter", function()
   vim.cmd.packadd("todo-comments.nvim")
   require("todo-comments").setup()
   nmap("<leader>t", require("snacks").picker.todo_comments, "todo")

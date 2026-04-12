@@ -72,7 +72,6 @@ in
         # nav
         flash-nvim
         todo-comments-nvim
-        grug-far-nvim
 
         # ui
         nvim-treesitter.withAllGrammars
