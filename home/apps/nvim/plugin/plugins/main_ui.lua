@@ -15,22 +15,21 @@ safely_if_args("now", "later", function()
   })
 end)
 
-safely("event:UIEnter", function()
-  vim.cmd.packadd("noice.nvim")
-  require("noice").setup({
-    lsp = {
-      override = {
-        ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-        ["vim.lsp.util.stylize_markdown"] = true,
-      },
-      signature = { enabled = false },
-    },
-    presets = {
-      long_message_to_split = true,
-      command_palette = true,
-      bottom_search = true,
-    },
+safely("later", function()
+  local ui2 = require("vim._core.ui2")
+  ui2.enable({
+    enable = true,
+    msg = { targets = "msg" },
   })
+
+  -- limits width to handle bad lsp responses
+  local set_pos = ui2.msg.set_pos
+  ui2.msg.set_pos = function(tgt)
+    set_pos(tgt)
+    pcall(vim.api.nvim_win_set_config, ui2.wins.msg, {
+      width = math.max(25, vim.o.columns - 85),
+    })
+  end
 end)
 
 safely("event:UIEnter", function()

@@ -27,66 +27,59 @@ in
     withRuby = false;
     withPython3 = false;
 
-    plugins =
-      with pkgs.vimPlugins;
-      [
-        snacks-nvim
-        mini-nvim
-        markview-nvim
+    plugins = with pkgs.vimPlugins; [
+      snacks-nvim
+      mini-nvim
+      markview-nvim
 
-        # ui
-        nvim-colorizer-lua
-        blink-pairs
+      # code
+      blink-cmp
+      blink-ripgrep-nvim
+      friendly-snippets
+      nvim-lspconfig
+      lsp-format-nvim
 
-        # home-manager generated init.lua
-        (pkgs.writeTextFile {
-          name = "hm-init";
-          destination = "/lua/hm-init.lua";
-          text = config.programs.neovim.initLua;
-        })
+      # nav
+      flash-nvim
+      todo-comments-nvim
 
-        # colorscheme palette
-        (pkgs.writeTextFile {
-          name = "nixconfig";
-          destination = "/lua/nixconfig.lua";
-          text =
-            # lua
-            ''
-              return {
-                flake_dir = "${config.flake}",
-                user = "${config.home.username}",
-                dictionary = "${pkgs.scowl}/share/dict/wamerican.txt";
-                palette = {
-                  ${lib.concatMapAttrsStringSep ",\n  " (
-                    key: value: ''${key} = "${value}"''
-                  ) config.stylix.base16Scheme}
-                }
+      # ui
+      nvim-treesitter.withAllGrammars
+      bufferline-nvim
+      nvim-colorizer-lua
+      blink-pairs
+      nvim-lightbulb
+      which-key-nvim
+
+      typst-preview-nvim
+
+      # home-manager generated init.lua
+      (pkgs.writeTextFile {
+        name = "hm-init";
+        destination = "/lua/hm-init.lua";
+        text = config.programs.neovim.initLua;
+      })
+
+      # colorscheme palette
+      (pkgs.writeTextFile {
+        name = "nixconfig";
+        destination = "/lua/nixconfig.lua";
+        text =
+          # lua
+          ''
+            return {
+              flake_dir = "${config.flake}",
+              user = "${config.home.username}",
+              dictionary = "${pkgs.scowl}/share/dict/wamerican.txt";
+              palette = {
+                ${lib.concatMapAttrsStringSep ",\n  " (
+                  key: value: ''${key} = "${value}"''
+                ) config.stylix.base16Scheme}
               }
-            '';
-        })
-      ]
-      ++ mkOptPlugs [
-        # code
-        blink-cmp
-        blink-ripgrep-nvim
-        friendly-snippets
-        nvim-lspconfig
-        lsp-format-nvim
-
-        # nav
-        flash-nvim
-        todo-comments-nvim
-
-        # ui
-        nvim-treesitter.withAllGrammars
-        bufferline-nvim
-        noice-nvim
-        which-key-nvim
-        nvim-lightbulb
-
-        # lang
-        typst-preview-nvim
-      ];
+            }
+          '';
+      })
+    ];
 
     extraPackages = with pkgs; [
       nixd

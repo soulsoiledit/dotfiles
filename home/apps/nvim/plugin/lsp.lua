@@ -62,3 +62,17 @@ safely_if_args("now", "later", function()
     end,
   })
 end)
+
+vim.api.nvim_create_autocmd("LspProgress", {
+  callback = function(args)
+    local value = args.data.params.value
+    vim.api.nvim_echo({ { value.message or "done" } }, false, {
+      id = "lsp." .. args.data.params.token,
+      kind = "progress",
+      source = "vim.lsp",
+      title = value.title,
+      status = value.kind ~= "end" and "running" or "success",
+      percent = value.percentage,
+    })
+  end,
+})
