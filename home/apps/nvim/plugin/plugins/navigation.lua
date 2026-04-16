@@ -1,7 +1,7 @@
 safely("event:UIEnter", function()
   vim.cmd.packadd("flash.nvim")
   local flash = require("flash")
-  flash.setup({ labels = "arstneiodhwfuy" })
+  flash.setup({ labels = "arstneio" })
 
   vim.keymap.set({ "n", "v", "o" }, "s", flash.jump, { desc = "flash search" })
   vim.keymap.set("o", "r", flash.remote, { desc = "flash remote" })
