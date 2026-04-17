@@ -18,7 +18,11 @@ return {
   settings = {
     biome = {
       inlineConfig = {
-        formatter = { indentStyle = "space" },
+        formatter = {
+          indentStyle = "space",
+          indentWidth = 2,
+          lineWidth = 100,
+        },
         html = { formatter = { enabled = true } },
       },
     },
