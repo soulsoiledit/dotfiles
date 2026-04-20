@@ -27,7 +27,6 @@ safely_if_args("now", "later", function()
     "rust_analyzer",
     "hls",
 
-    "html",
     "cssls",
     "vtsls",
     "biome",
