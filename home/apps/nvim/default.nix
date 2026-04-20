@@ -5,19 +5,13 @@
   ...
 }:
 
-let
-  mkOptPlugs = map (plug: {
-    plugin = plug;
-    optional = true;
-  });
-in
 {
   stylix.targets.neovim.enable = false;
 
   home.sessionVariables.MANPAGER = "nvim +Man!";
 
   xdg.configFile = {
-    "nvim/init.lua".enable = false;
+    "nvim/init.lua".enable = lib.mkForce false;
     "nvim".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/apps/nvim";
   };
 
