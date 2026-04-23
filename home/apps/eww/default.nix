@@ -6,7 +6,7 @@
 }:
 
 let
-  target = config.wayland.systemd.target;
+  inherit (config.wayland.systemd) target;
   ewwCmd = "${lib.getExe pkgs.eww} --no-daemonize";
   ewwService = "eww-daemon.service";
 in

@@ -1,7 +1,7 @@
 { config, ... }:
 
 let
-  iconTheme = config.gtk.iconTheme;
+  inherit (config.gtk) iconTheme;
 in
 {
   services.mako = {

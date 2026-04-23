@@ -2,7 +2,7 @@
 
 let
   getDesktop' = pkg: name: "${pkg}/share/applications/${name}.desktop";
-  getDesktop = pkg: getDesktop' pkg (if pkg ? pname then pkg.pname else pkg.name);
+  getDesktop = pkg: getDesktop' pkg (pkg.pname or pkg.name);
 in
 {
   xdg.autostart = {

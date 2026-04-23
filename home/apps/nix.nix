@@ -17,7 +17,7 @@
   programs = {
     nh = {
       enable = true;
-      flake = config.flake;
+      inherit (config) flake;
     };
 
     nix-index-database.comma.enable = true;
