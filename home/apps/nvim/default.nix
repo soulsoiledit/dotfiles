@@ -10,16 +10,29 @@
 
   home.sessionVariables.MANPAGER = "nvim +Man!";
 
-  xdg.configFile = {
-    "nvim/init.lua".enable = lib.mkForce false;
-    "nvim".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/apps/nvim";
-  };
+  xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/apps/nvim";
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     withRuby = false;
     withPython3 = false;
+
+    sideloadInitLua = true;
+    initLua =
+      # lua
+      ''
+        nix = {
+          flake_dir = "${config.flake}",
+          user = "${config.home.username}",
+          dictionary = "${pkgs.scowl}/share/dict/wamerican.txt";
+          palette = {
+            ${lib.concatMapAttrsStringSep ",\n  " (
+              key: value: ''${key} = "${value}"''
+            ) config.stylix.base16Scheme}
+          }
+        }
+      '';
 
     plugins = with pkgs.vimPlugins; [
       snacks-nvim
@@ -46,33 +59,6 @@
       which-key-nvim
 
       typst-preview-nvim
-
-      # home-manager generated init.lua
-      (pkgs.writeTextFile {
-        name = "hm-init";
-        destination = "/lua/hm-init.lua";
-        text = config.programs.neovim.initLua;
-      })
-
-      # colorscheme palette
-      (pkgs.writeTextFile {
-        name = "nixconfig";
-        destination = "/lua/nixconfig.lua";
-        text =
-          # lua
-          ''
-            return {
-              flake_dir = "${config.flake}",
-              user = "${config.home.username}",
-              dictionary = "${pkgs.scowl}/share/dict/wamerican.txt";
-              palette = {
-                ${lib.concatMapAttrsStringSep ",\n  " (
-                  key: value: ''${key} = "${value}"''
-                ) config.stylix.base16Scheme}
-              }
-            }
-          '';
-      })
     ];
 
     extraPackages = with pkgs; [

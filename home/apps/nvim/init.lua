@@ -1,7 +1,6 @@
 vim.loader.enable()
 
-require("hm-init")
-nix = require("nixconfig")
+nix = nix
 
 misc = require("mini.misc")
 safely = misc.safely
