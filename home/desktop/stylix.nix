@@ -88,6 +88,10 @@
               tooltip.background {
                 background-color: rgba(${colors.base00-rgb-r}, ${colors.base00-rgb-b}, ${colors.base00-rgb-g}, 0.9);
               }
+
+              .dialog-action-area > .text-button {
+                color: @dialog_fg_color;
+              }
             '';
         };
       };
