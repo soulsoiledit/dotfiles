@@ -48,8 +48,8 @@
       };
 
       cursor = {
-        package = pkgs.rose-pine-cursor;
-        name = "BreezeX-RosePine-Linux";
+        package = pkgs.phinger-cursors;
+        name = "phinger-cursors-dark";
         size = 24;
       };
 
