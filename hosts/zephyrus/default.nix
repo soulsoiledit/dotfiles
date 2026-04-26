@@ -63,4 +63,24 @@
   };
 
   users.users.default.extraGroups = [ "vboxusers" ];
+
+  systemd.services.keyboard-rgb-hibernate = {
+    description = "unload keybard driver on hibernate";
+    before = [ "sleep.target" ];
+    wantedBy = [ "sleep.target" ];
+    unitConfig.StopWhenUnneeded = true;
+    serviceConfig =
+      let
+        brightnessctl-kbd = ''${lib.getExe pkgs.brightnessctl} -d "*kbd*"'';
+        modprobe = "${lib.getExe' pkgs.kmod "modprobe"}";
+      in
+      {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        ExecStartPre = "${brightnessctl-kbd} -s";
+        ExecStart = "${modprobe} -r hid_asus";
+        ExecStop = "${modprobe} hid_asus";
+        ExecStopPost = "${brightnessctl-kbd} -r";
+      };
+  };
 }
