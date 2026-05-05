@@ -58,7 +58,10 @@
       nvim-lightbulb
       which-key-nvim
 
-      typst-preview-nvim
+      {
+        plugin = typst-preview-nvim;
+        optional = true;
+      }
     ];
 
     extraPackages = with pkgs; [
