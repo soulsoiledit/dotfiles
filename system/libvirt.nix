@@ -10,8 +10,6 @@ let
 in
 {
   virtualisation.libvirtd = {
-    # don't start previously running vms automatically
-    onBoot = "ignore";
     qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
   };
 
