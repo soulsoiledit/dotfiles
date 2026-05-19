@@ -3,8 +3,8 @@
     enable = true;
     enableDefaultConfig = false;
     includes = [ "aliases" ];
-    matchBlocks."*" = {
-      addKeysToAgent = "1h";
+    settings."*" = {
+      addKeysToAgent = "2h";
       hashKnownHosts = true;
       serverAliveInterval = 15;
     };
