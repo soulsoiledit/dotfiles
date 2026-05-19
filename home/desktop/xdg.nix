@@ -31,6 +31,8 @@ in
       cache=${cacheHome}/npm
       init-module=${configHome}/npm/config/npm-init.js
       logs-dir=${stateHome}/npm/logs
+      min-release-age=7
+      ignore-scripts=true
     '';
 
     "pulse/client.conf".text = ''
