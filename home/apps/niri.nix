@@ -111,9 +111,6 @@ in
         XF86AudioRaiseVolume allow-when-locked=true { ${volume "5%+"}; }
         XF86AudioLowerVolume allow-when-locked=true { ${volume "5%-"}; }
 
-        Shift+XF86AudioRaiseVolume { ${volume "1%+"}; }
-        Shift+XF86AudioLowerVolume { ${volume "1%-"}; }
-
         XF86AudioMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
         XF86AudioMicMute allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
