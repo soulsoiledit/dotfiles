@@ -6,10 +6,10 @@
 }:
 
 let
-  inherit (config.lib.stylix.colors.withHashtag) base00 base05;
+  inherit (config.lib.stylix.colors.withHashtag) base00 base08;
 in
 {
-  services.swayidle.events.lock = "${lib.getExe pkgs.gtklock} -d";
+  services.swayidle.events.lock = "${lib.getExe pkgs.gtklock} -d -g ${config.gtk.gtk3.theme.name}";
 
   xdg.configFile = {
     "gtklock/config.ini".text =
@@ -23,22 +23,11 @@ in
       # css
       ''
         * {
-          font-family: sans-serif;
-          transition: 125ms;
         }
 
         window {
-          background-image: url("${config.xdg.stateHome}/lockscreen.jpg");
-          background-size: cover;
-          background-position: center;
-          background-repeat: no-repeat;
-          background-color: ${base00};
-        }
-
-        #window-box {
-          padding: 5em;
-          border-radius: 2em;
-          color: ${base05};
+          background: url("${config.xdg.stateHome}/lockscreen.jpg") center / cover no-repeat ${base00};
+          transition: 60ms;
         }
 
         #input-field {
@@ -48,11 +37,13 @@ in
         #time-box,
         #input-label,
         #error-label {
-          text-shadow: 0 0 0.25em black;
+          text-shadow:
+            0 0 0.1em rgba(0, 0, 0, 0.8),
+            0 0 0.2em rgba(0, 0, 0, 0.4);
         }
 
         #error-label {
-          color: #e94646;
+          color: ${base08};
         }
 
         #unlock-button:not(:disabled) {
