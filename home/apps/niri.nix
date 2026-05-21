@@ -135,10 +135,10 @@ in
         XF86KbdBrightnessDown allow-when-locked=true { spawn-sh "brightnessctl -d *kbd* set 1-"; }
 
         // notifications
-        Mod+Control+Space { spawn-sh "makoctl dismiss --all"; }
-        Mod+Control+D { spawn-sh "makoctl dismiss"; }
-        Mod+Control+Comma { spawn-sh "makoctl restore"; }
-        Mod+Control+Period { spawn-sh "makoctl invoke"; }
+        Mod+K { spawn-sh "makoctl dismiss"; }
+        Mod+Shift+K { spawn-sh "makoctl dismiss --all"; }
+        Mod+Control+K { spawn-sh "makoctl invoke"; }
+        Mod+Control+Shift+K { spawn-sh "makoctl restore"; }
 
         // profile
         XF86Launch4 { spawn "${profile-switch}"; }
