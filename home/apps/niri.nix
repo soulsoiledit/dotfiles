@@ -72,14 +72,14 @@ in
         Mod+Shift+4 { move-column-to-workspace focus=false 4; }
         Mod+Shift+5 { move-column-to-workspace focus=false 5; }
 
-        Mod+l { focus-workspace-down; }
-        Mod+u { focus-workspace-up; }
+        Mod+L { focus-workspace-down; }
+        Mod+U { focus-workspace-up; }
 
-        Mod+Shift+l { move-workspace-down; }
-        Mod+Shift+u { move-workspace-up; }
+        Mod+Shift+L { move-workspace-down; }
+        Mod+Shift+U { move-workspace-up; }
 
-        Mod+Control+l { move-column-to-workspace-down; }
-        Mod+Control+u { move-column-to-workspace-up; }
+        Mod+Ctrl+L { move-column-to-workspace-down; }
+        Mod+Ctrl+U { move-column-to-workspace-up; }
 
         Mod+Tab { focus-workspace-previous; }
 
@@ -97,12 +97,12 @@ in
         Mod+I { set-column-width "+10%"; }
 
         // programs
-        Mod+Return { spawn "footclient"; }
+        Mod+Return repeat=false { spawn "footclient"; }
         Mod+Space { spawn-sh "vicinae open"; }
 
         // backup
-        Mod+Control+Shift+Return { spawn "foot"; }
-        Mod+Control+Shift+L allow-when-locked=true { spawn-sh "loginctl lock-session"; }
+        Mod+Ctrl+Shift+Return repeat=false { spawn "foot"; }
+        Mod+Ctrl+Shift+L allow-when-locked=true repeat=false { spawn-sh "loginctl lock-session"; }
 
         Mod+B { spawn-sh "eww open bar --toggle"; }
         Mod+S { screenshot show-pointer=false; }
@@ -134,8 +134,8 @@ in
         // notifications
         Mod+K { spawn-sh "makoctl dismiss"; }
         Mod+Shift+K { spawn-sh "makoctl dismiss --all"; }
-        Mod+Control+K { spawn-sh "makoctl invoke"; }
-        Mod+Control+Shift+K { spawn-sh "makoctl restore"; }
+        Mod+Ctrl+K { spawn-sh "makoctl invoke"; }
+        Mod+Ctrl+Shift+K { spawn-sh "makoctl restore"; }
 
         // profile
         XF86Launch4 { spawn "${profile-switch}"; }
