@@ -1,3 +1,8 @@
+previous=
 niri msg event-stream | while read -r _; do
-  niri msg -j workspaces | jq -c 'sort_by(.idx)'
+  current=$(niri msg -j workspaces | jq -c 'sort_by(.idx)')
+  if [[ "$current" != "$previous" ]]; then
+    echo "$current"
+    previous="$current"
+  fi
 done

@@ -1,54 +1,46 @@
+until wpctl get-volume @DEFAULT_AUDIO_SINK@ &>/dev/null; do
+  sleep 0.1
+done
+
 previous=
 pw-mon -o | while read -r line; do
-  # ignore this check if it's the first iteration
   # check if the output doesn't have an indicator for modified volume
-  if [[ $previous && ! $line =~ \*[[:blank:]]*params: ]]; then
-    continue
-  fi
+  [[ $line =~ ^\*.+params: ]] || continue
 
-  while true; do
-    # get sink device name
-    device=$(wpctl inspect @DEFAULT_AUDIO_SINK@)
-    [[ $device =~ node.description.=.\"([[:graph:][:blank:]]*)\" ]]
-    device=${BASH_REMATCH[1]}
+  # get sink volume and mute status
+  volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+  [[ -z $volume ]] && continue
 
-    # get sink volume and mute status
-    volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+  # split into percentage and mute
+  [[ $volume =~ ([0-9])\.([0-9]{2})(.*) ]]
+  percentage=$((10#${BASH_REMATCH[1]}${BASH_REMATCH[2]}))
+  muted=${BASH_REMATCH[3]}
 
-    # continue if pipewire isn't quite ready
-    if [[ ! $volume ]]; then
-      continue
-    fi
-
-    # split into percentage and mute
-    [[ $volume =~ ([[:digit:]]).([[:digit:]]{2}).?\[?(MUTED)?\]? ]]
-    percentage=$((10#${BASH_REMATCH[1]}${BASH_REMATCH[2]}))
-    muted=${BASH_REMATCH[3]}
-
-    status="${device} ${percentage} ${muted}"
-    if [[ $status ]]; then
-      break
-    fi
-  done
+  # get sink device name
+  device=$(wpctl inspect @DEFAULT_AUDIO_SINK@ | rg "node.description")
+  [[ $device =~ \"([[:print:]]+)\" ]]
+  device=${BASH_REMATCH[1]}
 
   # skip if status was the same
-  if [[ $status == "$previous" ]]; then
-    continue
-  fi
+  status="${device} ${percentage} ${muted}"
+  [[ $status == "$previous" ]] && continue
 
   # assign the symbols for volume and mute
-  if [[ $muted ]]; then
+  if [[ -n $muted ]]; then
     muted=true
     symbol=''
   else
     muted=false
     symbols=("" "" "")
-    symbol=${symbols[((($percentage * 3 - 1) / 100))]}
+    id=$((percentage * 3 / 101))
+    ((id > 2)) && id=2
+    symbol=${symbols[$id]}
   fi
 
   # send notifications only after first iteration
-  if [[ $previous ]]; then
+  if [[ -n $previous ]]; then
     notify-send "$symbol  $percentage%" \
+      -u low \
       -h int:value:"$percentage" \
       -h string:x-canonical-private-synchronous:volume
   fi
@@ -56,9 +48,9 @@ pw-mon -o | while read -r line; do
   jq -nc \
     --arg symbol "$symbol" \
     --arg device "$device" \
-    --arg percentage "$percentage" \
-    --arg muted "$muted" \
-    '{symbol: $symbol, device: $device, percentage: $percentage, muted: $muted}'
+    --argjson percentage "$percentage" \
+    --argjson muted "$muted" \
+    '{$symbol, $device, $percentage, $muted}'
 
   # set previous
   previous=$status

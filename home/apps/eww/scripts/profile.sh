@@ -1,6 +1,7 @@
-dbus-monitor --profile --system path=/org/freedesktop/UPower/PowerProfiles | while read -r line; do
-  if [[ $line =~ PropertiesChanged ]]; then
-    current=$(powerprofilesctl get)
-    notify-send "  Profile:" "$current" -h string:x-canonical-private-synchronous:profile
+gdbus monitor -y -d "org.freedesktop.UPower.PowerProfiles" -o "/org/freedesktop/UPower/PowerProfiles" | while read -r line; do
+  if [[ $line =~ \'ActiveProfile\':.\<\'([^\']+) ]]; then
+    notify-send "  Power Profile:" "${BASH_REMATCH[1]}" \
+      -u low \
+      -h string:x-canonical-private-synchronous:profile-switch
   fi
 done

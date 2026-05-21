@@ -14,7 +14,7 @@ in
     systemd.enable = true;
   };
 
-  home.packages = [ pkgs.acpi ];
+  home.packages = [ pkgs.glib ];
 
   xdg.configFile."eww".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/apps/eww";
 
