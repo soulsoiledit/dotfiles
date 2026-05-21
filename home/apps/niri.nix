@@ -100,6 +100,10 @@ in
         Mod+Return { spawn "footclient"; }
         Mod+Space { spawn-sh "vicinae open"; }
 
+        // backup
+        Mod+Control+Shift+Return { spawn "foot"; }
+        Mod+Control+Shift+L allow-when-locked=true { spawn-sh "loginctl lock-session"; }
+
         Mod+B { spawn-sh "eww open bar --toggle"; }
         Mod+S { screenshot show-pointer=false; }
 
