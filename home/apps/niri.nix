@@ -2,13 +2,6 @@
 
 let
   volume = v: ''spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ ${v} -l 1.0"'';
-  profile-switch = pkgs.writers.writeDash "profile-switch" ''
-    if test "$(powerprofilesctl get)" = "balanced"; then
-      powerprofilesctl set power-saver
-    else
-      powerprofilesctl set balanced
-    fi
-  '';
 in
 {
   home.packages = [
@@ -136,9 +129,6 @@ in
         Mod+Shift+K { spawn-sh "makoctl dismiss --all"; }
         Mod+Ctrl+K { spawn-sh "makoctl invoke"; }
         Mod+Ctrl+Shift+K { spawn-sh "makoctl restore"; }
-
-        // profile
-        XF86Launch4 { spawn "${profile-switch}"; }
       }
 
       layer-rule {
