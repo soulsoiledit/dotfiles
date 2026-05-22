@@ -24,7 +24,12 @@
       nixosConfigurations = {
         zephyrus = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
-          modules = autoimport ./system ++ [ ./hosts/zephyrus ];
+          modules = builtins.concatLists (
+            map autoimport [
+              ./system
+              ./hosts/zephyrus
+            ]
+          );
         };
       };
 
