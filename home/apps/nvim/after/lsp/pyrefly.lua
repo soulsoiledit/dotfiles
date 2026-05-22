@@ -1,5 +1,5 @@
 return {
   settings = {
-    python = { pyrefly = { displayTypeErrors = "force-on" } },
-  },
+    python = { pyrefly = { typeCheckingMode = "strict" } }
+  }
 }
