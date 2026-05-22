@@ -5,26 +5,24 @@ return {
   root_dir = false,
   root_markers = {
     { "package-lock.json", "yarn.lock", "pnpm-lock.yaml", "bun.lockb", "bun.lock", "deno.lock" },
-    ".git",
+    ".git"
   },
-
-  before_init = function(_params, config)
+  before_init = function (_params, config)
     -- reset settings if biome.json or biome.jsonc found in current or parent directories
     if vim.fs.root(0, { { "biome.json", "biome.jsonc" } }) and config.settings then
       config.settings.biome = {}
     end
   end,
-
   settings = {
     biome = {
       inlineConfig = {
         formatter = {
           indentStyle = "space",
           indentWidth = 2,
-          lineWidth = 100,
+          lineWidth = 100
         },
-        html = { formatter = { enabled = true } },
-      },
-    },
-  },
+        html = { formatter = { enabled = true } }
+      }
+    }
+  }
 }

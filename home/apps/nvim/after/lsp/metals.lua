@@ -1,3 +1,2 @@
-return {
-  filetypes = { "scala", "java" },
-}
+---@type vim.lsp.Config
+return { filetypes = { "scala", "java" } }

@@ -1,4 +1,4 @@
-safely("event:UIEnter", function()
+safely("now", function ()
   local severity = vim.diagnostic.severity
   vim.diagnostic.config({
     severity_sort = true,
@@ -8,13 +8,13 @@ safely("event:UIEnter", function()
         [severity.ERROR] = "",
         [severity.WARN] = "",
         [severity.INFO] = "",
-        [severity.HINT] = "󰌵",
-      },
-    },
+        [severity.HINT] = "󰌵"
+      }
+    }
   })
 end)
 
-safely_if_args("now", "later", function()
+safely_if_args("now", "later", function ()
   vim.cmd.packadd("nvim-lspconfig")
 
   vim.lsp.log.set_level(vim.log.levels.OFF)
@@ -23,32 +23,26 @@ safely_if_args("now", "later", function()
   vim.lsp.enable({
     "nixd",
     "emmylua_ls",
-
     "rust_analyzer",
     "hls",
-
     "cssls",
     "vtsls",
     "biome",
     "efm",
-
     "pyrefly",
     "ruff",
-
     "bashls",
     "fish_lsp",
-
     "tinymist",
-
     "clangd",
     "metals",
-    "qmlls",
+    "qmlls"
   })
 end)
 
-safely_if_args("now", "later", function()
+safely_if_args("now", "later", function ()
   vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
+    callback = function (args)
       local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
       if client:supports_method("textDocument/inlayHint") then
@@ -58,12 +52,12 @@ safely_if_args("now", "later", function()
       vim.cmd.packadd("lsp-format.nvim")
       require("lsp-format").setup()
       require("lsp-format").on_attach(client, args.buf)
-    end,
+    end
   })
 end)
 
 vim.api.nvim_create_autocmd("LspProgress", {
-  callback = function(args)
+  callback = function (args)
     local value = args.data.params.value
     vim.api.nvim_echo({ { value.message or "done" } }, false, {
       id = "lsp." .. args.data.params.token,
@@ -71,7 +65,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
       source = "vim.lsp",
       title = value.title,
       status = value.kind ~= "end" and "running" or "success",
-      percent = value.percentage,
+      percent = value.percentage
     })
-  end,
+  end
 })

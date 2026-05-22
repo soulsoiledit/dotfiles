@@ -2,8 +2,6 @@
 return {
   init_options = { provideFormatter = false },
   settings = {
-    css = {
-      validate = false,
-    },
-  },
+    css = { validate = false }
+  }
 }
