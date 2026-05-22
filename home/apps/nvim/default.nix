@@ -85,7 +85,6 @@
       shfmt
 
       tinymist
-      typst
       typstyle
 
       clang-tools
