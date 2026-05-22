@@ -1,4 +1,4 @@
-safely("now", function()
+safely("now", function ()
   local snacks = require("snacks")
   snacks.setup({
     picker = {},
@@ -6,28 +6,20 @@ safely("now", function()
       theme = {
         activeBorderColor = { fg = "Title" },
         inactiveBorderColor = { fg = "Comment" },
-        searchingActiveBorderColor = { fg = "StatusLine" },
-      },
+        searchingActiveBorderColor = { fg = "StatusLine" }
+      }
     },
-
-    notifier = {},
-    indent = {
-      indent = { enabled = false },
-      scope = { hl = "Comment" },
-    },
-
     input = {},
     styles = {
       input = {
         relative = "cursor",
-        width = 32,
-      },
+        width = 32
+      }
     },
-
     dashboard = {
       sections = {
         { section = "header" },
-        { gap = 1, padding = 1, section = "keys" },
+        { gap = 1, padding = 1, section = "keys" }
       },
       preset = {
         header = [[
@@ -50,39 +42,38 @@ safely("now", function()
 ⠀⠀⠀⠀⠀⠀⠀⠀⠐⠓⢲⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡎⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠀⠀⠀⠀⠀⠀]],
-
         keys = {
           {
             icon = " ",
             key = "f",
             desc = "Find File",
-            action = function()
+            action = function ()
               snacks.picker.smart()
-            end,
+            end
           },
           {
             icon = " ",
             key = "s",
             desc = "Search Text",
-            action = function()
+            action = function ()
               snacks.picker.grep()
-            end,
+            end
           },
           {
             icon = " ",
             key = "n",
             desc = "New File",
-            action = ":ene | startinsert",
+            action = ":ene | startinsert"
           },
           {
             icon = " ",
             key = "q",
             desc = "Quit",
-            action = ":qa",
-          },
-        },
-      },
-    },
+            action = ":qa"
+          }
+        }
+      }
+    }
   })
 
   vim.api.nvim_set_hl(0, "SnacksNormal", { link = "Normal" })
