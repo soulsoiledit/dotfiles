@@ -95,7 +95,7 @@ safely("later", function ()
 
   -- keep diagnostic and mode components updated
   vim.api.nvim_create_autocmd({ "ModeChanged", "DiagnosticChanged" }, {
-    group = vim.api.nvim_create_augroup("TablineSync", {}),
+    group = vim.api.nvim_create_augroup("tabline.sync", {}),
     pattern = "*",
     callback = function ()
       vim.cmd.redrawtabline()

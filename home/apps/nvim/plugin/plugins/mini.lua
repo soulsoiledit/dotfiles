@@ -32,6 +32,7 @@ safely_if_args("now", "later", function ()
   local trailspace = require("mini.trailspace")
   trailspace.setup()
   vim.api.nvim_create_autocmd("BufWritePre", {
+    group = vim.api.nvim_create_augroup("trailspace.trim", {}),
     callback = function ()
       trailspace.trim()
       trailspace.trim_last_lines()

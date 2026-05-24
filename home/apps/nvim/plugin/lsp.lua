@@ -42,6 +42,7 @@ end)
 
 safely_if_args("now", "later", function ()
   vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("lsp.setup_features", {}),
     callback = function (args)
       local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
@@ -57,6 +58,7 @@ safely_if_args("now", "later", function ()
 end)
 
 vim.api.nvim_create_autocmd("LspProgress", {
+  group = vim.api.nvim_create_augroup("lsp.echo_progress", {}),
   callback = function (args)
     local value = args.data.params.value
     vim.api.nvim_echo({ { value.message or "done" } }, false, {
