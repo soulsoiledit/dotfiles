@@ -52,7 +52,6 @@
 
       # ui
       nvim-treesitter.withAllGrammars
-      bufferline-nvim
       nvim-colorizer-lua
       blink-pairs
       nvim-lightbulb
