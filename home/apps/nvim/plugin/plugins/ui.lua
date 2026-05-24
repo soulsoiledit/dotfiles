@@ -38,37 +38,72 @@ safely("later", function ()
 end)
 
 safely("later", function ()
-  vim.cmd.packadd("bufferline.nvim")
-  local bufferline = require("bufferline")
-  bufferline.setup({
-    options = {
-      tab_size = 4,
-      diagnostics = "nvim_lsp",
-      custom_areas = {
-        right = function ()
-          local mode = vim.api.nvim_get_mode()
-          return { { text = mode.mode } }
-        end
-      }
-    }
+  -- add modified sign to buffer
+  local tabline = require("mini.tabline")
+  tabline.setup({
+    format = function (buf_id, label)
+      local icon = require("mini.icons").get("file", vim.api.nvim_buf_get_name(buf_id)) or ""
+      local modified = vim.bo[buf_id].modified and "+" or ""
+      return string.format(" %s %s%s ", icon, label, modified)
+    end
   })
 
-  nmap("<tab>", function ()
-    bufferline.cycle(1)
-  end, "bnext"
-  )
-  nmap("<s-tab>", function ()
-    bufferline.cycle(-1)
-  end, "bprevious"
-  )
-  nmap("<c-tab>", function ()
-    bufferline.move(1)
-  end, "move buffer right"
-  )
-  nmap("<c-s-tab>", function ()
-    bufferline.move(-1)
-  end, "move buffer left"
-  )
+  local function mode()
+    local current_mode = vim.fn.mode()
+    local modemap = {
+      n = "MiniStatuslineModeInsert",
+      v = "MiniStatuslineModeReplace",
+      V = "MiniStatuslineModeReplace",
+      ["\22"] = "MiniStatuslineModeReplace",
+      i = "MiniStatuslineModeVisual",
+      R = "MiniStatuslineModeNormal",
+      c = "MiniStatuslineModeCommand"
+    }
+    local hl = modemap[current_mode] or "MiniStatuslineModeOther"
+    return string.format("%%#%s# %s ", hl, current_mode)
+  end
+
+  local function diagnostics()
+    local diags = vim.diagnostic.get(0)
+    if #diags == 0 then return "" end
+
+    local config = vim.diagnostic.config()
+
+    local counts = {}
+    for _, diag in ipairs(diags) do
+      counts[diag.severity] = (counts[diag.severity] or 0) + 1
+    end
+
+    local t = {}
+    for idx, count in pairs(counts) do
+      if config and config.signs and config.signs.text then
+        local sign = config.signs.text[idx] or ""
+        local hl = "Diagnostic" .. vim.diagnostic.severity[idx]
+        local hl_diag = string.format("%%#%s#%s %d%%*", hl, sign, count)
+        table.insert(t, hl_diag)
+      end
+    end
+
+    return table.concat(t, " ")
+  end
+
+  -- put it all together
+  STabline = function ()
+    local buffers = tabline.make_tabline_string()
+    return buffers .. "%=" .. diagnostics() .. " " .. mode()
+  end
+
+  -- keep diagnostic and mode components updated
+  vim.api.nvim_create_autocmd({ "ModeChanged", "DiagnosticChanged" }, {
+    group = vim.api.nvim_create_augroup("TablineSync", {}),
+    pattern = "*",
+    callback = function ()
+      vim.cmd.redrawtabline()
+    end
+  })
+
+  vim.opt.laststatus = 0
+  vim.opt.tabline = "%!v:lua.STabline()"
 end)
 
 safely("later", function ()

@@ -10,6 +10,10 @@ safely("now", function ()
   vim.api.nvim_set_hl(0, "Search", { bg = nix.palette.base0D, update = true })
   vim.api.nvim_set_hl(0, "CurSearch", { bg = nix.palette.base0F, update = true })
 
+  vim.api.nvim_set_hl(0, "MiniTablineModifiedCurrent", { link = "MiniTablineCurrent" })
+  vim.api.nvim_set_hl(0, "MiniTablineModifiedVisible", { link = "MiniTablineVisible" })
+  vim.api.nvim_set_hl(0, "MiniTablineModifiedHidden", { link = "MiniTablineHidden" })
+
   vim.api.nvim_set_hl(0, "markdownH1", { fg = nix.palette.base08 })
   vim.api.nvim_set_hl(0, "markdownH2", { fg = nix.palette.base09 })
   vim.api.nvim_set_hl(0, "markdownH3", { fg = nix.palette.base0A })
