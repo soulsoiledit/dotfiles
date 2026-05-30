@@ -57,10 +57,6 @@
     };
   };
 
-  virtualisation = {
-    libvirtd.enable = true;
-  };
-
   users.users.default.extraGroups = [ "vboxusers" ];
 
   systemd.services.keyboard-rgb-hibernate = {
