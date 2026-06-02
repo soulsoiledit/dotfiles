@@ -143,6 +143,7 @@ in
         output = {
           _args = [ "eDP-2" ];
           scale = 2;
+          variable-refresh-rate = { };
         };
       }
 
