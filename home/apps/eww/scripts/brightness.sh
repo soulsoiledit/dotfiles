@@ -15,6 +15,7 @@ udevadm monitor -u -s backlight | while read -r line; do
 
   notify-send "$symbol  $perc%" \
     -u low \
+    -t 1000 \
     -h int:value:"$perc" \
     -h string:x-canonical-private-synchronous:brightness-change
 done

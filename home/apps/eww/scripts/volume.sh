@@ -41,6 +41,7 @@ pw-mon -o | while read -r line; do
   if [[ -n $previous ]]; then
     notify-send "$symbol  $percentage%" \
       -u low \
+      -t 1000 \
       -h int:value:"$percentage" \
       -h string:x-canonical-private-synchronous:volume
   fi
