@@ -88,6 +88,12 @@
         on = "Z";
         run = "plugin fzf";
       }
+
+      {
+        on = "!";
+        run = ''shell "$SHELL" --block'';
+        desc = "open $SHELL here";
+      }
     ];
   };
 }
