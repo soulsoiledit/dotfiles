@@ -1,9 +1,13 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
 
+let
+  expand = lib.strings.stringToCharacters;
+in
 {
   programs.mpv.enable = true;
   programs.imv.enable = true;
@@ -30,50 +34,26 @@
     };
 
     keymap.mgr.prepend_keymap = [
-      # goto
       {
-        on = [
-          "g"
-          "n"
-        ];
+        on = expand "gn";
         run = "cd ${config.flake}";
         desc = "nix config";
       }
 
       {
-        on = [
-          "g"
-          "m"
-        ];
-        run = "cd $XDG_DATA_HOME/PrismLauncher/instances/";
-        desc = "minecraft";
-      }
-
-      {
-        on = [
-          "g"
-          "u"
-        ];
+        on = expand "gu";
         run = "cd /run/media/$USER";
         desc = "usb";
       }
 
-      # compress
       {
-        on = [
-          "c"
-          "a"
-        ];
+        on = expand "ca";
         run = "plugin ouch tar.zst";
         desc = "create archive";
       }
 
-      # drag & drop
       {
-        on = [
-          "c"
-          "o"
-        ];
+        on = expand "co";
         run = ''shell 'ripdrag -a -x "$@"' --block'';
         desc = "drag and drop";
       }
