@@ -57,6 +57,11 @@
     };
   };
 
+  services.logind.settings.Login = {
+    HandleLidSwitch = "sleep";
+    HandleSuspendKey = "sleep";
+  };
+
   users.users.default.extraGroups = [ "vboxusers" ];
 
   systemd.services.keyboard-rgb-hibernate = {
