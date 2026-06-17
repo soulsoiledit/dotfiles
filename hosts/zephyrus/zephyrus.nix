@@ -21,6 +21,7 @@
   ];
 
   hardware.graphics.enable32Bit = true;
+  boot.kernelParams = [ "amd_pstate=guided" ];
 
   programs.niri.enable = true;
   programs.niri.useNautilus = false;
