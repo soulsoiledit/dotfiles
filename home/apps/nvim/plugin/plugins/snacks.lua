@@ -9,13 +9,6 @@ safely("now", function ()
         searchingActiveBorderColor = { fg = "StatusLine" }
       }
     },
-    input = {},
-    styles = {
-      input = {
-        relative = "cursor",
-        width = 32
-      }
-    },
     dashboard = {
       sections = {
         { section = "header" },

@@ -39,6 +39,13 @@ safely_if_args("now", "later", function ()
     end
   })
 
+  local input = require("mini.input")
+  input.setup({
+    handlers = {
+      view = input.gen_view.floatwin({ style = "TL" })
+    }
+  })
+
   require("mini.diff").setup({
     view = { style = "sign" }
   })
