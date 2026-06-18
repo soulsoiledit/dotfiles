@@ -40,8 +40,8 @@ pw-mon -o | while read -r line; do
   # send notifications only after first iteration
   if [[ -n $previous ]]; then
     notify-send "$symbol  $percentage%" \
+      -c osd \
       -u low \
-      -t 1000 \
       -h int:value:"$percentage" \
       -h string:x-canonical-private-synchronous:volume
   fi
