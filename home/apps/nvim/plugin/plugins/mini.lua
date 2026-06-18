@@ -3,23 +3,21 @@ safely("now", function ()
     options = { extra_ui = true }
   })
 
-  require("mini.base16").setup({
-    palette = nix.palette
-  })
-
-  vim.api.nvim_set_hl(0, "Search", { bg = nix.palette.base0D, update = true })
-  vim.api.nvim_set_hl(0, "CurSearch", { bg = nix.palette.base0F, update = true })
+  vim.api.nvim_set_hl(0, "Search", { bg = theme.base0D, update = true })
+  vim.api.nvim_set_hl(0, "CurSearch", { bg = theme.base0F, update = true })
 
   vim.api.nvim_set_hl(0, "MiniTablineModifiedCurrent", { link = "MiniTablineCurrent" })
   vim.api.nvim_set_hl(0, "MiniTablineModifiedVisible", { link = "MiniTablineVisible" })
   vim.api.nvim_set_hl(0, "MiniTablineModifiedHidden", { link = "MiniTablineHidden" })
 
-  vim.api.nvim_set_hl(0, "markdownH1", { fg = nix.palette.base08 })
-  vim.api.nvim_set_hl(0, "markdownH2", { fg = nix.palette.base09 })
-  vim.api.nvim_set_hl(0, "markdownH3", { fg = nix.palette.base0A })
-  vim.api.nvim_set_hl(0, "markdownH4", { fg = nix.palette.base0B })
-  vim.api.nvim_set_hl(0, "markdownH5", { fg = nix.palette.base0C })
-  vim.api.nvim_set_hl(0, "markdownH6", { fg = nix.palette.base0D })
+  vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", { fg = theme.base0E, update = true })
+
+  vim.api.nvim_set_hl(0, "markdownH1", { fg = theme.base08 })
+  vim.api.nvim_set_hl(0, "markdownH2", { fg = theme.base09 })
+  vim.api.nvim_set_hl(0, "markdownH3", { fg = theme.base0A })
+  vim.api.nvim_set_hl(0, "markdownH4", { fg = theme.base0B })
+  vim.api.nvim_set_hl(0, "markdownH5", { fg = theme.base0C })
+  vim.api.nvim_set_hl(0, "markdownH6", { fg = theme.base0D })
 
   require("mini.icons").setup()
   safely("later", require("mini.icons").mock_nvim_web_devicons)

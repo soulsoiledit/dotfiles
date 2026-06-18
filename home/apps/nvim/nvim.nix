@@ -1,13 +1,6 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 {
-  stylix.targets.neovim.enable = false;
-
   home.sessionVariables.MANPAGER = "nvim +Man!";
 
   xdg.configFile."nvim".source = config.lib.file.mkOutOfStoreSymlink config.flake + "/home/apps/nvim";
@@ -26,11 +19,6 @@
           flake_dir = "${config.flake}",
           user = "${config.home.username}",
           dictionary = "${pkgs.scowl}/share/dict/wamerican.txt";
-          palette = {
-            ${lib.concatMapAttrsStringSep ",\n  " (
-              key: value: ''${key} = "${value}"''
-            ) config.stylix.base16Scheme}
-          }
         }
       '';
 

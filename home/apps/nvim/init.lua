@@ -1,6 +1,7 @@
 vim.loader.enable()
 
 nix = nix
+theme = require("mini.base16").config.palette
 
 misc = require("mini.misc")
 safely = misc.safely
