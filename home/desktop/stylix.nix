@@ -58,11 +58,6 @@
         serif.name = "serif";
         monospace.name = "monospace";
         emoji.name = "emoji";
-
-        sizes = {
-          applications = 10;
-          terminal = 12;
-        };
       };
 
       targets = {
