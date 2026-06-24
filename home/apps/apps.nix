@@ -11,6 +11,7 @@
     dua
     duf
     jaq
+    ouch
     trashy
 
     brightnessctl
