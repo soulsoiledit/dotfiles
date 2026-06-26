@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -55,6 +55,13 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+      stdlib = # bash
+        ''
+          direnv_layout_dir() {
+            pwd_hash="$(basename "$PWD")-$(echo -n "$PWD" | sha256sum | cut -d " " -f 1)"
+            echo "${config.xdg.cacheHome}/direnv/layouts/$pwd_hash"
+          }
+        '';
     };
   };
 
