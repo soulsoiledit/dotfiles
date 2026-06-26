@@ -7,6 +7,7 @@ in
   programs.vicinae = {
     enable = true;
     systemd.enable = true;
+    enableFirefoxIntegration = false;
   };
 
   xdg.configFile = {
