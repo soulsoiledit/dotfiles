@@ -68,7 +68,6 @@
       ruff
 
       bash-language-server
-      fish-lsp
       shfmt
 
       tinymist
