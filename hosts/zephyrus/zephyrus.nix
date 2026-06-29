@@ -39,6 +39,11 @@
     };
   };
 
+  services.logind.settings.Login = {
+    HandleLidSwitch = "sleep";
+    HandleSuspendKey = "sleep";
+  };
+
   # https://github.com/sammilucia/set-coall-timer
   # prevent apu freezes
   systemd = {
@@ -57,13 +62,6 @@
       wantedBy = [ "timers.target" ];
     };
   };
-
-  services.logind.settings.Login = {
-    HandleLidSwitch = "sleep";
-    HandleSuspendKey = "sleep";
-  };
-
-  users.users.default.extraGroups = [ "vboxusers" ];
 
   systemd.services.keyboard-rgb-hibernate = {
     description = "unload keybard driver on hibernate";
