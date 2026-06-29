@@ -138,6 +138,8 @@ in
       "Mod+Ctrl+Shift+K".spawn-sh = "makoctl restore";
     };
 
+    debug.force-disable-connectors-on-resume = true;
+
     _children = [
       {
         output = {
@@ -154,7 +156,10 @@ in
 
       {
         layer-rule = {
-          match._props.namespace = "wpaperd-.*";
+          match._props = {
+            layer = "background";
+            namespace = "quickshell";
+          };
           place-within-backdrop = true;
         };
       }
