@@ -13,7 +13,8 @@ QsIcon {
     icon.color: Theme.error
 
     QsToolTip {
-        visible: root.hovered
+        target: root
+        targetHovered: root.hovered
         text: `${root.percentage}%`
     }
 }

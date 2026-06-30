@@ -104,7 +104,7 @@ in
         spawn-sh = "loginctl lock-session";
       });
 
-      "Mod+B".spawn-sh = "eww open bar --toggle";
+      "Mod+B".spawn-sh = "qs ipc call bar toggle";
       "Mod+S".screenshot._props.show-pointer = false;
 
       # volume

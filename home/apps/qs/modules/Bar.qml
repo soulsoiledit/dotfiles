@@ -1,18 +1,45 @@
-import Quickshell
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
+
+import Quickshell
+import Quickshell.Io
 
 import qs.meta
 import qs.components
 
 Scope {
+    PersistentProperties {
+        id: persist
+        property bool barsVisible: true
+    }
+
+    IpcHandler {
+        target: "bar"
+
+        function show(): void {
+            persist.barsVisible = true;
+        }
+
+        function hide(): void {
+            persist.barsVisible = false;
+        }
+
+        function toggle(): void {
+            persist.barsVisible = !persist.barsVisible;
+        }
+    }
+
     Variants {
         model: Quickshell.screens
 
         PanelWindow { // qmllint disable uncreatable-type
-            id: root
+            id: bar
             required property var modelData
             screen: modelData
+
+            visible: persist.barsVisible
 
             anchors {
                 top: true
@@ -38,7 +65,7 @@ Scope {
                     Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
 
                     WorkspaceWidget {
-                        screen: root.screen
+                        screen: bar.screen
                     }
                 }
 
