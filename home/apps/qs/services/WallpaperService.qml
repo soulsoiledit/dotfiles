@@ -9,14 +9,22 @@ Singleton {
 
     readonly property string directory: Quickshell.env("HOME") + "/pictures/wallpapers/"
     readonly property string lockscreenPath: Quickshell.env("XDG_STATE_HOME") + "/lockscreen.jpg"
-    property string path
+    property alias path: persist.path
 
-    function next() {
+    PersistentProperties {
+        id: persist
+        property string path
+        onLoaded: persist.path === "" ? root.next() : 0
+    }
+
+    function next(): void {
         timer.restart();
+        shuffle.running = true;
     }
 
     IpcHandler {
         target: "wallpaper"
+
         function next(): void {
             root.next();
         }
@@ -27,7 +35,6 @@ Singleton {
         interval: 2 * 60 * 60 * 1000
         repeat: true
         running: true
-        triggeredOnStart: true
         onTriggered: shuffle.running = true
     }
 
@@ -37,7 +44,7 @@ Singleton {
         stdout: StdioCollector {
             onStreamFinished: {
                 const path = text.trim();
-                root.path = path;
+                persist.path = path;
                 Quickshell.execDetached(["vips", "gaussblur", path, root.lockscreenPath, "16"]);
             }
         }
