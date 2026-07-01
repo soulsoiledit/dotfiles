@@ -11,34 +11,33 @@ ColumnLayout {
     Repeater {
         model: SystemTray.items
 
-        MouseArea {
+        IconImage {
             id: trayItem
+
             required property SystemTrayItem modelData
 
             visible: modelData.status !== Status.Passive
-            width: icon.implicitSize
-            height: width
+            implicitSize: 24
+            source: modelData.icon
+            backer.fillMode: Image.PreserveAspectFit
+
             Layout.alignment: Qt.AlignHCenter
 
-            cursorShape: Qt.PointingHandCursor
-            acceptedButtons: Qt.AllButtons
-
-            IconImage {
-                id: icon
-                anchors.centerIn: parent
-                implicitSize: 24
-                source: trayItem.modelData.icon
-                backer.fillMode: Image.PreserveAspectFit
+            HoverHandler {
+                cursorShape: Qt.PointingHandCursor
             }
 
-            onClicked: mouse => {
-                switch (mouse.button) {
-                case Qt.MiddleButton:
-                    trayItem.modelData.activate();
-                    break;
-                default:
-                    menuAnchor.open();
-                    break;
+            TapHandler {
+                acceptedButtons: Qt.AllButtons
+                onTapped: (_, button) => {
+                    switch (button) {
+                    case Qt.MiddleButton:
+                        trayItem.modelData.activate();
+                        break;
+                    default:
+                        menuAnchor.open();
+                        break;
+                    }
                 }
             }
 
