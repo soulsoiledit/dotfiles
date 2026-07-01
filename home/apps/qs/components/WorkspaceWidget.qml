@@ -43,10 +43,6 @@ ColumnLayout {
             visible: modelData.name || active || occupied
             color: active || hover.hovered ? Theme.accent : occupied ? Theme.bg2 : Theme.bg1
 
-            HoverHandler {
-                id: hover
-            }
-
             Behavior on Layout.preferredHeight {
                 NumberAnimation {
                     duration: 100
@@ -59,6 +55,16 @@ ColumnLayout {
                     duration: 100
                     easing.type: Easing.InOutQuad
                 }
+            }
+
+            HoverHandler {
+                id: hover
+                cursorShape: Qt.PointingHandCursor
+            }
+
+            TapHandler {
+                acceptedButtons: Qt.LeftButton
+                onTapped: Quickshell.execDetached(["niri", "msg", "action", "focus-workspace", workspace.modelData.name])
             }
         }
     }
