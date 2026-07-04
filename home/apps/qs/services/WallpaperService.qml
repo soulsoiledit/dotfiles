@@ -40,7 +40,8 @@ Singleton {
 
     Process {
         id: shuffle
-        command: ["sh", "-c", `fd -t file .  ${root.directory} | shuf -n 1`]
+        workingDirectory: root.directory
+        command: ["fd", "-a", "-t", "file", "-X", "shuf", "-e", "-n", "1"]
         stdout: StdioCollector {
             onStreamFinished: {
                 const path = text.trim();
