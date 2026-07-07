@@ -20,8 +20,9 @@
     }
   ];
 
-  hardware.graphics.enable32Bit = true;
   boot.kernelParams = [ "amd_pstate=guided" ];
+  hardware.amdgpu.initrd.enable = true;
+  hardware.graphics.enable32Bit = true;
 
   programs.niri.enable = true;
   programs.niri.useNautilus = false;
