@@ -8,7 +8,6 @@ Singleton {
     id: root
 
     readonly property string directory: Quickshell.env("HOME") + "/pictures/wallpapers/"
-    readonly property string lockscreenPath: Quickshell.env("XDG_STATE_HOME") + "/lockscreen.jpg"
     property alias path: persist.path
 
     PersistentProperties {
@@ -43,11 +42,7 @@ Singleton {
         workingDirectory: root.directory
         command: ["fd", "-a", "-t", "file", "-X", "shuf", "-e", "-n", "1"]
         stdout: StdioCollector {
-            onStreamFinished: {
-                const path = text.trim();
-                persist.path = path;
-                Quickshell.execDetached(["vips", "gaussblur", path, root.lockscreenPath, "16"]);
-            }
+            onStreamFinished: persist.path = text.trim()
         }
     }
 }

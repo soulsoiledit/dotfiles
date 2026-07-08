@@ -15,4 +15,5 @@ ShellRoot {
 
     Wallpaper {}
     Bar {}
+    Lockscreen {}
 }
