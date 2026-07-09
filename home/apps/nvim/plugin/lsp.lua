@@ -35,7 +35,6 @@ safely_if_args("now", "later", function ()
     "fish_lsp",
     "tinymist",
     "clangd",
-    "metals",
     "qmlls"
   })
 end)

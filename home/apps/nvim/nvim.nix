@@ -74,7 +74,6 @@
       typstyle
 
       clang-tools
-      metals
       kdePackages.qtdeclarative
     ];
   };
