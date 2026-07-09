@@ -1,5 +1,6 @@
 import QtQuick
 
+import Quickshell
 import Quickshell.Services.UPower
 
 import qs.components.shared
@@ -60,9 +61,18 @@ QsIcon {
         }
     }
 
+    PowerProfileWidget {
+        id: power
+        anchor.item: root
+        anchor.edges: Edges.Bottom | Edges.Right
+        anchor.gravity: Edges.Top | Edges.Right
+    }
+
+    onClicked: power.visible = !power.visible
+
     QsToolTip {
         target: root
-        targetHovered: root.hovered
+        targetHovered: root.hovered && !power.visible
 
         text: {
             const percentage = Math.round(root.percentage * 100, 2);
