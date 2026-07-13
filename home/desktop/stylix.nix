@@ -91,5 +91,7 @@
         };
       };
     };
+
+    home.pointerCursor.enable = true;
   };
 }
