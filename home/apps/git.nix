@@ -2,6 +2,7 @@
   programs = {
     git = {
       enable = true;
+
       settings = {
         user.name = "soiledit";
         user.email = "no.sleep410@passinbox.com";
@@ -9,6 +10,7 @@
       };
 
       # signing = null;
+      lfs.enable = true;
     };
 
     delta = {
