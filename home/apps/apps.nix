@@ -40,6 +40,10 @@
 
     btop = {
       enable = true;
+      package = pkgs.btop.override {
+        cudaSupport = true;
+        rocmSupport = true;
+      };
       settings = {
         proc_tree = true;
         proc_gradient = false;
