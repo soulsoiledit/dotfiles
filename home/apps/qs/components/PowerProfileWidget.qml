@@ -83,7 +83,7 @@ PopupWindow {
                         width: 48
                         height: width
                         radius: width
-                        color: iconHovered.hovered ? Theme.base03 : name === currentProfile ? Theme.base02 : "transparent"
+                        color: tooltip.hovered ? Theme.base03 : name === currentProfile ? Theme.base02 : "transparent"
 
                         IconImage {
                             anchors.fill: parent
@@ -91,13 +91,8 @@ PopupWindow {
                             source: Quickshell.iconPath(`battery-profile-${profileIcon.name}`)
                         }
 
-                        HoverHandler {
-                            id: iconHovered
-                        }
-
                         QsToolTip {
-                            target: profileIcon
-                            targetHovered: iconHovered.hovered
+                            id: tooltip
                             text: profileIcon.name
                         }
 

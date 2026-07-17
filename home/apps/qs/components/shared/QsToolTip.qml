@@ -1,41 +1,48 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 
 import Quickshell
 
 import qs.meta
 
-PopupWindow {
+HoverHandler {
     id: root
 
-    required property Item target
-    required property bool targetHovered
     required property string text
     readonly property int padding: 10
 
-    visible: targetHovered
+    property LazyLoader popup: LazyLoader {
+        activeAsync: root.hovered
 
-    anchor.item: target
-    anchor.rect.x: target.width / 2
-    anchor.rect.y: target.height
+        PopupWindow {
+            id: popup
+            visible: true
 
-    implicitWidth: text.width + root.padding * 2
-    implicitHeight: text.height + root.padding * 2
+            anchor.item: root.target
+            anchor.rect.x: root.target.width / 2
+            anchor.rect.y: root.target.height
 
-    color: "transparent"
+            implicitWidth: tooltipText.width + root.padding * 2
+            implicitHeight: tooltipText.height + root.padding * 2
 
-    Rectangle {
-        id: back
-        anchors.fill: parent
-        color: Qt.alpha(Theme.bg0, 0.9)
-        border.color: Qt.alpha(Theme.bg2, 0.9)
-        radius: 4
+            color: "transparent"
 
-        QsText {
-            id: text
-            anchors.centerIn: parent
-            font.pointSize: 10
-            color: Theme.fg0
-            text: root.text
+            Rectangle {
+                id: back
+                anchors.fill: parent
+                color: Qt.alpha(Theme.bg0, 0.9)
+                border.color: Qt.alpha(Theme.bg2, 0.9)
+                radius: 4
+
+                QsText {
+                    id: tooltipText
+                    anchors.centerIn: parent
+                    font.pointSize: 10
+                    color: Theme.fg0
+                    text: root.text
+                }
+            }
         }
     }
 }

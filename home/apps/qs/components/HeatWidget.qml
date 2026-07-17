@@ -13,8 +13,6 @@ QsIcon {
     icon.color: Theme.error
 
     QsToolTip {
-        target: root
-        targetHovered: root.hovered
         text: `${root.temperature} ℃`
     }
 }

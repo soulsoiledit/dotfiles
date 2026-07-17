@@ -71,9 +71,6 @@ QsIcon {
     onClicked: power.visible = !power.visible
 
     QsToolTip {
-        target: root
-        targetHovered: root.hovered && !power.visible
-
         text: {
             const percentage = Math.round(root.percentage * 100, 2);
 

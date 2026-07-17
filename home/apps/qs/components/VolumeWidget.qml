@@ -12,8 +12,6 @@ QsIcon {
     icon.color: Theme.fg0
 
     QsToolTip {
-        target: root
-        targetHovered: root.hovered
         text: `${root.pipewire.name}: ${root.pipewire.percentage}%`
     }
 }
