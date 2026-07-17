@@ -102,7 +102,6 @@ safely("later", function ()
     end
   })
 
-  vim.opt.laststatus = 0
   vim.opt.tabline = "%!v:lua.STabline()"
 end)
 
