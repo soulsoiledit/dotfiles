@@ -39,8 +39,8 @@ Singleton {
         path: `${root.backlightPath}/brightness`
         watchChanges: true
         blockLoading: true
-        onFileChanged: this.reload()
+        onFileChanged: reload()
 
-        readonly property int value: parseInt(this.text(), 10)
+        readonly property int value: parseInt(text(), 10)
     }
 }
