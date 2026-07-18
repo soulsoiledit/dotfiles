@@ -61,15 +61,6 @@ QsIcon {
         }
     }
 
-    PowerProfileWidget {
-        id: power
-        anchor.item: root
-        anchor.edges: Edges.Bottom | Edges.Right
-        anchor.gravity: Edges.Top | Edges.Right
-    }
-
-    onClicked: power.visible = !power.visible
-
     QsToolTip {
         text: {
             const percentage = Math.round(root.percentage * 100, 2);
@@ -83,5 +74,15 @@ QsIcon {
 
             return `${percentage}% (${timeLeftFormatted} at ${rateFormatted} W)`;
         }
+    }
+
+    onClicked: popup.visible = !popup.visible
+    QsPopup {
+        id: popup
+        anchor.item: root
+        anchor.edges: Edges.Bottom | Edges.Right
+        anchor.gravity: Edges.Top | Edges.Right
+
+        PowerProfileWidget {}
     }
 }
