@@ -1,3 +1,7 @@
+import QtQuick
+
+import Quickshell
+
 import qs.components.shared
 import qs.meta
 import qs.services
@@ -13,5 +17,15 @@ QsIcon {
 
     QsToolTip {
         text: `${root.pipewire.name}: ${root.pipewire.percentage}%`
+    }
+
+    onClicked: popup.visible = !popup.visible
+    QsPopup {
+        id: popup
+        anchor.item: root
+        anchor.edges: Edges.Bottom | Edges.Right
+        anchor.gravity: Edges.Top | Edges.Right
+
+        PipewireWidget {}
     }
 }
