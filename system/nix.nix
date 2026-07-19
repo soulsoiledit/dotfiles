@@ -1,20 +1,15 @@
 {
-  nix = {
-    settings = {
-      use-xdg-base-directories = true;
-      warn-dirty = false;
-      experimental-features = [
-        "flakes"
-        "nix-command"
-      ];
-    };
+  nix.settings = {
+    use-xdg-base-directories = true;
+    warn-dirty = false;
+    experimental-features = [
+      "flakes"
+      "nix-command"
+    ];
+  };
 
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-
-    optimise.automatic = true;
+  programs.nh.clean = {
+    enable = true;
+    extraArgs = "--keep-since 1week --keep-one --optimise";
   };
 }
