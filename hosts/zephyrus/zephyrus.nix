@@ -26,7 +26,6 @@
 
   programs.niri.enable = true;
   programs.niri.useNautilus = false;
-  security.pam.services.gtklock = { };
 
   services = {
     upower.enable = true;
