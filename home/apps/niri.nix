@@ -189,13 +189,16 @@ in
       {
         window-rule = {
           match._props = {
-            app-id = "steam";
-            title = "^notificationtoasts_\\\\d+_desktop$";
+            app-id = "firefox";
+            title = "Picture-in-Picture";
           };
+          open-floating = true;
+          default-column-width.proportion = 0.3;
+          default-window-height.proportion = 0.3;
           default-floating-position._props = {
+            relative-to = "bottom-right";
             x = 8;
             y = 8;
-            relative-to = "bottom-right";
           };
         };
       }
