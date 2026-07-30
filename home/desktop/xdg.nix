@@ -20,6 +20,7 @@ in
     GRADLE_USER_HOME = "${dataHome}/gradle";
 
     NPM_CONFIG_USERCONFIG = "${configHome}/npm/npmrc";
+    PYTHON_HISTORY = "${stateHome}/python_history";
   };
 
   home.pointerCursor.dotIcons.enable = false;
