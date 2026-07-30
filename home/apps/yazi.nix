@@ -31,6 +31,14 @@ in
     settings = {
       mgr.sort_by = "natural";
       preview.wrap = "yes";
+      opener.edit = [
+        {
+          run = "direnv exec . \${EDITOR:-vi} %s";
+          desc = "$EDITOR";
+          for = "unix";
+          block = true;
+        }
+      ];
     };
 
     keymap.mgr.prepend_keymap = [
