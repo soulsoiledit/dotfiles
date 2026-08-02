@@ -5,7 +5,7 @@
     enable = true;
     interactiveShellInit = "set fish_greeting";
     shellAbbrs = {
-      s = "sudo";
+      s = "run0";
       e = config.home.sessionVariables.EDITOR;
       f = config.programs.yazi.shellWrapperName;
       g = "lazygit";
