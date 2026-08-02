@@ -32,7 +32,7 @@ safely("later", function ()
   ui2.msg.set_pos = function (tgt)
     set_pos(tgt)
     pcall(vim.api.nvim_win_set_config, ui2.wins.msg, {
-      width = math.max(25, vim.o.columns - 85)
+      width = math.floor(vim.o.columns * 3 / 10)
     })
   end
 end)
