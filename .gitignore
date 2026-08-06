@@ -1,11 +1,24 @@
-# Ignore build outputs from performing a nix-build or `nix build` command
-result
-result-*
+*
+!.gitignore
 
-# Ignore automatically generated direnv output
-.direnv
+!flake.nix
+!flake.lock
 
-# Ignore NixOS interactive test driver history
-**/.nixos-test-history
+# nixos config
+!system/
+!system/**/
+!system/**/*.nix
 
-.qmlls.ini
+# per-host config
+!hosts/
+!hosts/**/
+!hosts/**/*.nix
+
+# home-manager config
+!home/
+!home/**/
+!home/**/*.nix
+# linked neovim
+!home/**/nvim/**/*.lua
+# linked quickshell
+!home/**/qs/**/*.qml
