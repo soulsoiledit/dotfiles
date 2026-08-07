@@ -13,9 +13,9 @@
       lfs.enable = true;
     };
 
-    delta = {
+    difftastic = {
       enable = true;
-      enableGitIntegration = true;
+      git.enable = true;
     };
 
     lazygit.enable = true;
