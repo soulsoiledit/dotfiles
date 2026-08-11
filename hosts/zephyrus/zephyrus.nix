@@ -31,17 +31,17 @@
     upower.enable = true;
     power-profiles-daemon.enable = true;
 
+    # value found by experimenting
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl2", ATTR{max_brightness}="64532"
+    '';
+
     kanata = {
       enable = true;
       keyboards.default.devices = [
         "/dev/input/by-id/usb-ASUSTeK_Computer_Inc._N-KEY_Device-if02-event-kbd"
       ];
     };
-  };
-
-  services.logind.settings.Login = {
-    HandleLidSwitch = "sleep";
-    HandleSuspendKey = "sleep";
   };
 
   # https://github.com/sammilucia/set-coall-timer
@@ -63,7 +63,7 @@
     };
   };
 
-  systemd.services.keyboard-rgb-hibernate = {
+  systemd.services.keyboard-brightness-hibernate = {
     description = "unload keybard driver on hibernate";
     before = [ "sleep.target" ];
     wantedBy = [ "sleep.target" ];
@@ -81,5 +81,10 @@
         ExecStop = "${modprobe} hid_asus";
         ExecStopPost = "${brightnessctl-kbd} -r";
       };
+  };
+
+  services.logind.settings.Login = {
+    HandleLidSwitch = "sleep";
+    HandleSuspendKey = "sleep";
   };
 }
