@@ -87,7 +87,7 @@ Singleton {
     readonly property string micState: toState(micVolume, micMuted)
 
     function notify() {
-        Qt.callLater(Quickshell.execDetached, ["notify-send", `${percentage}%`, "--icon", `audio-volume-${state}`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:volume-change"]);
+        Qt.callLater(Quickshell.execDetached, ["notify-send", `${percentage}%`, "--icon", `audio-volume-${state}-panel`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:volume-change"]);
     }
 
     function notifyMic() {
