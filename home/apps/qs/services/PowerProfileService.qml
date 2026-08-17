@@ -19,9 +19,13 @@ Singleton {
         }
     }
 
-    Component.onCompleted: profileChanged.connect(notify)
-
     function notify() {
-        Qt.callLater(Quickshell.execDetached, ["notify-send", "Power Profile", profile, "--icon", `battery-profile-${profile}`, "-c", "osd", "-u", "low", "-h", "string:x-canonical-private-synchronous:profile-switch"]);
+        Quickshell.execDetached(["notify-send", "Power Profile", profile, "--icon", `battery-profile-${profile}`, "-c", "osd", "-u", "low", "-h", "string:x-canonical-private-synchronous:profile-switch"]);
     }
+
+    function scheduleNotify() {
+        Qt.callLater(notify);
+    }
+
+    Component.onCompleted: profileChanged.connect(scheduleNotify)
 }

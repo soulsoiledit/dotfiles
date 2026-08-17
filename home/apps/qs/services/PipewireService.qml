@@ -86,19 +86,27 @@ Singleton {
     readonly property int micPercentage: toPercentage(micVolume)
     readonly property string micState: toState(micVolume, micMuted)
 
-    function notify() {
-        Qt.callLater(Quickshell.execDetached, ["notify-send", `${percentage}%`, "--icon", `audio-volume-${state}-panel`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:volume-change"]);
+    function notifyVolume() {
+        Quickshell.execDetached(["notify-send", `${percentage}%`, "--icon", `audio-volume-${state}-panel`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:volume-change"]);
     }
 
-    function notifyMic() {
-        Qt.callLater(Quickshell.execDetached, ["notify-send", `${micPercentage}%`, "--icon", `mic-volume-${micState}`, "-c", "osd", "-u", "low", "-h", `int:value:${micPercentage}`, "-h", "string:x-canonical-private-synchronous:mic-volume-change"]);
+    function notifyMicVolume() {
+        Quickshell.execDetached(["notify-send", `${micPercentage}%`, "--icon", `mic-volume-${micState}`, "-c", "osd", "-u", "low", "-h", `int:value:${micPercentage}`, "-h", "string:x-canonical-private-synchronous:mic-volume-change"]);
+    }
+
+    function scheduleNotifyVolume() {
+        Qt.callLater(notifyVolume);
+    }
+
+    function scheduleNotifyMicVolume() {
+        Qt.callLater(notifyMicVolume);
     }
 
     Component.onCompleted: {
-        percentageChanged.connect(notify);
-        mutedChanged.connect(notify);
+        percentageChanged.connect(scheduleNotifyVolume);
+        mutedChanged.connect(scheduleNotifyVolume);
 
-        micPercentageChanged.connect(notifyMic);
-        micMutedChanged.connect(notifyMic);
+        micPercentageChanged.connect(scheduleNotifyMicVolume);
+        micMutedChanged.connect(scheduleNotifyMicVolume);
     }
 }

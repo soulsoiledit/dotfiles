@@ -19,10 +19,14 @@ Singleton {
     readonly property string icon: icons[Math.floor(root.percentage * icons.length / 101)]
 
     function notify() {
-        Qt.callLater(Quickshell.execDetached, ["notify-send", `${icon} ${percentage}`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:brightness-change"]);
+        Quickshell.execDetached(["notify-send", `${icon} ${percentage}`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:brightness-change"]);
     }
 
-    Component.onCompleted: percentageChanged.connect(notify)
+    function scheduleNotify() {
+        Qt.callLater(notify);
+    }
+
+    Component.onCompleted: percentageChanged.connect(scheduleNotify)
 
     FileView {
         id: maxBacklight
