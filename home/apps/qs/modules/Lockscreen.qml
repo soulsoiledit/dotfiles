@@ -58,8 +58,6 @@ Scope {
                         shadowEnabled: true
                         shadowBlur: 0.5
                     }
-
-                    Component.onCompleted: console.debug(TimeService.longTime)
                 }
 
                 QsText {
@@ -75,8 +73,6 @@ Scope {
                         shadowEnabled: true
                         shadowBlur: 0.5
                     }
-
-                    Component.onCompleted: console.debug(TimeService.longDate, TimeService.datetime)
                 }
 
                 Rectangle {
