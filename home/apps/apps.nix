@@ -35,8 +35,8 @@
     fd.enable = true;
     ripgrep.enable = true;
     television.enable = true;
-    zoxide.enable = true;
     zellij.enable = true;
+    zoxide.enable = true;
 
     btop = {
       enable = true;
@@ -51,11 +51,6 @@
       };
     };
 
-    eza = {
-      enable = true;
-      icons = "auto";
-    };
-
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -66,6 +61,25 @@
             echo "${config.xdg.cacheHome}/direnv/layouts/$pwd_hash"
           }
         '';
+    };
+
+    eza = {
+      enable = true;
+      icons = "auto";
+    };
+
+    less = {
+      enable = true;
+      options = {
+        ignore-case = true;
+        RAW-CONTROL-CHARS = true;
+        quit-if-one-screen = true;
+        quit-on-intr = true;
+
+        LONG-PROMPT = true;
+        window = 4;
+        tabs = 4;
+      };
     };
   };
 
