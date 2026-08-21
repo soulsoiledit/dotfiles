@@ -69,6 +69,8 @@ ColumnLayout {
 
             value: nodeRow.node?.audio?.volume ?? null
             onValueChanged: nodeRow.node.audio.volume = value
+
+            sliderColor: nodeRow.node?.audio.muted ? Theme.base03 : Theme.accent
             snap: 5
         }
 
@@ -84,7 +86,7 @@ ColumnLayout {
         QsIcon {
             size: 16
             name: nodeRow.node?.audio?.muted ? "audio-volume-muted" : "audio-volume-high"
-            icon.color: Theme.fg0
+            icon.color: nodeRow.node?.audio.muted ? Theme.base03 : Theme.base05
 
             TapHandler {
                 onTapped: nodeRow.node.audio.muted = !nodeRow.node.audio.muted

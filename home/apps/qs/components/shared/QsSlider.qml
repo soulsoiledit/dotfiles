@@ -6,6 +6,7 @@ Rectangle {
     id: root
 
     required property double value
+    required property color sliderColor
 
     required property int snap
     readonly property int snapMult: 100 / snap
@@ -29,7 +30,7 @@ Rectangle {
         width: root.width * root.value
         height: root.height
 
-        color: Theme.accent
+        color: root.sliderColor
         topLeftRadius: height
         bottomLeftRadius: topLeftRadius
     }
@@ -43,7 +44,7 @@ Rectangle {
         width: height
         x: root.width * root.value - width / 2
 
-        color: Theme.accent
+        color: root.sliderColor
         radius: height
     }
 
