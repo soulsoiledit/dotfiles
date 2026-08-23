@@ -19,7 +19,6 @@
     playerctl
     wl-clipboard
 
-    libreoffice-fresh
     kdePackages.kdenlive
     losslesscut-bin
   ];
