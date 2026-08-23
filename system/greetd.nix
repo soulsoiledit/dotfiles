@@ -29,9 +29,5 @@
           mode = "characters";
           characters = "*";
         };
-
-        session.sessions_dirs = [
-          "${config.services.displayManager.sessionData.desktops}/share/wayland-sessions"
-        ];
       };
 }
