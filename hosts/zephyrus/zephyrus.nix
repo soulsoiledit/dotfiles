@@ -32,11 +32,6 @@
     power-profiles-daemon.enable = true;
     asusd.enable = true;
 
-    # value found by experimenting
-    udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl2", ATTR{max_brightness}="64532"
-    '';
-
     kanata = {
       enable = true;
       keyboards.default.devices = [

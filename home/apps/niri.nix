@@ -117,12 +117,8 @@ in
         "Mod+Equal".spawn-sh = "playerctl next";
 
         # brightness
-        XF86MonBrightnessUp = allowWhenLocked {
-          spawn-sh = "[[ $(brightnessctl g) -lt 52428 ]] && brightnessctl set 20%+ || brightnessctl set 64532";
-        };
-        XF86MonBrightnessDown = allowWhenLocked {
-          spawn-sh = "[[ $(brightnessctl g) -le 52428 ]] && brightnessctl set 20%- || brightnessctl set 80%";
-        };
+        XF86MonBrightnessUp = allowWhenLocked { spawn-sh = "brightnessctl set 20%+"; };
+        XF86MonBrightnessDown = allowWhenLocked { spawn-sh = "brightnessctl set 20%-"; };
 
         # keyboard
         XF86KbdBrightnessUp = allowWhenLocked { spawn-sh = "brightnessctl -d *kbd* set 1+"; };
