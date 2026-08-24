@@ -30,6 +30,7 @@
   services = {
     upower.enable = true;
     power-profiles-daemon.enable = true;
+    asusd.enable = true;
 
     # value found by experimenting
     udev.extraRules = ''
