@@ -16,6 +16,7 @@
     libnotify
     playerctl
     wl-clipboard
+    (config.services.network-manager-applet.package)
 
     kdePackages.kdenlive
     losslesscut-bin
