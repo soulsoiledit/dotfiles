@@ -15,6 +15,9 @@ Singleton {
     readonly property var appPrototype: ({
             matchesQuery: function (query: string): double {
                 return query.length === 0 || this.searchKey.includes(query) || this.searchInitials.includes(query);
+            },
+            matchesWindow: function (window: var): bool {
+                return window.appId === this.entry.startupClass || window.appId === this.entry.name || window.appId === this.entry.id;
             }
         })
 

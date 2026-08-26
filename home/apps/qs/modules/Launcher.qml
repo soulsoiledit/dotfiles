@@ -46,7 +46,12 @@ Scope {
 
         function activateApp(app: var) {
             DesktopEntryService.usage.record(app.entry.id);
-            execute(app.entry);
+            const window = ToplevelManager.toplevels.values.filter(w => app.matchesWindow(w))[0];
+            if (window === undefined) {
+                execute(app.entry);
+            } else {
+                window.activate();
+            }
             hide();
         }
 
