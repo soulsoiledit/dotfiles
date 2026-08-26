@@ -31,7 +31,6 @@
     bat.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
-    ripgrep.enable = true;
     television.enable = true;
     zellij.enable = true;
     zoxide.enable = true;
@@ -78,6 +77,11 @@
         window = 4;
         tabs = 4;
       };
+    };
+
+    ripgrep = {
+      enable = true;
+      arguments = [ "--smart-case" ];
     };
   };
 
