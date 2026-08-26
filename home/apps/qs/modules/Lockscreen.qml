@@ -135,7 +135,10 @@ Scope {
                             icon.color: passwordInput.showPassword ? Theme.fg0 : Theme.base04
 
                             TapHandler {
-                                onTapped: passwordInput.showPassword = !passwordInput.showPassword
+                                onTapped: {
+                                    passwordInput.showPassword = !passwordInput.showPassword;
+                                    inputText.focus = true;
+                                }
                             }
                         }
                     }
