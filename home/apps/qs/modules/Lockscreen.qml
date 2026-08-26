@@ -17,7 +17,6 @@ Scope {
     id: root
 
     property string currentText: ""
-    property bool showPassword: false
     property bool falseLocked: false
 
     WlSessionLock {
@@ -78,6 +77,8 @@ Scope {
                 Rectangle {
                     id: passwordInput
 
+                    property bool showPassword: false
+
                     implicitWidth: lockSurface.width / 4 + 24
                     implicitHeight: inputText.height * 2
                     color: Qt.alpha(Theme.bg0, 0.5)
@@ -101,7 +102,7 @@ Scope {
                             font.family: "sans-serif"
 
                             focus: true
-                            echoMode: root.showPassword ? TextInput.Normal : TextInput.Password
+                            echoMode: passwordInput.showPassword ? TextInput.Normal : TextInput.Password
                             clip: true
 
                             readOnly: pam.active
@@ -117,6 +118,7 @@ Scope {
 
                                 pam.start();
                             }
+
                             Connections {
                                 target: root
                                 function onCurrentTextChanged() {
@@ -128,12 +130,12 @@ Scope {
                         QsIcon {
                             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
 
-                            name: `password-show-${root.showPassword ? "on" : "off"}`
+                            name: `password-show-${passwordInput.showPassword ? "on" : "off"}`
                             size: inputText.font.pointSize * 2.5
-                            icon.color: root.showPassword ? Theme.fg0 : Theme.base04
+                            icon.color: passwordInput.showPassword ? Theme.fg0 : Theme.base04
 
                             TapHandler {
-                                onTapped: root.showPassword = !root.showPassword
+                                onTapped: passwordInput.showPassword = !passwordInput.showPassword
                             }
                         }
                     }
