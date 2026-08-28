@@ -43,7 +43,7 @@ QsIcon {
             return Theme.fg0;
         case UPowerDeviceState.Charging:
         case UPowerDeviceState.PendingCharge:
-            return index == 10 ? Theme.fg0 : Theme.ok;
+            return Theme.ok;
         case UPowerDeviceState.Discharging:
         case UPowerDeviceState.PendingDischarge:
             if (index <= 1) {
