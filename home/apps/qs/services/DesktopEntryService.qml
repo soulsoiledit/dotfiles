@@ -26,7 +26,7 @@ Singleton {
 
         app.entry = entry;
 
-        app.searchKey = [entry.name, entry.genericName, entry.id, entry.execString, entry.keywords.join(" "), entry.categories.join(" ")].join(" ").toLowerCase();
+        app.searchKey = [entry.name, entry.genericName, entry.id, entry.execString, entry.keywords.join(" ")].join(" ").toLowerCase();
 
         let initialsSource = `${entry.name} ${entry.genericName}`.toLowerCase();
         app.searchInitials = initialsSource.split(/[-_\s]+/).map(c => c[0]).join("");
