@@ -1,5 +1,8 @@
+let
+  addKeywords = (name: value: value // { settings.Keywords = "power;logout"; });
+in
 {
-  xdg.desktopEntries = {
+  xdg.desktopEntries = builtins.mapAttrs addKeywords {
     lock = {
       name = "Lock";
       exec = "loginctl lock-session";
