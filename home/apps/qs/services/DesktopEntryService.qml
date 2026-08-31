@@ -8,8 +8,7 @@ import Quickshell.Io
 Singleton {
     id: root
 
-    readonly property string directory: Quickshell.env("XDG_CACHE_HOME") + "/quickshell/launcher"
-    readonly property string path: directory + "/usage.json"
+    readonly property string path: Quickshell.stateDir + "/launcher.json"
     readonly property alias usage: usage
 
     readonly property var appPrototype: ({
@@ -25,7 +24,6 @@ Singleton {
         let app = Object.create(appPrototype);
 
         app.entry = entry;
-
         app.searchKey = [entry.name, entry.genericName, entry.id, entry.execString, entry.keywords.join(" ")].join(" ").toLowerCase();
 
         let initialsSource = `${entry.name} ${entry.genericName}`.toLowerCase();
@@ -39,10 +37,9 @@ Singleton {
     FileView {
         id: file
         path: root.path
-        blockLoading: true
-
         watchChanges: true
         onFileChanged: reload()
+        onAdapterUpdated: writeAdapter()
 
         // qmllint disable unresolved-type
         adapter: JsonAdapter {
@@ -50,25 +47,8 @@ Singleton {
             property var data: ({})
 
             function record(id: string) {
-                let newData = Object.assign({}, usage.data ?? {});
-                newData[id] = Date.now();
-                usage.data = newData;
-                file.writeAdapter();
-            }
-        }
-
-        onLoadFailed: handleFileViewError(error)
-        onSaveFailed: handleFileViewError(error)
-
-        function handleFileViewError(error) {
-            switch (error) {
-            case FileViewError.FileNotFound:
-                Quickshell.execDetached(["mkdir", "-p", root.directory]);
-                writeAdapter();
-                return;
-            default:
-                console.warn("sorry, i'm not handling any other errors");
-                return;
+                usage.data[id] = Date.now();
+                dataChanged();
             }
         }
     }
