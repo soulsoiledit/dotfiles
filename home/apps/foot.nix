@@ -9,8 +9,6 @@
         pad = "10x10";
       };
 
-      scrollback.lines = 4096;
-
       mouse.hide-when-typing = true;
 
       url = {
