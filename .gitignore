@@ -1,7 +1,7 @@
 *
 !.gitignore
 !README.md
-!UNLICENSE
+!LICENSE
 
 !flake.nix
 !flake.lock
