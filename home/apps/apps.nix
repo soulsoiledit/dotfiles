@@ -31,6 +31,7 @@
     bat.enable = true;
     fastfetch.enable = true;
     fd.enable = true;
+    numbat.enable = true;
     television.enable = true;
     zellij.enable = true;
     zoxide.enable = true;
