@@ -20,6 +20,24 @@
     }
   ];
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      linux-firmware =
+        prev.lib.warnIf (prev.lib.compareVersions prev.linux-firmware.version "20260910" == 1)
+          "a newer linux-firmware is now in nixos-unstable, check whether we can remove the override"
+          prev.linux-firmware.overrideAttrs
+          (old: {
+            version = "main";
+            src = prev.fetchFromGitLab {
+              owner = "kernel-firmware";
+              repo = "linux-firmware";
+              rev = "f15c84dc2d8fb73b3bc459efeece58dcdc27e53a";
+              hash = "sha256-XAEgGj4o+ROt4Eg7QQgfrZ+hT8yPj3fG+WJbAfEFlxw=";
+            };
+          });
+    })
+  ];
+
   boot.kernelParams = [ "amd_pstate=guided" ];
   hardware.amdgpu.initrd.enable = true;
   hardware.graphics.enable32Bit = true;
