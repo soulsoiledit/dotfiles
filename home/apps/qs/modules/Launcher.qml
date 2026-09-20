@@ -6,215 +6,259 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
-import Quickshell.Widgets
 
-import qs.meta
+import qs.components
 import qs.components.shared
+import qs.meta
 import qs.services
 
+// TODO: add clipboard history management
+// TODO: add debouncing on inputs
+// TODO: add smart-case
 Scope {
+    id: root
+
     IpcHandler {
         target: "launcher"
-
         function toggle() {
-            root.visible = !root.visible;
+            ClipboardService.syncClipboard();
+            launcherLoader.activeAsync = !launcherLoader.activeAsync;
         }
     }
 
-    PanelWindow { // qmllint disable uncreatable-type
-        id: root
+    enum Modes {
+        Apps = 0,
+        Clipboard = 1
+    }
 
-        color: "transparent"
+    LazyLoader {
+        id: launcherLoader
+        PanelWindow { // qmllint disable uncreatable-type
+            id: launcher
 
-        WlrLayershell.layer: WlrLayer.Top
-        WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+            property int mode: Launcher.Modes.Apps
 
-        implicitWidth: root.screen.width / 2
-        implicitHeight: root.screen.height / 2
+            WlrLayershell.layer: WlrLayer.Top
+            WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-        focusable: true
+            implicitWidth: launcher.screen.width / 2
+            implicitHeight: launcher.screen.height / 2
 
-        Component.onCompleted: root.visible = false
+            focusable: true
+            color: "transparent"
 
-        onVisibleChanged: {
-            if (visible) {
-                grid.currentIndex = 0;
-            } else {
-                grid.currentIndex = -1;
+            Shortcut {
+                sequences: ["Escape"]
+                onActivated: launcherLoader.activeAsync = false
             }
-        }
 
-        function activateApp(app: var) {
-            DesktopEntryService.usage.record(app.entry.id);
-            const window = ToplevelManager.toplevels.values.filter(w => app.matchesWindow(w))[0];
-            if (window === undefined) {
-                execute(app.entry);
-            } else {
-                window.activate();
+            Shortcut {
+                sequences: ["Up"]
+                onActivated: viewLoader.item.previous()
             }
-            hide();
-        }
 
-        function execute(entry: var) {
-            if (entry.runInTerminal) {
-                Quickshell.execDetached({
-                    command: ["footclient", entry.command],
-                    workingDirectory: entry.workingDirectory
-                });
-            } else {
-                entry.execute();
+            Shortcut {
+                sequences: ["Down"]
+                onActivated: viewLoader.item.next()
             }
-        }
 
-        function hide() {
-            root.visible = false;
-            grid.currentIndex = 0;
-            searchInput.clear();
-        }
-
-        Shortcut {
-            sequences: ["Escape"]
-            onActivated: root.hide()
-        }
-
-        Shortcut {
-            sequences: ["Up"]
-            onActivated: grid.currentIndex = Math.max(0, grid.currentIndex - 1)
-        }
-
-        Shortcut {
-            sequences: ["Down"]
-            onActivated: grid.currentIndex = Math.min(grid.currentIndex + 1, grid.count - 1)
-        }
-
-        Rectangle {
-            id: container
-            color: Theme.bg1
-
-            anchors.fill: parent
-            radius: 32
-
-            ColumnLayout {
-                id: layout
+            Rectangle {
+                id: background
                 anchors.fill: parent
-                anchors.margins: 24
-                spacing: 16
+                color: Theme.base00
+                radius: 32
 
-                Rectangle {
-                    id: searchBar
-                    color: Theme.base02
-                    Layout.fillWidth: true
-                    implicitHeight: 40
-                    radius: 32
+                ColumnLayout {
+                    anchors.fill: parent
+                    anchors.margins: 24
+                    spacing: 16
 
-                    TextInput {
-                        id: searchInput
-
-                        readonly property string textClean: text.trim().toLowerCase()
-
-                        anchors.fill: searchBar
-                        anchors.leftMargin: 16
-                        anchors.rightMargin: 16
-
-                        horizontalAlignment: TextInput.AlignHCenter
-                        verticalAlignment: TextInput.AlignVCenter
-
-                        focus: true
-                        clip: true
-                        autoScroll: true
-
-                        font.pointSize: 14
-
-                        color: Theme.base05
-
-                        onAccepted: {
-                            root.activateApp(grid.model.values[grid.currentIndex]);
-                        }
-
-                        onTextChanged: Qt.callLater(() => grid.currentIndex = 0)
-                    }
-                }
-
-                GridView {
-                    id: grid
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    focus: false
-
-                    cellWidth: width / 6
-                    cellHeight: cellWidth
-
-                    highlightMoveDuration: 50
-                    clip: true
-
-                    model: ScriptModel {
-                        objectProp: "id"
-                        values: DesktopEntryService.applications.filter(entry => entry.matchesQuery(searchInput.textClean))
-                    }
-
-                    highlight: Rectangle {
-                        id: itemHighlight
-                        color: Theme.base03
-
-                        width: grid.cellWidth
-                        height: grid.cellHeight
+                    Rectangle {
+                        id: searchBar
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: searchInput.contentHeight * 1.5
+                        color: Theme.base01
                         radius: 32
+
+                        RowLayout {
+                            anchors.fill: parent
+                            anchors.centerIn: parent
+
+                            QsIcon {
+                                id: modeIcon
+                                visible: launcher.mode !== Launcher.Modes.Apps
+                                Layout.leftMargin: 16
+                                size: parent.height * 0.65
+                                name: "clipboard-symbolic"
+                                icon.color: Theme.base05
+                            }
+
+                            TextInput {
+                                id: searchInput
+
+                                readonly property string textClean: text.trim().toLowerCase()
+
+                                Layout.fillWidth: true
+                                Layout.fillHeight: true
+                                Layout.leftMargin: 16
+                                Layout.rightMargin: 16
+
+                                horizontalAlignment: TextInput.AlignHCenter
+                                verticalAlignment: TextInput.AlignVCenter
+
+                                focus: true
+                                clip: true
+                                autoScroll: true
+
+                                font.pointSize: 14
+                                color: Theme.base05
+
+                                onAccepted: {
+                                    viewLoader.item.activateSelected();
+                                    launcherLoader.activeAsync = false;
+                                }
+
+                                Keys.onTabPressed: event => {
+                                    if (text.startsWith("clip")) {
+                                        clear();
+                                        launcher.mode = Launcher.Modes.Clipboard;
+                                        event.accepted = true;
+                                    }
+                                }
+
+                                Keys.onBacktabPressed: event => {
+                                    if (launcher.mode !== Launcher.Modes.Apps) {
+                                        clear();
+                                        launcher.mode = Launcher.Modes.Apps;
+                                        event.accepted = true;
+                                    }
+                                }
+
+                                Keys.onPressed: event => {
+                                    if (event.key === Qt.Key_Backspace) {
+                                        if (searchInput.text === "" && launcher.mode !== Launcher.Modes.Apps) {
+                                            launcher.mode = Launcher.Modes.Apps;
+                                            event.accepted = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
 
-                    delegate: ColumnLayout {
-                        id: app
+                    Loader {
+                        id: viewLoader
+                        Layout.fillWidth: true
+                        Layout.fillHeight: true
 
-                        required property var modelData
-                        required property int index
-
-                        readonly property var entry: modelData.entry
-                        readonly property string name: entry.name
-                        readonly property var icon: entry.icon
-
-                        width: grid.cellWidth
-                        height: grid.cellHeight
-
-                        TapHandler {
-                            gesturePolicy: TapHandler.ReleaseWithinBounds
-                            onTapped: root.activateApp(app.entry)
-                        }
-
-                        HoverHandler {
-                            id: appHover
-                            onHoveredChanged: if (hovered && (appHover.point.velocity.x !== 0.0 || appHover.point.velocity.y !== 0.0)) {
-                                grid.currentIndex = app.index;
+                        sourceComponent: {
+                            if (launcher.mode === Launcher.Modes.Apps) {
+                                return appGridComponent;
+                            } else {
+                                return clipListComponent;
                             }
                         }
 
-                        IconImage {
-                            id: appIcon
-                            Layout.topMargin: 8
-                            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+                        signal itemActivated
+                        onItemActivated: launcherLoader.activeAsync = false
 
-                            source: Quickshell.iconPath(app.icon)
-                            implicitSize: Math.floor(Math.min(app.width, app.height) * 0.5)
-                            asynchronous: true
+                        Component {
+                            id: appGridComponent
+                            GridSelect {
+                                id: appGrid
+                                focus: false
+                                cellWidth: width / 6
+                                model: ScriptModel {
+                                    objectProp: "id"
+                                    values: DesktopEntryService.applications.filter(entry => entry.matchesQuery(searchInput.textClean))
+                                    onValuesChanged: appGrid.currentIndex = 0
+                                }
+
+                                getText: modelData => modelData.entry.name
+                                getIcon: modelData => modelData.entry.icon
+                                onItemActivated: modelData => {
+                                    DesktopEntryService.open(modelData);
+                                    viewLoader.itemActivated();
+                                }
+                            }
                         }
 
-                        QsText {
-                            id: appName
-                            Layout.fillWidth: true
-                            Layout.preferredWidth: 0
-                            Layout.alignment: Qt.AlignHCenter | Qt.AlignBottom
-                            Layout.bottomMargin: 8
-                            Layout.leftMargin: 16
-                            Layout.rightMargin: Layout.leftMargin
+                        Component {
+                            id: clipListComponent
+                            ListSelectPreview {
+                                id: clipList
 
-                            text: app.name
-                            wrapMode: Text.WordWrap
-                            font.pointSize: 10
-                            horizontalAlignment: TextInput.AlignHCenter
-                            elide: Text.ElideRight
-                            maximumLineCount: 2
+                                model: ScriptModel {
+                                    objectProp: "id"
+                                    values: ClipboardService.clipboard.filter(item => item.key.includes(searchInput.textClean))
+                                    onValuesChanged: clipList.currentIndex = 0
+                                }
 
-                            QsToolTip {
-                                id: tooltip
-                                text: appName.text
+                                listWidth: parent.width / 3
+                                getListText: modelData => modelData?.preview ?? ""
+                                onCurrentDataChanged: currentData?.decode()
+                                onItemActivated: modelData => {
+                                    modelData.copy();
+                                    viewLoader.itemActivated();
+                                }
+
+                                previewDelegate: Loader {
+                                    id: previewLoader
+
+                                    sourceComponent: {
+                                        if (clipList.currentItem === null) {
+                                            return noPreview;
+                                        }
+
+                                        if (clipList.currentData?.isImage) {
+                                            return imagePreview;
+                                        } else {
+                                            return textPreview;
+                                        }
+                                    }
+
+                                    Component {
+                                        id: noPreview
+                                        QsText {
+                                            verticalAlignment: Text.AlignVCenter
+                                            horizontalAlignment: Text.AlignHCenter
+                                            font.pointSize: 16
+                                            text: "No item selected"
+                                        }
+                                    }
+
+                                    Component {
+                                        id: imagePreview
+                                        Image {
+                                            anchors.fill: parent
+                                            anchors.centerIn: parent
+                                            anchors.margins: 16
+                                            asynchronous: true
+                                            fillMode: Image.PreserveAspectFit
+                                            source: ClipboardService.decoded
+                                        }
+                                    }
+
+                                    Component {
+                                        id: textPreview
+                                        Flickable {
+                                            anchors.fill: parent
+                                            anchors.margins: 16
+                                            contentWidth: textPreviewText.width
+                                            contentHeight: textPreviewText.height
+
+                                            QsText {
+                                                id: textPreviewText
+                                                width: parent.width - 16
+                                                wrapMode: Text.Wrap
+                                                font.family: "monospace"
+                                                font.pointSize: 10
+                                                textFormat: Text.PlainText
+                                                text: ClipboardService.decoded
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

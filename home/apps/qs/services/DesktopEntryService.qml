@@ -4,6 +4,7 @@ import QtQuick
 
 import Quickshell
 import Quickshell.Io
+import Quickshell.Wayland
 
 Singleton {
     id: root
@@ -20,11 +21,34 @@ Singleton {
             }
         })
 
+    function open(app: var) {
+        DesktopEntryService.usage.record(app.entry.id);
+        const window = ToplevelManager.toplevels.values.filter(w => app.matchesWindow(w))[0];
+        if (window === undefined) {
+            launch(app.entry);
+        } else {
+            window.activate();
+        }
+    }
+
+    function launch(entry: var) {
+        if (entry.runInTerminal) {
+            Quickshell.execDetached({
+                command: ["footclient", entry.command],
+                workingDirectory: entry.workingDirectory
+            });
+        } else {
+            entry.execute();
+        }
+    }
+
     readonly property var applications: [...DesktopEntries.applications.values].map(entry => {
         let app = Object.create(appPrototype);
 
         app.entry = entry;
-        app.searchKey = [entry.name, entry.genericName, entry.id, entry.execString, entry.keywords.join(" ")].join(" ").toLowerCase();
+
+        app.keywords = entry.keywords.join(" ");
+        app.searchKey = [entry.name, entry.genericName, entry.id, app.keywords].join(" ").toLowerCase();
 
         let initialsSource = `${entry.name} ${entry.genericName}`.toLowerCase();
         app.searchInitials = initialsSource.split(/[-_\s]+/).map(c => c[0]).join("");
@@ -45,7 +69,6 @@ Singleton {
         adapter: JsonAdapter {
             id: usage
             property var data: ({})
-
             function record(id: string) {
                 usage.data[id] = Date.now();
                 dataChanged();

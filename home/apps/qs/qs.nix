@@ -19,4 +19,10 @@
     events.lock = "${lib.getExe config.programs.quickshell.package} ipc call lockscreen lock";
     events.before-sleep = "${lib.getExe' pkgs.systemd "loginctl"} lock-session";
   };
+
+  services.cliphist.enable = true;
+  xdg.configFile."cliphist/config".text = ''
+    max-items 2048
+    max-store-size 10MB
+  '';
 }

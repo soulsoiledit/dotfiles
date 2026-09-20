@@ -89,8 +89,7 @@ in
 
         # programs
         "Mod+Return" = noRepeat { spawn = "footclient"; };
-        "Mod+Space".spawn-sh = "vicinae open";
-        "Mod+o".spawn-sh = "qs ipc call launcher toggle";
+        "Mod+Space".spawn-sh = "qs ipc call launcher toggle";
 
         # backup
         "Mod+Ctrl+Shift+Return" = noRepeat { spawn = "foot"; };
