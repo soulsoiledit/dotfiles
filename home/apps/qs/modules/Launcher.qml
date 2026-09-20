@@ -14,7 +14,6 @@ import qs.services
 
 // TODO: add clipboard history management
 // TODO: add debouncing on inputs
-// TODO: add smart-case
 Scope {
     id: root
 
@@ -96,8 +95,6 @@ Scope {
                             TextInput {
                                 id: searchInput
 
-                                readonly property string textClean: text.trim().toLowerCase()
-
                                 Layout.fillWidth: true
                                 Layout.fillHeight: true
                                 Layout.leftMargin: 16
@@ -116,6 +113,20 @@ Scope {
                                 onAccepted: {
                                     viewLoader.item.activateSelected();
                                     launcherLoader.activeAsync = false;
+                                }
+
+                                function matches(itemKeys: list<string>): bool {
+                                    if (!text) {
+                                        return true;
+                                    }
+
+                                    const caseSensitive = /[A-Z]/.test(text);
+                                    return itemKeys.some(key => {
+                                        if (!key) {
+                                            return false;
+                                        }
+                                        return caseSensitive ? key.includes(text) : key.toLowerCase().includes(text);
+                                    });
                                 }
 
                                 Keys.onTabPressed: event => {
@@ -170,7 +181,7 @@ Scope {
                                 cellWidth: width / 6
                                 model: ScriptModel {
                                     objectProp: "id"
-                                    values: DesktopEntryService.applications.filter(entry => entry.matchesQuery(searchInput.textClean))
+                                    values: DesktopEntryService.applications.filter(entry => searchInput.matches(entry.keys))
                                     onValuesChanged: appGrid.currentIndex = 0
                                 }
 
@@ -190,7 +201,7 @@ Scope {
 
                                 model: ScriptModel {
                                     objectProp: "id"
-                                    values: ClipboardService.clipboard.filter(item => item.key.includes(searchInput.textClean))
+                                    values: ClipboardService.clipboard.filter(item => searchInput.matches(item.keys))
                                     onValuesChanged: clipList.currentIndex = 0
                                 }
 

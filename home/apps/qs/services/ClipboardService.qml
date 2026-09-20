@@ -59,7 +59,7 @@ Singleton {
                     item.id = id ?? -1;
                     item.preview = preview ?? "";
                     item.isImage = isImage ?? false;
-                    item.key = item.preview?.toLowerCase() ?? "";
+                    item.keys = [item.preview ?? ""];
 
                     newClipboardData.push(item);
                 }

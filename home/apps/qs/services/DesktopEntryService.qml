@@ -13,9 +13,6 @@ Singleton {
     readonly property alias usage: usage
 
     readonly property var appPrototype: ({
-            matchesQuery: function (query: string): double {
-                return query.length === 0 || this.searchKey.includes(query) || this.searchInitials.includes(query);
-            },
             matchesWindow: function (window: var): bool {
                 return window.appId === this.entry.startupClass || window.appId === this.entry.name || window.appId === this.entry.id;
             }
@@ -44,15 +41,15 @@ Singleton {
 
     readonly property var applications: [...DesktopEntries.applications.values].map(entry => {
         let app = Object.create(appPrototype);
-
         app.entry = entry;
 
-        app.keywords = entry.keywords.join(" ");
-        app.searchKey = [entry.name, entry.genericName, entry.id, app.keywords].join(" ").toLowerCase();
+        const joinedKeywords = entry.keywords.join(" ");
+        let wordKey = [entry.name, entry.genericName, entry.id, joinedKeywords].join(" ");
 
         let initialsSource = `${entry.name} ${entry.genericName}`.toLowerCase();
-        app.searchInitials = initialsSource.split(/[-_\s]+/).map(c => c[0]).join("");
+        let initialKey = initialsSource.split(/[-_\s]+/).map(c => c[0]).join("");
 
+        app.keys = [wordKey, initialKey];
         app.score = usage.data[entry.id] ?? 0;
 
         return app;
