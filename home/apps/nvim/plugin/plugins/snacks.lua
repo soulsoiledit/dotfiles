@@ -2,13 +2,6 @@ safely("now", function ()
   local snacks = require("snacks")
   snacks.setup({
     picker = {},
-    lazygit = {
-      theme = {
-        activeBorderColor = { fg = "Title" },
-        inactiveBorderColor = { fg = "Comment" },
-        searchingActiveBorderColor = { fg = "StatusLine" }
-      }
-    },
     dashboard = {
       sections = {
         { section = "header" },
@@ -73,7 +66,6 @@ safely("now", function ()
   vim.api.nvim_set_hl(0, "SnacksPicker", { link = "Normal" })
   vim.api.nvim_set_hl(0, "SnacksPickerBorder", { link = "Comment" })
 
-  nmap("<leader>g", snacks.lazygit.open, "git")
   nmap("<leader>f", snacks.picker.smart, "files")
   nmap("<leader>s", snacks.picker.grep, "search")
   nmap("<leader>r", snacks.picker.commands, "commands")

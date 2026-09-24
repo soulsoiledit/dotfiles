@@ -1,4 +1,4 @@
-nmap = function (lhs, rhs, desc)
+function nmap(lhs, rhs, desc)
   vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
 
@@ -12,3 +12,4 @@ nmap("<tab>", vim.cmd.bnext)
 nmap("<s-tab>", vim.cmd.bprev)
 nmap("gd", "<c-]>", "definition")
 nmap("gD", vim.lsp.buf.declaration, "declaration")
+nmap("<leader>g", function () floating_term("lazygit") end, "git")
