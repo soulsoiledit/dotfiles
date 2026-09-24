@@ -26,4 +26,5 @@ ShellRoot {
     Bar {}
     Lockscreen {}
     Launcher {}
+    Notifications {}
 }

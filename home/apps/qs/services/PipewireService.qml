@@ -5,6 +5,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Pipewire
 
+import qs.services
+
 Singleton {
     id: root
 
@@ -86,12 +88,12 @@ Singleton {
     readonly property int micPercentage: toPercentage(micVolume)
     readonly property string micState: toState(micVolume, micMuted)
 
-    function notifyVolume() {
-        Quickshell.execDetached(["notify-send", `${percentage}%`, "--icon", `audio-volume-${state}-panel`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:volume-change"]);
+    function notifyVolume(): void {
+        NotificationService.notifyOsd("volume-change", [`${percentage}%`, "--icon", `audio-volume-${state}-panel`, "-h", `int:value:${percentage}`]);
     }
 
-    function notifyMicVolume() {
-        Quickshell.execDetached(["notify-send", `${micPercentage}%`, "--icon", `mic-volume-${micState}`, "-c", "osd", "-u", "low", "-h", `int:value:${micPercentage}`, "-h", "string:x-canonical-private-synchronous:mic-volume-change"]);
+    function notifyMicVolume(): void {
+        NotificationService.notifyOsd("mic-volume-change", [`${micPercentage}%`, "--icon", `mic-volume-${micState}`, "-h", `int:value:${micPercentage}`]);
     }
 
     function scheduleNotifyVolume() {

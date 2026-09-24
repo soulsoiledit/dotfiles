@@ -125,10 +125,10 @@ in
         XF86KbdBrightnessDown = allowWhenLocked { spawn-sh = "brightnessctl -d *kbd* set 1-"; };
 
         # notifications
-        "Mod+K".spawn-sh = "makoctl dismiss";
-        "Mod+Shift+K".spawn-sh = "makoctl dismiss --all";
-        "Mod+Ctrl+K".spawn-sh = "makoctl invoke";
-        "Mod+Ctrl+Shift+K".spawn-sh = "makoctl restore";
+        "Mod+K".spawn-sh = "qs ipc call notify dismiss";
+        "Mod+Shift+K".spawn-sh = "qs ipc call notify dismissAll";
+        "Mod+Ctrl+K".spawn-sh = "qs ipc call notify invoke";
+        "Mod+Ctrl+Shift+K".spawn-sh = "qs ipc call notify restore";
       };
 
       debug.force-disable-connectors-on-resume = true;

@@ -5,6 +5,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 
+import qs.services
+
 Singleton {
     id: root
 
@@ -18,8 +20,8 @@ Singleton {
     readonly property list<string> icons: ['󰽤', '', '', '', '', '󰃠']
     readonly property string icon: icons[Math.floor(root.percentage * icons.length / 101)]
 
-    function notify() {
-        Quickshell.execDetached(["notify-send", `${icon} ${percentage}`, "-c", "osd", "-u", "low", "-h", `int:value:${percentage}`, "-h", "string:x-canonical-private-synchronous:brightness-change"]);
+    function notify(): void {
+        NotificationService.notifyOsd("brightness-change", [`${icon} ${percentage}`, "-h", `int:value:${percentage}`]);
     }
 
     function scheduleNotify() {

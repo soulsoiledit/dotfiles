@@ -5,6 +5,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.UPower
 
+import qs.services
+
 Singleton {
     id: root
 
@@ -19,8 +21,8 @@ Singleton {
         }
     }
 
-    function notify() {
-        Quickshell.execDetached(["notify-send", "Power Profile", profile, "--icon", `battery-profile-${profile}`, "-c", "osd", "-u", "low", "-h", "string:x-canonical-private-synchronous:profile-switch"]);
+    function notify(): void {
+        NotificationService.notifyOsd("profile-switch", ["Power Profile", profile, "--icon", `battery-profile-${profile}`]);
     }
 
     function scheduleNotify() {
