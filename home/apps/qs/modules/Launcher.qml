@@ -188,7 +188,7 @@ Scope {
                                 getText: modelData => modelData.entry.name
                                 getIcon: modelData => modelData.entry.icon
                                 onItemActivated: modelData => {
-                                    DesktopEntryService.open(modelData);
+                                    modelData.open();
                                     viewLoader.itemActivated();
                                 }
                             }

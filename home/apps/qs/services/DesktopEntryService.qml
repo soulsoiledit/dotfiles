@@ -10,34 +10,38 @@ Singleton {
     id: root
 
     readonly property string path: Quickshell.stateDir + "/launcher.json"
-    readonly property alias usage: usage
 
     readonly property var appPrototype: ({
             matchesWindow: function (window: var): bool {
-                return window.appId === this.entry.startupClass || window.appId === this.entry.name || window.appId === this.entry.id;
+                switch (window.appId) {
+                case this.entry.startupClass:
+                case this.entry.name:
+                case this.entry.id:
+                    return true;
+                default:
+                    return false;
+                }
+            },
+            open: function (): void {
+                usage.record(this.entry.id);
+
+                const window = ToplevelManager.toplevels.values.find(w => this.matchesWindow(w));
+                if (window !== undefined) {
+                    window.activate();
+                    return;
+                }
+
+                if (this.entry.runInTerminal) {
+                    Quickshell.execDetached({
+                        command: ["footclient", ...this.entry.command],
+                        workingDirectory: this.entry.workingDirectory
+                    });
+                    return;
+                }
+
+                this.entry.execute();
             }
         })
-
-    function open(app: var) {
-        DesktopEntryService.usage.record(app.entry.id);
-        const window = ToplevelManager.toplevels.values.filter(w => app.matchesWindow(w))[0];
-        if (window === undefined) {
-            launch(app.entry);
-        } else {
-            window.activate();
-        }
-    }
-
-    function launch(entry: var) {
-        if (entry.runInTerminal) {
-            Quickshell.execDetached({
-                command: ["footclient", ...entry.command],
-                workingDirectory: entry.workingDirectory
-            });
-        } else {
-            entry.execute();
-        }
-    }
 
     readonly property var applications: [...DesktopEntries.applications.values].map(entry => {
         let app = Object.create(appPrototype);
