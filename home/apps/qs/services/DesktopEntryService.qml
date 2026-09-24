@@ -31,7 +31,7 @@ Singleton {
     function launch(entry: var) {
         if (entry.runInTerminal) {
             Quickshell.execDetached({
-                command: ["footclient", entry.command],
+                command: ["footclient", ...entry.command],
                 workingDirectory: entry.workingDirectory
             });
         } else {

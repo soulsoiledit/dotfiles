@@ -40,8 +40,8 @@ Scope {
             WlrLayershell.layer: WlrLayer.Top
             WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
-            implicitWidth: launcher.screen.width / 2
-            implicitHeight: launcher.screen.height / 2
+            implicitWidth: screen.width / 2
+            implicitHeight: screen.height / 2
 
             focusable: true
             color: "transparent"
