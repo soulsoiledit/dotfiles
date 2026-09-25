@@ -38,7 +38,7 @@ Scope {
             property int mode: Launcher.Modes.Apps
 
             WlrLayershell.layer: WlrLayer.Top
-            WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
+            WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
 
             implicitWidth: screen.width / 2
             implicitHeight: screen.height / 2
