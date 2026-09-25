@@ -11,6 +11,7 @@ let
   noRepeat = a: recursiveUpdate a { _props.repeat = false; };
 
   volume = v: "wpctl set-volume @DEFAULT_AUDIO_SINK@ -l 1.0 ${v}";
+  micVolume = v: "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ -l 1.0 ${v}";
 in
 {
   wayland.windowManager.niri = {
@@ -103,8 +104,10 @@ in
         # volume
         XF86AudioRaiseVolume = allowWhenLocked { spawn-sh = volume "5%+"; };
         XF86AudioLowerVolume = allowWhenLocked { spawn-sh = volume "5%-"; };
-
         XF86AudioMute = allowWhenLocked { spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; };
+
+        "Alt+XF86AudioRaiseVolume" = allowWhenLocked { spawn-sh = micVolume "10%+"; };
+        "Alt+XF86AudioLowerVolume" = allowWhenLocked { spawn-sh = micVolume "10%-"; };
         XF86AudioMicMute = allowWhenLocked { spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; };
 
         # media
