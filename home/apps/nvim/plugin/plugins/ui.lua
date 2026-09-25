@@ -150,12 +150,7 @@ safely("later", function ()
   require("which-key").setup({
     win = { height = { min = 5, max = 10 } },
     spec = {
-      { "gr", group = "refactor" },
-      { "gra", desc = "code action" },
-      { "gri", desc = "implementation" },
-      { "grn", desc = "rename" },
-      { "grr", desc = "reference" },
-      { "grt", desc = "type definition" }
+      { "gr", group = "refactor" }
     }
   })
 end)

@@ -43,6 +43,13 @@ safely_if_args("now", "later", function ()
   vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("lsp.setup_features", {}),
     callback = function (args)
+      update_desc("n", "gra", "code action")
+      update_desc("n", "gri", "implementation")
+      update_desc("n", "grn", "rename")
+      update_desc("n", "grr", "reference")
+      update_desc("n", "grt", "type definition")
+      update_desc("n", "grx", "run codelens")
+
       local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
       if client:supports_method("textDocument/inlayHint") then

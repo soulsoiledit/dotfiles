@@ -1,3 +1,9 @@
+function update_desc(mode, lhs, desc)
+  local map_data = vim.fn.maparg(lhs, mode, false, true)
+  map_data.desc = desc
+  vim.fn.mapset(mode, false, map_data)
+end
+
 function nmap(lhs, rhs, desc)
   vim.keymap.set("n", lhs, rhs, { desc = desc })
 end
