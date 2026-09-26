@@ -146,7 +146,8 @@ end)
 
 safely("later", function ()
   require("which-key").setup({
-    win = { height = { min = 5, max = 10 } },
+    win = { no_overlap = false },
+    layout = { width = math.floor(vim.o.columns / 4 - 3) },
     spec = {
       { "gr", group = "refactor" }
     }
