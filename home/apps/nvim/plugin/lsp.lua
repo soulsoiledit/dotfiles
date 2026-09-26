@@ -15,8 +15,6 @@ safely("now", function ()
 end)
 
 safely_if_args("now", "later", function ()
-  vim.cmd.packadd("nvim-lspconfig")
-
   vim.lsp.log.set_level(vim.log.levels.OFF)
   vim.lsp.log.set_format_func(vim.inspect)
 
@@ -56,7 +54,6 @@ safely_if_args("now", "later", function ()
         vim.lsp.inlay_hint.enable(true)
       end
 
-      vim.cmd.packadd("lsp-format.nvim")
       require("lsp-format").setup()
       require("lsp-format").on_attach(client, args.buf)
     end

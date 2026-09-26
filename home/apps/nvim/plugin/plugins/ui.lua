@@ -5,7 +5,6 @@ safely("now", function ()
 end)
 
 safely_if_args("now", "later", function ()
-  vim.cmd.packadd("nvim-treesitter")
   vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("treesitter.setup", {}),
     callback = function (event)
@@ -146,7 +145,6 @@ safely_if_args("now", "later", function ()
 end)
 
 safely("later", function ()
-  vim.cmd.packadd("which-key.nvim")
   require("which-key").setup({
     win = { height = { min = 5, max = 10 } },
     spec = {

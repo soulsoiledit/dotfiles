@@ -1,8 +1,4 @@
 safely("event:InsertEnter,CmdlineEnter", function ()
-  vim.cmd.packadd("blink.cmp")
-  vim.cmd.packadd("blink-ripgrep.nvim")
-  vim.cmd.packadd("friendly-snippets")
-
   require("blink.cmp").setup({
     keymap = {
       preset = "enter",
