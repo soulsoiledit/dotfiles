@@ -12,7 +12,7 @@ vim.o.wrap = true
 vim.o.scrolloff = 4
 vim.o.sidescrolloff = 8
 
-vim.opt.laststatus = 0
+vim.o.laststatus = 0
 
 -- use indentation for folding
 vim.o.foldmethod = "indent"

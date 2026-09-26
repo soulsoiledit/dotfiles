@@ -10,6 +10,11 @@ safely("now", function ()
   vim.api.nvim_set_hl(0, "MiniTablineModifiedVisible", { link = "MiniTablineVisible" })
   vim.api.nvim_set_hl(0, "MiniTablineModifiedHidden", { link = "MiniTablineHidden" })
 
+  vim.api.nvim_set_hl(0, "MiniStatuslineModeNormal", { bg = theme.base0D, update = true })
+  vim.api.nvim_set_hl(0, "MiniStatuslineModeInsert", { bg = theme.base0B, update = true })
+  vim.api.nvim_set_hl(0, "MiniStatuslineModeVisual", { bg = theme.base0E, update = true })
+  vim.api.nvim_set_hl(0, "MiniStatuslineModeReplace", { bg = theme.base08, update = true })
+
   vim.api.nvim_set_hl(0, "BlinkCmpLabelMatch", { fg = theme.base0E, update = true })
 
   vim.api.nvim_set_hl(0, "markdownH1", { fg = theme.base08 })
