@@ -20,7 +20,6 @@ Scope {
     IpcHandler {
         target: "launcher"
         function toggle() {
-            ClipboardService.syncClipboard();
             launcherLoader.activeAsync = !launcherLoader.activeAsync;
         }
     }
@@ -204,6 +203,8 @@ Scope {
                                     values: ClipboardService.clipboard.filter(item => searchInput.matches(item.keys))
                                     onValuesChanged: clipList.currentIndex = 0
                                 }
+
+                                Component.onCompleted: ClipboardService.syncClipboard()
 
                                 listWidth: parent.width / 3
                                 getListText: modelData => modelData?.preview ?? ""
