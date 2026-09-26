@@ -254,13 +254,15 @@ Scope {
                                         id: textPreview
                                         Flickable {
                                             anchors.fill: parent
-                                            anchors.margins: 16
                                             contentWidth: textPreviewText.width
-                                            contentHeight: textPreviewText.height
+                                            contentHeight: textPreviewText.height + 2 * textPreviewText.anchors.margins
 
                                             QsText {
                                                 id: textPreviewText
-                                                width: parent.width - 16
+                                                anchors.top: parent.top
+                                                anchors.left: parent.left
+                                                anchors.right: parent.right
+                                                anchors.margins: 16
                                                 wrapMode: Text.Wrap
                                                 font.family: "monospace"
                                                 font.pointSize: 10
