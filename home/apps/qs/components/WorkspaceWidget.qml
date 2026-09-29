@@ -26,7 +26,7 @@ ColumnLayout {
 
         model: ScriptModel {
             objectProp: "name"
-            values: root.niri.workspaces
+            values: [...root.niri.workspaces].filter(ws => ws.name || ws.is_active || ws.active_window_id)
         }
 
         Rectangle {
@@ -40,7 +40,6 @@ ColumnLayout {
             Layout.preferredHeight: active ? root.activeHeight : occupied ? root.occupiedHeight : root.size
             radius: width
 
-            visible: modelData.name || active || occupied
             color: active || hover.hovered ? Theme.accent : occupied ? Theme.bg2 : Theme.bg1
 
             Behavior on Layout.preferredHeight {

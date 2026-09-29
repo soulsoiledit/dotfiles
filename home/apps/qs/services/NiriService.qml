@@ -9,16 +9,12 @@ Scope {
     id: root
 
     required property var screen
-
-    readonly property Toplevel activeWindow: ToplevelManager.activeToplevel
-    readonly property int windowCount: ToplevelManager.toplevels.values.length
-    readonly property list<Windowset> activeWorkspace: WindowManager.screenProjection(screen).windowsets.filter(a => a.active)
-
     property list<var> workspaces
 
     Process {
         id: niriMsgWorkspaces
         command: ["niri", "msg", "--json", "workspaces"]
+        running: true
         stdout: StdioCollector {
             onStreamFinished: {
                 root.workspaces = JSON.parse(text.trim()).sort((x, y) => x.idx - y.idx);
@@ -34,7 +30,24 @@ Scope {
         Qt.callLater(queryWorkspaces);
     }
 
-    onActiveWindowChanged: updateWorkspaces()
-    onWindowCountChanged: updateWorkspaces()
-    onActiveWorkspaceChanged: updateWorkspaces()
+    Connections {
+        target: WindowManager.screenProjection(root.screen)
+        function onWindowsetsChanged() {
+            root.updateWorkspaces();
+        }
+    }
+
+    Connections {
+        target: ToplevelManager
+        function onActiveToplevelChanged() {
+            root.updateWorkspaces();
+        }
+    }
+
+    Connections {
+        target: ToplevelManager.toplevels
+        function onValuesChanged() {
+            root.updateWorkspaces();
+        }
+    }
 }
