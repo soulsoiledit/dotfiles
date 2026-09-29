@@ -13,7 +13,7 @@ import qs.services
 ShellRoot {
     IpcHandler {
         target: "shell"
-        function reload(hard: bool) {
+        function reload(hard: bool): void {
             Quickshell.reload(hard);
         }
     }

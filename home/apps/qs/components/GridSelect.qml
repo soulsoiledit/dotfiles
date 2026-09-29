@@ -18,15 +18,15 @@ GridView {
     readonly property var currentData: currentItem?.modelData // qmllint disable missing-property
     signal itemActivated(var modelData)
 
-    function activateSelected() {
+    function activateSelected(): void {
         itemActivated(currentData);
     }
 
-    function previous() {
+    function previous(): void {
         moveCurrentIndexLeft();
     }
 
-    function next() {
+    function next(): void {
         moveCurrentIndexRight();
     }
 

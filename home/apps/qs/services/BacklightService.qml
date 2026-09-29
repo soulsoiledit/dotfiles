@@ -24,7 +24,7 @@ Singleton {
         NotificationService.notifyOsd("brightness-change", [`${icon} ${percentage}`, "-h", `int:value:${percentage}`]);
     }
 
-    function scheduleNotify() {
+    function scheduleNotify(): void {
         Qt.callLater(notify);
     }
 

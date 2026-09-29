@@ -20,15 +20,15 @@ RowLayout {
 
     signal itemActivated(var modelData)
 
-    function activateSelected() {
+    function activateSelected(): void {
         itemActivated(currentData);
     }
 
-    function previous() {
+    function previous(): void {
         list.decrementCurrentIndex();
     }
 
-    function next() {
+    function next(): void {
         list.incrementCurrentIndex();
     }
 

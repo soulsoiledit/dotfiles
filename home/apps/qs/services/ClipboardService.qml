@@ -13,7 +13,7 @@ Singleton {
     property int decodeId
     property string decoded
 
-    function syncClipboard() {
+    function syncClipboard(): void {
         cliphistList.running = true;
     }
 

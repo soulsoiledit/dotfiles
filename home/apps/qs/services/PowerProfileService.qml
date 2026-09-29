@@ -25,7 +25,7 @@ Singleton {
         NotificationService.notifyOsd("profile-switch", ["Power Profile", profile, "--icon", `battery-profile-${profile}`]);
     }
 
-    function scheduleNotify() {
+    function scheduleNotify(): void {
         Qt.callLater(notify);
     }
 

@@ -15,13 +15,13 @@ Rectangle {
     topRightRadius: height
     bottomRightRadius: topRightRadius
 
-    function syncVolume(point) {
+    function syncVolume(point): void {
         var relativePosition = Math.max(0, Math.min(point.position.x / width, 1));
         var positionRoundedTo5 = Math.round(relativePosition * snapMult) / snapMult;
         value = positionRoundedTo5;
     }
 
-    function scheduleSyncVolume(point) {
+    function scheduleSyncVolume(point): void {
         Qt.callLater(syncVolume, point);
     }
 

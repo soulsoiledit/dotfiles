@@ -19,7 +19,7 @@ Scope {
 
     IpcHandler {
         target: "launcher"
-        function toggle() {
+        function toggle(): void {
             launcherLoader.activeAsync = !launcherLoader.activeAsync;
         }
     }

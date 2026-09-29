@@ -12,7 +12,7 @@ Singleton {
     readonly property string path: Quickshell.stateDir + "/launcher.json"
 
     readonly property var appPrototype: ({
-            matchesWindow: function (window: var): bool {
+            matchesWindow: function (window: Toplevel): bool {
                 switch (window.appId) {
                 case this.entry.startupClass:
                 case this.entry.name:
@@ -70,7 +70,7 @@ Singleton {
         adapter: JsonAdapter {
             id: usage
             property var data: ({})
-            function record(id: string) {
+            function record(id: string): void {
                 usage.data[id] = Date.now();
                 dataChanged();
             }

@@ -32,7 +32,6 @@ Scope {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectCrop
                 asynchronous: true
-                visible: status === Image.Ready
 
                 layer.enabled: true
                 layer.effect: MultiEffect {
@@ -121,7 +120,7 @@ Scope {
 
                             Connections {
                                 target: root
-                                function onCurrentTextChanged() {
+                                function onCurrentTextChanged(): void {
                                     inputText.text = root.currentText;
                                 }
                             }
@@ -168,11 +167,11 @@ Scope {
     IpcHandler {
         target: "lockscreen"
 
-        function lock() {
+        function lock(): void {
             lock.locked = true;
         }
 
-        function pseudoLock() {
+        function pseudoLock(): void {
             root.falseLocked = true;
             lock.locked = true;
         }

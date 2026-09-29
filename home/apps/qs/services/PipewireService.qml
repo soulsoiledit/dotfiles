@@ -96,11 +96,11 @@ Singleton {
         NotificationService.notifyOsd("mic-volume-change", [`${micPercentage}%`, "--icon", `mic-volume-${micState}`, "-h", `int:value:${micPercentage}`]);
     }
 
-    function scheduleNotifyVolume() {
+    function scheduleNotifyVolume(): void {
         Qt.callLater(notifyVolume);
     }
 
-    function scheduleNotifyMicVolume() {
+    function scheduleNotifyMicVolume(): void {
         Qt.callLater(notifyMicVolume);
     }
 

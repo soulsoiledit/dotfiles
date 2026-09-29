@@ -26,11 +26,11 @@ Scope {
         }
     }
 
-    function queryWorkspaces() {
+    function queryWorkspaces(): void {
         niriMsgWorkspaces.running = true;
     }
 
-    function updateWorkspaces() {
+    function updateWorkspaces(): void {
         Qt.callLater(queryWorkspaces);
     }
 
