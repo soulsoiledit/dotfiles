@@ -4,10 +4,12 @@ import Quickshell
 
 import qs.meta
 
+// TODO: lazy load popup automatically
 PopupWindow {
     id: root
 
     grabFocus: true
+    visible: true
 
     implicitWidth: panel.width
     implicitHeight: panel.height

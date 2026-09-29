@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 
 import Quickshell
@@ -76,13 +78,16 @@ QsIcon {
         }
     }
 
-    onClicked: popup.visible = !popup.visible
-    QsPopup {
-        id: popup
-        anchor.item: root
-        anchor.edges: Edges.Bottom | Edges.Right
-        anchor.gravity: Edges.Top | Edges.Right
+    onClicked: popupLoader.activeAsync = !popupLoader.activeAsync
+    LazyLoader {
+        id: popupLoader
+        QsPopup {
+            id: popup
+            anchor.item: root
+            anchor.edges: Edges.Bottom | Edges.Right
+            anchor.gravity: Edges.Top | Edges.Right
 
-        PowerProfileWidget {}
+            PowerProfileWidget {}
+        }
     }
 }
