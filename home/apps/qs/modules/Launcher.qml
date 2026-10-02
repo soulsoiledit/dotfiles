@@ -13,7 +13,6 @@ import qs.meta
 import qs.services
 
 // TODO: add clipboard history management
-// TODO: add debouncing on inputs
 Scope {
     id: root
 
@@ -109,22 +108,31 @@ Scope {
                                 font.pointSize: 14
                                 color: Theme.base05
 
+                                property string searchText
+                                Timer {
+                                    id: searchInputDebounce
+                                    interval: 50
+                                    repeat: false
+                                    onTriggered: searchInput.searchText = searchInput.text
+                                }
+                                onTextChanged: searchInputDebounce.restart()
+
                                 onAccepted: {
                                     viewLoader.selectView.activateSelected();
                                     launcherLoader.activeAsync = false;
                                 }
 
                                 function matches(itemKeys: list<string>): bool {
-                                    if (!text) {
+                                    if (!searchText) {
                                         return true;
                                     }
 
-                                    const caseSensitive = /[A-Z]/.test(text);
+                                    const caseSensitive = /[A-Z]/.test(searchText);
                                     return itemKeys.some(key => {
                                         if (!key) {
                                             return false;
                                         }
-                                        return caseSensitive ? key.includes(text) : key.toLowerCase().includes(text);
+                                        return caseSensitive ? key.includes(searchText) : key.toLowerCase().includes(searchText);
                                     });
                                 }
 
