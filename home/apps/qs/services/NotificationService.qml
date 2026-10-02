@@ -35,7 +35,7 @@ Singleton {
     function invoke(notification: Notification, index = undefined) {
         index === undefined ? hide(notification) : hideByIndex(index);
 
-        let action = notification.actions.find(a => a.identifier === "default");
+        let action = notification.actions.find(a => a.identifier === "default"); // qmllint disable unresolved-type
         if (action !== undefined) {
             action.invoke();
             const notifAppId = DesktopEntries.heuristicLookup(notification.desktopEntry).startupClass;

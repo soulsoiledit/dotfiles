@@ -27,8 +27,8 @@ QsIcon {
         QsPopup {
             id: popup
             anchor.item: root
-            anchor.edges: Edges.Bottom | Edges.Right
-            anchor.gravity: Edges.Top | Edges.Right
+            anchor.edges: Edges.Bottom | Edges.Right // qmllint disable missing-type
+            anchor.gravity: Edges.Top | Edges.Right // qmllint disable missing-type
 
             PipewireWidget {}
         }
