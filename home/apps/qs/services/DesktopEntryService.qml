@@ -46,16 +46,9 @@ Singleton {
     readonly property var applications: [...DesktopEntries.applications.values].map(entry => {
         let app = Object.create(appPrototype);
         app.entry = entry;
-
-        const joinedKeywords = entry.keywords.join(" ");
-        let wordKey = [entry.name, entry.genericName, entry.id, joinedKeywords].join(" ");
-
-        let initialsSource = `${entry.name} ${entry.genericName}`.toLowerCase();
-        let initialKey = initialsSource.split(/[-_\s]+/).map(c => c[0]).join("");
-
-        app.keys = [wordKey, initialKey];
+        let initials = entry.name.split(/[-_\s]+/).map(c => c[0]).join("");
+        app.keys = [entry.name, initials, entry.id, entry.genericName, ...entry.keywords].filter(Boolean);
         app.score = usage.data[entry.id] ?? 0;
-
         return app;
     }).sort((a, b) => b.score - a.score)
 
