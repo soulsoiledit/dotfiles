@@ -7,7 +7,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 
-import qs.components
+import qs.components.select
 import qs.components.shared
 import qs.meta
 import qs.services
@@ -52,12 +52,12 @@ Scope {
 
             Shortcut {
                 sequences: ["Up"]
-                onActivated: viewLoader.item.previous()
+                onActivated: viewLoader.selectView.previous()
             }
 
             Shortcut {
                 sequences: ["Down"]
-                onActivated: viewLoader.item.next()
+                onActivated: viewLoader.selectView.next()
             }
 
             Rectangle {
@@ -110,7 +110,7 @@ Scope {
                                 color: Theme.base05
 
                                 onAccepted: {
-                                    viewLoader.item.activateSelected();
+                                    viewLoader.selectView.activateSelected();
                                     launcherLoader.activeAsync = false;
                                 }
 
@@ -161,6 +161,7 @@ Scope {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
 
+                        readonly property Select selectView: item as Select
                         sourceComponent: {
                             if (launcher.mode === Launcher.Modes.Apps) {
                                 return appGridComponent;
@@ -177,14 +178,14 @@ Scope {
                             GridSelect {
                                 id: appGrid
                                 focus: false
-                                cellWidth: width / 6
+                                columns: 6
                                 model: ScriptModel {
                                     objectProp: "id"
                                     values: DesktopEntryService.applications.filter(entry => searchInput.matches(entry.keys))
                                     onValuesChanged: appGrid.currentIndex = 0
                                 }
 
-                                getText: modelData => modelData.entry.name
+                                getLabel: modelData => modelData.entry.name
                                 getIcon: modelData => modelData.entry.icon
                                 onItemActivated: modelData => {
                                     modelData.open();
@@ -207,7 +208,7 @@ Scope {
                                 Component.onCompleted: ClipboardService.syncClipboard()
 
                                 listWidth: parent.width / 3
-                                getListText: modelData => modelData?.preview ?? ""
+                                getLabel: modelData => modelData?.preview ?? ""
                                 onCurrentDataChanged: currentData?.decode()
                                 onItemActivated: modelData => {
                                     modelData.copy();
