@@ -15,14 +15,14 @@ Rectangle {
     topRightRadius: height
     bottomRightRadius: topRightRadius
 
-    function syncVolume(point): void {
+    function syncPosition(point): void {
         var relativePosition = Math.max(0, Math.min(point.position.x / width, 1));
         var positionRoundedTo5 = Math.round(relativePosition * snapMult) / snapMult;
         value = positionRoundedTo5;
     }
 
-    function scheduleSyncVolume(point): void {
-        Qt.callLater(syncVolume, point);
+    function scheduleSyncPosition(point): void {
+        Qt.callLater(syncPosition, point);
     }
 
     Rectangle {
@@ -57,7 +57,7 @@ Rectangle {
 
         onCentroidChanged: {
             if (active) {
-                root.scheduleSyncVolume(centroid);
+                root.scheduleSyncPosition(centroid);
             }
         }
     }
@@ -66,7 +66,7 @@ Rectangle {
         margin: 4
         onPressedChanged: {
             if (pressed) {
-                root.scheduleSyncVolume(point);
+                root.scheduleSyncPosition(point);
             }
         }
     }
