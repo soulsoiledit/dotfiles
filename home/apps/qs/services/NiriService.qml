@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 
 import Quickshell
@@ -30,10 +32,14 @@ Scope {
         Qt.callLater(queryWorkspaces);
     }
 
-    Connections {
-        target: WindowManager.screenProjection(root.screen)
-        function onWindowsetsChanged() {
-            root.updateWorkspaces();
+    Instantiator {
+        model: WindowManager.screenProjection(root.screen).windowsets
+        delegate: Connections {
+            required property Windowset modelData
+            target: modelData
+            function onActiveChanged() {
+                root.updateWorkspaces();
+            }
         }
     }
 
