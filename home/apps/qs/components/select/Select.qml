@@ -21,4 +21,11 @@ FocusScope {
 
     function next(): void {
     }
+
+    function setCurrentIndex(index: int): void {
+    }
+
+    function resetIndex(): void {
+        setCurrentIndex(0);
+    }
 }

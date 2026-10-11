@@ -190,7 +190,7 @@ Scope {
                                 model: ScriptModel {
                                     objectProp: "id"
                                     values: DesktopEntryService.applications.filter(entry => searchInput.matches(entry.keys))
-                                    onValuesChanged: appGrid.currentIndex = 0
+                                    onValuesChanged: appGrid.resetIndex()
                                 }
 
                                 getLabel: modelData => modelData.entry.name
@@ -210,7 +210,7 @@ Scope {
                                 model: ScriptModel {
                                     objectProp: "id"
                                     values: ClipboardService.clipboard.filter(item => searchInput.matches(item.keys))
-                                    onValuesChanged: clipList.currentIndex = 0
+                                    onValuesChanged: clipList.resetIndex()
                                 }
 
                                 Component.onCompleted: ClipboardService.syncClipboard()

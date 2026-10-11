@@ -26,6 +26,10 @@ Select {
         grid.moveCurrentIndexRight();
     }
 
+    function setCurrentIndex(index: int): void {
+        grid.currentIndex = index;
+    }
+
     GridView {
         id: grid
         anchors.fill: parent

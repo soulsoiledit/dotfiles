@@ -23,6 +23,10 @@ Select {
         list.incrementCurrentIndex();
     }
 
+    function setCurrentIndex(index: int): void {
+        list.currentIndex = index;
+    }
+
     RowLayout {
         id: layout
         anchors.fill: parent
