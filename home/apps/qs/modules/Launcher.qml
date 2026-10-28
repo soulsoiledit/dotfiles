@@ -122,17 +122,17 @@ Scope {
                                     launcherLoader.activeAsync = false;
                                 }
 
+                                // inspired by https://github.com/oantolin/orderless
+                                // split search term by spaces then test
+                                // against each key literally and as regex
+                                // with smart casing
                                 function matches(itemKeys: list<string>): bool {
-                                    if (!searchText) {
-                                        return true;
-                                    }
-
-                                    const caseSensitive = /[A-Z]/.test(searchText);
-                                    return itemKeys.some(key => {
-                                        if (!key) {
-                                            return false;
-                                        }
-                                        return caseSensitive ? key.includes(searchText) : key.toLowerCase().includes(searchText);
+                                    return searchText.split(" ").every(comp => {
+                                        const caseSensitive = /[A-Z]/.test(comp);
+                                        return itemKeys.some(key => {
+                                            const key_ = caseSensitive ? key : key.toLowerCase();
+                                            return key_.includes(comp) || RegExp(comp).test(key_);
+                                        });
                                     });
                                 }
 
