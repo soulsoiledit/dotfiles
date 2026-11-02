@@ -12,7 +12,6 @@ import qs.components.shared
 import qs.meta
 import qs.services
 
-// TODO: add clipboard history management
 Scope {
     id: root
 
@@ -223,61 +222,161 @@ Scope {
                                     viewLoader.itemActivated();
                                 }
 
-                                previewDelegate: Loader {
-                                    id: previewLoader
+                                previewDelegate: ColumnLayout {
+                                    spacing: 8
+                                    Rectangle {
+                                        color: Theme.base01
+                                        radius: 32
+                                        Layout.alignment: Qt.AlignTop
+                                        Layout.fillWidth: true
+                                        Layout.preferredHeight: clipList.currentItem == null ? parent.height * 1 : parent.height * 0.85
 
-                                    sourceComponent: {
-                                        if (clipList.currentItem === null) {
-                                            return noPreview;
-                                        }
-
-                                        if (clipList.currentData?.isImage) {
-                                            return imagePreview;
-                                        } else {
-                                            return textPreview;
-                                        }
-                                    }
-
-                                    Component {
-                                        id: noPreview
-                                        QsText {
-                                            verticalAlignment: Text.AlignVCenter
-                                            horizontalAlignment: Text.AlignHCenter
-                                            font.pointSize: 16
-                                            text: "No item selected"
-                                        }
-                                    }
-
-                                    Component {
-                                        id: imagePreview
-                                        Image {
+                                        Loader {
+                                            id: previewLoader
                                             anchors.fill: parent
-                                            anchors.centerIn: parent
-                                            anchors.margins: 16
-                                            asynchronous: true
-                                            fillMode: Image.PreserveAspectFit
-                                            source: ClipboardService.decoded
+
+                                            sourceComponent: {
+                                                if (clipList.currentItem === null) {
+                                                    return noPreview;
+                                                }
+
+                                                if (clipList.currentData?.isImage) {
+                                                    return imagePreview;
+                                                } else {
+                                                    return textPreview;
+                                                }
+                                            }
+
+                                            Component {
+                                                id: noPreview
+                                                QsText {
+                                                    verticalAlignment: Text.AlignVCenter
+                                                    horizontalAlignment: Text.AlignHCenter
+                                                    font.pointSize: 16
+                                                    text: "No item selected"
+                                                }
+                                            }
+
+                                            Component {
+                                                id: imagePreview
+                                                Image {
+                                                    anchors.fill: parent
+                                                    anchors.centerIn: parent
+                                                    anchors.margins: 16
+                                                    asynchronous: true
+                                                    fillMode: Image.PreserveAspectFit
+                                                    source: ClipboardService.decoded
+                                                }
+                                            }
+
+                                            Component {
+                                                id: textPreview
+                                                Flickable {
+                                                    anchors.fill: parent
+                                                    contentWidth: textPreviewText.width
+                                                    contentHeight: textPreviewText.height + 2 * textPreviewText.anchors.margins
+
+                                                    QsText {
+                                                        id: textPreviewText
+                                                        anchors.top: parent.top
+                                                        anchors.left: parent.left
+                                                        anchors.right: parent.right
+                                                        anchors.margins: 16
+                                                        wrapMode: Text.Wrap
+                                                        font.family: "monospace"
+                                                        font.pointSize: 10
+                                                        textFormat: Text.PlainText
+                                                        text: ClipboardService.decoded
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
 
-                                    Component {
-                                        id: textPreview
-                                        Flickable {
-                                            anchors.fill: parent
-                                            contentWidth: textPreviewText.width
-                                            contentHeight: textPreviewText.height + 2 * textPreviewText.anchors.margins
+                                    Loader {
+                                        active: clipList.currentItem != null
+                                        Layout.alignment: Qt.AlignRight
+                                        Layout.fillHeight: true
+                                        Layout.preferredWidth: clipboardItemActions.width
 
-                                            QsText {
-                                                id: textPreviewText
-                                                anchors.top: parent.top
-                                                anchors.left: parent.left
-                                                anchors.right: parent.right
-                                                anchors.margins: 16
-                                                wrapMode: Text.Wrap
-                                                font.family: "monospace"
-                                                font.pointSize: 10
-                                                textFormat: Text.PlainText
-                                                text: ClipboardService.decoded
+                                        RowLayout {
+                                            id: clipboardItemActions
+                                            spacing: 8
+                                            height: parent.height
+
+                                            Rectangle {
+                                                color: copyTap.pressed ? Theme.base03 : copyHover.hovered ? Theme.base02 : Theme.base01
+                                                radius: 32
+                                                Layout.fillHeight: true
+                                                Layout.preferredWidth: height
+
+                                                QsIcon {
+                                                    enabled: false
+                                                    anchors.centerIn: parent
+                                                    size: parent.height * 0.75
+                                                    name: "editcopy"
+                                                    icon.color: Theme.base05
+                                                }
+
+                                                HoverHandler {
+                                                    id: copyHover
+                                                }
+
+                                                TapHandler {
+                                                    id: copyTap
+                                                    onTapped: clipList.currentData.copy()
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                id: deleteButton
+                                                color: deleteTap.pressed ? Theme.base03 : deleteHover.hovered ? Theme.base02 : Theme.base01
+                                                radius: 32
+                                                Layout.fillHeight: true
+                                                Layout.preferredWidth: height
+
+                                                QsIcon {
+                                                    enabled: false
+                                                    anchors.centerIn: parent
+                                                    size: parent.height * 0.75
+                                                    name: "delete"
+                                                    icon.color: Theme.base05
+                                                }
+
+                                                HoverHandler {
+                                                    id: deleteHover
+                                                }
+
+                                                TapHandler {
+                                                    id: deleteTap
+                                                    onTapped: {
+                                                        clipList.currentData.delete();
+                                                    }
+                                                }
+                                            }
+
+                                            Rectangle {
+                                                id: wipeButton
+                                                color: wipeHover.hovered ? Theme.base08 : Theme.base01
+                                                radius: 32
+                                                Layout.fillHeight: true
+                                                Layout.preferredWidth: height
+
+                                                QsIcon {
+                                                    enabled: false
+                                                    anchors.centerIn: parent
+                                                    size: parent.height * 0.75
+                                                    name: "group-delete"
+                                                    icon.color: wipeHover.hovered ? Theme.base00 : Theme.base08
+                                                }
+
+                                                HoverHandler {
+                                                    id: wipeHover
+                                                }
+
+                                                TapHandler {
+                                                    onTapped: ClipboardService.wipe()
+                                                }
                                             }
                                         }
                                     }

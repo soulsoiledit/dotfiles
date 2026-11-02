@@ -73,17 +73,11 @@ Select {
             }
         }
 
-        Rectangle {
+        Loader {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            color: Theme.base01
-            radius: 32
-
-            Loader {
-                anchors.fill: parent
-                clip: true
-                sourceComponent: root.previewDelegate
-            }
+            clip: true
+            sourceComponent: root.previewDelegate
         }
     }
 }

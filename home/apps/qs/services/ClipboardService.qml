@@ -5,30 +5,32 @@ import QtQuick
 import Quickshell
 import Quickshell.Io
 
-// TODO: Add entry delete and data wipe functions
 Singleton {
     id: root
 
     property var clipboard: []
-    property int decodeId
     property string decoded
 
     function syncClipboard(): void {
         cliphistList.running = true;
     }
 
+    function wipe(): void {
+        cliphistWipe.running = true;
+    }
+
     readonly property var clipboardPrototype: ({
             copy: function (): void {
-                Quickshell.execDetached({
-                    command: ["sh", "-c", `cliphist decode ${this.id} | wl-copy`]
-                });
+                Quickshell.execDetached(["sh", "-c", `cliphist decode ${this.id} | wl-copy`]);
+            },
+            delete: function (): void {
+                cliphistDelete.deleteItem(this.id);
             },
             decode: function (): void {
                 root.decoded = null;
-                const process = this.isImage ? decodeImageProc : decodeProc;
+                const process = this.isImage ? cliphistDecodeImage : cliphistDecode;
                 process.running = false;
-                decodeId = this.id;
-                process.running = true;
+                process.decode(this.id);
             }
         })
 
@@ -70,18 +72,43 @@ Singleton {
     }
 
     Process {
-        id: decodeImageProc
-        command: ["sh", "-c", `cliphist decode ${root.decodeId} | base64 --wrap 0`]
+        id: cliphistDecode
         stdout: StdioCollector {
-            onStreamFinished: root.decoded = `data:image/*;base64,${text}`
+            onStreamFinished: root.decoded = text
+        }
+
+        function decode(id: int): void {
+            exec(["cliphist", "decode", id]);
         }
     }
 
     Process {
-        id: decodeProc
-        command: ["cliphist", "decode", root.decodeId]
+        id: cliphistDecodeImage
         stdout: StdioCollector {
-            onStreamFinished: root.decoded = text
+            onStreamFinished: root.decoded = `data:image/*;base64,${text}`
+        }
+
+        function decode(id: int): void {
+            exec(["sh", "-c", `cliphist decode ${id} | base64 --wrap 0`]);
+        }
+    }
+
+    Process {
+        id: cliphistDelete
+        stdout: StdioCollector {
+            onStreamFinished: syncClipboard()
+        }
+
+        function deleteItem(id: int): void {
+            exec(["sh", "-c", `echo ${id} | cliphist delete`]);
+        }
+    }
+
+    Process {
+        id: cliphistWipe
+        command: ["cliphist", "wipe"]
+        stdout: StdioCollector {
+            onStreamFinished: syncClipboard()
         }
     }
 }
