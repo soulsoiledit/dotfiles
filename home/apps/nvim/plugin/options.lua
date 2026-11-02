@@ -20,3 +20,4 @@ vim.o.foldmethod = "indent"
 vim.o.foldlevelstart = 99
 
 vim.o.nrformats = "blank"
+vim.o.conceallevel = 2

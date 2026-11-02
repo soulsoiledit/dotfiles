@@ -30,6 +30,7 @@ safely_if_args("now", "later", function ()
     "pyrefly",
     "ruff",
     "bashls",
+    "mpls",
     "tinymist",
     "clangd",
     "qmlls"

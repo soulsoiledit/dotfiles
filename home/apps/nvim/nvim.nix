@@ -25,7 +25,6 @@
     plugins = with pkgs.vimPlugins; [
       snacks-nvim
       mini-nvim
-      markview-nvim
 
       # code
       blink-cmp
@@ -70,6 +69,7 @@
       bash-language-server
       shfmt
 
+      mpls
       tinymist
       typstyle
 

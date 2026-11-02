@@ -1,9 +1,3 @@
-safely("now", function ()
-  require("markview").setup()
-  vim.api.nvim_set_hl(0, "MarkviewListItemMinus", { link = "MarkviewPalette6Fg" })
-  vim.api.nvim_set_hl(0, "MarkviewListItemStar", { link = "MarkviewPalette2Fg" })
-end)
-
 safely_if_args("now", "later", function ()
   vim.api.nvim_create_autocmd("FileType", {
     group = vim.api.nvim_create_augroup("treesitter.setup", {}),
