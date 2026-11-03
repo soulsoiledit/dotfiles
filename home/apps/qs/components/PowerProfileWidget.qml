@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 
@@ -11,36 +13,14 @@ import qs.services
 
 ColumnLayout {
     QsText {
+        Layout.alignment: Qt.AlignHCenter
         font.pointSize: 10
-        color: Theme.fg0
-        text: {
-            const percentage = Math.round(BatteryService.percentage * 100, 2);
-
-            const timeLeft = BatteryService.timeLeft;
-            const hours = Math.floor(timeLeft / 3600);
-            const minutes = String(Math.floor(timeLeft % 3600 / 60)).padStart(2, "0");
-            const timeLeftFormatted = `${hours}:${minutes}`;
-
-            const rateFormatted = BatteryService.rate.toFixed(1);
-
-            return `${percentage}% (${timeLeftFormatted} at ${rateFormatted} W)`;
-        }
-    }
-
-    Rectangle {
-        Layout.preferredHeight: 2
-        Layout.fillWidth: true
-        color: Theme.bg2
-        radius: height
-    }
-
-    QsText {
-        font.pointSize: 10
-        text: "Power profile:"
+        text: "Power profile"
     }
 
     RowLayout {
         Repeater {
+            id: icons
             model: [
                 {
                     name: "powersave",
@@ -58,16 +38,25 @@ ColumnLayout {
 
             Rectangle {
                 id: profileIcon
+                required property var index
                 required property var modelData
 
                 readonly property string currentProfile: PowerProfileService.profile
                 readonly property string name: modelData.name
                 readonly property int profile: modelData.profile
 
+                readonly property bool first: index === 0
+                readonly property bool last: index === icons.count - 1
+                readonly property bool active: name === currentProfile
+
                 width: 48
                 height: width
-                radius: width
-                color: tooltip.hovered ? Theme.base03 : name === currentProfile ? Theme.base02 : "transparent"
+
+                topLeftRadius: active || first ? width : height / 5
+                bottomLeftRadius: topLeftRadius
+                topRightRadius: active || last ? width : height / 5
+                bottomRightRadius: topRightRadius
+                color: active ? Theme.accent : tooltip.hovered ? Theme.base03 : Theme.base02
 
                 IconImage {
                     anchors.fill: parent
