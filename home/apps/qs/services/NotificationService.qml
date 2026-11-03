@@ -29,7 +29,7 @@ Singleton {
     }
 
     function hideByIndex(index: int): void {
-        NotificationService.shownNotifications.splice(index, 1);
+        shownNotifications.splice(index, 1);
     }
 
     function invoke(notification: Notification, index = undefined) {
