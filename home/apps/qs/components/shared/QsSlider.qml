@@ -1,63 +1,85 @@
 import QtQuick
 
-import qs.meta
-
-Rectangle {
+Item {
     id: root
 
-    required property double value
-    required property color sliderColor
+    required property real value
+    property real minValue: 0
+    property real maxValue: 1
+    required property color activeTrackColor
+    required property color inactiveTrackColor
+    required property real snap
 
-    required property int snap
-    readonly property int snapMult: 100 / snap
+    readonly property real spacing: 2
 
-    color: Theme.bg2
-    topRightRadius: height
-    bottomRightRadius: topRightRadius
+    readonly property double percentage: Math.max(0, Math.min((value - minValue) / (maxValue - minValue), 1))
+    readonly property real sliderWidth: root.width - root.spacing * 2 - handle.width
+    readonly property real snapMultiple: 100 / snap
 
-    function syncPosition(point): void {
-        var relativePosition = Math.max(0, Math.min(point.position.x / width, 1));
-        var positionRoundedTo5 = Math.round(relativePosition * snapMult) / snapMult;
-        value = positionRoundedTo5;
+    onValueChanged: {
+        const boundedValue = Math.max(minValue, Math.min(value, maxValue));
+        const snappedValue = Math.round(boundedValue * snapMultiple) / snapMultiple;
+        if (value !== snappedValue) {
+            value = snappedValue;
+        }
     }
 
-    function scheduleSyncPosition(point): void {
-        Qt.callLater(syncPosition, point);
+    function syncValue(point): void {
+        const percent = Math.max(0, Math.min(point.position.x / width, 1));
+        value = minValue + percent * (maxValue - minValue);
+    }
+
+    function scheduleSyncValue(point): void {
+        Qt.callLater(syncValue, point);
     }
 
     Rectangle {
-        id: fill
-        width: root.width * root.value
-        height: root.height
+        id: activeTrack
+        anchors.verticalCenter: handle.verticalCenter
+        width: root.sliderWidth * root.percentage
+        height: root.height / 4
 
-        color: root.sliderColor
+        color: root.activeTrackColor
         topLeftRadius: height
         bottomLeftRadius: topLeftRadius
+        topRightRadius: height / 4
+        bottomRightRadius: topRightRadius
     }
 
     Rectangle {
-        id: dot
+        id: handle
+        anchors.left: activeTrack.right
+        anchors.leftMargin: root.spacing
+        width: root.width * 0.02
+        height: root.height
 
-        anchors.verticalCenter: parent.verticalCenter
+        color: root.activeTrackColor
+        radius: height / 4
+    }
 
-        height: root.height * 3
-        width: height
-        x: root.width * root.value - width / 2
+    Rectangle {
+        id: inactiveTrack
+        anchors.left: handle.right
+        anchors.leftMargin: root.spacing
+        anchors.verticalCenter: handle.verticalCenter
+        width: root.sliderWidth - activeTrack.width
+        height: activeTrack.height
 
-        color: root.sliderColor
-        radius: height
+        color: root.inactiveTrackColor
+        topLeftRadius: activeTrack.topRightRadius
+        bottomLeftRadius: activeTrack.bottomRightRadius
+        topRightRadius: activeTrack.topLeftRadius
+        bottomRightRadius: activeTrack.bottomLeftRadius
     }
 
     DragHandler {
         target: null
-
         margin: 4
         xAxis.minimum: 0
         xAxis.maximum: root.width
-
         onCentroidChanged: {
             if (active) {
-                root.scheduleSyncPosition(centroid);
+                root.scheduleSyncValue(centroid);
             }
         }
     }
@@ -66,7 +88,7 @@ Rectangle {
         margin: 4
         onPressedChanged: {
             if (pressed) {
-                root.scheduleSyncPosition(point);
+                root.scheduleSyncValue(point);
             }
         }
     }

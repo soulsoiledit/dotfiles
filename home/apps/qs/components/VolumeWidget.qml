@@ -30,7 +30,9 @@ QsIcon {
             anchor.edges: Edges.Bottom | Edges.Right // qmllint disable missing-type
             anchor.gravity: Edges.Top | Edges.Right // qmllint disable missing-type
 
-            PipewireWidget {}
+            PipewireWidget {
+                width: popup.screen.width * 0.20
+            }
         }
     }
 }

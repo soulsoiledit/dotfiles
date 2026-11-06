@@ -35,11 +35,12 @@ ColumnLayout {
         }
     ]
 
-    component NodeRow: RowLayout {
+    component NodeRow: ColumnLayout {
         id: nodeRow
 
-        required property PwNode node
+        spacing: 8
 
+        required property PwNode node
         readonly property string percentage: `${Math.round(node?.audio?.volume * 100)}%`
         readonly property var name: {
             if (node?.isStream) {
@@ -53,7 +54,7 @@ ColumnLayout {
             id: nodeName
 
             font.pointSize: 10
-            Layout.preferredWidth: fontInfo.pointSize * 24
+            Layout.fillWidth: true
             elide: Text.ElideRight
 
             text: nodeRow.name ?? null
@@ -63,33 +64,39 @@ ColumnLayout {
             }
         }
 
-        QsSlider {
-            Layout.preferredWidth: nodeName.fontInfo.pointSize * 12
-            Layout.preferredHeight: 3
+        RowLayout {
+            id: bar
+            Layout.fillWidth: true
 
-            value: nodeRow.node?.audio?.volume ?? null
-            onValueChanged: nodeRow.node.audio.volume = value
+            spacing: 8
 
-            sliderColor: nodeRow.node?.audio.muted ? Theme.base03 : Theme.accent
-            snap: 5
-        }
+            QsIcon {
+                size: 16
+                name: nodeRow.node?.audio?.muted ? "audio-volume-muted" : "audio-volume-high"
+                icon.color: nodeRow.node?.audio.muted ? Theme.base03 : Theme.base05
 
-        QsText {
-            font.pointSize: nodeName.font.pointSize
-            Layout.preferredWidth: fontInfo.pointSize * 4
+                TapHandler {
+                    onTapped: nodeRow.node.audio.muted = !nodeRow.node.audio.muted
+                }
+            }
 
-            text: nodeRow.percentage
+            QsSlider {
+                Layout.fillWidth: true
+                implicitHeight: nodeName.font.pointSize * 2
 
-            horizontalAlignment: Text.AlignRight
-        }
+                value: nodeRow.node?.audio?.volume ?? null
+                onValueChanged: nodeRow.node.audio.volume = value
 
-        QsIcon {
-            size: 16
-            name: nodeRow.node?.audio?.muted ? "audio-volume-muted" : "audio-volume-high"
-            icon.color: nodeRow.node?.audio.muted ? Theme.base03 : Theme.base05
+                activeTrackColor: nodeRow.node?.audio.muted ? Theme.base03 : Theme.accent
+                inactiveTrackColor: Theme.base02
+                snap: 5
+            }
 
-            TapHandler {
-                onTapped: nodeRow.node.audio.muted = !nodeRow.node.audio.muted
+            QsText {
+                Layout.preferredWidth: fontInfo.pointSize * 3.5
+                font.pointSize: nodeName.font.pointSize
+                horizontalAlignment: Text.AlignRight
+                text: nodeRow.percentage
             }
         }
     }
@@ -101,11 +108,12 @@ ColumnLayout {
             id: section
 
             required property AudioNodesSection modelData
+            spacing: 8
 
             QsText {
                 font.pointSize: 10
                 color: Theme.base03
-                text: section.modelData.name + ":"
+                text: section.modelData.name
             }
 
             Repeater {
