@@ -43,11 +43,6 @@
       blink-pairs
       nvim-lightbulb
       which-key-nvim
-
-      {
-        plugin = typst-preview-nvim;
-        optional = true;
-      }
     ];
 
     extraPackages = with pkgs; [
