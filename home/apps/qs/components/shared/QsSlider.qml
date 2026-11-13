@@ -6,31 +6,22 @@ Item {
     required property real value
     property real minValue: 0
     property real maxValue: 1
+    property real step: 0.01
+
     required property color activeTrackColor
     required property color inactiveTrackColor
-    required property real snap
 
     readonly property real spacing: 2
 
     readonly property double percentage: Math.max(0, Math.min((value - minValue) / (maxValue - minValue), 1))
     readonly property real sliderWidth: root.width - root.spacing * 2 - handle.width
-    readonly property real snapMultiple: 100 / snap
 
-    onValueChanged: {
-        const boundedValue = Math.max(minValue, Math.min(value, maxValue));
-        const snappedValue = Math.round(boundedValue * snapMultiple) / snapMultiple;
-        if (value !== snappedValue) {
-            value = snappedValue;
-        }
-    }
-
-    function syncValue(point): void {
-        const percent = Math.max(0, Math.min(point.position.x / width, 1));
-        value = minValue + percent * (maxValue - minValue);
-    }
-
-    function scheduleSyncValue(point): void {
-        Qt.callLater(syncValue, point);
+    signal sliderMoved(position: point)
+    onSliderMoved: point => syncValue(point)
+    function syncValue(position: point): void {
+        const percent = Math.max(0, Math.min(position.x / width, 1));
+        const unsnapped = minValue + percent * (maxValue - minValue);
+        value = Math.round(unsnapped / step) * step;
     }
 
     Rectangle {
@@ -79,7 +70,7 @@ Item {
         xAxis.maximum: root.width
         onCentroidChanged: {
             if (active) {
-                root.scheduleSyncValue(centroid);
+                root.sliderMoved(centroid.position);
             }
         }
     }
@@ -88,7 +79,7 @@ Item {
         margin: 4
         onPressedChanged: {
             if (pressed) {
-                root.scheduleSyncValue(point);
+                root.sliderMoved(point.pressPosition);
             }
         }
     }

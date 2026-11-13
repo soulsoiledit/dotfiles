@@ -89,7 +89,7 @@ ColumnLayout {
 
                 activeTrackColor: nodeRow.node?.audio.muted ? Theme.base03 : Theme.accent
                 inactiveTrackColor: Theme.base02
-                snap: 5
+                step: 0.05
             }
 
             QsText {
