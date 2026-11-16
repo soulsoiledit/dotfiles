@@ -3,7 +3,7 @@
   programs.vesktop = {
     enable = true;
     vencord = {
-      useSystem = true;
+      # useSystem = true;
       settings.plugins = {
         NoReplyMention = {
           enabled = true;
