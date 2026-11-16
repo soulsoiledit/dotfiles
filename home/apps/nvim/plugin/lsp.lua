@@ -16,8 +16,6 @@ end)
 
 safely_if_args("now", "later", function ()
   vim.lsp.log.set_level(vim.log.levels.OFF)
-  vim.lsp.log.set_format_func(vim.inspect)
-
   vim.lsp.enable({
     "nixd",
     "emmylua_ls",
