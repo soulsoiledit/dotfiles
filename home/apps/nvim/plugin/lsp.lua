@@ -16,6 +16,19 @@ end)
 
 safely_if_args("now", "later", function ()
   vim.lsp.log.set_level(vim.log.levels.OFF)
+  -- derived from https://github.com/neovim/neovim/blob/f1d176d1ab6ef728996e6de75135b067465b8ece/runtime/lua/vim/log.lua#L95
+  -- why is level passed as a string here?
+  vim.lsp.log.set_format_func(function (level, ...)
+    if vim.log.levels[level] < vim.lsp.log.get_level() then
+      return nil
+    end
+
+    local info = debug.getinfo(3, 'Sl')
+    local src = info and (info.source:match('^@(.*)') or info.short_src) or '?'
+    local header = string.format("[%s][%s] %s:%s", level, os.date("%F %H:%M:%S"), src, info and info.currentline or -1)
+    return header .. "\t" .. vim.inspect({ ... }) .. "\n"
+  end)
+
   vim.lsp.enable({
     "nixd",
     "emmylua_ls",
