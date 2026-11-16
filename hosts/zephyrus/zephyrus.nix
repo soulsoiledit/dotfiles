@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./hardware.nix ];
@@ -39,23 +39,11 @@
     };
   };
 
-  # https://github.com/sammilucia/set-coall-timer
-  # prevent apu freezes
-  systemd = {
-    services.set-coall = {
-      description = "Overvolt 80-120mV";
-      script = "${lib.getExe pkgs.ryzenadj} --set-coall=0x100020";
-    };
-
-    timers.set-coall = {
-      description = "Overvolt 80-120mV periodically";
-      timerConfig = {
-        OnActiveSec = "0s";
-        OnUnitActiveSec = "10m";
-        Persistent = true;
-      };
-      wantedBy = [ "timers.target" ];
-    };
+  boot.kernelModules = [ "msr" ];
+  systemd.services.disable-c6 = {
+    description = "Disable c6";
+    wantedBy = [ "multi-user.target" ];
+    script = "${pkgs.zenstates}/bin/zenstates --c6-disable";
   };
 
   services.logind.settings.Login = {
