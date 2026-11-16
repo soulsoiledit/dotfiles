@@ -14,7 +14,7 @@ Singleton {
     readonly property int maxHistory: 10
     readonly property string restoredKey: "isRestored"
 
-    property alias notificationHistory: server.trackedNotifications.values
+    property alias notificationHistory: server.trackedNotificationValues
     property list<Notification> shownNotifications: []
 
     function notifyOsd(tag: string, args: list<var>): var {
@@ -35,7 +35,7 @@ Singleton {
     function invoke(notification: Notification, index = undefined) {
         index === undefined ? hide(notification) : hideByIndex(index);
 
-        let action = notification.actions.find(a => a.identifier === "default"); // qmllint disable unresolved-type
+        let action = notification.actions.find(a => a.identifier === "default"); // qmllint disable unresolved-type missing-property
         if (action !== undefined) {
             action.invoke();
             const notifAppId = DesktopEntries.heuristicLookup(notification.desktopEntry).startupClass;
@@ -52,9 +52,10 @@ Singleton {
         persistenceSupported: true
         bodyMarkupSupported: true
         bodyHyperlinksSupported: true
-        // TODO: add action buttons in the future (maybe)
         actionsSupported: true
         imageSupported: true
+
+        readonly property var trackedNotificationValues: trackedNotifications.values // qmllint disable missing-property
 
         onNotification: notification => {
             notification.tracked = true;
