@@ -27,6 +27,11 @@ Singleton {
         function next(): void {
             root.next();
         }
+
+        function set(absolutePath: string): void {
+            timer.restart();
+            persist.path = absolutePath;
+        }
     }
 
     Timer {
